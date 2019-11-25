@@ -3,27 +3,37 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1E022BD7238B5888007D2EE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BD6238B5888007D2EE6 /* AppDelegate.swift */; };
-		1E022BD9238B5888007D2EE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BD8238B5888007D2EE6 /* SceneDelegate.swift */; };
 		1E022BDB238B5888007D2EE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BDA238B5888007D2EE6 /* ViewController.swift */; };
-		1E022BDE238B5888007D2EE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BDC238B5888007D2EE6 /* Main.storyboard */; };
 		1E022BE0238B5888007D2EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BDF238B5888007D2EE6 /* Assets.xcassets */; };
 		1E022BE3238B5888007D2EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BE1238B5888007D2EE6 /* LaunchScreen.storyboard */; };
+		1E022BED238B595A007D2EE6 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BEC238B595A007D2EE6 /* SignInResponse.swift */; };
+		1E022BEF238B5AFB007D2EE6 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BEE238B5AFB007D2EE6 /* Authentication.swift */; };
+		1E022BF2238B5C1B007D2EE6 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1E022BF1238B5C1B007D2EE6 /* RxSwift */; };
+		1E022BF4238B5C1B007D2EE6 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 1E022BF3238B5C1B007D2EE6 /* RxCocoa */; };
+		1E022BF6238B5D1D007D2EE6 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BF5238B5D1D007D2EE6 /* SessionService.swift */; };
+		1E022BF8238B5EA3007D2EE6 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BF7238B5EA3007D2EE6 /* SignInViewModel.swift */; };
+		1E022BFC238B5FF4007D2EE6 /* LoginRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BFB238B5FF3007D2EE6 /* LoginRootView.swift */; };
+		1EFC8613238B69630025537D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFC8612238B69630025537D /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1E022BD3238B5888007D2EE6 /* SpotifyDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E022BD6238B5888007D2EE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1E022BD8238B5888007D2EE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1E022BDA238B5888007D2EE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1E022BDD238B5888007D2EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E022BDF238B5888007D2EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E022BE2238B5888007D2EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E022BE4238B5888007D2EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E022BEC238B595A007D2EE6 /* SignInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
+		1E022BEE238B5AFB007D2EE6 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		1E022BF5238B5D1D007D2EE6 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
+		1E022BF7238B5EA3007D2EE6 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		1E022BFB238B5FF3007D2EE6 /* LoginRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRootView.swift; sourceTree = "<group>"; };
+		1EFC8612238B69630025537D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E022BF4238B5C1B007D2EE6 /* RxCocoa in Frameworks */,
+				1E022BF2238B5C1B007D2EE6 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +52,7 @@
 		1E022BCA238B5888007D2EE6 = {
 			isa = PBXGroup;
 			children = (
+				1E022BEB238B5903007D2EE6 /* SpotifyDaily_iOS */,
 				1E022BD5238B5888007D2EE6 /* SpotifyDaily */,
 				1E022BD4238B5888007D2EE6 /* Products */,
 			);
@@ -57,14 +70,25 @@
 			isa = PBXGroup;
 			children = (
 				1E022BD6238B5888007D2EE6 /* AppDelegate.swift */,
-				1E022BD8238B5888007D2EE6 /* SceneDelegate.swift */,
-				1E022BDA238B5888007D2EE6 /* ViewController.swift */,
-				1E022BDC238B5888007D2EE6 /* Main.storyboard */,
-				1E022BDF238B5888007D2EE6 /* Assets.xcassets */,
 				1E022BE1238B5888007D2EE6 /* LaunchScreen.storyboard */,
+				1E022BDF238B5888007D2EE6 /* Assets.xcassets */,
 				1E022BE4238B5888007D2EE6 /* Info.plist */,
 			);
 			path = SpotifyDaily;
+			sourceTree = "<group>";
+		};
+		1E022BEB238B5903007D2EE6 /* SpotifyDaily_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				1E022BEE238B5AFB007D2EE6 /* Authentication.swift */,
+				1E022BF5238B5D1D007D2EE6 /* SessionService.swift */,
+				1E022BF7238B5EA3007D2EE6 /* SignInViewModel.swift */,
+				1E022BEC238B595A007D2EE6 /* SignInResponse.swift */,
+				1EFC8612238B69630025537D /* BaseViewController.swift */,
+				1E022BDA238B5888007D2EE6 /* ViewController.swift */,
+				1E022BFB238B5FF3007D2EE6 /* LoginRootView.swift */,
+			);
+			path = SpotifyDaily_iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +107,10 @@
 			dependencies = (
 			);
 			name = SpotifyDaily;
+			packageProductDependencies = (
+				1E022BF1238B5C1B007D2EE6 /* RxSwift */,
+				1E022BF3238B5C1B007D2EE6 /* RxCocoa */,
+			);
 			productName = SpotifyDaily;
 			productReference = 1E022BD3238B5888007D2EE6 /* SpotifyDaily.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +139,9 @@
 				Base,
 			);
 			mainGroup = 1E022BCA238B5888007D2EE6;
+			packageReferences = (
+				1E022BF0238B5C1B007D2EE6 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 1E022BD4238B5888007D2EE6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +158,6 @@
 			files = (
 				1E022BE3238B5888007D2EE6 /* LaunchScreen.storyboard in Resources */,
 				1E022BE0238B5888007D2EE6 /* Assets.xcassets in Resources */,
-				1E022BDE238B5888007D2EE6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +168,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E022BED238B595A007D2EE6 /* SignInResponse.swift in Sources */,
+				1E022BFC238B5FF4007D2EE6 /* LoginRootView.swift in Sources */,
+				1E022BF6238B5D1D007D2EE6 /* SessionService.swift in Sources */,
+				1E022BF8238B5EA3007D2EE6 /* SignInViewModel.swift in Sources */,
 				1E022BDB238B5888007D2EE6 /* ViewController.swift in Sources */,
+				1EFC8613238B69630025537D /* BaseViewController.swift in Sources */,
 				1E022BD7238B5888007D2EE6 /* AppDelegate.swift in Sources */,
-				1E022BD9238B5888007D2EE6 /* SceneDelegate.swift in Sources */,
+				1E022BEF238B5AFB007D2EE6 /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1E022BDC238B5888007D2EE6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1E022BDD238B5888007D2EE6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1E022BE1238B5888007D2EE6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -216,6 +243,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = /Users/kevinli/Documents/PersonalProjects/iOS/SpotifyDaily/SpotifyDaily/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -270,6 +298,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = /Users/kevinli/Documents/PersonalProjects/iOS/SpotifyDaily/SpotifyDaily/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -338,6 +367,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1E022BF0238B5C1B007D2EE6 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1E022BF1238B5C1B007D2EE6 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E022BF0238B5C1B007D2EE6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		1E022BF3238B5C1B007D2EE6 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E022BF0238B5C1B007D2EE6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1E022BCB238B5888007D2EE6 /* Project object */;
 }
