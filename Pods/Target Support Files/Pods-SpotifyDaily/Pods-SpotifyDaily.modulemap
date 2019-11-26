@@ -1,0 +1,6 @@
+framework module Pods_SpotifyDaily {
+  umbrella header "Pods-SpotifyDaily-umbrella.h"
+
+  export *
+  module * { export * }
+}
