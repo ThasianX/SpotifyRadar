@@ -1,11 +1,11 @@
-![SpotifyLogin - Swift 4 Framework for authenticating with the Spotify API ](https://user-images.githubusercontent.com/889949/28974990-b2eb0328-7938-11e7-9d19-1ff86d77324b.png)
+![SpotifyLogin - Swift 5 Framework for authenticating with the Spotify API ](https://user-images.githubusercontent.com/889949/28974990-b2eb0328-7938-11e7-9d19-1ff86d77324b.png)
 
 [![Build Status](https://travis-ci.org/spotify/SpotifyLogin.svg?branch=master)](https://travis-ci.org/spotify/SpotifyLogin)
 [![Version](http://img.shields.io/cocoapods/v/SpotifyLogin.svg)](http://cocoapods.org/?q=SpotifyLogin)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 # SpotifyLogin
-SpotifyLogin is a Swift 4 Framework for authenticating with the Spotify API.
+SpotifyLogin is a Swift 5 Framework for authenticating with the Spotify API.
 
 Usage of this framework is bound under the [Developer Terms of Use](https://developer.spotify.com/developer-terms-of-use/).
 
@@ -17,14 +17,14 @@ SpotifyLogin is appropriate for prototyping and non-commercial use only.
 **If your app is meant for commercial production usage, SpotifyLogin can NOT be used.**
 
 ### Compatibility
-SpotifyLogin requires Xcode 9.0+. It is compatible with iOS 9 or later. 
+SpotifyLogin requires Xcode 10.2+. It is compatible with iOS 9 or later. 
 
 ### Pre-requisites
 You will need to register your app in the [Developer Portal](https://developer.spotify.com/my-applications/#!/applications).
 
 Make sure to use a unique redirect url and to supply the bundle ID from your app.
 
-After registering, you will receive a client ID and a client secret. 
+After registering, you will receive a client ID and a client secret.
 
 ### Set up SpotifyLogin
 

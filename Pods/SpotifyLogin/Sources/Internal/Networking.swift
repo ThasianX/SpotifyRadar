@@ -34,13 +34,83 @@ internal struct TokenEndpointResponse: Codable {
     let refreshToken: String?
 }
 
-internal struct ProfileEndpointResponse: Codable {
-
-    enum CodingKeys: String, CodingKey {
-        case identifier = "id"
+internal struct ProfileEndpointResponse {
+    enum RootKeys: String, CodingKey {
+        case country
+        case displayName = "display_name"
+        case email
+        case explicitContent = "explicit_content"
+        case externalUrls = "external_urls"
+        case followers, href, id, images, product, type, uri
     }
 
-    let identifier: String
+    enum ExplicitContentKeys: String, CodingKey {
+        case filterEnabled = "filter_enabled"
+        case filterLocked = "filter_locked"
+    }
+
+    enum ExternalUrlsKeys: String, CodingKey {
+        case spotify
+    }
+
+    enum FollowersKeys: String, CodingKey {
+        case href, total
+    }
+
+    enum ImagesKeys: String, CodingKey {
+        case height, url, width
+    }
+    
+    let country: String
+    let displayName: String
+    let filterEnabled: Bool
+    let profileUrl: String
+    let numberOfFollowers: Int
+    let endpointUrl: String
+    let id: String
+//    let avatarUrl: URL
+//    let subscriptionLevel: String
+//    let uriUrl: URL
+}
+
+extension ProfileEndpointResponse: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: RootKeys.self)
+        country = try container.decode(String.self, forKey: .country)
+        displayName = try container.decode(String.self, forKey: .displayName)
+
+        let explicitContentContainer = try container.nestedContainer(keyedBy: ExplicitContentKeys.self, forKey: .explicitContent)
+        filterEnabled = try explicitContentContainer.decode(Bool.self, forKey: .filterEnabled)
+
+        let externalUrlsContainer = try container.nestedContainer(keyedBy: ExternalUrlsKeys.self, forKey: .externalUrls)
+        profileUrl = try externalUrlsContainer.decode(String.self, forKey: .spotify)
+
+        let followersContainer = try container.nestedContainer(keyedBy: FollowersKeys.self, forKey: .followers)
+        numberOfFollowers = try followersContainer.decode(Int.self, forKey: .total)
+
+        endpointUrl = try container.decode(String.self, forKey: .href)
+
+        id = try container.decode(String.self, forKey: .id)
+
+//        var imagesContainer = try container.nestedUnkeyedContainer(forKey: .images)
+//        var imagesArray = [URL]()
+//        while !imagesContainer.isAtEnd {
+//            let imageContainer = try imagesContainer.nestedContainer(keyedBy: ImagesKeys.self)
+//            let imageUrlString = try imageContainer.decode(String.self, forKey: .url)
+//            let imageUrl = URL(string: imageUrlString)!
+//            imagesArray.append(imageUrl)
+//        }
+//        guard let image = imagesArray.first else {
+//            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath + [RootKeys.images], debugDescription: "images cannot be empty"))
+//        }
+//        avatarUrl = image
+//
+//        subscriptionLevel = try container.decode(String.self, forKey: .product)
+//
+//        let uriUrlString = try container.decode(String.self, forKey: .uri)
+//        uriUrl = URL(string: uriUrlString)!
+        
+    }
 }
 
 internal class Networking {
@@ -55,9 +125,16 @@ internal class Networking {
                                clientID: clientID,
                                clientSecret: clientSecret) { response, error in
             if let response = response, error == nil {
-                Networking.profileUsernameRequest(accessToken: response.accessToken, completion: { username in
-                    if let username = username {
-                        let session = Session(username: username,
+                Networking.userProfileRequest(accessToken: response.accessToken, completion: { profileResponse in
+                    if let profileResponse = profileResponse {
+                        let user = User(country: profileResponse.country,
+                                        displayName: profileResponse.displayName,
+                                        filterEnabled: profileResponse.filterEnabled,
+                                        profileUrl: profileResponse.profileUrl,
+                                        numberOfFollowers: profileResponse.numberOfFollowers,
+                                        endpointUrl: profileResponse.endpointUrl,
+                                        id: profileResponse.id)
+                        let session = Session(user: user,
                                               accessToken: response.accessToken,
                                               refreshToken: response.refreshToken,
                                               expirationDate: Date(timeIntervalSinceNow: response.expiresIn))
@@ -90,7 +167,7 @@ internal class Networking {
                                clientID: clientID,
                                clientSecret: clientSecret) { response, error in
             if let response = response, error == nil {
-                let session = Session(username: session.username,
+                let session = Session(user: session.user,
                                       accessToken: response.accessToken,
                                       refreshToken: session.refreshToken,
                                       expirationDate: Date(timeIntervalSinceNow: response.expiresIn))
@@ -107,8 +184,8 @@ internal class Networking {
 
     // MARK: Private
 
-    internal class func profileUsernameRequest(accessToken: String?,
-                                               completion: @escaping (String?) -> Void) {
+    internal class func userProfileRequest(accessToken: String?,
+                                               completion: @escaping (ProfileEndpointResponse?) -> Void) {
         guard let accessToken = accessToken else {
             completion(nil)
             return
@@ -122,7 +199,7 @@ internal class Networking {
             if let data = data, error == nil {
                 let profileResponse = try? JSONDecoder().decode(ProfileEndpointResponse.self, from: data)
                 DispatchQueue.main.async {
-                    completion(profileResponse?.identifier)
+                    completion(profileResponse)
                 }
             } else {
                 DispatchQueue.main.async {
@@ -169,4 +246,19 @@ internal class Networking {
         task.resume()
     }
 
+}
+
+// MARK: Extensions
+
+private extension String {
+    var bool: Bool? {
+        switch self.lowercased() {
+        case "true", "t", "yes", "y", "1":
+            return true
+        case "false", "f", "no", "n", "0":
+            return false
+        default:
+            return nil
+        }
+    }
 }

@@ -11,6 +11,7 @@
 		1E022BDB238B5888007D2EE6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BDA238B5888007D2EE6 /* LoginViewController.swift */; };
 		1E022BE0238B5888007D2EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BDF238B5888007D2EE6 /* Assets.xcassets */; };
 		1E022BE3238B5888007D2EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BE1238B5888007D2EE6 /* LaunchScreen.storyboard */; };
+		1E3759A4238D7B0F00928EDD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3759A3238D7B0F00928EDD /* SettingsViewController.swift */; };
 		1E896A62238C246400C745F0 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E896A61238C246400C745F0 /* UIColor+Additions.swift */; };
 		1E896A64238C27F000C745F0 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E896A63238C27F000C745F0 /* AppCoordinator.swift */; };
 		1E896A68238C29F400C745F0 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E896A67238C29F400C745F0 /* BaseCoordinator.swift */; };
@@ -29,6 +30,7 @@
 		1E022BDF238B5888007D2EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E022BE2238B5888007D2EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E022BE4238B5888007D2EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E3759A3238D7B0F00928EDD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1E896A61238C246400C745F0 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		1E896A63238C27F000C745F0 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		1E896A67238C29F400C745F0 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
@@ -96,6 +98,14 @@
 			path = SpotifyDaily_iOS;
 			sourceTree = "<group>";
 		};
+		1E3759A2238D7AFD00928EDD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1E3759A3238D7B0F00928EDD /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		1E896A6B238C2C8B00C745F0 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +121,7 @@
 			children = (
 				1EB830D7238CE79C00C002DA /* Login */,
 				1EB830D8238CE7A400C002DA /* Dashboard */,
+				1E3759A2238D7AFD00928EDD /* Settings */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -303,6 +314,7 @@
 				1E896A6A238C2A8D00C745F0 /* SignInCoordinator.swift in Sources */,
 				1E896A68238C29F400C745F0 /* BaseCoordinator.swift in Sources */,
 				1E896A62238C246400C745F0 /* UIColor+Additions.swift in Sources */,
+				1E3759A4238D7B0F00928EDD /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

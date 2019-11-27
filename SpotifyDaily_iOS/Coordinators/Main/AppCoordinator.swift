@@ -43,7 +43,15 @@ class AppCoordinator: BaseCoordinator {
 
 extension AppCoordinator: SignInListener {
     func didSignIn() {
-        print("Signed In. Navigation to Main View Controller")
+        log.info("Signed In. Navigation to Main View Controller")
+        log.info("Stored country string has value: \(SpotifyLogin.shared.country!)")
+        log.info("Stored display name string has value: \(SpotifyLogin.shared.displayName!)")
+        log.info("Stored filter enabled boolean has value: \(SpotifyLogin.shared.filterEnabled!)")
+        log.info("Stored profile url string has value: \(SpotifyLogin.shared.profileUrl!)")
+        log.info("Stored number of followers int has value: \(SpotifyLogin.shared.numberOfFollowers!)")
+        log.info("Stored endpoint url string has value: \(SpotifyLogin.shared.endpointUrl!)")
+        log.info("Stored id string has value: \(SpotifyLogin.shared.id!)")
+        
         let coordinator = DashboardCoordinator()
         coordinator.navigationController = self.navigationController
         self.start(coordinator: coordinator)

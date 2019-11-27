@@ -15,7 +15,7 @@
 import Foundation
 
 internal struct Session: Codable {
-    let username: String
+    let user: User
     let accessToken: String
     var refreshToken: String?
     let expirationDate: Date

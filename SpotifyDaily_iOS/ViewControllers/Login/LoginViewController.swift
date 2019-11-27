@@ -57,10 +57,7 @@ final class LoginViewController: UIViewController {
     
     private func addSpotifyButton(){
         let button = SpotifyLoginButton(viewController: self,
-                                        scopes: [.streaming,
-                                                 .userReadTop,
-                                                 .playlistReadPrivate,
-                                                 .userLibraryRead])
+                                        scopes: [.userReadPrivate, .userReadEmail])
         self.spotifySignInButton = button
         self.spotifySignInButton?.translatesAutoresizingMaskIntoConstraints = false
     }

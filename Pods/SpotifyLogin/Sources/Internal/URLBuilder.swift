@@ -19,13 +19,15 @@ internal class URLBuilder {
     let clientID: String
     let clientSecret: String
     let redirectURL: URL
+    let showDialog: Bool
 
     // MARK: Lifecycle
 
-    internal init(clientID: String, clientSecret: String, redirectURL: URL) {
+    internal init(clientID: String, clientSecret: String, redirectURL: URL, showDialog: Bool) {
         self.clientID = clientID
         self.clientSecret = clientSecret
         self.redirectURL = redirectURL
+        self.showDialog = showDialog
     }
 
     // MARK: URL functions
@@ -37,7 +39,7 @@ internal class URLBuilder {
         var params = ["client_id": clientID,
                       "redirect_uri": redirectURL.absoluteString,
                       "response_type": "code",
-                      "show_dialog": "true",
+                      "show_dialog": String(showDialog),
                       "nosignup": "true",
                       "nolinks": "true",
                       "utm_source": Constants.AuthUTMSourceQueryValue,

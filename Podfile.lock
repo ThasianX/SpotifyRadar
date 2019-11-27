@@ -6,25 +6,38 @@ PODS:
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
   - SpotifyLogin (0.1.6)
+  - SwiftyBeaver (1.8.3)
 
 DEPENDENCIES:
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
-  - SpotifyLogin (~> 0.1)
+  - SpotifyLogin (from `https://github.com/ThasianX/SpotifyLogin.git`, branch `get-user-details`)
+  - SwiftyBeaver
 
 SPEC REPOS:
   trunk:
     - RxCocoa
     - RxRelay
     - RxSwift
-    - SpotifyLogin
+    - SwiftyBeaver
+
+EXTERNAL SOURCES:
+  SpotifyLogin:
+    :branch: get-user-details
+    :git: https://github.com/ThasianX/SpotifyLogin.git
+
+CHECKOUT OPTIONS:
+  SpotifyLogin:
+    :commit: 4b54d5d98bf8d9d747e3601c8758f8e5ab45d024
+    :git: https://github.com/ThasianX/SpotifyLogin.git
 
 SPEC CHECKSUMS:
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
-  SpotifyLogin: 9cdf82ff13e5f37e5ddc7fd07cf9793a9ebd1124
+  SpotifyLogin: 7ac1f609a908b7e7bfad215204b967248c9b69ef
+  SwiftyBeaver: 3d3e93a12d648bd400b6f2948a7ef128b5b183c7
 
-PODFILE CHECKSUM: f3d47dca09f988d1f118edf86e1031dba3b60b32
+PODFILE CHECKSUM: 192d2201354380a6b257f65ecac08530f9fcfe72
 
 COCOAPODS: 1.8.4

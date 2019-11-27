@@ -28,7 +28,7 @@ public class SpotifyLoginPresenter {
         if let appAuthenticationURL = urlBuilder?.authenticationURL(type: .app, scopes: scopes),
             UIApplication.shared.canOpenURL(appAuthenticationURL) {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(appAuthenticationURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                UIApplication.shared.open(appAuthenticationURL, options: [:], completionHandler: nil)
             } else {
                 UIApplication.shared.openURL(appAuthenticationURL)
             }
@@ -36,7 +36,8 @@ public class SpotifyLoginPresenter {
             viewController.definesPresentationContext = true
             let safariViewController: SFSafariViewController = SFSafariViewController(url: webAuthenticationURL)
             safariViewController.modalPresentationStyle = .pageSheet
-            safariViewController.delegate = SafariDelegate()
+            let delegate = SafariDelegate()
+            safariViewController.delegate = delegate
             viewController.present(safariViewController, animated: true, completion: nil)
             SpotifyLogin.shared.safariVC = safariViewController
         } else {
@@ -44,9 +45,4 @@ public class SpotifyLoginPresenter {
         }
     }
 
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

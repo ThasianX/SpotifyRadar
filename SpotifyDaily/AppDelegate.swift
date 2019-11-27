@@ -8,6 +8,9 @@
 
 import UIKit
 import SpotifyLogin
+import SwiftyBeaver
+
+let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
@@ -17,12 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        self.appCoordinator.start()
+        let console = ConsoleDestination()  // log to Xcode Console
+
+        // use custom format and set console output to short time, log level & message
+        console.format = "$DHH:mm:ss$d $L $M"
+
+        // add the destinations to SwiftyBeaver
+        log.addDestination(console)
         
         let redirectURL: URL = URL(string: "spotify-daily-login://")!
         SpotifyLogin.shared.configure(clientID: "8cece41fa2cc49a48e66b70cbc7789fc",
                                       clientSecret: "89faaf509a5e49569abb3fc93ebe4740",
                                       redirectURL: redirectURL)
+        
+        self.appCoordinator.start()
+        
         return true
     }
     

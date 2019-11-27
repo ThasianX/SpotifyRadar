@@ -23,19 +23,19 @@ internal class SessionLocalStorage {
 
         do {
             let encodedSession = try PropertyListEncoder().encode(session)
-            if !KeychainWrapper.save(encodedSession, forKey: session.username) {
+            if !KeychainWrapper.save(encodedSession, forKey: session.user.id) {
                 // handle error
             }
-            storeUsername(session.username)
+            storeUserId(session.user.id)
         } catch {}
     }
 
     internal class func loadSession() -> Session? {
-        guard let userName = storedUsername() else {
+        guard let userId = storedUserId() else {
             return nil
         }
 
-        if let data = KeychainWrapper.data(forKey: userName) {
+        if let data = KeychainWrapper.data(forKey: userId) {
             let decodedSession = try? PropertyListDecoder().decode(Session.self, from: data)
             return decodedSession
         }
@@ -44,21 +44,21 @@ internal class SessionLocalStorage {
     }
 
     internal class func removeSession() {
-        if let userName = storedUsername() {
+        if let userName = storedUserId() {
             if !KeychainWrapper.removeData(forKey: userName) {
                 // handle error
             }
         }
-        UserDefaults.standard.removeObject(forKey: Constants.KeychainUsernameKey)
+        UserDefaults.standard.removeObject(forKey: Constants.KeychainUserIdKey)
     }
 
     // MARK: - Private
-    private class func storeUsername(_ username: String) {
-        UserDefaults.standard.set(username, forKey: Constants.KeychainUsernameKey)
+    private class func storeUserId(_ userId: String) {
+        UserDefaults.standard.set(userId, forKey: Constants.KeychainUserIdKey)
     }
 
-    private class func storedUsername() -> String? {
-        return UserDefaults.standard.value(forKey: Constants.KeychainUsernameKey) as? String
+    private class func storedUserId() -> String? {
+        return UserDefaults.standard.value(forKey: Constants.KeychainUserIdKey) as? String
     }
 }
 

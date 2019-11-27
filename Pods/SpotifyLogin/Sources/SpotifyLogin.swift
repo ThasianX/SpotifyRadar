@@ -22,8 +22,32 @@ public class SpotifyLogin {
     public static let shared = SpotifyLogin()
 
     /// The userName for the current session.
-    public var username: String? {
-        return session?.username
+    public var displayName: String? {
+        return session?.user.displayName
+    }
+    
+    public var country: String? {
+        return session?.user.country
+    }
+    
+    public var filterEnabled: Bool? {
+        return session?.user.filterEnabled
+    }
+    
+    public var profileUrl: String? {
+        return session?.user.profileUrl
+    }
+    
+    public var numberOfFollowers: Int? {
+        return session?.user.numberOfFollowers
+    }
+    
+    public var endpointUrl: String? {
+        return session?.user.endpointUrl
+    }
+    
+    public var id: String? {
+        return session?.user.id
     }
 
     private var clientID: String?
@@ -52,11 +76,14 @@ public class SpotifyLogin {
     ///   - clientID: App's client id.
     ///   - clientSecret: App's client secret.
     ///   - redirectURL: App's redirect url.
-    public func configure(clientID: String, clientSecret: String, redirectURL: URL) {
+    public func configure(clientID: String, clientSecret: String, redirectURL: URL, showDialog: Bool? = true) {
         self.clientID = clientID
         self.clientSecret = clientSecret
         self.redirectURL = redirectURL
-        self.urlBuilder = URLBuilder(clientID: clientID, clientSecret: clientSecret, redirectURL: redirectURL)
+        self.urlBuilder = URLBuilder(clientID: clientID,
+                                     clientSecret: clientSecret,
+                                     redirectURL: redirectURL,
+                                     showDialog: showDialog!)
     }
 
     /// Asynchronous call to retrieve the session's auth token. Automatically refreshes if auth token expired. 
@@ -164,5 +191,5 @@ public enum LoginError: Error {
 
 public extension Notification.Name {
     /// A Notification that is emitted by SpotifyLogin after a successful login. Can be used to update the UI.
-    public static let SpotifyLoginSuccessful = Notification.Name("SpotifyLoginSuccessful")
+    static let SpotifyLoginSuccessful = Notification.Name("SpotifyLoginSuccessful")
 }
