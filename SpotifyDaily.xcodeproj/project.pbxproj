@@ -16,7 +16,6 @@
 		1E896A64238C27F000C745F0 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E896A63238C27F000C745F0 /* AppCoordinator.swift */; };
 		1E896A68238C29F400C745F0 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E896A67238C29F400C745F0 /* BaseCoordinator.swift */; };
 		1E896A6A238C2A8D00C745F0 /* SignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E896A69238C2A8D00C745F0 /* SignInCoordinator.swift */; };
-		1EB830D0238C66E700C002DA /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB830CF238C66E700C002DA /* SpotifyiOS.framework */; };
 		1EB830D4238CC97E00C002DA /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB830D3238CC97E00C002DA /* DashboardViewController.swift */; };
 		1EB830D6238CE37400C002DA /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB830D5238CE37400C002DA /* DashboardCoordinator.swift */; };
 		750AE71E376491629780F577 /* Pods_SpotifyDaily.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80944179D3EB853F2CAC1487 /* Pods_SpotifyDaily.framework */; };
@@ -35,8 +34,6 @@
 		1E896A63238C27F000C745F0 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		1E896A67238C29F400C745F0 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		1E896A69238C2A8D00C745F0 /* SignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
-		1EB830CF238C66E700C002DA /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
-		1EB830D2238C678400C002DA /* SpotifyDaily-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpotifyDaily-Bridging-Header.h"; sourceTree = "<group>"; };
 		1EB830D3238CC97E00C002DA /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		1EB830D5238CE37400C002DA /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		77127B0B306A5FA5FD8243FD /* Pods-SpotifyDaily.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyDaily.release.xcconfig"; path = "Target Support Files/Pods-SpotifyDaily/Pods-SpotifyDaily.release.xcconfig"; sourceTree = "<group>"; };
@@ -48,7 +45,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EB830D0238C66E700C002DA /* SpotifyiOS.framework in Frameworks */,
 				750AE71E376491629780F577 /* Pods_SpotifyDaily.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,11 +55,9 @@
 		1E022BCA238B5888007D2EE6 = {
 			isa = PBXGroup;
 			children = (
-				1EB830D2238C678400C002DA /* SpotifyDaily-Bridging-Header.h */,
 				1E022BD5238B5888007D2EE6 /* SpotifyDaily */,
 				1E022BEB238B5903007D2EE6 /* SpotifyDaily_iOS */,
 				1E022BD4238B5888007D2EE6 /* Products */,
-				1EB830CF238C66E700C002DA /* SpotifyiOS.framework */,
 				C65A3C24A672FA67A86509B2 /* Pods */,
 				E63FCB5763EE7C5960C238D8 /* Frameworks */,
 			);
@@ -466,9 +460,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					"\"SpotifyLogin\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinli.SpotifyDaily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SpotifyDaily-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -490,9 +490,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					"\"SpotifyLogin\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinli.SpotifyDaily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SpotifyDaily-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

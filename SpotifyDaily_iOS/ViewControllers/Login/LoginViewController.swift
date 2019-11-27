@@ -8,8 +8,6 @@
 
 import UIKit
 import SpotifyLogin
-import RxSwift
-import RxCocoa
 
 final class LoginViewController: UIViewController {
     

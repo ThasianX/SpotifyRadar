@@ -63,14 +63,15 @@ internal struct ProfileEndpointResponse {
     
     let country: String
     let displayName: String
+    let email: String
     let filterEnabled: Bool
     let profileUrl: String
     let numberOfFollowers: Int
     let endpointUrl: String
     let id: String
-//    let avatarUrl: URL
-//    let subscriptionLevel: String
-//    let uriUrl: URL
+    let avatarUrl: String
+    let subscriptionLevel: String
+    let uriUrl: String
 }
 
 extension ProfileEndpointResponse: Decodable {
@@ -78,6 +79,7 @@ extension ProfileEndpointResponse: Decodable {
         let container = try decoder.container(keyedBy: RootKeys.self)
         country = try container.decode(String.self, forKey: .country)
         displayName = try container.decode(String.self, forKey: .displayName)
+        email = try container.decode(String.self, forKey: .email)
 
         let explicitContentContainer = try container.nestedContainer(keyedBy: ExplicitContentKeys.self, forKey: .explicitContent)
         filterEnabled = try explicitContentContainer.decode(Bool.self, forKey: .filterEnabled)
@@ -92,23 +94,21 @@ extension ProfileEndpointResponse: Decodable {
 
         id = try container.decode(String.self, forKey: .id)
 
-//        var imagesContainer = try container.nestedUnkeyedContainer(forKey: .images)
-//        var imagesArray = [URL]()
-//        while !imagesContainer.isAtEnd {
-//            let imageContainer = try imagesContainer.nestedContainer(keyedBy: ImagesKeys.self)
-//            let imageUrlString = try imageContainer.decode(String.self, forKey: .url)
-//            let imageUrl = URL(string: imageUrlString)!
-//            imagesArray.append(imageUrl)
-//        }
-//        guard let image = imagesArray.first else {
-//            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath + [RootKeys.images], debugDescription: "images cannot be empty"))
-//        }
-//        avatarUrl = image
-//
-//        subscriptionLevel = try container.decode(String.self, forKey: .product)
-//
-//        let uriUrlString = try container.decode(String.self, forKey: .uri)
-//        uriUrl = URL(string: uriUrlString)!
+        var imagesContainer = try container.nestedUnkeyedContainer(forKey: .images)
+        var imagesArray = [String]()
+        while !imagesContainer.isAtEnd {
+            let imageContainer = try imagesContainer.nestedContainer(keyedBy: ImagesKeys.self)
+            let imageUrl = try imageContainer.decode(String.self, forKey: .url)
+            imagesArray.append(imageUrl)
+        }
+        guard let image = imagesArray.first else {
+            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath + [RootKeys.images], debugDescription: "images cannot be empty"))
+        }
+        avatarUrl = image
+
+        subscriptionLevel = try container.decode(String.self, forKey: .product)
+
+        uriUrl = try container.decode(String.self, forKey: .uri)
         
     }
 }
@@ -129,11 +129,15 @@ internal class Networking {
                     if let profileResponse = profileResponse {
                         let user = User(country: profileResponse.country,
                                         displayName: profileResponse.displayName,
+                                        email: profileResponse.email,
                                         filterEnabled: profileResponse.filterEnabled,
                                         profileUrl: profileResponse.profileUrl,
                                         numberOfFollowers: profileResponse.numberOfFollowers,
                                         endpointUrl: profileResponse.endpointUrl,
-                                        id: profileResponse.id)
+                                        id: profileResponse.id,
+                                        avatarUrl: profileResponse.avatarUrl,
+                                        subscriptionLevel: profileResponse.subscriptionLevel,
+                                        uriUrl: profileResponse.uriUrl)
                         let session = Session(user: user,
                                               accessToken: response.accessToken,
                                               refreshToken: response.refreshToken,

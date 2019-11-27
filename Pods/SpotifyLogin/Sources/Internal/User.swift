@@ -10,12 +10,13 @@ import Foundation
 internal struct User: Codable {
     let country: String
     let displayName: String
+    let email: String
     let filterEnabled: Bool
     let profileUrl: String
     let numberOfFollowers: Int
     let endpointUrl: String
     let id: String
-//    let avatarUrl: URL
-//    let subscriptionLevel: String
-//    let uriUrl: URL
+    let avatarUrl: String
+    let subscriptionLevel: String
+    let uriUrl: String
 }

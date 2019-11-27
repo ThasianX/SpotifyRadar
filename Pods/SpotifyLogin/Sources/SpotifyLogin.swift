@@ -49,6 +49,18 @@ public class SpotifyLogin {
     public var id: String? {
         return session?.user.id
     }
+    
+    public var avatarUrl: String? {
+        return session?.user.avatarUrl
+    }
+    
+    public var subscriptionLevel: String? {
+        return session?.user.subscriptionLevel
+    }
+    
+    public var uriUrl: String? {
+        return session?.user.uriUrl
+    }
 
     private var clientID: String?
     private var clientSecret: String?

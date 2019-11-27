@@ -1,6 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-SpotifyDaily/Pods-SpotifyDaily-frameworks.sh
-${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
-${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework
-${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework
 ${BUILT_PRODUCTS_DIR}/SpotifyLogin/SpotifyLogin.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework
