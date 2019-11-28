@@ -10,10 +10,11 @@ import UIKit
 
 class DashboardCoordinator: BaseCoordinator {
 
-    let rootViewController = UINavigationController(rootViewController: DashboardViewController())
+    override init() {
+        super.init()
+        self.navigationController.viewControllers = [DashboardViewController()]
+    }
     
     override func start() {
-        // Coordinator subscribes to events and notifies parentCoordinator
-        self.navigationController = rootViewController
     }
 }

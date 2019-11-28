@@ -9,21 +9,23 @@
 import UIKit
 
 class SettingsCoordinator: BaseCoordinator {
-
-    let rootViewController = UINavigationController(rootViewController: SettingsViewController())
     
-    override func start() {
-        // Coordinator subscribes to events and notifies parentCoordinator
+    override init() {
+        super.init()
+        self.navigationController.viewControllers = [SettingsViewController()]
         NotificationCenter.default.addObserver(self, selector: #selector(logout), name: .UserLogout, object: nil)
-        
-        self.navigationController = rootViewController
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
+    override func start() {
+        
+    }
+    
     @objc func logout(){
+        Logger.info("Recieved logout tapped notification")
         self.navigationController.viewControllers = []
         self.parentCoordinator?.didFinish(coordinator: self)
         (self.parentCoordinator as? LogOutListener)?.didLogOut()

@@ -24,6 +24,7 @@ class SignInCoordinator: BaseCoordinator {
     }
     
     @objc private func loginSuccessful(){
+        Logger.info("Recieved login success notification")
         self.navigationController.viewControllers = []
         self.parentCoordinator?.didFinish(coordinator: self)
         (self.parentCoordinator as? SignInListener)?.didSignIn()

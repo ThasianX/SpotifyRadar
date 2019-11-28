@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol TabSelectedListener {
+protocol TabSelectedListener: class {
     func tabSelected(index: Int)
 }
 
 class MainTabBarController: UITabBarController {
 
-    var listener: TabSelectedListener?
+    weak var listener: TabSelectedListener?
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item == (self.tabBar.items!)[0]{

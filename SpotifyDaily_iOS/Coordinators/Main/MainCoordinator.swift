@@ -18,13 +18,13 @@ final class MainCoordinator: BaseCoordinator {
     let settingsCoordinator = SettingsCoordinator()
     
     override func start() {
-        let recommendationsVc = recommendationsCoordinator.rootViewController
+        let recommendationsVc = recommendationsCoordinator.navigationController
         recommendationsVc.tabBarItem = UITabBarItem(title: "Recommendations", image: UIImage(named: "recommendations"), tag: 0)
         
-        let dashboardVc = dashboardCoordinator.rootViewController
+        let dashboardVc = dashboardCoordinator.navigationController
         dashboardVc.tabBarItem = UITabBarItem(title: "Dashboard", image: UIImage(named: "dashboard"), tag: 1)
         
-        let settingsVc = settingsCoordinator.rootViewController
+        let settingsVc = settingsCoordinator.navigationController
         settingsVc.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 2)
         
         mainTabBarController.viewControllers = [recommendationsVc, dashboardVc, settingsVc]
@@ -41,6 +41,8 @@ final class MainCoordinator: BaseCoordinator {
 
 extension MainCoordinator: LogOutListener {
     func didLogOut() {
+        Logger.info("Recieved log out call from delegate")
+        self.navigationController.viewControllers = []
         self.parentCoordinator?.didFinish(coordinator: self)
         (self.parentCoordinator as? LogOutListener)?.didLogOut()
     }
@@ -50,19 +52,16 @@ extension MainCoordinator: TabSelectedListener {
     func tabSelected(index: Int) {
         switch index {
         case 0:
-            log.info("Recommendations Tab selected")
-            self.childCoordinators = []
+            Logger.info("Recommendations Tab selected")
             self.start(coordinator: recommendationsCoordinator)
         case 1:
-            log.info("Dashboard Tab selected")
-            self.childCoordinators = []
+            Logger.info("Dashboard Tab selected")
             self.start(coordinator: dashboardCoordinator)
         case 2:
-            log.info("Settings Tab selected")
-            self.childCoordinators = []
+            Logger.info("Settings Tab selected")
             self.start(coordinator: settingsCoordinator)
         default:
-            fatalError("Invalid tab selected")
+            Logger.error("Invalid Tab selected")
         }
     }
 }

@@ -10,11 +10,11 @@ import UIKit
 
 class RecommendationsCoordinator: BaseCoordinator {
     
-    let rootViewController = UINavigationController(rootViewController: RecommendationsViewController())
+    override init() {
+        super.init()
+        self.navigationController.viewControllers = [RecommendationsViewController()]
+    }
     
     override func start() {
-        // Coordinator subscribes to events and notifies parentCoordinator
-        
-        self.navigationController = rootViewController
     }
 }

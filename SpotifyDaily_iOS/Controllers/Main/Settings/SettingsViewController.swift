@@ -8,7 +8,6 @@
 
 import UIKit
 import SpotifyLogin
-import SwiftyBeaver
 
 final class SettingsViewController: UIViewController {
     
@@ -68,7 +67,7 @@ final class SettingsViewController: UIViewController {
     // MARK: Helper methods
     
     @objc private func logoutTapped(){
-        log.info("Log out tapped")
+        Logger.info("Log out tapped")
         SpotifyLogin.shared.logout()
         NotificationCenter.default.post(name: .UserLogout, object: nil)
     }
