@@ -14,6 +14,7 @@ class RecommendationsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        navigationItem.title = "Song Recommendations"
         
     }
     

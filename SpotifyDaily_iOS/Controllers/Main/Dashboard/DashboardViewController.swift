@@ -14,6 +14,8 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        navigationItem.title = "User Dashboard"
+        
     }
 
 }

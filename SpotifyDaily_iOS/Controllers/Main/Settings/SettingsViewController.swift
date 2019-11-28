@@ -35,6 +35,7 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        navigationItem.title = "User Settings"
         
         addViews()
         setupConstraints()
@@ -51,7 +52,7 @@ final class SettingsViewController: UIViewController {
     private func setupConstraints() {
         let layoutGuide = self.view.safeAreaLayoutGuide
         
-        avatarImageView.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: .labelSpacing*6).isActive = true
+        avatarImageView.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: .labelSpacing*2).isActive = true
         avatarImageView.centerXAnchor.constraint(equalTo: layoutGuide.centerXAnchor).isActive = true
         
         containerView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: .labelSpacing*4).isActive = true

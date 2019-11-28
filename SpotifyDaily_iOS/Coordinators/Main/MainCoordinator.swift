@@ -18,13 +18,13 @@ final class MainCoordinator: BaseCoordinator {
     let settingsCoordinator = SettingsCoordinator()
     
     override func start() {
-        let recommendationsVc = recommendationsCoordinator.recommendationsViewController
+        let recommendationsVc = recommendationsCoordinator.rootViewController
         recommendationsVc.tabBarItem = UITabBarItem(title: "Recommendations", image: UIImage(named: "recommendations"), tag: 0)
         
-        let dashboardVc = dashboardCoordinator.dashboardViewController
+        let dashboardVc = dashboardCoordinator.rootViewController
         dashboardVc.tabBarItem = UITabBarItem(title: "Dashboard", image: UIImage(named: "dashboard"), tag: 1)
         
-        let settingsVc = settingsCoordinator.settingsViewController
+        let settingsVc = settingsCoordinator.rootViewController
         settingsVc.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 2)
         
         mainTabBarController.viewControllers = [recommendationsVc, dashboardVc, settingsVc]

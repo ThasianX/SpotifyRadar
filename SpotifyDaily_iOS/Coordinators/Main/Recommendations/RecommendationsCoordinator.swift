@@ -6,15 +6,15 @@
 //  Copyright © 2019 Kevin Li. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class RecommendationsCoordinator: BaseCoordinator {
     
-    let recommendationsViewController = RecommendationsViewController()
+    let rootViewController = UINavigationController(rootViewController: RecommendationsViewController())
     
     override func start() {
         // Coordinator subscribes to events and notifies parentCoordinator
         
-        self.navigationController.viewControllers = [recommendationsViewController]
+        self.navigationController = rootViewController
     }
 }
