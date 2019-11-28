@@ -6,13 +6,14 @@
 //  Copyright © 2019 Kevin Li. All rights reserved.
 //
 
+import Foundation
+
 class DashboardCoordinator: BaseCoordinator {
+
+    let dashboardViewController = DashboardViewController()
     
     override func start() {
-        let dashboardViewController = DashboardViewController()
-        
         // Coordinator subscribes to events and notifies parentCoordinator
-        
-        self.navigationController.viewControllers = [dashboardViewController]
+        self.navigationController.viewControllers.append(dashboardViewController)
     }
 }

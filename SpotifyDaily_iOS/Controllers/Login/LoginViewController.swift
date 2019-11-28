@@ -33,7 +33,8 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("View did load")
+        
+        navigationController?.navigationBar.isHidden = true
         
         addViews()
         setupConstraints()
@@ -99,14 +100,9 @@ private extension CGFloat {
 private extension UIFont {
     static let titleLabel = UIFont.boldSystemFont(ofSize: 30)
     static let missionStatementLabel = UIFont.boldSystemFont(ofSize: 15)
-    
-    static let spotifyButtonLabel = UIFont.boldSystemFont(ofSize: 20)
 }
 
 private extension UIColor {
-    static let spotifyButttonText = UIColor.white
-    static let spotifyButttonBackground = UIColor(hexString: "#1DB954")
-    
     static let titleLabelText = UIColor.white
     static let missionStatementText = UIColor.white
 }
@@ -127,20 +123,6 @@ private extension UIImageView {
 //
 //        return imageView
 //    }
-}
-
-private extension UIButton {
-    static var spotifySignInButton: UIButton {
-        let button = UIButton()
-        button.setTitle("Spotify Sign In", for: .normal)
-        button.setTitleColor(.spotifyButttonText, for: .normal)
-        button.titleLabel?.font = .spotifyButtonLabel
-        button.backgroundColor = .spotifyButttonBackground
-        button.layer.cornerRadius = .cornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }
 }
 
 private extension UILabel {

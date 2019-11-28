@@ -14,16 +14,18 @@ protocol SignInListener {
     func didSignIn()
 }
 
+protocol LogOutListener {
+    func didLogOut()
+}
+
 class AppCoordinator: BaseCoordinator {
     
     var window = UIWindow(frame: UIScreen.main.bounds)
     
     override func start() {
-        print("App coordinator start called")
-        self.navigationController.navigationBar.isHidden = true
+        log.info("App coordinator start called")
         self.window.rootViewController = self.navigationController
         self.window.makeKeyAndVisible()
-        
         
         // check if user is signed in and show appropriate screen
         SpotifyLogin.shared.getAccessToken { [weak self] (accessToken, error) in
@@ -31,13 +33,17 @@ class AppCoordinator: BaseCoordinator {
             
             if error != nil, accessToken == nil {
                 // User is not logged in, show log in flow.
-                let coordinator = SignInCoordinator()
-                coordinator.navigationController = self.navigationController
-                self.start(coordinator: coordinator)
+                self.createSignIn()
             } else {
                 self.didSignIn()
             }
         }
+    }
+    
+    private func createSignIn(){
+        let coordinator = SignInCoordinator()
+        coordinator.navigationController = self.navigationController
+        self.start(coordinator: coordinator)
     }
 }
 
@@ -55,8 +61,14 @@ extension AppCoordinator: SignInListener {
         log.info("Stored subscription level string has value: \(SpotifyLogin.shared.subscriptionLevel!)")
         log.info("Stored uri url string has value: \(SpotifyLogin.shared.uriUrl!)")
         
-        let coordinator = DashboardCoordinator()
+        let coordinator = MainCoordinator()
         coordinator.navigationController = self.navigationController
         self.start(coordinator: coordinator)
+    }
+}
+
+extension AppCoordinator: LogOutListener {
+    func didLogOut() {
+        self.createSignIn()
     }
 }
