@@ -3,6 +3,9 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'SpotifyDaily' do
-    pod 'SpotifyLogin', :git => 'https://github.com/ThasianX/SpotifyLogin.git', :branch => 'get-user-details'
-    pod 'SwiftyBeaver'
+    pod 'RxSwift', '~> 5'
+    pod 'RxCocoa', '~> 5'
+    pod 'SideMenu', '~> 6.0'
+    pod 'Swinject', '~> 2.6.0'
+    pod 'SwinjectAutoregistration', '2.6.0'
 end

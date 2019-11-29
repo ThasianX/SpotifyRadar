@@ -7,23 +7,25 @@
 //
 
 import UIKit
-import SpotifyLogin
+import Swinject
+import SideMenu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
     
     var window: UIWindow?
-    let appCoordinator = AppCoordinator()
+    
+    private var appCoordinator: AppCoordinator!
+    static let container = Container()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        let redirectURL: URL = URL(string: "spotify-daily-login://")!
-        SpotifyLogin.shared.configure(clientID: "8cece41fa2cc49a48e66b70cbc7789fc",
-                                      clientSecret: "89faaf509a5e49569abb3fc93ebe4740",
-                                      redirectURL: redirectURL)
         
-        Logger.info("Configured clientID, clientSecret, and redirectURL")
+        Container.loggingFunction = nil
+        AppDelegate.container.registerDependencies()
         
+        self.setUpSideMenu()
+        
+        self.appCoordinator = AppDelegate.container.resolve(AppCoordinator.self)
         self.appCoordinator.start()
         
         return true
@@ -32,6 +34,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let handled = SpotifyLogin.shared.applicationOpenURL(url) { _ in }
         return handled
+    }
+    
+    // MARK: Helper methods
+    
+    private func setUpSideMenu() {
+        let sideMenuController = SideMenuNavigationController(rootViewController: DrawerMenuViewController())
+        sideMenuController.navigationBar.isHidden = true
+        sideMenuController.statusBarEndAlpha = 0
+        sideMenuController.presentationStyle = .menuSlideIn
+        sideMenuController.menuWidth = max(round(min((UIScreen.main.bounds.width), (UIScreen.main.bounds.height)) * 0.75), 240)
     }
 }
 

@@ -1,0 +1,6 @@
+framework module SwinjectAutoregistration {
+  umbrella header "SwinjectAutoregistration-umbrella.h"
+
+  export *
+  module * { export * }
+}
