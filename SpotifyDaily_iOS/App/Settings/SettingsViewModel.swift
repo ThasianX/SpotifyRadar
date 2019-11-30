@@ -11,12 +11,22 @@ import RxSwift
 
 class SettingsViewModel {
     
-    private let dataManager: DataManager
+    let sessionService: SessionService
+    let dataManager: DataManager
     private let disposeBag = DisposeBag()
     
     let title = "Settings"
     
-    init(dataManager: DataManager) {
+    init(sessionService: SessionService, dataManager: DataManager) {
+        self.sessionService = sessionService
         self.dataManager = dataManager
+    }
+    
+    func refreshProfile(){
+        sessionService.refreshProfile()
+    }
+    
+    func logout(){
+        sessionService.signOut()
     }
 }

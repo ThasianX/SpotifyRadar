@@ -10,7 +10,7 @@ import Foundation
 
 struct Token: Codable, Equatable {
     let accessToken: String
-    let refreshToken: String
+    let refreshToken: String?
     let expirationDate: Date
     
     func isValid() -> Bool {

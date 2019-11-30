@@ -40,7 +40,7 @@ class AppCoordinator: BaseCoordinator {
         Logger.info("User not authenticated. Creating Sign In Coordinator")
         
         self.removeChildCoordinators()
-        let coordinator = SignInCoordinator(viewModel: SignInViewModel(sessionService: self.sessionService))
+        let coordinator = AppDelegate.container.resolve(SignInCoordinator.self)!
         self.start(coordinator: coordinator)
         
         ViewControllerUtils.setRootViewController(
@@ -52,7 +52,7 @@ class AppCoordinator: BaseCoordinator {
     private func showDashboard() {
         self.removeChildCoordinators()
         
-        let coordinator = DrawerMenuCoordinator(sessionService: self.sessionService, drawerMenuViewModel: DrawerMenuViewModel(sessionService: self.sessionService, dataManager: UserDataManager()))
+        let coordinator = AppDelegate.container.resolve(DashboardCoordinator.self)!
         coordinator.navigationController = BaseNavigationController()
         self.start(coordinator: coordinator)
         

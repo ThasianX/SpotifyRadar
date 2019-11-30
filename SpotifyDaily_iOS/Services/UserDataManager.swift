@@ -43,7 +43,6 @@ class UserDataManager: DataManager {
     func clear() {
         self.data.removeAll()
         self.synchronize()
-        SpotifyLogin.shared.logout()
     }
     
     private func synchronize() {

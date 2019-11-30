@@ -24,7 +24,8 @@ public class SpotifyLoginPresenter {
     ///   - viewController: The view controller that orignates the log in flow.
     ///   - scopes: A list of requested scopes and permissions.
     public class func login(from viewController: (UIViewController), scopes: [Scope]) {
-        let urlBuilder = SpotifyLogin.shared.urlBuilder
+        let spotifyLogin = AppDelegate.container.resolve(SpotifyLogin.self)!
+        let urlBuilder = spotifyLogin.urlBuilder
         if let appAuthenticationURL = urlBuilder?.authenticationURL(type: .app, scopes: scopes),
             UIApplication.shared.canOpenURL(appAuthenticationURL) {
             if #available(iOS 10.0, *) {
@@ -39,7 +40,7 @@ public class SpotifyLoginPresenter {
             let delegate = SafariDelegate()
             safariViewController.delegate = delegate
             viewController.present(safariViewController, animated: true, completion: nil)
-            SpotifyLogin.shared.safariVC = safariViewController
+            spotifyLogin.safariVC = safariViewController
         } else {
             assertionFailure("Unable to login.")
         }

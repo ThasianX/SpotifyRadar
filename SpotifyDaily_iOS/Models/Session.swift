@@ -15,12 +15,10 @@
 import Foundation
 
 struct Session: Codable {
-    let user: User
-    let accessToken: String
-    var refreshToken: String?
-    let expirationDate: Date
-
-    internal func isValid() -> Bool {
-        return Date().compare(expirationDate) == .orderedAscending
+    private(set) var token: Token
+    private(set) var user: User
+    
+    mutating func updateDetails(_ user: User) {
+        self.user = user
     }
 }

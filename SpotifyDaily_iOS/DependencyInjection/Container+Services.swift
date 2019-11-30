@@ -14,5 +14,6 @@ extension Container {
     func registerServices() {
         self.autoregister(DataManager.self, initializer: UserDataManager.init).inObjectScope(.container)
         self.autoregister(SessionService.self, initializer: SessionService.init).inObjectScope(.container)
+        self.autoregister(SpotifyLogin.self, initializer: SpotifyLogin.init).inObjectScope(.container)
     }
 }
