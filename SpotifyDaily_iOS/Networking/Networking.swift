@@ -65,6 +65,8 @@ class Networking {
                                              expirationDate: Date(timeIntervalSinceNow: response.expiresIn)),
                                 user: session.user)
                             
+                            Logger.info("\(session)")
+                            
                             DispatchQueue.main.async {
                                 completion(session, nil)
                             }
@@ -101,43 +103,9 @@ class Networking {
                 task.cancel()
             }
         }
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
     }
-    //
-    //    internal func userProfileRequest(accessToken: String?) -> User? {
-    //        guard let accessToken = accessToken else {
-    //            return nil
-    //        }
-    //        let profileURL = URL(string: profileServiceEndpointURL)!
-    //        var urlRequest = URLRequest(url: profileURL)
-    //        let authHeaderValue = "Bearer \(accessToken)"
-    //        urlRequest.httpMethod = "GET"
-    //        urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
-    //
-    //        var userResponse: User?
-    //        let task = URLSession.shared.dataTask(with: urlRequest,
-    //                                              completionHandler: { (data, _, error) in
-    //                                                if let data = data, error == nil {
-    //                                                    let profileResponse = try? JSONDecoder().decode(ProfileEndpointResponse.self, from: data)
-    //                                                    if let profileResponse = profileResponse {
-    //                                                        let user = User(country: profileResponse.country,
-    //                                                                        displayName: profileResponse.displayName,
-    //                                                                        email: profileResponse.email,
-    //                                                                        filterEnabled: profileResponse.filterEnabled,
-    //                                                                        profileUrl: profileResponse.profileUrl,
-    //                                                                        numberOfFollowers: profileResponse.numberOfFollowers,
-    //                                                                        endpointUrl: profileResponse.endpointUrl,
-    //                                                                        id: profileResponse.id,
-    //                                                                        avatarUrl: profileResponse.avatarUrl,
-    //                                                                        subscriptionLevel: profileResponse.subscriptionLevel,
-    //                                                                        uriUrl: profileResponse.uriUrl)
-    //                                                        userResponse = user
-    //                                                    }
-    //                                                }
-    //        })
-    //        task.resume()
-    //
-    //        return userResponse
-    //    }
     
     private func authRequest(requestBody: String,
                              clientID: String,

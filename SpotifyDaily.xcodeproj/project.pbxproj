@@ -19,6 +19,7 @@
 		1E37D9522391E1680047613B /* ProfileEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E37D9512391E1680047613B /* ProfileEndpointResponse.swift */; };
 		1E37D9542391E19C0047613B /* TokenEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E37D9532391E19C0047613B /* TokenEndpointResponse.swift */; };
 		1E3AFA75238F1B4C00FAD3E6 /* RecommendationsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AFA74238F1B4C00FAD3E6 /* RecommendationsCoordinator.swift */; };
+		1E526AAA23945BA4005F09E8 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E526AA923945BA4005F09E8 /* Configuration.swift */; };
 		1E583A0223901D5B00DC033F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E583A0123901D5B00DC033F /* Logger.swift */; };
 		1E583A0423909E0200DC033F /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E583A0323909E0200DC033F /* ViewControllerUtils.swift */; };
 		1E896A62238C246400C745F0 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E896A61238C246400C745F0 /* UIColor+Additions.swift */; };
@@ -94,6 +95,7 @@
 		1E37D9512391E1680047613B /* ProfileEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEndpointResponse.swift; sourceTree = "<group>"; };
 		1E37D9532391E19C0047613B /* TokenEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenEndpointResponse.swift; sourceTree = "<group>"; };
 		1E3AFA74238F1B4C00FAD3E6 /* RecommendationsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsCoordinator.swift; sourceTree = "<group>"; };
+		1E526AA923945BA4005F09E8 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		1E583A0123901D5B00DC033F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1E583A0323909E0200DC033F /* ViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		1E896A61238C246400C745F0 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				1EC2A128239166B5006E5E96 /* Token.swift */,
+				1E526AA923945BA4005F09E8 /* Configuration.swift */,
 				1EC2A12623916547006E5E96 /* SignInResponse.swift */,
 				1EC2A13B23916E5D006E5E96 /* SettingKey.swift */,
 				1EA8FDB02391875500498AA6 /* DrawerMenuScreen.swift */,
@@ -614,6 +617,7 @@
 				1EB60BB323918085001DA148 /* BaseNavigationController.swift in Sources */,
 				1EC2A16D23917624006E5E96 /* Scope.swift in Sources */,
 				1E3AFA75238F1B4C00FAD3E6 /* RecommendationsCoordinator.swift in Sources */,
+				1E526AAA23945BA4005F09E8 /* Configuration.swift in Sources */,
 				1EA8FDB12391875500498AA6 /* DrawerMenuScreen.swift in Sources */,
 				1EC2A13A23916DC9006E5E96 /* Encodable+Json.swift in Sources */,
 				1EC2A12723916547006E5E96 /* SignInResponse.swift in Sources */,

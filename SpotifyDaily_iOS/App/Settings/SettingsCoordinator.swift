@@ -15,12 +15,12 @@ class SettingsCoordinator: BaseCoordinator {
     
     init(settingsViewModel: SettingsViewModel) {
         self.settingsViewModel = settingsViewModel
-        self.settingsViewModel.refreshProfile()
     }
     
     override func start() {
         let viewController = SettingsViewController()
         viewController.viewModel = self.settingsViewModel
+        viewController.viewModel?.refreshProfile()
         
         self.navigationController.viewControllers = [viewController]
     }

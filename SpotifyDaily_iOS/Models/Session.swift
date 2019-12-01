@@ -18,7 +18,8 @@ struct Session: Codable, Equatable {
     private(set) var token: Token
     private(set) var user: User
     
-    mutating func updateDetails(_ user: User) {
-        self.user = user
+    mutating func updateSession(_ session: Session) {
+        self.token = session.token
+        self.user = session.user
     }
 }

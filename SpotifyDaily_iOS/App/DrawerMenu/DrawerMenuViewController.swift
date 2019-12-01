@@ -11,12 +11,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class DrawerMenuViewController: UIViewController {
+class DrawerMenuViewController: UIViewController, UITableViewDelegate {
     
     private var selectedRow: Int = 0
     private let disposeBag = DisposeBag()
     
-    private lazy var tableView = UITableView()
+    private var tableView = UITableView.tableView
     private lazy var appLabel = UILabel.appLabel
     
     var viewModel: DrawerMenuViewModel? {
@@ -32,6 +32,8 @@ class DrawerMenuViewController: UIViewController {
     }
     
     private func setUpView(){
+        self.view.backgroundColor = .white
+        
         self.view.addSubview(self.appLabel)
         self.view.addSubview(self.tableView)
         
@@ -51,7 +53,8 @@ class DrawerMenuViewController: UIViewController {
         self.selectedRow = 0
         
         viewModel.menuItems
-            .bind(to: self.tableView.rx.items(cellIdentifier: "menuCell")) { [weak self] row, model, cell in
+            .bind(to: tableView.rx.items(cellIdentifier: "menuCell", cellType: UITableViewCell.self)) { [weak self] row, model, cell in
+                Logger.info("Called")
                 cell.selectionStyle = .none
                 cell.textLabel?.text = model.uppercased()
                 cell.textLabel?.textColor = self?.selectedRow == row ? .white : .darkGray
@@ -84,7 +87,7 @@ class DrawerMenuViewController: UIViewController {
 extension UITableView {
     static var tableView: UITableView {
         let tableView = UITableView()
-        tableView.register(MenuCell.self, forCellReuseIdentifier: "menuCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         

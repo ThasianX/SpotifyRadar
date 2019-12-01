@@ -19,85 +19,26 @@ import RxSwift
 /// Spotify login object.
 class SpotifyLogin {
     
-    private var clientID: String?
-    private var clientSecret: String?
-    private var redirectURL: URL?
-    
     weak internal var safariVC: SFSafariViewController?
     
     internal var urlBuilder: URLBuilder?
     
+    private var configuration: Configuration
     private let sessionService: SessionService
     private let networkingClient: Networking
     
-    init(sessionService: SessionService, networkingClient: Networking) {
+    init(configuration: Configuration, sessionService: SessionService, networkingClient: Networking) {
         self.sessionService = sessionService
         self.networkingClient = networkingClient
+        self.configuration = configuration
         
-        let redirectURL: URL = URL(string: "spotify-daily-login://")!
-        self.configure(clientID: "8cece41fa2cc49a48e66b70cbc7789fc",
-                       clientSecret: "89faaf509a5e49569abb3fc93ebe4740",
-                       redirectURL: redirectURL)
+        self.urlBuilder = URLBuilder(clientID: configuration.clientID,
+                                     clientSecret: configuration.clientSecret,
+                                     redirectURL: configuration.redirectURL,
+                                     showDialog: true)
     }
     
     // MARK: Interface
-    
-    /// Configure login object.
-    ///
-    /// - Parameters:
-    ///   - clientID: App's client id.
-    ///   - clientSecret: App's client secret.
-    ///   - redirectURL: App's redirect url.
-    private func configure(clientID: String, clientSecret: String, redirectURL: URL, showDialog: Bool? = true) {
-        self.clientID = clientID
-        self.clientSecret = clientSecret
-        self.redirectURL = redirectURL
-        self.urlBuilder = URLBuilder(clientID: clientID,
-                                     clientSecret: clientSecret,
-                                     redirectURL: redirectURL,
-                                     showDialog: showDialog!)
-        
-        Logger.info("Configured clientID, clientSecret, and redirectURL.")
-    }
-    
-    //    /// Asynchronous call to retrieve the session's auth token. Automatically refreshes if auth token expired.
-    //    ///
-    //    /// - Parameter completion: Returns the auth token as a string if available and an optional error.
-    //    public func getAccessToken(completion:@escaping (String?, Error?) -> Void) {
-    //        // If the login object is not fully configured, return an error
-    //        guard redirectURL != nil, let clientID = clientID, let clientSecret = clientSecret else {
-    //            completion(nil, LoginError.configurationMissing)
-    //            return
-    //        }
-    //        // If there is no session, return an error
-    //        guard let session = session else {
-    //            completion(nil, LoginError.noSession)
-    //            return
-    //        }
-    //        // If session is valid return access token, otherwsie refresh
-    //        if session.token.isValid() {
-    //            completion(session.token.accessToken, nil)
-    //            return
-    //        } else {
-    //            Networking.renewSession(session: session,
-    //                                    clientID: clientID,
-    //                                    clientSecret: clientSecret,
-    //                                    completion: { [weak self] session, error in
-    //                if let session = session, error == nil {
-    //                    self?.session = session
-    //                    completion(session.token.accessToken, nil)
-    //                } else {
-    //                    completion(nil, error)
-    //                }
-    //            })
-    //        }
-    //    }
-    //
-    //    /// Log out of current session.
-    //    public func logout() {
-    //        SessionLocalStorage.removeSession()
-    //        session = nil
-    //    }
     
     /// Process URL and attempts to create a session.
     ///
@@ -106,10 +47,7 @@ class SpotifyLogin {
     ///   - completion: Returns an optional error or nil if successful.
     /// - Returns: Whether or not the URL was handled.
     public func applicationOpenURL(_ url: URL) -> Bool {
-        guard let urlBuilder = urlBuilder,
-            let redirectURL = redirectURL,
-            let clientID = clientID,
-            let clientSecret = clientSecret else {
+        guard let urlBuilder = urlBuilder else {
                 return false
         }
         
@@ -122,9 +60,9 @@ class SpotifyLogin {
         let parsedURL = urlBuilder.parse(url: url)
         if let code = parsedURL.code, !parsedURL.error {
             networkingClient.createSignInResponse(code: code,
-                                            redirectURL: redirectURL,
-                                            clientID: clientID,
-                                            clientSecret: clientSecret,
+                                                  redirectURL: configuration.redirectURL,
+                                            clientID: configuration.clientID,
+                                            clientSecret: configuration.clientSecret,
                                             completion: { [weak self] response, error in
                                                 DispatchQueue.main.async {
                                                     if error == nil {

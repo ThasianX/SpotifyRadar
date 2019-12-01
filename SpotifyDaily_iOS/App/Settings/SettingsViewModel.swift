@@ -28,11 +28,7 @@ class SettingsViewModel {
     // TODO: Debug what's going on. Getting nil for user
     func refreshProfile(){
         sessionService.refreshProfile()
-        .bind(onNext: { [weak self] user in
-            Logger.info("Refresh profile user is \(user)")
-            self?.userSubject.onNext(user)
-        })
-        .disposed(by: disposeBag)
+        userSubject.onNext(sessionService.sessionState?.user)
     }
     
     func logout(){

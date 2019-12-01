@@ -97,9 +97,11 @@ class SettingsRootView: UIView {
         return stack
     }()
     
-    lazy var profileLabel: UILabel = {
+    lazy var displayName: UILabel = {
         let label = UILabel()
-        label.font = .profileLabel
+        
+//        label.text = "Display name: \((viewModel.sessionService.sessionState?.user.displayName)!)"
+        label.font = .displayNameLabel
         label.textColor = .profileLabel
         label.numberOfLines = .numberOfLines
         label.textAlignment = .center
@@ -108,17 +110,13 @@ class SettingsRootView: UIView {
         return label
     }()
     
-    lazy var displayName: UILabel = {
-        let label = profileLabel
-        
-//        label.text = "Display name: \((viewModel.sessionService.sessionState?.user.displayName)!)"
-        label.font = .displayNameLabel
-        
-        return label
-    }()
-    
     lazy var country: UILabel = {
-        let label = profileLabel
+        let label = UILabel()
+        label.font = .profileLabel
+        label.textColor = .profileLabel
+        label.numberOfLines = .numberOfLines
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         
 //        label.text = "Country: \((viewModel.sessionService.sessionState?.user.country)!)"
         
@@ -126,7 +124,12 @@ class SettingsRootView: UIView {
     }()
     
     lazy var email: UILabel = {
-        let label = profileLabel
+        let label = UILabel()
+        label.font = .profileLabel
+        label.textColor = .profileLabel
+        label.numberOfLines = .numberOfLines
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         
 //        label.text = "Country: \((viewModel.sessionService.sessionState?.user.email)!)"
         
@@ -134,7 +137,12 @@ class SettingsRootView: UIView {
     }()
     
     lazy var filterEnabled: UILabel = {
-        let label = profileLabel
+        let label = UILabel()
+        label.font = .profileLabel
+        label.textColor = .profileLabel
+        label.numberOfLines = .numberOfLines
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         
 //        label.text = "Content filter enabled: \((viewModel.sessionService.sessionState?.user.filterEnabled)!)"
         
@@ -142,7 +150,12 @@ class SettingsRootView: UIView {
     }()
     
     lazy var profileUrl: UILabel = {
-        let label = profileLabel
+        let label = UILabel()
+        label.font = .profileLabel
+        label.textColor = .profileLabel
+        label.numberOfLines = .numberOfLines
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         
 //        label.text = "Profile URL: \((viewModel.sessionService.sessionState?.user.profileUrl)!)"
         
@@ -150,7 +163,12 @@ class SettingsRootView: UIView {
     }()
     
     lazy var numberOfFollowers: UILabel = {
-        let label = profileLabel
+        let label = UILabel()
+        label.font = .profileLabel
+        label.textColor = .profileLabel
+        label.numberOfLines = .numberOfLines
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         
 //        label.text = "Number of followers: \((viewModel.sessionService.sessionState?.user.numberOfFollowers)!)"
         
@@ -158,7 +176,12 @@ class SettingsRootView: UIView {
     }()
     
     lazy var endpointUrl: UILabel = {
-        let label = profileLabel
+        let label = UILabel()
+        label.font = .profileLabel
+        label.textColor = .profileLabel
+        label.numberOfLines = .numberOfLines
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         
 //        label.text = "Web API endpoint URL: \((viewModel.sessionService.sessionState?.user.endpointUrl)!)"
         
@@ -166,7 +189,12 @@ class SettingsRootView: UIView {
     }()
     
     lazy var id: UILabel = {
-        let label = profileLabel
+        let label = UILabel()
+        label.font = .profileLabel
+        label.textColor = .profileLabel
+        label.numberOfLines = .numberOfLines
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         
 //        label.text = "Id: \((viewModel.sessionService.sessionState?.user.id)!)"
         
@@ -174,7 +202,12 @@ class SettingsRootView: UIView {
     }()
     
     lazy var subscriptionLevel: UILabel = {
-        let label = profileLabel
+        let label = UILabel()
+        label.font = .profileLabel
+        label.textColor = .profileLabel
+        label.numberOfLines = .numberOfLines
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         
 //        label.text = "Subscription level: \((viewModel.sessionService.sessionState?.user.subscriptionLevel)!)"
         
@@ -182,7 +215,12 @@ class SettingsRootView: UIView {
     }()
     
     lazy var uriUrl: UILabel = {
-        let label = profileLabel
+        let label = UILabel()
+        label.font = .profileLabel
+        label.textColor = .profileLabel
+        label.numberOfLines = .numberOfLines
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         
 //        label.text = "Resource identifier: \((viewModel.sessionService.sessionState?.user.uriUrl)!)"
         
@@ -221,6 +259,8 @@ class SettingsRootView: UIView {
         self.addSubview(logoutButton)
         self.setupConstraints()
         self.setupBindings()
+        
+        self.backgroundColor = .white
     }
     
     private func setupConstraints(){
@@ -252,6 +292,7 @@ class SettingsRootView: UIView {
             .map { $0?.country }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] country in
+            Logger.info(country!)
             self?.country.text = country
         })
         .disposed(by: disposeBag)
@@ -260,6 +301,7 @@ class SettingsRootView: UIView {
         .map { $0?.displayName }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] displayName in
+            Logger.info(displayName!)
             self?.displayName.text = displayName
         })
         .disposed(by: disposeBag)

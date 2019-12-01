@@ -6,6 +6,7 @@
 //  Copyright © 2019 Kevin Li. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 protocol Coordinator: AnyObject {
@@ -29,7 +30,7 @@ class BaseCoordinator: Coordinator {
     }
     
     func start(coordinator: Coordinator) {
-        self.childCoordinators.append(coordinator)
+        self.childCoordinators += [coordinator]
         coordinator.parentCoordinator = self
         coordinator.start()
     }

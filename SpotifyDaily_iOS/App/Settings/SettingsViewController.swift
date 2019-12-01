@@ -17,14 +17,9 @@ final class SettingsViewController: ViewControllerWithSideMenu {
     private let disposeBag = DisposeBag()
     var viewModel: SettingsViewModel?
     
-    // MARK: View Life Cycle
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.viewModel?.refreshProfile()
-    }
-    
     //MARK: View configuration
     
+    // 1
     override func loadView() {
         view = SettingsRootView(viewModel: viewModel!)
     }

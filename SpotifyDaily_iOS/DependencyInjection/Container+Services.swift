@@ -16,5 +16,6 @@ extension Container {
         self.autoregister(SpotifyLogin.self, initializer: SpotifyLogin.init).inObjectScope(.container)
         self.autoregister(SpotifyLoginPresenter.self, initializer: SpotifyLoginPresenter.init).inObjectScope(.container)
         self.autoregister(Networking.self, initializer: Networking.init).inObjectScope(.container)
+        self.autoregister(Configuration.self, initializer: Configuration.init).inObjectScope(.container)
     }
 }

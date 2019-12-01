@@ -20,6 +20,7 @@ class SessionService {
     
     private let dataManager: DataManager
     private let networkingClient: Networking
+    private let configuration: Configuration
     
     private let signOutSubject = PublishSubject<Void>()
     private let signInSubject = PublishSubject<Void>()
@@ -37,11 +38,30 @@ class SessionService {
     
     // MARK: - Public Methods
     
-    init(dataManager: DataManager, networkingClient: Networking) {
+    init(dataManager: DataManager, networkingClient: Networking, configuration: Configuration) {
         self.dataManager = dataManager
         self.networkingClient = networkingClient
+        self.configuration = configuration
         
         self.loadSession()
+    }
+    
+    private func loadSession() {
+        self.sessionState = self.dataManager.get(key: SettingKey.session, type: Session.self)
+        self.token = self.sessionState?.token
+        
+        checkIfTokenValid()
+    }
+    
+    private func checkIfTokenValid(){
+        if self.token != nil && !self.token!.isValid() {
+            self.networkingClient.renewSession(session: sessionState, clientID: configuration.clientID, clientSecret: configuration.clientSecret) { [weak self] session, error in
+                Logger.info("Renewing token")
+                if let session = session, error == nil {
+                    self?.updateSession(session: session)
+                }
+            }
+        }
     }
     
     func signIn(response: SignInResponse) {
@@ -57,34 +77,41 @@ class SessionService {
     }
     
     func signOut() {
-        self.removeSession()
+        self.dataManager.clear()
+        self.token = nil
+        self.sessionState = nil
+        self.signOutSubject.onNext(Void())
     }
     
-    func refreshProfile() -> Observable<User>{
+    func refreshProfile() {
         // Use access token to request profile data again and then set updateprofile
-        return networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
-            .flatMap { response -> Observable<User> in
-                let observable = self.getUserFromEndpoint(profileResponse: response)
-                observable.bind(onNext: self.updateProfile(user:)).disposed(by: self.disposeBag)
-                return observable
-        }
+        
+        networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
+            .flatMap { [unowned self] response -> Observable<User> in
+                return self.getUserFromEndpoint(profileResponse: response)
+            }
+            .bind(onNext: { [unowned self] in
+                let session = Session(token: self.sessionState!.token, user: $0)
+                self.updateSession(session: session)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func getUserFromEndpoint(profileResponse: ProfileEndpointResponse) -> Observable<User> {
         
         return Observable<User>.create { observer in
             let user = User(country: profileResponse.country,
-            displayName: profileResponse.displayName,
-            email: profileResponse.email,
-            filterEnabled: profileResponse.filterEnabled,
-            profileUrl: profileResponse.profileUrl,
-            numberOfFollowers: profileResponse.numberOfFollowers,
-            endpointUrl: profileResponse.endpointUrl,
-            id: profileResponse.id,
-            avatarUrl: profileResponse.avatarUrl,
-            subscriptionLevel: profileResponse.subscriptionLevel,
-            uriUrl: profileResponse.uriUrl)
-
+                            displayName: profileResponse.displayName,
+                            email: profileResponse.email,
+                            filterEnabled: profileResponse.filterEnabled,
+                            profileUrl: profileResponse.profileUrl,
+                            numberOfFollowers: profileResponse.numberOfFollowers,
+                            endpointUrl: profileResponse.endpointUrl,
+                            id: profileResponse.id,
+                            avatarUrl: profileResponse.avatarUrl,
+                            subscriptionLevel: profileResponse.subscriptionLevel,
+                            uriUrl: profileResponse.uriUrl)
+            
             Logger.info("User is \(user)")
             
             observer.onNext(user)
@@ -95,10 +122,6 @@ class SessionService {
     }
     
     // MARK: - Session Management
-    private func loadSession() {
-        self.sessionState = self.dataManager.get(key: SettingKey.session, type: Session.self)
-        self.token = self.sessionState?.token
-    }
     
     func setToken(response: SignInResponse) {
         guard let accessToken = response.accessToken,
@@ -124,15 +147,9 @@ class SessionService {
             .disposed(by: disposeBag)
     }
     
-    private func removeSession() {
-        self.dataManager.clear()
-        self.token = nil
-        self.sessionState = nil
-        self.signOutSubject.onNext(Void())
-    }
-    
-    private func updateProfile(user: User) {
-        self.sessionState?.updateDetails(user)
+    private func updateSession(session: Session) {
+        self.sessionState?.updateSession(session)
+        self.token = session.token
         self.dataManager.set(key: SettingKey.session, value: self.sessionState)
     }
 }
