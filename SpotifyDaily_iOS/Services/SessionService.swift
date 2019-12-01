@@ -19,6 +19,7 @@ class SessionService {
     // MARK: - Private fields
     
     private let dataManager: DataManager
+    private let networkingClient: Networking
     
     private let signOutSubject = PublishSubject<Void>()
     private let signInSubject = PublishSubject<Void>()
@@ -36,8 +37,9 @@ class SessionService {
     
     // MARK: - Public Methods
     
-    init(dataManager: DataManager) {
+    init(dataManager: DataManager, networkingClient: Networking) {
         self.dataManager = dataManager
+        self.networkingClient = networkingClient
         
         self.loadSession()
     }
@@ -45,29 +47,13 @@ class SessionService {
     func signIn(response: SignInResponse) {
         //first set token, then call function to get user, then set session
         
-        do {
-            try self.setToken(response: response)
-            
-            let response = Networking.userProfileRequest(accessToken: self.token?.accessToken)
-            
-            if let user = response {
-                try self.setSession(user: user)
-            } else {
-                Logger.error("Unable to set session for user")
-            }
-            
-        } catch {
-            Logger.error("Error while signing in: \(error).")
-        }
+        self.setToken(response: response)
         
-        
-        
-//        return self.translationsService.fetchTranslations()
-//            .andThen(signIn)
-//            .do(onSuccess: { [weak self] in try self?.setToken(response: $0) })
-//            .flatMap { _ in fetchMe }
-//            .do(onSuccess: { [weak self] in try self?.setSession(credentials: credentials, response: $0) })
-//            .asCompletable()
+        networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
+            .bind(onNext: { [weak self] in
+                self?.setSession(profileResponse: $0)
+            })
+            .disposed(by: disposeBag)
     }
     
     func signOut() {
@@ -76,15 +62,15 @@ class SessionService {
     
     func refreshProfile() {
         // Use access token to request profile data again and then set updateprofile
-        let response = Networking.userProfileRequest(accessToken: self.token?.accessToken)
+        let response = networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
         
-        if let user = response {
-            self.updateProfile(user: user)
-        } else {
-            Logger.error("Unable to refresh user profile")
-        }
+//        if let user = response {
+//            self.updateProfile(user: user)
+//        } else {
+//            Logger.error("Unable to refresh user profile")
+//        }
         
-//        return Single.just(user).do(onSuccess: { [weak self] in self?.updateProfile(user: $0) })
+        //        return Single.just(user).do(onSuccess: { [weak self] in self?.updateProfile(user: $0) })
     }
     
     // MARK: - Session Management
@@ -92,20 +78,32 @@ class SessionService {
         self.sessionState = self.dataManager.get(key: SettingKey.session, type: Session.self)
     }
     
-    func setToken(response: SignInResponse) throws {
+    func setToken(response: SignInResponse) {
         guard let accessToken = response.accessToken,
             let refreshToken = response.refreshToken,
             let expirationDate = response.expirationDate else {
-            throw SessionError.invalidToken
+                fatalError("Unable to set invalid token")
         }
         
         self.token = Token(accessToken: accessToken, refreshToken: refreshToken, expirationDate: expirationDate)
     }
     
-    private func setSession(user: User) throws {
+    private func setSession(profileResponse: ProfileEndpointResponse) {
         guard let token = self.token else {
-            throw SessionError.invalidToken
+            fatalError("Unable to create session due to invalid token")
         }
+        
+        let user = User(country: profileResponse.country,
+                        displayName: profileResponse.displayName,
+                        email: profileResponse.email,
+                        filterEnabled: profileResponse.filterEnabled,
+                        profileUrl: profileResponse.profileUrl,
+                        numberOfFollowers: profileResponse.numberOfFollowers,
+                        endpointUrl: profileResponse.endpointUrl,
+                        id: profileResponse.id,
+                        avatarUrl: profileResponse.avatarUrl,
+                        subscriptionLevel: profileResponse.subscriptionLevel,
+                        uriUrl: profileResponse.uriUrl)
         
         self.sessionState = Session(token: token, user: user)
         self.dataManager.set(key: SettingKey.session, value: self.sessionState)

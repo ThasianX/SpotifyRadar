@@ -13,38 +13,40 @@
 // limitations under the License.
 
 import Foundation
+import RxSwift
 
 // MARK: Constants
 
 internal let apiTokenEndpointURL = "https://accounts.spotify.com/api/token"
 internal let profileServiceEndpointURL = "https://api.spotify.com/v1/me"
+internal let baseURL = "https://api.spotify.com/v1/"
 
-internal class Networking {
-
-    internal class func createSignInResponse(code: String,
-                                      redirectURL: URL,
-                                      clientID: String,
-                                      clientSecret: String,
-                                      completion: @escaping (SignInResponse?, Error?) -> Void) {
+class Networking {
+    
+    internal func createSignInResponse(code: String,
+                                       redirectURL: URL,
+                                       clientID: String,
+                                       clientSecret: String,
+                                       completion: @escaping (SignInResponse?, Error?) -> Void) {
         let requestBody = "code=\(code)&grant_type=authorization_code&redirect_uri=\(redirectURL.absoluteString)"
-        Networking.authRequest(requestBody: requestBody,
-                               clientID: clientID,
-                               clientSecret: clientSecret) { response, error in
-            if let response = response, error == nil {
-                let signInResponse = SignInResponse(accessToken: response.accessToken, refreshToken: response.refreshToken, expirationDate: Date(timeIntervalSinceNow: response.expiresIn))
-                completion(signInResponse, error)
-            } else {
-                DispatchQueue.main.async {
-                    completion(nil, error)
-                }
-            }
+        authRequest(requestBody: requestBody,
+                    clientID: clientID,
+                    clientSecret: clientSecret) { response, error in
+                        if let response = response, error == nil {
+                            let signInResponse = SignInResponse(accessToken: response.accessToken, refreshToken: response.refreshToken, expirationDate: Date(timeIntervalSinceNow: response.expiresIn))
+                            completion(signInResponse, error)
+                        } else {
+                            DispatchQueue.main.async {
+                                completion(nil, error)
+                            }
+                        }
         }
     }
-
-    internal class func renewSession(session: Session?,
-                                     clientID: String,
-                                     clientSecret: String,
-                                     completion: @escaping (Session?, Error?) -> Void) {
+    
+    internal func renewSession(session: Session?,
+                               clientID: String,
+                               clientSecret: String,
+                               completion: @escaping (Session?, Error?) -> Void) {
         guard let session = session, let refreshToken = session.token.refreshToken else {
             DispatchQueue.main.async {
                 completion(nil, LoginError.noSession)
@@ -52,100 +54,127 @@ internal class Networking {
             return
         }
         let requestBody = "grant_type=refresh_token&refresh_token=\(refreshToken)"
-
-        Networking.authRequest(requestBody: requestBody,
-                               clientID: clientID,
-                               clientSecret: clientSecret) { response, error in
-            if let response = response, error == nil {
-                let session = Session(
-                    token: Token(accessToken: response.accessToken,
-                                 refreshToken: session.token.refreshToken,
-                                 expirationDate: Date(timeIntervalSinceNow: response.expiresIn)),
-                    user: session.user)
-                
-                DispatchQueue.main.async {
-                    completion(session, nil)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    completion(nil, error)
-                }
-            }
+        
+        authRequest(requestBody: requestBody,
+                    clientID: clientID,
+                    clientSecret: clientSecret) { response, error in
+                        if let response = response, error == nil {
+                            let session = Session(
+                                token: Token(accessToken: response.accessToken,
+                                             refreshToken: session.token.refreshToken,
+                                             expirationDate: Date(timeIntervalSinceNow: response.expiresIn)),
+                                user: session.user)
+                            
+                            DispatchQueue.main.async {
+                                completion(session, nil)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                completion(nil, error)
+                            }
+                        }
         }
     }
-
-    internal class func userProfileRequest(accessToken: String?) -> User? {
+    
+    internal func userProfileRequest(accessToken: String?) -> Observable<ProfileEndpointResponse> {
         guard let accessToken = accessToken else {
-//            completion(nil, EndpointError.missingAccessToken)
-            return nil
+            fatalError("Unable to retrieve user profile due to invalid access token")
         }
-        let profileURL = URL(string: profileServiceEndpointURL)!
-        var urlRequest = URLRequest(url: profileURL)
-        let authHeaderValue = "Bearer \(accessToken)"
-        urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
         
-        var userResponse: User?
-        let task = URLSession.shared.dataTask(with: urlRequest,
-                                              completionHandler: { (data, _, error) in
-            if let data = data, error == nil {
-                let profileResponse = try? JSONDecoder().decode(ProfileEndpointResponse.self, from: data)
-                if let profileResponse = profileResponse {
-                    let user = User(country: profileResponse.country,
-                                    displayName: profileResponse.displayName,
-                                    email: profileResponse.email,
-                                    filterEnabled: profileResponse.filterEnabled,
-                                    profileUrl: profileResponse.profileUrl,
-                                    numberOfFollowers: profileResponse.numberOfFollowers,
-                                    endpointUrl: profileResponse.endpointUrl,
-                                    id: profileResponse.id,
-                                    avatarUrl: profileResponse.avatarUrl,
-                                    subscriptionLevel: profileResponse.subscriptionLevel,
-                                    uriUrl: profileResponse.uriUrl)
-                    userResponse = user
+        return Observable<ProfileEndpointResponse>.create { observer in
+            let profileURL = URL(string: profileServiceEndpointURL)!
+            var urlRequest = URLRequest(url: profileURL)
+            let authHeaderValue = "Bearer \(accessToken)"
+            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                do {
+                    let profileResponse = try JSONDecoder().decode(ProfileEndpointResponse.self, from: data ?? Data())
+                    observer.onNext(profileResponse)
+                } catch let error {
+                    observer.onError(error)
                 }
+                observer.onCompleted()
             }
-        })
-        task.resume()
-        
-        return userResponse
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
     }
-
-    internal class func authRequest(requestBody: String,
-                                    clientID: String,
-                                    clientSecret: String,
-                                    completion: @escaping (TokenEndpointResponse?, Error?) -> Void) {
+    //
+    //    internal func userProfileRequest(accessToken: String?) -> User? {
+    //        guard let accessToken = accessToken else {
+    //            return nil
+    //        }
+    //        let profileURL = URL(string: profileServiceEndpointURL)!
+    //        var urlRequest = URLRequest(url: profileURL)
+    //        let authHeaderValue = "Bearer \(accessToken)"
+    //        urlRequest.httpMethod = "GET"
+    //        urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+    //
+    //        var userResponse: User?
+    //        let task = URLSession.shared.dataTask(with: urlRequest,
+    //                                              completionHandler: { (data, _, error) in
+    //                                                if let data = data, error == nil {
+    //                                                    let profileResponse = try? JSONDecoder().decode(ProfileEndpointResponse.self, from: data)
+    //                                                    if let profileResponse = profileResponse {
+    //                                                        let user = User(country: profileResponse.country,
+    //                                                                        displayName: profileResponse.displayName,
+    //                                                                        email: profileResponse.email,
+    //                                                                        filterEnabled: profileResponse.filterEnabled,
+    //                                                                        profileUrl: profileResponse.profileUrl,
+    //                                                                        numberOfFollowers: profileResponse.numberOfFollowers,
+    //                                                                        endpointUrl: profileResponse.endpointUrl,
+    //                                                                        id: profileResponse.id,
+    //                                                                        avatarUrl: profileResponse.avatarUrl,
+    //                                                                        subscriptionLevel: profileResponse.subscriptionLevel,
+    //                                                                        uriUrl: profileResponse.uriUrl)
+    //                                                        userResponse = user
+    //                                                    }
+    //                                                }
+    //        })
+    //        task.resume()
+    //
+    //        return userResponse
+    //    }
+    
+    private func authRequest(requestBody: String,
+                             clientID: String,
+                             clientSecret: String,
+                             completion: @escaping (TokenEndpointResponse?, Error?) -> Void) {
         guard let authString = "\(clientID):\(clientSecret)"
             .data(using: .ascii)?.base64EncodedString(options: .endLineWithLineFeed) else {
-            DispatchQueue.main.async {
-                completion(nil, LoginError.configurationMissing)
-            }
-            return
+                DispatchQueue.main.async {
+                    completion(nil, LoginError.configurationMissing)
+                }
+                return
         }
         let endpoint = URL(string: apiTokenEndpointURL)!
         var urlRequest = URLRequest(url: endpoint)
         urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
         urlRequest.httpMethod = "POST"
-
+        
         let authHeaderValue = "Basic \(authString)"
         urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
         urlRequest.httpBody = requestBody.data(using: .utf8)
-
+        
         let task = URLSession.shared.dataTask(with: urlRequest,
                                               completionHandler: { (data, _, error) in
-            if let data = data,
-                let authResponse = try? JSONDecoder().decode(TokenEndpointResponse.self, from: data), error == nil {
-                DispatchQueue.main.async {
-                    completion(authResponse, error)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    completion(nil, error)
-                }
-            }
+                                                if let data = data,
+                                                    let authResponse = try? JSONDecoder().decode(TokenEndpointResponse.self, from: data), error == nil {
+                                                    DispatchQueue.main.async {
+                                                        completion(authResponse, error)
+                                                    }
+                                                } else {
+                                                    DispatchQueue.main.async {
+                                                        completion(nil, error)
+                                                    }
+                                                }
         })
         task.resume()
     }
-
+    
 }
 
 public enum EndpointError: Error {

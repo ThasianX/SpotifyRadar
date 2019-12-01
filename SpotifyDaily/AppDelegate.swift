@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let spotifyLogin = AppDelegate.container.resolve(SpotifyLogin.self)!
-        let handled = spotifyLogin.applicationOpenURL(url) { _ in }
+        let handled = spotifyLogin.applicationOpenURL(url)
         return handled
     }
     

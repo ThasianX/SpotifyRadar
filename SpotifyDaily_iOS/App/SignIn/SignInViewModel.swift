@@ -8,13 +8,15 @@
 
 import Foundation
 
-import RxSwift
-
 class SignInViewModel {
-    let sessionService: SessionService
-    private let disposeBag = DisposeBag()
     
-    init(sessionService: SessionService) {
-        self.sessionService = sessionService
+    private let loginPresenter: SpotifyLoginPresenter
+    
+    init(loginPresenter: SpotifyLoginPresenter) {
+        self.loginPresenter = loginPresenter
+    }
+    
+    func presentSignInBrowser(vc: SignInViewController){
+        loginPresenter.login(from: vc, scopes: [.userReadPrivate, .userReadEmail])
     }
 }

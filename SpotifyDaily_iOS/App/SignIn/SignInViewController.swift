@@ -18,7 +18,7 @@ final class SignInViewController: UIViewController {
     private lazy var titleLabel = UILabel.titleLabel
     private lazy var missionStatementLabel = UILabel.missionStatementLabel
     
-    private var spotifySignInButton: UIButton?
+    private var spotifySignInButton = UIButton.spotifyLoginButton
 
     private let disposeBag = DisposeBag()
     var viewModel: SignInViewModel?
@@ -29,7 +29,8 @@ final class SignInViewController: UIViewController {
         super.viewDidLoad()
         
         addViews()
-        setupConstraints()
+        setUpConstraints()
+        setUpBindings()
     }
     
     //MARK: View configuration
@@ -42,18 +43,10 @@ final class SignInViewController: UIViewController {
         self.view.addSubview(backgroundImageView)
         self.view.addSubview(titleLabel)
         self.view.addSubview(missionStatementLabel)
-        addSpotifyButton()
-        self.view.addSubview(spotifySignInButton!)
+        self.view.addSubview(spotifySignInButton)
     }
     
-    private func addSpotifyButton(){
-        let button = SpotifyLoginButton(viewController: self,
-                                        scopes: [.userReadPrivate, .userReadEmail])
-        self.spotifySignInButton = button
-        self.spotifySignInButton?.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private func setupConstraints() {
+    private func setUpConstraints() {
         let layoutGuide = self.view.safeAreaLayoutGuide
         
         backgroundImageView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
@@ -69,10 +62,17 @@ final class SignInViewController: UIViewController {
         missionStatementLabel.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: .labelPadding).isActive = true
         missionStatementLabel.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -.labelPadding).isActive = true
         
-        spotifySignInButton!.heightAnchor.constraint(equalToConstant: .buttonHeight).isActive = true
-        spotifySignInButton!.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: .buttonMargin).isActive = true
-        spotifySignInButton!.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -.buttonMargin).isActive = true
-        spotifySignInButton!.topAnchor.constraint(equalTo: missionStatementLabel.bottomAnchor, constant: .buttonMargin).isActive = true
+        spotifySignInButton.heightAnchor.constraint(equalToConstant: .buttonHeight).isActive = true
+        spotifySignInButton.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: .buttonMargin).isActive = true
+        spotifySignInButton.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -.buttonMargin).isActive = true
+        spotifySignInButton.topAnchor.constraint(equalTo: missionStatementLabel.bottomAnchor, constant: .buttonMargin).isActive = true
+    }
+    
+    private func setUpBindings() {
+        spotifySignInButton.rx.tap.bind { [unowned self] in
+            self.viewModel?.presentSignInBrowser(vc: self)
+        }
+        .disposed(by: self.disposeBag)
     }
 }
 
@@ -97,6 +97,15 @@ private extension UIFont {
 private extension UIColor {
     static let titleLabelText = UIColor.white
     static let missionStatementText = UIColor.white
+}
+
+private extension UIButton {
+    static var spotifyLoginButton: UIButton {
+        let button = SpotifyLoginButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }
 }
 
 private extension UIImageView {

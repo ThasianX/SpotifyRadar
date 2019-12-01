@@ -16,24 +16,22 @@ import Foundation
 import SafariServices
 
 /// Use the login presenter to manually present the login authentication screen.
-public class SpotifyLoginPresenter {
+class SpotifyLoginPresenter {
+    
+    private let spotifyLogin: SpotifyLogin
+    
+    init(spotifyLogin: SpotifyLogin) {
+        self.spotifyLogin = spotifyLogin
+    }
 
     /// Trigger log in flow.
     ///
     /// - Parameters:
     ///   - viewController: The view controller that orignates the log in flow.
     ///   - scopes: A list of requested scopes and permissions.
-    public class func login(from viewController: (UIViewController), scopes: [Scope]) {
-        let spotifyLogin = AppDelegate.container.resolve(SpotifyLogin.self)!
+    func login(from viewController: (UIViewController), scopes: [Scope]) {
         let urlBuilder = spotifyLogin.urlBuilder
-        if let appAuthenticationURL = urlBuilder?.authenticationURL(type: .app, scopes: scopes),
-            UIApplication.shared.canOpenURL(appAuthenticationURL) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(appAuthenticationURL, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(appAuthenticationURL)
-            }
-        } else if let webAuthenticationURL = urlBuilder?.authenticationURL(type: .web, scopes: scopes) {
+        if let webAuthenticationURL = urlBuilder?.authenticationURL(type: .web, scopes: scopes) {
             viewController.definesPresentationContext = true
             let safariViewController: SFSafariViewController = SFSafariViewController(url: webAuthenticationURL)
             safariViewController.modalPresentationStyle = .pageSheet

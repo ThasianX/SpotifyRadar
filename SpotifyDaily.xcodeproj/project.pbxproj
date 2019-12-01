@@ -249,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				1EC2A15823917623006E5E96 /* Constants.swift */,
+				1EC2A15E23917624006E5E96 /* Scope.swift */,
 				1EC2A15A23917623006E5E96 /* Networking.swift */,
 				1E37D9502391E15E0047613B /* Endpoints */,
 				1E49BF6C2391DF12009B6CC2 /* Login */,
@@ -396,7 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				1EC2A15923917623006E5E96 /* SpotifyLoginButton.swift */,
-				1EC2A15E23917624006E5E96 /* Scope.swift */,
 				1EC2A16423917624006E5E96 /* SpotifyLoginPresenter.swift */,
 			);
 			path = Spotify;

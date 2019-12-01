@@ -17,7 +17,7 @@ import SafariServices
 import RxSwift
 
 /// Spotify login object.
-public class SpotifyLogin {
+class SpotifyLogin {
     
     private var clientID: String?
     private var clientSecret: String?
@@ -28,9 +28,11 @@ public class SpotifyLogin {
     internal var urlBuilder: URLBuilder?
     
     private let sessionService: SessionService
+    private let networkingClient: Networking
     
-    init(sessionService: SessionService) {
+    init(sessionService: SessionService, networkingClient: Networking) {
         self.sessionService = sessionService
+        self.networkingClient = networkingClient
         
         let redirectURL: URL = URL(string: "spotify-daily-login://")!
         self.configure(clientID: "8cece41fa2cc49a48e66b70cbc7789fc",
@@ -103,21 +105,15 @@ public class SpotifyLogin {
     ///   - url: url to handle.
     ///   - completion: Returns an optional error or nil if successful.
     /// - Returns: Whether or not the URL was handled.
-    public func applicationOpenURL(_ url: URL, completion: @escaping (Error?) -> Void) -> Bool {
+    public func applicationOpenURL(_ url: URL) -> Bool {
         guard let urlBuilder = urlBuilder,
             let redirectURL = redirectURL,
             let clientID = clientID,
             let clientSecret = clientSecret else {
-                DispatchQueue.main.async {
-                    completion(LoginError.configurationMissing)
-                }
                 return false
         }
         
         guard urlBuilder.canHandleURL(url) else {
-            DispatchQueue.main.async {
-                completion(LoginError.invalidUrl)
-            }
             return false
         }
         
@@ -125,7 +121,7 @@ public class SpotifyLogin {
         
         let parsedURL = urlBuilder.parse(url: url)
         if let code = parsedURL.code, !parsedURL.error {
-            Networking.createSignInResponse(code: code,
+            networkingClient.createSignInResponse(code: code,
                                             redirectURL: redirectURL,
                                             clientID: clientID,
                                             clientSecret: clientSecret,
@@ -134,21 +130,17 @@ public class SpotifyLogin {
                                                     if error == nil {
                                                         self?.sessionService.signIn(response: response!)
                                                     }
-                                                    completion(error)
                                                 }
             })
-        } else {
-            DispatchQueue.main.async {
-                completion(LoginError.invalidUrl)
-            }
         }
+        
         return true
     }
     
 }
 
 /// Login error
-public enum LoginError: Error {
+enum LoginError: Error {
     /// Generic error message.
     case general
     /// Spotify Login is not fully configured. Use the configuration function.

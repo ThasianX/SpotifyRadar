@@ -1,25 +1,6 @@
-// Copyright (c) 2017 Spotify AB.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 import UIKit
 
-/// Pre-rendered, pre-configured login button
-public class SpotifyLoginButton: UIButton {
-
-    private weak var viewController: UIViewController?
-    private var scopes: [Scope]?
-
+class SpotifyLoginButton: UIButton {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         applyLayout()
@@ -30,11 +11,8 @@ public class SpotifyLoginButton: UIButton {
         applyLayout()
     }
 
-    public convenience init(viewController: UIViewController, scopes: [Scope]) {
+    public convenience init() {
         self.init(frame: .zero)
-        self.viewController = viewController
-        self.scopes = scopes
-//        self.addTarget(self, action: #selector(performLogin), for: .touchUpInside)
     }
 
     func applyLayout() {
@@ -50,11 +28,6 @@ public class SpotifyLoginButton: UIButton {
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         frame.size = intrinsicContentSize
     }
-
-//    @IBAction private func performLogin() {
-//        guard let viewContoller = viewController, let scopes = scopes else { return }
-//        SpotifyLoginPresenter.login(from: viewContoller, scopes: scopes)
-//    }
 
     override public var isHighlighted: Bool {
         didSet {

@@ -40,6 +40,7 @@ class AppCoordinator: BaseCoordinator {
         Logger.info("User not authenticated. Creating Sign In Coordinator")
         
         self.removeChildCoordinators()
+        
         let coordinator = AppDelegate.container.resolve(SignInCoordinator.self)!
         self.start(coordinator: coordinator)
         
@@ -50,9 +51,11 @@ class AppCoordinator: BaseCoordinator {
     }
     
     private func showDashboard() {
+        Logger.info("User authenticated. Creating DrawerMenu Coordinator")
+        
         self.removeChildCoordinators()
         
-        let coordinator = AppDelegate.container.resolve(DashboardCoordinator.self)!
+        let coordinator = AppDelegate.container.resolve(DrawerMenuCoordinator.self)!
         coordinator.navigationController = BaseNavigationController()
         self.start(coordinator: coordinator)
         
