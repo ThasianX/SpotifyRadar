@@ -11,6 +11,7 @@
 		1E022BDB238B5888007D2EE6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BDA238B5888007D2EE6 /* SignInViewController.swift */; };
 		1E022BE0238B5888007D2EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BDF238B5888007D2EE6 /* Assets.xcassets */; };
 		1E022BE3238B5888007D2EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BE1238B5888007D2EE6 /* LaunchScreen.storyboard */; };
+		1E100DF12393444C00DE0291 /* SettingsRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E100DF02393444C00DE0291 /* SettingsRootView.swift */; };
 		1E356505238EC9D200C407F1 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E356504238EC9D200C407F1 /* SettingsCoordinator.swift */; };
 		1E356507238ED3D000C407F1 /* UIImageView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E356506238ED3D000C407F1 /* UIImageView+Additions.swift */; };
 		1E356511238ED53A00C407F1 /* SpotifyDailyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E356510238ED53A00C407F1 /* SpotifyDailyTests.swift */; };
@@ -83,6 +84,7 @@
 		1E022BDF238B5888007D2EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E022BE2238B5888007D2EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E022BE4238B5888007D2EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E100DF02393444C00DE0291 /* SettingsRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRootView.swift; sourceTree = "<group>"; };
 		1E356504238EC9D200C407F1 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		1E356506238ED3D000C407F1 /* UIImageView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Additions.swift"; sourceTree = "<group>"; };
 		1E35650E238ED53A00C407F1 /* SpotifyDailyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotifyDailyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +224,7 @@
 				1E356504238EC9D200C407F1 /* SettingsCoordinator.swift */,
 				1E3759A3238D7B0F00928EDD /* SettingsViewController.swift */,
 				1EA8FDC12391AD4A00498AA6 /* SettingsViewModel.swift */,
+				1E100DF02393444C00DE0291 /* SettingsRootView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				1EC2A16523917624006E5E96 /* URLBuilder.swift in Sources */,
 				1EC2A16823917624006E5E96 /* SpotifyLoginButton.swift in Sources */,
 				1EC2A16723917624006E5E96 /* Constants.swift in Sources */,
+				1E100DF12393444C00DE0291 /* SettingsRootView.swift in Sources */,
 				1EC2A12E23916861006E5E96 /* SessionService.swift in Sources */,
 				1E022BD7238B5888007D2EE6 /* AppDelegate.swift in Sources */,
 				1E896A64238C27F000C745F0 /* AppCoordinator.swift in Sources */,

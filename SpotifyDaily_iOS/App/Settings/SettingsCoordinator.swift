@@ -15,6 +15,7 @@ class SettingsCoordinator: BaseCoordinator {
     
     init(settingsViewModel: SettingsViewModel) {
         self.settingsViewModel = settingsViewModel
+        self.settingsViewModel.refreshProfile()
     }
     
     override func start() {

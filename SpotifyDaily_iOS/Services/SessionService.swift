@@ -60,22 +60,44 @@ class SessionService {
         self.removeSession()
     }
     
-    func refreshProfile() {
+    func refreshProfile() -> Observable<User>{
         // Use access token to request profile data again and then set updateprofile
-        let response = networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
+        return networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
+            .flatMap { response -> Observable<User> in
+                let observable = self.getUserFromEndpoint(profileResponse: response)
+                observable.bind(onNext: self.updateProfile(user:)).disposed(by: self.disposeBag)
+                return observable
+        }
+    }
+    
+    private func getUserFromEndpoint(profileResponse: ProfileEndpointResponse) -> Observable<User> {
         
-//        if let user = response {
-//            self.updateProfile(user: user)
-//        } else {
-//            Logger.error("Unable to refresh user profile")
-//        }
-        
-        //        return Single.just(user).do(onSuccess: { [weak self] in self?.updateProfile(user: $0) })
+        return Observable<User>.create { observer in
+            let user = User(country: profileResponse.country,
+            displayName: profileResponse.displayName,
+            email: profileResponse.email,
+            filterEnabled: profileResponse.filterEnabled,
+            profileUrl: profileResponse.profileUrl,
+            numberOfFollowers: profileResponse.numberOfFollowers,
+            endpointUrl: profileResponse.endpointUrl,
+            id: profileResponse.id,
+            avatarUrl: profileResponse.avatarUrl,
+            subscriptionLevel: profileResponse.subscriptionLevel,
+            uriUrl: profileResponse.uriUrl)
+
+            Logger.info("User is \(user)")
+            
+            observer.onNext(user)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
     }
     
     // MARK: - Session Management
     private func loadSession() {
         self.sessionState = self.dataManager.get(key: SettingKey.session, type: Session.self)
+        self.token = self.sessionState?.token
     }
     
     func setToken(response: SignInResponse) {
@@ -93,22 +115,13 @@ class SessionService {
             fatalError("Unable to create session due to invalid token")
         }
         
-        let user = User(country: profileResponse.country,
-                        displayName: profileResponse.displayName,
-                        email: profileResponse.email,
-                        filterEnabled: profileResponse.filterEnabled,
-                        profileUrl: profileResponse.profileUrl,
-                        numberOfFollowers: profileResponse.numberOfFollowers,
-                        endpointUrl: profileResponse.endpointUrl,
-                        id: profileResponse.id,
-                        avatarUrl: profileResponse.avatarUrl,
-                        subscriptionLevel: profileResponse.subscriptionLevel,
-                        uriUrl: profileResponse.uriUrl)
-        
-        self.sessionState = Session(token: token, user: user)
-        self.dataManager.set(key: SettingKey.session, value: self.sessionState)
-        
-        self.signInSubject.onNext(Void())
+        self.getUserFromEndpoint(profileResponse: profileResponse)
+            .bind(onNext: { [weak self] in
+                self?.sessionState = Session(token: token, user: $0)
+                self?.dataManager.set(key: SettingKey.session, value: self?.sessionState)
+                self?.signInSubject.onNext(Void())
+            })
+            .disposed(by: disposeBag)
     }
     
     private func removeSession() {

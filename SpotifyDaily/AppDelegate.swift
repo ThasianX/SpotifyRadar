@@ -45,6 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         sideMenuController.statusBarEndAlpha = 0
         sideMenuController.presentationStyle = .menuSlideIn
         sideMenuController.menuWidth = max(round(min((UIScreen.main.bounds.width), (UIScreen.main.bounds.height)) * 0.75), 240)
+        
+        SideMenuManager.default.leftMenuNavigationController = sideMenuController
     }
 }
 
