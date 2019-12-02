@@ -17,7 +17,7 @@ private extension Int {
 
 private extension CGFloat {
     static let logoutButtonCornerRadius = CGFloat(55/2)
-    static let profileContainerCornerRadius = CGFloat(60)
+    static let profileContainerCornerRadius = CGFloat(30)
     
     static let labelSpacing = CGFloat(8)
     
@@ -270,8 +270,7 @@ class SettingsRootView: UIView {
             .map { $0?.country }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] country in
-            Logger.info(country!)
-            self?.country.text = country
+            self?.country.text = "Country: \(country!)"
         })
         .disposed(by: disposeBag)
         
@@ -279,8 +278,7 @@ class SettingsRootView: UIView {
         .map { $0?.displayName }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] displayName in
-            Logger.info(displayName!)
-            self?.displayName.text = displayName
+            self?.displayName.text = "Display name: \(displayName!)"
         })
         .disposed(by: disposeBag)
         
@@ -288,7 +286,7 @@ class SettingsRootView: UIView {
         .map { $0?.email }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] email in
-            self?.email.text = email
+            self?.email.text = "Email: \(email!)"
         })
         .disposed(by: disposeBag)
         
@@ -296,7 +294,7 @@ class SettingsRootView: UIView {
             .map { $0?.filterEnabled.description }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] filterEnabled in
-            self?.filterEnabled.text = filterEnabled
+            self?.filterEnabled.text = "Filter enabled: \(filterEnabled!)"
         })
         .disposed(by: disposeBag)
         
@@ -304,7 +302,7 @@ class SettingsRootView: UIView {
         .map { $0?.profileUrl }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] profileUrl in
-            self?.profileUrl.text = profileUrl
+            self?.profileUrl.text = "Profile url: \(profileUrl!)"
         })
         .disposed(by: disposeBag)
         
@@ -312,7 +310,7 @@ class SettingsRootView: UIView {
             .map { $0?.numberOfFollowers }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] numberOfFollowers in
-            self?.numberOfFollowers.text = "\(numberOfFollowers!)"
+            self?.numberOfFollowers.text = "Number of followers: \(numberOfFollowers!)"
         })
         .disposed(by: disposeBag)
         
@@ -320,7 +318,7 @@ class SettingsRootView: UIView {
         .map { $0?.endpointUrl }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] endpointUrl in
-            self?.endpointUrl.text = endpointUrl
+            self?.endpointUrl.text = "Your Web API Endpoint: \(endpointUrl!)"
         })
         .disposed(by: disposeBag)
         
@@ -328,7 +326,7 @@ class SettingsRootView: UIView {
         .map { $0?.id }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] id in
-            self?.id.text = id
+            self?.id.text = "User Id: \(id!)"
         })
         .disposed(by: disposeBag)
         
@@ -344,7 +342,7 @@ class SettingsRootView: UIView {
         .map { $0?.subscriptionLevel }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] subscriptionLevel in
-            self?.subscriptionLevel.text = subscriptionLevel
+            self?.subscriptionLevel.text = "Subscription level: \(subscriptionLevel!)"
         })
         .disposed(by: disposeBag)
         
@@ -352,7 +350,7 @@ class SettingsRootView: UIView {
         .map { $0?.uriUrl }
         .distinctUntilChanged()
         .bind(onNext: { [weak self] uriUrl in
-            self?.uriUrl.text = uriUrl
+            self?.uriUrl.text = "Your Search URI: \(uriUrl!)"
         })
         .disposed(by: disposeBag)
     }
