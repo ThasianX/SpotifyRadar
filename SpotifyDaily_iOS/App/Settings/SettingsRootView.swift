@@ -224,7 +224,6 @@ class SettingsRootView: UIView {
         self.viewModel = viewModel
         super.init(frame: frame)
         self.setupView()
-        self.setupBindings()
     }
     
     required init?(coder: NSCoder) {
@@ -258,7 +257,6 @@ class SettingsRootView: UIView {
     }
     
     private func setupBindings() {
-        
         // MARK: Actions
         logoutButton.rx.tap.bind { [weak self] in
             self?.viewModel.logout()

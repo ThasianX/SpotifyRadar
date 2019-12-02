@@ -24,4 +24,10 @@ final class SettingsViewController: ViewControllerWithSideMenu {
         view = SettingsRootView(viewModel: viewModel!)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        title = viewModel?.title
+    }
+    
 }

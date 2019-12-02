@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class RecommendationsViewController: UIViewController {
+class RecommendationsViewController: ViewControllerWithSideMenu {
     
     private let disposeBag = DisposeBag()
     var viewModel: RecommendationsViewModel?

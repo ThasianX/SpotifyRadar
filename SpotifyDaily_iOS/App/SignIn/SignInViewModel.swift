@@ -17,6 +17,6 @@ class SignInViewModel {
     }
     
     func presentSignInBrowser(vc: SignInViewController){
-        loginPresenter.login(from: vc, scopes: [.userReadPrivate, .userReadEmail])
+        loginPresenter.login(from: vc, scopes: [.userReadPrivate, .userReadEmail, .userReadTop, .userReadRecentlyPlayed])
     }
 }

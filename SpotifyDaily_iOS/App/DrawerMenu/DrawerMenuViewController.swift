@@ -13,7 +13,7 @@ import RxCocoa
 
 class DrawerMenuViewController: UIViewController {
     
-    private var selectedRow: Int = 0
+    private var selectedRow: Int = 1
     private let disposeBag = DisposeBag()
     
     private lazy var tableView = UITableView.tableView
@@ -52,11 +52,8 @@ class DrawerMenuViewController: UIViewController {
     private func setUpBindings() {
         guard let viewModel = self.viewModel else { return }
         
-        self.selectedRow = 0
-        
         viewModel.menuItems
             .bind(to: tableView.rx.items(cellIdentifier: "menuCell", cellType: UITableViewCell.self)) { [weak self] row, model, cell in
-                Logger.info("Called")
                 cell.selectionStyle = .none
                 cell.textLabel?.text = model.uppercased()
                 cell.textLabel?.textColor = self?.selectedRow == row ? .white : .darkGray
@@ -88,7 +85,6 @@ class DrawerMenuViewController: UIViewController {
 
 extension UITableView {
     static var tableView: UITableView {
-        Logger.info("Tableview")
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
         tableView.separatorStyle = .none
@@ -106,8 +102,6 @@ extension UILabel {
         label.text = "Spotify Daily"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textAlignment = .center
-        
-        Logger.info("App label")
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
