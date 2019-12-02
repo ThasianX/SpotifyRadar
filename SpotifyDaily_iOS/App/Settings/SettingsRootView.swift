@@ -45,8 +45,6 @@ class SettingsRootView: UIView {
     
     lazy var avatar: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-//        let url = URL(string: (viewModel.sessionService.sessionState?.user.avatarUrl)!)
-//        imageView.load(url: url!)
         
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = imageView.bounds.width / 2
@@ -99,8 +97,6 @@ class SettingsRootView: UIView {
     
     lazy var displayName: UILabel = {
         let label = UILabel()
-        
-//        label.text = "Display name: \((viewModel.sessionService.sessionState?.user.displayName)!)"
         label.font = .displayNameLabel
         label.textColor = .profileLabel
         label.numberOfLines = .numberOfLines
@@ -118,8 +114,6 @@ class SettingsRootView: UIView {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
-//        label.text = "Country: \((viewModel.sessionService.sessionState?.user.country)!)"
-        
         return label
     }()
     
@@ -130,8 +124,6 @@ class SettingsRootView: UIView {
         label.numberOfLines = .numberOfLines
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        
-//        label.text = "Country: \((viewModel.sessionService.sessionState?.user.email)!)"
         
         return label
     }()
@@ -144,8 +136,6 @@ class SettingsRootView: UIView {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
-//        label.text = "Content filter enabled: \((viewModel.sessionService.sessionState?.user.filterEnabled)!)"
-        
         return label
     }()
     
@@ -156,8 +146,6 @@ class SettingsRootView: UIView {
         label.numberOfLines = .numberOfLines
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        
-//        label.text = "Profile URL: \((viewModel.sessionService.sessionState?.user.profileUrl)!)"
         
         return label
     }()
@@ -170,8 +158,6 @@ class SettingsRootView: UIView {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
-//        label.text = "Number of followers: \((viewModel.sessionService.sessionState?.user.numberOfFollowers)!)"
-        
         return label
     }()
     
@@ -182,8 +168,6 @@ class SettingsRootView: UIView {
         label.numberOfLines = .numberOfLines
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        
-//        label.text = "Web API endpoint URL: \((viewModel.sessionService.sessionState?.user.endpointUrl)!)"
         
         return label
     }()
@@ -196,8 +180,6 @@ class SettingsRootView: UIView {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
-//        label.text = "Id: \((viewModel.sessionService.sessionState?.user.id)!)"
-        
         return label
     }()
     
@@ -209,8 +191,6 @@ class SettingsRootView: UIView {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
-//        label.text = "Subscription level: \((viewModel.sessionService.sessionState?.user.subscriptionLevel)!)"
-        
         return label
     }()
     
@@ -221,8 +201,6 @@ class SettingsRootView: UIView {
         label.numberOfLines = .numberOfLines
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        
-//        label.text = "Resource identifier: \((viewModel.sessionService.sessionState?.user.uriUrl)!)"
         
         return label
     }()

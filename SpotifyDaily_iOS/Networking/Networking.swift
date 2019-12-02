@@ -65,8 +65,6 @@ class Networking {
                                              expirationDate: Date(timeIntervalSinceNow: response.expiresIn)),
                                 user: session.user)
                             
-                            Logger.info("\(session)")
-                            
                             DispatchQueue.main.async {
                                 completion(session, nil)
                             }

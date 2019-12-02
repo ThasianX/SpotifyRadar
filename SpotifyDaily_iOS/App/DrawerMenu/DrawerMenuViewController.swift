@@ -11,12 +11,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class DrawerMenuViewController: UIViewController, UITableViewDelegate {
+class DrawerMenuViewController: UIViewController {
     
     private var selectedRow: Int = 0
     private let disposeBag = DisposeBag()
     
-    private var tableView = UITableView.tableView
+    private lazy var tableView = UITableView.tableView
+    
     private lazy var appLabel = UILabel.appLabel
     
     var viewModel: DrawerMenuViewModel? {
@@ -27,7 +28,7 @@ class DrawerMenuViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.tableFooterView = UIView()
+        
         self.setUpView()
     }
     
@@ -42,9 +43,10 @@ class DrawerMenuViewController: UIViewController, UITableViewDelegate {
         self.appLabel.centerXAnchor.constraint(equalTo: layoutGuide.centerXAnchor).isActive = true
         self.appLabel.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: 16).isActive = true
         
-        self.tableView.topAnchor.constraint(equalTo: appLabel.bottomAnchor, constant: 16).isActive = true
+        self.tableView.topAnchor.constraint(equalTo: appLabel.bottomAnchor, constant: 30).isActive = true
         self.tableView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         self.tableView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor).isActive = true
     }
     
     private func setUpBindings() {
@@ -86,8 +88,11 @@ class DrawerMenuViewController: UIViewController, UITableViewDelegate {
 
 extension UITableView {
     static var tableView: UITableView {
+        Logger.info("Tableview")
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -101,6 +106,8 @@ extension UILabel {
         label.text = "Spotify Daily"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textAlignment = .center
+        
+        Logger.info("App label")
         
         label.translatesAutoresizingMaskIntoConstraints = false
         

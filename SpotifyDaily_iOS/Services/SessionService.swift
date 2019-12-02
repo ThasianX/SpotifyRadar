@@ -56,7 +56,6 @@ class SessionService {
     private func checkIfTokenValid(){
         if self.token != nil && !self.token!.isValid() {
             self.networkingClient.renewSession(session: sessionState, clientID: configuration.clientID, clientSecret: configuration.clientSecret) { [weak self] session, error in
-                Logger.info("Renewing token")
                 if let session = session, error == nil {
                     self?.updateSession(session: session)
                 }
@@ -111,8 +110,6 @@ class SessionService {
                             avatarUrl: profileResponse.avatarUrl,
                             subscriptionLevel: profileResponse.subscriptionLevel,
                             uriUrl: profileResponse.uriUrl)
-            
-            Logger.info("User is \(user)")
             
             observer.onNext(user)
             observer.onCompleted()
