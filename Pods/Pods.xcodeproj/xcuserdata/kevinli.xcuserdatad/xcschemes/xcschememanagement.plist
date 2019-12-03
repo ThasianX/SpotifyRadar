@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-SpotifyDaily-SpotifyDailyTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SpotifyDaily.xcscheme</key>
 		<dict>
 			<key>isShown</key>

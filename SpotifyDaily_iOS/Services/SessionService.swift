@@ -29,6 +29,8 @@ class SessionService {
     private(set) var sessionState: Session?
     private var token: Token?
     
+    // MARK: - Public observables
+    
     var didSignOut: Observable<Void> {
         return self.signOutSubject.asObservable()
     }
@@ -36,7 +38,7 @@ class SessionService {
         return self.signInSubject.asObservable()
     }
     
-    // MARK: - Public Methods
+    // MARK: - Initialization
     
     init(dataManager: DataManager, networkingClient: Networking, configuration: Configuration) {
         self.dataManager = dataManager
@@ -47,13 +49,16 @@ class SessionService {
     }
     
     private func loadSession() {
-        self.sessionState = self.dataManager.get(key: SettingKey.session, type: Session.self)
+        self.sessionState = self.dataManager.get(key: DataKeys.session, type: Session.self)
         self.token = self.sessionState?.token
         
         checkIfTokenValid()
     }
     
-    private func checkIfTokenValid(){
+    // MARK: - Public methods
+    
+    // MARK: Token State
+    func checkIfTokenValid(){
         if self.token != nil && !self.token!.isValid() {
             self.networkingClient.renewSession(session: sessionState, clientID: configuration.clientID, clientSecret: configuration.clientSecret) { [weak self] session, error in
                 if let session = session, error == nil {
@@ -63,9 +68,8 @@ class SessionService {
         }
     }
     
+    // MARK: Sign In State
     func signIn(response: SignInResponse) {
-        //first set token, then call function to get user, then set session
-        
         self.setToken(response: response)
         
         networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
@@ -82,12 +86,11 @@ class SessionService {
         self.signOutSubject.onNext(Void())
     }
     
+    // MARK: User state
     func refreshProfile() {
-        // Use access token to request profile data again and then set updateprofile
-        
         networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
             .flatMap { [unowned self] response -> Observable<User> in
-                return self.getUserFromEndpoint(profileResponse: response)
+                return self.networkingClient.getUserFromEndpoint(profileResponse: response)
             }
             .bind(onNext: { [unowned self] in
                 let session = Session(token: self.sessionState!.token, user: $0)
@@ -96,31 +99,17 @@ class SessionService {
             .disposed(by: disposeBag)
     }
     
-    private func getUserFromEndpoint(profileResponse: ProfileEndpointResponse) -> Observable<User> {
-        
-        return Observable<User>.create { observer in
-            let user = User(country: profileResponse.country,
-                            displayName: profileResponse.displayName,
-                            email: profileResponse.email,
-                            filterEnabled: profileResponse.filterEnabled,
-                            profileUrl: profileResponse.profileUrl,
-                            numberOfFollowers: profileResponse.numberOfFollowers,
-                            endpointUrl: profileResponse.endpointUrl,
-                            id: profileResponse.id,
-                            avatarUrl: profileResponse.avatarUrl,
-                            subscriptionLevel: profileResponse.subscriptionLevel,
-                            uriUrl: profileResponse.uriUrl)
-            
-            observer.onNext(user)
-            observer.onCompleted()
-            
-            return Disposables.create()
+    func getTopArtists(timeRange: String, limit: String) -> Observable<[Artist]>{
+        return networkingClient.userTopArtistsRequest(accessToken: self.token?.accessToken, timeRange: timeRange, limit: limit)
+            .flatMap { response -> Observable<[Artist]> in
+                let artists = response.artists
+                return Observable.just(artists)
         }
     }
     
-    // MARK: - Session Management
+    // MARK: - Private Session Management Methods
     
-    func setToken(response: SignInResponse) {
+    private func setToken(response: SignInResponse) {
         guard let accessToken = response.accessToken,
             let refreshToken = response.refreshToken,
             let expirationDate = response.expirationDate else {
@@ -135,10 +124,10 @@ class SessionService {
             fatalError("Unable to create session due to invalid token")
         }
         
-        self.getUserFromEndpoint(profileResponse: profileResponse)
+        self.networkingClient.getUserFromEndpoint(profileResponse: profileResponse)
             .bind(onNext: { [weak self] in
                 self?.sessionState = Session(token: token, user: $0)
-                self?.dataManager.set(key: SettingKey.session, value: self?.sessionState)
+                self?.dataManager.set(key: DataKeys.session, value: self?.sessionState)
                 self?.signInSubject.onNext(Void())
             })
             .disposed(by: disposeBag)
@@ -147,6 +136,6 @@ class SessionService {
     private func updateSession(session: Session) {
         self.sessionState?.updateSession(session)
         self.token = session.token
-        self.dataManager.set(key: SettingKey.session, value: self.sessionState)
+        self.dataManager.set(key: DataKeys.session, value: self.sessionState)
     }
 }

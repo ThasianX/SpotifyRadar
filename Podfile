@@ -5,7 +5,15 @@ inhibit_all_warnings!
 target 'SpotifyDaily' do
     pod 'RxSwift', '~> 5'
     pod 'RxCocoa', '~> 5'
+
     pod 'SideMenu', '~> 6.0'
     pod 'Swinject', '~> 2.6.0'
     pod 'SwinjectAutoregistration', '2.6.0'
+
+    target 'SpotifyDailyTests' do
+        pod 'RxSwift', '~> 5'
+        pod 'RxCocoa', '~> 5'
+    end
+
+
 end

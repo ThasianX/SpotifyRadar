@@ -24,10 +24,10 @@ final class DashboardViewController: ViewControllerWithSideMenu {
         
         self.title = viewModel.title
         
-//        viewModel.isLoading
-//            .bind(to: self.activityIndicator.rx.isAnimating)
-//            .disposed(by: self.disposeBag)
-        
+        self.setUpBindings()
     }
-
+    
+    
+    private func setUpBindings() {
+    }
 }

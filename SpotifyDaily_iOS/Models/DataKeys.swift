@@ -8,6 +8,7 @@
 
 import Foundation
 
-struct SettingKey {
+struct DataKeys {
     static let session = "session"
+    static let dashboardState = "dashboardState"
 }

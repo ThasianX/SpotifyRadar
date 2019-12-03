@@ -19,10 +19,9 @@ import RxSwift
 
 internal let apiTokenEndpointURL = "https://accounts.spotify.com/api/token"
 internal let profileServiceEndpointURL = "https://api.spotify.com/v1/me"
-internal let baseURL = "https://api.spotify.com/v1/"
+internal let topArtistsEndpointURL = "https://api.spotify.com/v1/me/top/artists"
 
 class Networking {
-    
     internal func createSignInResponse(code: String,
                                        redirectURL: URL,
                                        clientID: String,
@@ -55,6 +54,8 @@ class Networking {
         }
         let requestBody = "grant_type=refresh_token&refresh_token=\(refreshToken)"
         
+        Logger.info("Request body created: \(requestBody)")
+        
         authRequest(requestBody: requestBody,
                     clientID: clientID,
                     clientSecret: clientSecret) { response, error in
@@ -65,6 +66,8 @@ class Networking {
                                              expirationDate: Date(timeIntervalSinceNow: response.expiresIn)),
                                 user: session.user)
                             
+                            Logger.info("New session was created with access token: \(response.accessToken)")
+                            
                             DispatchQueue.main.async {
                                 completion(session, nil)
                             }
@@ -73,6 +76,43 @@ class Networking {
                                 completion(nil, error)
                             }
                         }
+        }
+    }
+    
+    internal func userTopArtistsRequest(accessToken: String?, timeRange: String, limit: String) -> Observable<TopArtistsEndpointResponse> {
+        guard let accessToken = accessToken else {
+            fatalError("Unable to retrieve user profile due to invalid access token")
+        }
+        
+        Logger.info("Returning observable")
+        
+        return Observable<TopArtistsEndpointResponse>.create { observer in
+            var topArtistsURL = URL(string: topArtistsEndpointURL)!
+            let queryItems = [URLQueryItem(name: "time_range", value: timeRange),
+            URLQueryItem(name: "limit", value: limit)]
+            topArtistsURL.appending(queryItems)
+            
+            Logger.info("URL created successfully")
+            
+            var urlRequest = URLRequest(url: topArtistsURL)
+            let authHeaderValue = "Bearer \(accessToken)"
+            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                do {
+                    let artistResponse = try JSONDecoder().decode(TopArtistsEndpointResponse.self, from: data ?? Data())
+                    Logger.info("Artist response successful")
+                    observer.onNext(artistResponse)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
         }
     }
     
@@ -86,6 +126,7 @@ class Networking {
             var urlRequest = URLRequest(url: profileURL)
             let authHeaderValue = "Bearer \(accessToken)"
             urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 do {
                     let profileResponse = try JSONDecoder().decode(ProfileEndpointResponse.self, from: data ?? Data())
@@ -103,6 +144,28 @@ class Networking {
         }
         .observeOn(MainScheduler.instance)
         .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+    }
+    
+    internal func getUserFromEndpoint(profileResponse: ProfileEndpointResponse) -> Observable<User> {
+        
+        return Observable<User>.create { observer in
+            let user = User(country: profileResponse.country,
+                            displayName: profileResponse.displayName,
+                            email: profileResponse.email,
+                            filterEnabled: profileResponse.filterEnabled,
+                            profileUrl: profileResponse.profileUrl,
+                            numberOfFollowers: profileResponse.numberOfFollowers,
+                            endpointUrl: profileResponse.endpointUrl,
+                            id: profileResponse.id,
+                            avatarUrl: profileResponse.avatarUrl,
+                            subscriptionLevel: profileResponse.subscriptionLevel,
+                            uriUrl: profileResponse.uriUrl)
+            
+            observer.onNext(user)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
     }
     
     private func authRequest(requestBody: String,
