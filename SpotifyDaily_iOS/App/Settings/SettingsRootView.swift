@@ -236,8 +236,6 @@ class SettingsRootView: UIView {
         self.addSubview(logoutButton)
         self.setupConstraints()
         self.setupBindings()
-        
-        self.backgroundColor = .white
     }
     
     private func setupConstraints(){

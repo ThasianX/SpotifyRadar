@@ -14,4 +14,6 @@ public struct DashboardViewControllerState: Codable, Equatable {
     internal var artistsTimeRange: String
     internal var artistsLimit: Int
     
+    internal var songsTimeRange: String
+    internal var songsLimit: Int
 }

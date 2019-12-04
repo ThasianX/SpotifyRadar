@@ -16,12 +16,13 @@ class SessionService {
         case invalidToken
     }
     
-    // MARK: - Private fields
-    
+    // MARK: - Properties
+    // MARK: Dependencies
     private let dataManager: DataManager
     private let networkingClient: Networking
     private let configuration: Configuration
     
+    // MARK: Private fields
     private let signOutSubject = PublishSubject<Void>()
     private let signInSubject = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
@@ -29,8 +30,7 @@ class SessionService {
     private(set) var sessionState: Session?
     private var token: Token?
     
-    // MARK: - Public observables
-    
+    // MARK: Public fields
     var didSignOut: Observable<Void> {
         return self.signOutSubject.asObservable()
     }
@@ -39,7 +39,6 @@ class SessionService {
     }
     
     // MARK: - Initialization
-    
     init(dataManager: DataManager, networkingClient: Networking, configuration: Configuration) {
         self.dataManager = dataManager
         self.networkingClient = networkingClient
@@ -56,7 +55,6 @@ class SessionService {
     }
     
     // MARK: - Public methods
-    
     // MARK: Token State
     func checkIfTokenValid(){
         if self.token != nil && !self.token!.isValid() {
@@ -99,7 +97,7 @@ class SessionService {
             .disposed(by: disposeBag)
     }
     
-    func getTopArtists(timeRange: String, limit: String) -> Observable<[Artist]>{
+    func getTopArtists(timeRange: String, limit: Int) -> Observable<[Artist]>{
         return networkingClient.userTopArtistsRequest(accessToken: self.token?.accessToken, timeRange: timeRange, limit: limit)
             .flatMap { response -> Observable<[Artist]> in
                 let artists = response.artists
@@ -108,7 +106,6 @@ class SessionService {
     }
     
     // MARK: - Private Session Management Methods
-    
     private func setToken(response: SignInResponse) {
         guard let accessToken = response.accessToken,
             let refreshToken = response.refreshToken,
@@ -128,6 +125,7 @@ class SessionService {
             .bind(onNext: { [weak self] in
                 self?.sessionState = Session(token: token, user: $0)
                 self?.dataManager.set(key: DataKeys.session, value: self?.sessionState)
+                self?.setDefaultData()
                 self?.signInSubject.onNext(Void())
             })
             .disposed(by: disposeBag)
@@ -137,5 +135,11 @@ class SessionService {
         self.sessionState?.updateSession(session)
         self.token = session.token
         self.dataManager.set(key: DataKeys.session, value: self.sessionState)
+    }
+    
+    private func setDefaultData() {
+        let dashboardState = DashboardViewControllerState(artistsTimeRange:
+            "medium_term    ", artistsLimit: 5, songsTimeRange: "short_term", songsLimit: 5)
+        self.dataManager.set(key: DataKeys.dashboardState, value: dashboardState)
     }
 }

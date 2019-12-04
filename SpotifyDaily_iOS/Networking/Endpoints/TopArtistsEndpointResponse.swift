@@ -11,32 +11,27 @@ import Foundation
 fileprivate struct TopArtistsEndpointModel: Decodable {
 
     // MARK: - Item
-    struct Item: Codable {
-        let externalUrls: ExternalUrls
-        let followers: Followers
-        let genres: [String]
-        let images: [Image]
-        let name: String
-
-        enum CodingKeys: String, CodingKey {
-            case externalUrls = "external_urls"
-            case followers, genres, images, name
-        }
+    struct Item: Decodable {
+        var external_urls: ExternalUrls
+        var followers: Followers
+        var genres: [String]
+        var images: [Image]
+        var name: String
     }
 
     // MARK: - ExternalUrls
-    struct ExternalUrls: Codable {
-        let spotify: String
+    struct ExternalUrls: Decodable {
+        var spotify: String
     }
 
     // MARK: - Followers
-    struct Followers: Codable {
-        let total: Int
+    struct Followers: Decodable {
+        var total: Int
     }
 
     // MARK: - Image
-    struct Image: Codable {
-        let url: String
+    struct Image: Decodable {
+        var url: String
     }
     
     var items: [Item]

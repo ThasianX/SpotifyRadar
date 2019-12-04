@@ -8,34 +8,63 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class DashboardViewModel {
     
+    // MARK: - Properties
+    // MARK: Dependencies
     private let sessionService: SessionService
     private let dataManager: DataManager
+    
+    // MARK: Private fields
     private let disposeBag = DisposeBag()
     
+    // MARK: Public fields
     let title = "Dashboard"
-    var state: BehaviorSubject<DashboardViewControllerState>
+    let artistsTimeRange = BehaviorRelay<String>(value: "")
+    let artistsLimit = BehaviorRelay<Int>(value: 0)
+    let artists = BehaviorRelay<[Artist]>(value: [])
     
-    // TODO: Add a call to session service to retrieve a list of artists
+    let songsTimeRange = BehaviorRelay<String>(value: "")
+    let songsLimit = BehaviorRelay<Int>(value: 0)
+    let songs = BehaviorRelay<[Artist]>(value: [])
+    
+    let timeRangeItems = [
+        "short_term",
+        "medium_term",
+        "long_term"
+    ]
+    
     init(sessionService: SessionService, dataManager: DataManager) {
         self.sessionService = sessionService
         self.dataManager = dataManager
         
-        self.state = BehaviorSubject<DashboardViewControllerState>(value: DashboardViewControllerState(artistsTimeRange: "medium_term", artistsLimit: 5))
+        guard let dashboardState = self.dataManager.get(key: DataKeys.dashboardState, type: DashboardViewControllerState.self) else { return }
         
-        self.loadState()
+        self.artistsTimeRange.accept(dashboardState.artistsTimeRange)
+        self.artistsLimit.accept(dashboardState.artistsLimit)
+        self.songsTimeRange.accept(dashboardState.songsTimeRange)
+        self.songsLimit.accept(dashboardState.songsLimit)
+        
+        self.setUpBindings()
     }
     
-    private func loadState() {
-        if let dashboardState = self.dataManager.get(key: DataKeys.dashboardState, type: DashboardViewControllerState.self) {
-            state.onNext(dashboardState)
+    private func setUpBindings() {
+        Observable.combineLatest(self.artistsTimeRange, self.artistsLimit)
+            .flatMap { timeRange, limit -> Observable<[Artist]> in
+                return self.sessionService.getTopArtists(timeRange: timeRange, limit: limit)
         }
-    }
-    
-    private func updateState(dashboardState: DashboardViewControllerState) {
-        self.dataManager.set(key: DataKeys.dashboardState, value: dashboardState)
+        .bind(to: artists)
+        .disposed(by: self.disposeBag)
+        
+        Observable.combineLatest(self.artistsTimeRange, self.artistsLimit, self.songsTimeRange, self.songsLimit)
+            .bind(onNext: { aTime, aLimit, sTime, sLimit in
+                Logger.info("New dashboard state")
+                let newDashboardState = DashboardViewControllerState(artistsTimeRange: aTime, artistsLimit: aLimit, songsTimeRange: sTime, songsLimit: sLimit)
+                self.dataManager.set(key: DataKeys.dashboardState, value: newDashboardState)
+            })
+            .disposed(by: self.disposeBag)
     }
     
 }

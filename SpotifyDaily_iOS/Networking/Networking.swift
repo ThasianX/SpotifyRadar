@@ -79,20 +79,18 @@ class Networking {
         }
     }
     
-    internal func userTopArtistsRequest(accessToken: String?, timeRange: String, limit: String) -> Observable<TopArtistsEndpointResponse> {
+    internal func userTopArtistsRequest(accessToken: String?, timeRange: String, limit: Int) -> Observable<TopArtistsEndpointResponse> {
         guard let accessToken = accessToken else {
             fatalError("Unable to retrieve user profile due to invalid access token")
         }
         
-        Logger.info("Returning observable")
-        
         return Observable<TopArtistsEndpointResponse>.create { observer in
             var topArtistsURL = URL(string: topArtistsEndpointURL)!
             let queryItems = [URLQueryItem(name: "time_range", value: timeRange),
-            URLQueryItem(name: "limit", value: limit)]
+            URLQueryItem(name: "limit", value: String(limit))]
             topArtistsURL.appending(queryItems)
             
-            Logger.info("URL created successfully")
+            Logger.info("URL created: \(topArtistsURL.absoluteString)")
             
             var urlRequest = URLRequest(url: topArtistsURL)
             let authHeaderValue = "Bearer \(accessToken)"
