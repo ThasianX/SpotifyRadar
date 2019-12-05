@@ -9,8 +9,6 @@
 import Foundation
 
 fileprivate struct TopArtistsEndpointModel: Decodable {
-
-    // MARK: - Item
     struct Item: Decodable {
         var external_urls: ExternalUrls
         var followers: Followers
@@ -19,17 +17,14 @@ fileprivate struct TopArtistsEndpointModel: Decodable {
         var name: String
     }
 
-    // MARK: - ExternalUrls
     struct ExternalUrls: Decodable {
         var spotify: String
     }
 
-    // MARK: - Followers
     struct Followers: Decodable {
         var total: Int
     }
 
-    // MARK: - Image
     struct Image: Decodable {
         var url: String
     }
@@ -45,9 +40,10 @@ struct TopArtistsEndpointResponse: Decodable {
         
         for item in response.items {
             let name = item.name
-            let image = item.images.first!.url
-            let url = URL(string: image)!
-            let artist = Artist(name: name, image: url)
+            let url = URL(string: item.images.first!.url)!
+            let followers = item.followers.total
+            let externalURL = URL(string: item.external_urls.spotify)!
+            let artist = Artist(name: name, image: url, followers: followers, externalURL: externalURL)
             Logger.info("Artist: \(artist)")
             
             self.artists.append(artist)

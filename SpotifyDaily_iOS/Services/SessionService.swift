@@ -138,8 +138,8 @@ class SessionService {
     }
     
     private func setDefaultData() {
-        let dashboardState = DashboardViewControllerState(artistsTimeRange:
-            "medium_term    ", artistsLimit: 5, songsTimeRange: "short_term", songsLimit: 5)
-        self.dataManager.set(key: DataKeys.dashboardState, value: dashboardState)
+        let dashboardState = ArtistsCollectionViewControllerState(artistsTimeRange:
+            "medium_term", artistsLimit: 10)
+        self.dataManager.set(key: DataKeys.artistsCollectionState, value: dashboardState)
     }
 }

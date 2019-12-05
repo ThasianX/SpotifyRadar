@@ -18,5 +18,6 @@ extension Container {
         self.autoregister(RecommendationsViewModel.self, initializer: RecommendationsViewModel.init)
         self.autoregister(DashboardViewModel.self, initializer: DashboardViewModel.init)
         self.autoregister(SettingsViewModel.self, initializer: SettingsViewModel.init)
+        self.autoregister(ArtistsCollectionViewModel.self, initializer: ArtistsCollectionViewModel.init)
     }
 }

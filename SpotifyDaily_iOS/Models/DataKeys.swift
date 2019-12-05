@@ -10,5 +10,5 @@ import Foundation
 
 struct DataKeys {
     static let session = "session"
-    static let dashboardState = "dashboardState"
+    static let artistsCollectionState = "artistsCollectionState"
 }

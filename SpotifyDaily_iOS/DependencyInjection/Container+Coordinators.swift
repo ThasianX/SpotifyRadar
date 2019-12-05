@@ -17,5 +17,6 @@ extension Container {
         self.autoregister(RecommendationsCoordinator.self, initializer: RecommendationsCoordinator.init)
         self.autoregister(DashboardCoordinator.self, initializer: DashboardCoordinator.init)
         self.autoregister(SettingsCoordinator.self, initializer: SettingsCoordinator.init)
+        self.autoregister(ArtistsCollectionCoordinator.self, initializer: ArtistsCollectionCoordinator.init)
     }
 }
