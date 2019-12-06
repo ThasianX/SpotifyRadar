@@ -320,7 +320,6 @@
 				1EEDC1172398017900D6B06B /* Cell */,
 				1E86B42123980C1B00582D6E /* ArtistsCollectionViewController.swift */,
 				1E86B42523980D5300582D6E /* ArtistsCollectionViewModel.swift */,
-				1EBDF99B239602DB00325E7F /* ArtistsCollectionViewControllerState.swift */,
 				1E7488F02398CEC500798BD0 /* ArtistsCollectionCoordinator.swift */,
 			);
 			path = Collections;
@@ -435,6 +434,7 @@
 		1EC2A12323916401006E5E96 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1EF44CB82399FA8500D9E1F5 /* State */,
 				1EC2A128239166B5006E5E96 /* Token.swift */,
 				1EC2A12623916547006E5E96 /* SignInResponse.swift */,
 				1EC2A13B23916E5D006E5E96 /* DataKeys.swift */,
@@ -493,6 +493,14 @@
 				1EEDC1182398018400D6B06B /* ArtistCollectionCellViewModel.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		1EF44CB82399FA8500D9E1F5 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				1EBDF99B239602DB00325E7F /* ArtistsCollectionViewControllerState.swift */,
+			);
+			path = State;
 			sourceTree = "<group>";
 		};
 		C65A3C24A672FA67A86509B2 /* Pods */ = {

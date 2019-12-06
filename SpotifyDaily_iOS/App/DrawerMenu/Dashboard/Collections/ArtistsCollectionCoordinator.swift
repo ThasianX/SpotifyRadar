@@ -21,7 +21,6 @@ class ArtistsCollectionCoordinator: BaseCoordinator {
         var viewController = ArtistsCollectionViewController()
         viewController.bind(to: self.viewModel)
         
-        self.navigationController.navigationItem.title = "User Dashboard"
         self.navigationController.viewControllers = [viewController]
     }
     

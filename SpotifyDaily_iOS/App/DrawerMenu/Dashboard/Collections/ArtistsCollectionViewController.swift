@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class ArtistsCollectionViewController: UIViewController, BindableType {
+final class ArtistsCollectionViewController: UIViewController, BindableType {
     
     // MARK: - Properties
     // MARK: BindableType conformance
@@ -92,6 +92,7 @@ class ArtistsCollectionViewController: UIViewController, BindableType {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = .white
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
 

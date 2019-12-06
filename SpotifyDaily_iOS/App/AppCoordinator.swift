@@ -14,7 +14,8 @@ class AppCoordinator: BaseCoordinator {
     
     private let disposeBag = DisposeBag()
     private let sessionService: SessionService
-    private var window = UIWindow(frame: UIScreen.main.bounds)
+    
+    var window = UIWindow(frame: UIScreen.main.bounds)
     
     private var drawerMenu: SideMenuNavigationController? {
         return SideMenuManager.default.leftMenuNavigationController

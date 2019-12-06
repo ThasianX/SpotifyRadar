@@ -14,8 +14,10 @@ protocol CollectionsViewModelInput {
     /// Call when the bottom of the list is reached
     var loadMore: BehaviorSubject<Bool> { get }
     
+    /// Call when a time range is selected for querying the user's top artists
     var artistsTimeRange: BehaviorRelay<String> { get }
     
+    /// Call when a limit for the number of artists is selected for querying the user's top artists
     var artistsLimit: BehaviorRelay<Int> { get }
 
     /// Call when pull-to-refresh is invoked
@@ -83,6 +85,8 @@ class ArtistsCollectionViewModel: CollectionsViewModelType,
         
         self.artistsTimeRange.accept(artistsCollectionState.artistsTimeRange)
         self.artistsLimit.accept(artistsCollectionState.artistsLimit)
+        
+        isRefreshing = refreshProperty.asObservable()
         
         let requestFirst = Observable.combineLatest(self.artistsTimeRange, self.artistsLimit)
             .flatMap { timeRange, limit -> Observable<[Artist]> in

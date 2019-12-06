@@ -20,10 +20,10 @@ protocol Coordinator: AnyObject {
 }
 
 class BaseCoordinator: Coordinator {
-    
     var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
+    
     var navigationController = UINavigationController()
+    var parentCoordinator: Coordinator?
     
     func start() {
         fatalError("Start method must be implemented")
