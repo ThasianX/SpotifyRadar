@@ -11,6 +11,8 @@ import UIKit
 
 class ArtistsCollectionCoordinator: BaseCoordinator {
     
+    var artistsCollectionViewController: BaseNavigationController!
+    
     private let viewModel: ArtistsCollectionViewModel
     
     init(viewModel: ArtistsCollectionViewModel) {
@@ -21,7 +23,10 @@ class ArtistsCollectionCoordinator: BaseCoordinator {
         var viewController = ArtistsCollectionViewController()
         viewController.bind(to: self.viewModel)
         
-        self.navigationController.viewControllers = [viewController]
+        artistsCollectionViewController = BaseNavigationController(rootViewController: viewController)
+        artistsCollectionViewController.navigationBar.isHidden = true
+        
+        self.navigationController.presentOnTop(artistsCollectionViewController, animated: true)
     }
     
 }

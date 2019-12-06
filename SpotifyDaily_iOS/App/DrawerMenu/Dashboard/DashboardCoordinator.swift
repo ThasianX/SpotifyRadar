@@ -16,27 +16,23 @@ class DashboardCoordinator: BaseCoordinator {
     private let dataManager: DataManager
     
     private let disposeBag = DisposeBag()
-    private var window = UIWindow(frame: UIScreen.main.bounds)
     
     init(dashboardViewModel: DashboardViewModel, dataManager: DataManager) {
         self.dashboardViewModel = dashboardViewModel
         self.dataManager = dataManager
-        
-        super.init()
-        setUpBindings()
     }
 
     override func start() {
         let viewController = DashboardViewController()
         viewController.viewModel = dashboardViewModel
         
-        self.navigationController.navigationItem.title = "User Dashboard"
         self.navigationController.viewControllers = [viewController]
+        
+        setUpBindings()
     }
     
     private func setUpBindings() {
         dashboardViewModel.presentTopArtist.bind(onNext: { [weak self] in
-            Logger.info("called in coord")
             self?.presentTopArtists()
         })
         .disposed(by: disposeBag)
@@ -45,16 +41,9 @@ class DashboardCoordinator: BaseCoordinator {
     private func presentTopArtists() {
         Logger.info("Presenting top artists")
         
-        self.removeChildCoordinators()
-        
         let coordinator = AppDelegate.container.resolve(ArtistsCollectionCoordinator.self)!
+        coordinator.navigationController = self.navigationController
+        
         self.start(coordinator: coordinator)
-        
-        
-        // TODO: Do modal presentation instead. This is just creating a window on top of a window
-        ViewControllerUtils.setRootViewController(
-            window: window,
-        viewController: coordinator.navigationController,
-        withAnimation: true)
     }
 }

@@ -23,8 +23,6 @@ class ViewControllerWithSideMenu: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(self.hamburgerMenuClicked))
         self.navigationItem.leftBarButtonItem?.accessibilityIdentifier = "menuButton"
         self.view.backgroundColor = .white
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

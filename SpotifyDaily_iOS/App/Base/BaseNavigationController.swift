@@ -23,7 +23,3 @@ class BaseNavigationController: UINavigationController {
         self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }
-
-enum ColorPreference {
-    static let mainColor = UIColor(red: 0x71 / 0xFF, green: 0xBC / 0xFF, blue: 0xBD / 0xFF, alpha: 1)
-}

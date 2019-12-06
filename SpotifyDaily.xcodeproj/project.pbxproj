@@ -15,6 +15,8 @@
 		1E11093023956F6D00C3BD21 /* TopArtistsEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11092F23956F6D00C3BD21 /* TopArtistsEndpointResponse.swift */; };
 		1E11093223958B9E00C3BD21 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11093123958B9E00C3BD21 /* Artist.swift */; };
 		1E1109342395972300C3BD21 /* URL+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1109332395972300C3BD21 /* URL+Queries.swift */; };
+		1E271FA9239B0C350017AF7D /* UISegmentedControl+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E271FA8239B0C350017AF7D /* UISegmentedControl+Additions.swift */; };
+		1E271FAB239B0C570017AF7D /* UILabel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E271FAA239B0C570017AF7D /* UILabel+Additions.swift */; };
 		1E356505238EC9D200C407F1 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E356504238EC9D200C407F1 /* SettingsCoordinator.swift */; };
 		1E356507238ED3D000C407F1 /* UIImageView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E356506238ED3D000C407F1 /* UIImageView+Additions.swift */; };
 		1E356511238ED53A00C407F1 /* SpotifyDailyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E356510238ED53A00C407F1 /* SpotifyDailyTests.swift */; };
@@ -26,6 +28,8 @@
 		1E526AAA23945BA4005F09E8 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E526AA923945BA4005F09E8 /* Configuration.swift */; };
 		1E583A0223901D5B00DC033F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E583A0123901D5B00DC033F /* Logger.swift */; };
 		1E583A0423909E0200DC033F /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E583A0323909E0200DC033F /* ViewControllerUtils.swift */; };
+		1E7129E6239B0653007F538B /* UIViewController+Present.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7129E5239B0653007F538B /* UIViewController+Present.swift */; };
+		1E7129E8239B0B12007F538B /* ColorPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7129E7239B0B12007F538B /* ColorPreference.swift */; };
 		1E7488F12398CEC500798BD0 /* ArtistsCollectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7488F02398CEC500798BD0 /* ArtistsCollectionCoordinator.swift */; };
 		1E86B42223980C1B00582D6E /* ArtistsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42123980C1B00582D6E /* ArtistsCollectionViewController.swift */; };
 		1E86B42423980C9500582D6E /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42323980C9500582D6E /* BindableType.swift */; };
@@ -102,6 +106,8 @@
 		1E11092F23956F6D00C3BD21 /* TopArtistsEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsEndpointResponse.swift; sourceTree = "<group>"; };
 		1E11093123958B9E00C3BD21 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		1E1109332395972300C3BD21 /* URL+Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Queries.swift"; sourceTree = "<group>"; };
+		1E271FA8239B0C350017AF7D /* UISegmentedControl+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Additions.swift"; sourceTree = "<group>"; };
+		1E271FAA239B0C570017AF7D /* UILabel+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Additions.swift"; sourceTree = "<group>"; };
 		1E356504238EC9D200C407F1 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		1E356506238ED3D000C407F1 /* UIImageView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Additions.swift"; sourceTree = "<group>"; };
 		1E35650E238ED53A00C407F1 /* SpotifyDailyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotifyDailyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +121,8 @@
 		1E526AA923945BA4005F09E8 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		1E583A0123901D5B00DC033F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1E583A0323909E0200DC033F /* ViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
+		1E7129E5239B0653007F538B /* UIViewController+Present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Present.swift"; sourceTree = "<group>"; };
+		1E7129E7239B0B12007F538B /* ColorPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreference.swift; sourceTree = "<group>"; };
 		1E7488F02398CEC500798BD0 /* ArtistsCollectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCollectionCoordinator.swift; sourceTree = "<group>"; };
 		1E86B42123980C1B00582D6E /* ArtistsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCollectionViewController.swift; sourceTree = "<group>"; };
 		1E86B42323980C9500582D6E /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
@@ -236,6 +244,15 @@
 			path = SpotifyDaily_iOS;
 			sourceTree = "<group>";
 		};
+		1E271FA7239B0C1B0017AF7D /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				1E271FA8239B0C350017AF7D /* UISegmentedControl+Additions.swift */,
+				1E271FAA239B0C570017AF7D /* UILabel+Additions.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		1E35650F238ED53A00C407F1 /* SpotifyDailyTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +298,7 @@
 				1E896A61238C246400C745F0 /* UIColor+Additions.swift */,
 				1E356506238ED3D000C407F1 /* UIImageView+Additions.swift */,
 				1EAB9486238F083900C45AD4 /* UIImage+Additions.swift */,
+				1E7129E5239B0653007F538B /* UIViewController+Present.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -301,6 +319,7 @@
 				1EA8FDB02391875500498AA6 /* DrawerMenuScreen.swift */,
 				1E583A0323909E0200DC033F /* ViewControllerUtils.swift */,
 				1EC2A13423916D33006E5E96 /* Json.swift */,
+				1E7129E7239B0B12007F538B /* ColorPreference.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -471,6 +490,7 @@
 		1EC2A13623916D56006E5E96 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1E271FA7239B0C1B0017AF7D /* Dashboard */,
 				1E86B42B2398C00800582D6E /* Rx */,
 				1E3959D22398D37600446486 /* Views */,
 				1E3959D32398D38300446486 /* Data */,
@@ -734,14 +754,17 @@
 				1E896A64238C27F000C745F0 /* AppCoordinator.swift in Sources */,
 				1EC2A16C23917624006E5E96 /* SafariDelegate.swift in Sources */,
 				1EAB9487238F083900C45AD4 /* UIImage+Additions.swift in Sources */,
+				1E271FAB239B0C570017AF7D /* UILabel+Additions.swift in Sources */,
 				1E7488F12398CEC500798BD0 /* ArtistsCollectionCoordinator.swift in Sources */,
 				1E356505238EC9D200C407F1 /* SettingsCoordinator.swift in Sources */,
 				1E583A0423909E0200DC033F /* ViewControllerUtils.swift in Sources */,
 				1E37D9522391E1680047613B /* ProfileEndpointResponse.swift in Sources */,
 				1EC2A13523916D33006E5E96 /* Json.swift in Sources */,
 				1E583A0223901D5B00DC033F /* Logger.swift in Sources */,
+				1E7129E8239B0B12007F538B /* ColorPreference.swift in Sources */,
 				1EC2A13823916D86006E5E96 /* Data+Json.swift in Sources */,
 				1EC2A16E23917624006E5E96 /* Session.swift in Sources */,
+				1E271FA9239B0C350017AF7D /* UISegmentedControl+Additions.swift in Sources */,
 				1EA8FDB82391AC8700498AA6 /* Container+RegisterDependencies.swift in Sources */,
 				1EBDF99C239602DB00325E7F /* ArtistsCollectionViewControllerState.swift in Sources */,
 				1EC2A16923917624006E5E96 /* Networking.swift in Sources */,
@@ -759,6 +782,7 @@
 				1E896A68238C29F400C745F0 /* BaseCoordinator.swift in Sources */,
 				1E86B42623980D5300582D6E /* ArtistsCollectionViewModel.swift in Sources */,
 				1EC2A129239166B5006E5E96 /* Token.swift in Sources */,
+				1E7129E6239B0653007F538B /* UIViewController+Present.swift in Sources */,
 				1EA8FDAF2391869300498AA6 /* DrawerMenuViewController.swift in Sources */,
 				1E11093223958B9E00C3BD21 /* Artist.swift in Sources */,
 				1E896A62238C246400C745F0 /* UIColor+Additions.swift in Sources */,
