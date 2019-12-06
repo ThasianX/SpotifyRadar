@@ -29,6 +29,4 @@ class DashboardViewModel {
         self.sessionService = sessionService
         self.dataManager = dataManager
     }
-    
-    
 }

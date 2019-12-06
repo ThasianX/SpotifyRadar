@@ -105,6 +105,5 @@ class ArtistsCollectionViewModel: CollectionsViewModelType,
                 self.dataManager.set(key: DataKeys.artistsCollectionState, value: newDashboardState)
             })
             .disposed(by: self.disposeBag)
-
     }
 }

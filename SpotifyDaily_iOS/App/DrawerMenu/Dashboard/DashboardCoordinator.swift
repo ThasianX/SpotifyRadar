@@ -50,8 +50,10 @@ class DashboardCoordinator: BaseCoordinator {
         let coordinator = AppDelegate.container.resolve(ArtistsCollectionCoordinator.self)!
         self.start(coordinator: coordinator)
         
+        
+        // TODO: Do modal presentation instead. This is just creating a window on top of a window
         ViewControllerUtils.setRootViewController(
-            window: parentCoordinator.,
+            window: window,
         viewController: coordinator.navigationController,
         withAnimation: true)
     }

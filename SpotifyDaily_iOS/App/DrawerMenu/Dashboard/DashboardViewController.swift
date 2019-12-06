@@ -43,8 +43,8 @@ final class DashboardViewController: ViewControllerWithSideMenu {
         
         title = viewModel.title
         
-        topArtistsButton.rx.tap.bind(onNext: {
-            viewModel.presentTopArtist.onNext(Void())
+        topArtistsButton.rx.tap.bind(onNext: { [weak self] in
+//            viewModel.presentTopArtist.onNext(Void())
         })
         .disposed(by: disposeBag)
     }

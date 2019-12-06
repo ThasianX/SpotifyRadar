@@ -102,10 +102,10 @@ class SettingsRootView: UIView {
         label.numberOfLines = .numberOfLines
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+
         return label
     }()
-    
+
     lazy var country: UILabel = {
         let label = UILabel()
         label.font = .profileLabel

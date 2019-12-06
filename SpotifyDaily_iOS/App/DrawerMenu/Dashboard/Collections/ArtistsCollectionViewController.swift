@@ -52,6 +52,13 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
             .map { [ArtistsSectionModel(model: "", items: $0)] }
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        artistsTimeRangeControl.rx.selectedSegmentIndex
+            .bind(onNext: { [weak self] index in
+            let title = self?.artistsTimeRangeControl.titleForSegment(at: index)
+            input.artistsTimeRange.accept(title!)
+        })
+            .disposed(by: disposeBag)
 
         collectionView.rx.reachedBottom()
             .bind(to: input.loadMore)
