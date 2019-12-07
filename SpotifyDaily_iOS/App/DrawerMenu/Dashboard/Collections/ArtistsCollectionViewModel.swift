@@ -20,9 +20,6 @@ protocol CollectionsViewModelInput {
     /// Call when a limit for the number of artists is selected for querying the user's top artists
     var artistsLimit: BehaviorRelay<Int> { get }
 
-    /// Call when pull-to-refresh is invoked
-    func refresh()
-
      /// Call when an artist is selected
     func artistSelected(artist: Artist)
 }
@@ -32,6 +29,8 @@ protocol CollectionsViewModelOutput {
 
     /// Emites the child viewModels
     var collectionCellsModelType: Observable<[CollectionCellViewModelType]> { get }
+    
+    var title: Observable<String>! { get }
 }
 protocol CollectionsViewModelType {
     var input: CollectionsViewModelInput { get }
@@ -47,10 +46,6 @@ class ArtistsCollectionViewModel: CollectionsViewModelType,
 
     // MARK: Inputs
     let loadMore = BehaviorSubject<Bool>(value: false)
-
-    func refresh() {
-        refreshProperty.onNext(true)
-    }
     
     func artistSelected(artist: Artist) {
         // Navigate to spotify and open artist page
@@ -62,6 +57,8 @@ class ArtistsCollectionViewModel: CollectionsViewModelType,
     lazy var collectionCellsModelType: Observable<[CollectionCellViewModelType]> = {
         return artistCollections.mapMany { ArtistCollectionCellViewModel(artist: $0) }
     }()
+    
+    var title: Observable<String>!
 
     // MARK: Private
     private let sessionService: SessionService
@@ -69,7 +66,6 @@ class ArtistsCollectionViewModel: CollectionsViewModelType,
     
     private let disposeBag = DisposeBag()
     private var artistCollections: Observable<[Artist]>!
-    private let refreshProperty = BehaviorSubject<Bool>(value: true)
     
     var artistsTimeRange = BehaviorRelay<String>(value: "")
     var artistsLimit = BehaviorRelay<Int>(value: 0)
@@ -81,29 +77,19 @@ class ArtistsCollectionViewModel: CollectionsViewModelType,
         self.sessionService = sessionService
         self.dataManager = dataManager
         
+        // Initializing utputs
+        title = Observable.just("Your Top Artists")
+        
         guard let artistsCollectionState = self.dataManager.get(key: DataKeys.artistsCollectionState, type: ArtistsCollectionViewControllerState.self) else { return }
         
         self.artistsTimeRange.accept(artistsCollectionState.artistsTimeRange)
         self.artistsLimit.accept(artistsCollectionState.artistsLimit)
         
-        isRefreshing = refreshProperty.asObservable()
-        
-        let requestFirst = Observable.combineLatest(self.artistsTimeRange, self.artistsLimit)
+        artistCollections = Observable.combineLatest(self.artistsTimeRange, self.artistsLimit)
             .flatMap { timeRange, limit -> Observable<[Artist]> in
-                self.input.refresh()
+                let newDashboardState = ArtistsCollectionViewControllerState(artistsTimeRange: timeRange, artistsLimit: limit)
+                self.dataManager.set(key: DataKeys.artistsCollectionState, value: newDashboardState)
                 return self.sessionService.getTopArtists(timeRange: timeRange, limit: limit)
         }
-        
-        artistCollections = requestFirst.do {
-            self.refreshProperty.onNext(false)
-        }
-        
-        Observable.combineLatest(self.artistsTimeRange, self.artistsLimit)
-            .bind(onNext: { aTime, aLimit in
-                Logger.info("New dashboard state")
-                let newDashboardState = ArtistsCollectionViewControllerState(artistsTimeRange: aTime, artistsLimit: aLimit)
-                self.dataManager.set(key: DataKeys.artistsCollectionState, value: newDashboardState)
-            })
-            .disposed(by: self.disposeBag)
     }
 }

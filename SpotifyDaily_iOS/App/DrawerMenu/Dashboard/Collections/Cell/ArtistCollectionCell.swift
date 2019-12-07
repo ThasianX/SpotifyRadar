@@ -83,6 +83,8 @@ class ArtistCollectionCell: UICollectionViewCell, BindableType {
 extension UIImageView {
     static var artistBackground: UIImageView {
         let imageView = UIImageView()
+        
+        imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 8
         imageView.dim(withAlpha: 0.2)
         

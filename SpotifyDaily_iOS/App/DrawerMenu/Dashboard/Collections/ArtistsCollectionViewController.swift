@@ -15,7 +15,7 @@ import RxDataSources
 final class ArtistsCollectionViewController: UIViewController, BindableType {
     
     // MARK: - Properties
-    // MARK: BindableType conformance
+    // MARK: Section model
     typealias ArtistsSectionModel = SectionModel<String, CollectionCellViewModelType>
     
     // MARK: Viewmodel
@@ -23,8 +23,8 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
     
     // MARK: View components
     private var collectionView: UICollectionView!
-    private var refreshControl: UIRefreshControl!
     private let artistsTimeRangeControl = UISegmentedControl.timeRangeControl
+    private let topArtistsTitle = UILabel.modalTitle
     
     // MARK: Private
     private var dataSource: RxCollectionViewSectionedReloadDataSource<ArtistsSectionModel>!
@@ -42,15 +42,18 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
         self.view.backgroundColor = ColorPreference.mainColor
         
         configureCollectionView()
-        configureRefreshControl()
         
+        self.view.addSubview(topArtistsTitle)
         self.view.addSubview(collectionView)
-        collectionView.addSubview(refreshControl)
         self.view.addSubview(artistsTimeRangeControl)
         
         let layoutGuide = self.view.safeAreaLayoutGuide
         
-        artistsTimeRangeControl.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.controlMargin).isActive = true
+        topArtistsTitle.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.controlMargin).isActive = true
+        topArtistsTitle.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
+        topArtistsTitle.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
+        
+        artistsTimeRangeControl.topAnchor.constraint(equalTo: topArtistsTitle.bottomAnchor, constant: Constraints.controlMargin).isActive = true
         artistsTimeRangeControl.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         artistsTimeRangeControl.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         artistsTimeRangeControl.heightAnchor.constraint(equalToConstant: Constraints.height).isActive = true
@@ -58,9 +61,12 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
         collectionView.topAnchor.constraint(equalTo: artistsTimeRangeControl.bottomAnchor, constant: Constraints.controlMargin*2).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: artistsTimeRangeControl.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: artistsTimeRangeControl.trailingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor).isActive = true
     }
 
     private func configureCollectionView() {
+        Logger.info("Configuring collection view")
+        
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -79,25 +85,22 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
             configureCell:  collectionViewDataSource
         )
     }
-
-    private func configureRefreshControl() {
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-    }
     
     func bindViewModel() {
+        Logger.info("Binding view model")
+        
         let input = viewModel.input
         let output = viewModel.output
         
         self.artistsTimeRangeControl.selectedSegmentIndex = self.timeRangeItems.firstIndex(of: viewModel.input.artistsTimeRange.value)!
-
-        output.isRefreshing
-            .bind(to: refreshControl.rx.isRefreshing)
-            .disposed(by: disposeBag)
-
+        
         output.collectionCellsModelType
             .map { [ArtistsSectionModel(model: "", items: $0)] }
             .bind(to: collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        output.title
+            .bind(to: topArtistsTitle.rx.text)
             .disposed(by: disposeBag)
         
         artistsTimeRangeControl.rx.selectedSegmentIndex
@@ -122,14 +125,11 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
         .bind(onNext: { input.artistSelected(artist: $0)})
         .disposed(by: self.disposeBag)
     }
-    
-    @objc private func refresh() {
-        viewModel.input.refresh()
-    }
 
     private var collectionViewDataSource: CollectionViewSectionedDataSource<ArtistsSectionModel>.ConfigureCell {
         return { _, tableView, indexPath, cellModel in
-            var cell: ArtistCollectionCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "cartistCollectionCell", for: indexPath) as! ArtistCollectionCell
+            Logger.info("Binding cell to view model")
+            var cell: ArtistCollectionCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "artistCollectionCell", for: indexPath) as! ArtistCollectionCell
             cell.bind(to: cellModel)
             return cell
         }
