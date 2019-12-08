@@ -32,8 +32,13 @@ class DashboardCoordinator: BaseCoordinator {
     }
     
     private func setUpBindings() {
-        dashboardViewModel.presentTopArtist.bind(onNext: { [weak self] in
+        dashboardViewModel.presentTopArtists.bind(onNext: { [weak self] in
             self?.presentTopArtists()
+        })
+        .disposed(by: disposeBag)
+        
+        dashboardViewModel.presentTopTracks.bind(onNext: { [weak self] in
+            self?.presentTopTracks()
         })
         .disposed(by: disposeBag)
     }
@@ -41,7 +46,16 @@ class DashboardCoordinator: BaseCoordinator {
     private func presentTopArtists() {
         Logger.info("Presenting top artists")
         
-        let coordinator = AppDelegate.container.resolve(ArtistsCollectionCoordinator.self)!
+        let coordinator = AppDelegate.container.resolve(TopArtistsCollectionCoordinator.self)!
+        coordinator.navigationController = self.navigationController
+        
+        self.start(coordinator: coordinator)
+    }
+    
+    private func presentTopTracks() {
+        Logger.info("Presenting top tracks")
+        
+        let coordinator = AppDelegate.container.resolve(TopTracksCollectionCoordinator.self)!
         coordinator.navigationController = self.navigationController
         
         self.start(coordinator: coordinator)

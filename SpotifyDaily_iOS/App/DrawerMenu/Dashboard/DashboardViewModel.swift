@@ -21,7 +21,8 @@ class DashboardViewModel {
     private let disposeBag = DisposeBag()
     
     // MARK: Public fields
-    let presentTopArtist = PublishSubject<Void>()
+    let presentTopArtists = PublishSubject<Void>()
+    let presentTopTracks = PublishSubject<Void>()
     let title = "User Dashboard"
     
     // MARK: - Initialization

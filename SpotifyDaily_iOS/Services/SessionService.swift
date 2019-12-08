@@ -105,6 +105,14 @@ class SessionService {
         }
     }
     
+    func getTopTracks(timeRange: String, limit: Int) -> Observable<[Track]>{
+        return networkingClient.userTopTracksRequest(accessToken: self.token?.accessToken, timeRange: timeRange, limit: limit)
+            .flatMap { response -> Observable<[Track]> in
+                let tracks = response.tracks
+                return Observable.just(tracks)
+        }
+    }
+    
     // MARK: - Private Session Management Methods
     private func setToken(response: SignInResponse) {
         guard let accessToken = response.accessToken,
@@ -138,8 +146,12 @@ class SessionService {
     }
     
     private func setDefaultData() {
-        let dashboardState = ArtistsCollectionViewControllerState(artistsTimeRange:
+        let topArtistsState = ArtistsCollectionViewControllerState(artistsTimeRange:
             "medium_term", artistsLimit: 10)
-        self.dataManager.set(key: DataKeys.artistsCollectionState, value: dashboardState)
+        self.dataManager.set(key: DataKeys.topArtistsCollectionState, value: topArtistsState)
+        
+        let topTracksState = TopTracksViewControllerState(tracksTimeRange:
+            "medium_term", tracksLimit: 10)
+        self.dataManager.set(key: DataKeys.topTracksCollectionState, value: topTracksState)
     }
 }

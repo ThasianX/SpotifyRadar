@@ -10,5 +10,6 @@ import Foundation
 
 struct DataKeys {
     static let session = "session"
-    static let artistsCollectionState = "artistsCollectionState"
+    static let topArtistsCollectionState = "topArtistsCollectionState"
+    static let topTracksCollectionState = "topTracksCollectionState"
 }

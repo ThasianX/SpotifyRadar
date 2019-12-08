@@ -1,8 +1,8 @@
 //
-//  ArtistsCollectionViewController.swift
+//  TopTracksCollectionViewController.swift
 //  SpotifyDaily
 //
-//  Created by Kevin Li on 12/4/19.
+//  Created by Kevin Li on 12/8/19.
 //  Copyright © 2019 Kevin Li. All rights reserved.
 //
 
@@ -12,22 +12,22 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class ArtistsCollectionViewController: UIViewController, BindableType {
+final class TopTracksCollectionViewController: UIViewController, BindableType {
     
     // MARK: - Properties
     // MARK: Section model
-    typealias ArtistsSectionModel = SectionModel<String, CollectionCellViewModelType>
+    typealias TracksSectionModel = SectionModel<String, TrackCollectionCellViewModelType>
     
     // MARK: Viewmodel
-    var viewModel: CollectionsViewModelType!
+    var viewModel: TopTracksCollectionsViewModelType!
     
     // MARK: View components
     private var collectionView: UICollectionView!
     private let artistsTimeRangeControl = UISegmentedControl.timeRangeControl
-    private let topArtistsTitle = UILabel.modalTitle
+    private let topTracksTitle = UILabel.modalTitle
     
     // MARK: Private
-    private var dataSource: RxCollectionViewSectionedReloadDataSource<ArtistsSectionModel>!
+    private var dataSource: RxCollectionViewSectionedReloadDataSource<TracksSectionModel>!
     private let disposeBag = DisposeBag()
     private var selectedArtistTimeRange = 0
     private let timeRangeItems = ["short_term", "medium_term", "long_term"]
@@ -43,17 +43,17 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
         
         configureCollectionView()
         
-        self.view.addSubview(topArtistsTitle)
+        self.view.addSubview(topTracksTitle)
         self.view.addSubview(collectionView)
         self.view.addSubview(artistsTimeRangeControl)
         
         let layoutGuide = self.view.safeAreaLayoutGuide
         
-        topArtistsTitle.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.controlMargin).isActive = true
-        topArtistsTitle.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
-        topArtistsTitle.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
+        topTracksTitle.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.controlMargin).isActive = true
+        topTracksTitle.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
+        topTracksTitle.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         
-        artistsTimeRangeControl.topAnchor.constraint(equalTo: topArtistsTitle.bottomAnchor, constant: Constraints.controlMargin).isActive = true
+        artistsTimeRangeControl.topAnchor.constraint(equalTo: topTracksTitle.bottomAnchor, constant: Constraints.controlMargin).isActive = true
         artistsTimeRangeControl.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         artistsTimeRangeControl.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         artistsTimeRangeControl.heightAnchor.constraint(equalToConstant: Constraints.height).isActive = true
@@ -65,8 +65,6 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
     }
 
     private func configureCollectionView() {
-        Logger.info("Configuring collection view")
-        
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -80,8 +78,8 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
         flowLayout.sectionInset = UIEdgeInsets(top: 16.0, left: 8.0, bottom: 0, right: 8.0)
         flowLayout.minimumLineSpacing = spacing
 
-        collectionView.register(ArtistCollectionCell.self, forCellWithReuseIdentifier: "artistCollectionCell")
-        dataSource = RxCollectionViewSectionedReloadDataSource<ArtistsSectionModel>(
+        collectionView.register(TrackCollectionCell.self, forCellWithReuseIdentifier: "trackCollectionCell")
+        dataSource = RxCollectionViewSectionedReloadDataSource<TracksSectionModel>(
             configureCell:  collectionViewDataSource
         )
     }
@@ -92,21 +90,21 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
         let input = viewModel.input
         let output = viewModel.output
         
-        self.artistsTimeRangeControl.selectedSegmentIndex = self.timeRangeItems.firstIndex(of: viewModel.input.artistsTimeRange.value)!
+        self.artistsTimeRangeControl.selectedSegmentIndex = self.timeRangeItems.firstIndex(of: viewModel.input.tracksTimeRange.value)!
         
         output.collectionCellsModelType
-            .map { [ArtistsSectionModel(model: "", items: $0)] }
+            .map { [TracksSectionModel(model: "", items: $0)] }
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
         output.title
-            .bind(to: topArtistsTitle.rx.text)
+            .bind(to: topTracksTitle.rx.text)
             .disposed(by: disposeBag)
         
         artistsTimeRangeControl.rx.selectedSegmentIndex
             .bind(onNext: { [weak self] index in
             let title = self?.artistsTimeRangeControl.titleForSegment(at: index)
-            input.artistsTimeRange.accept(title!)
+            input.tracksTimeRange.accept(title!)
         })
             .disposed(by: disposeBag)
 
@@ -115,21 +113,21 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
             .disposed(by: disposeBag)
 
         collectionView.rx.itemSelected
-            .flatMap { [weak self] indexPath -> Observable<ArtistCollectionCell> in
-                guard let cell = self?.collectionView.cellForItem(at: indexPath) as? ArtistCollectionCell
+            .flatMap { [weak self] indexPath -> Observable<TrackCollectionCell> in
+                guard let cell = self?.collectionView.cellForItem(at: indexPath) as? TrackCollectionCell
                     else { return .empty() }
                 return .just(cell)
             }
         .map { $0.viewModel }
-        .flatMap { $0.output.artist }
-        .bind(onNext: { input.artistSelected(artist: $0)})
+        .flatMap { $0.output.track }
+        .bind(onNext: { input.trackSelected(track: $0)})
         .disposed(by: self.disposeBag)
     }
 
-    private var collectionViewDataSource: CollectionViewSectionedDataSource<ArtistsSectionModel>.ConfigureCell {
+    private var collectionViewDataSource: CollectionViewSectionedDataSource<TracksSectionModel>.ConfigureCell {
         return { _, tableView, indexPath, cellModel in
             Logger.info("Binding cell to view model")
-            var cell: ArtistCollectionCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "artistCollectionCell", for: indexPath) as! ArtistCollectionCell
+            var cell: TrackCollectionCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "trackCollectionCell", for: indexPath) as! TrackCollectionCell
             cell.bind(to: cellModel)
             return cell
         }
@@ -137,7 +135,7 @@ final class ArtistsCollectionViewController: UIViewController, BindableType {
     
 }
 
-internal struct Constraints {
+private struct Constraints {
     static let controlMargin = CGFloat(16)
     static let height = CGFloat(30)
 }

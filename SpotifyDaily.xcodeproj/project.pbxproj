@@ -30,10 +30,10 @@
 		1E583A0423909E0200DC033F /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E583A0323909E0200DC033F /* ViewControllerUtils.swift */; };
 		1E7129E6239B0653007F538B /* UIViewController+Present.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7129E5239B0653007F538B /* UIViewController+Present.swift */; };
 		1E7129E8239B0B12007F538B /* ColorPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7129E7239B0B12007F538B /* ColorPreference.swift */; };
-		1E7488F12398CEC500798BD0 /* ArtistsCollectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7488F02398CEC500798BD0 /* ArtistsCollectionCoordinator.swift */; };
-		1E86B42223980C1B00582D6E /* ArtistsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42123980C1B00582D6E /* ArtistsCollectionViewController.swift */; };
+		1E7488F12398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7488F02398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift */; };
+		1E86B42223980C1B00582D6E /* TopArtistsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42123980C1B00582D6E /* TopArtistsCollectionViewController.swift */; };
 		1E86B42423980C9500582D6E /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42323980C9500582D6E /* BindableType.swift */; };
-		1E86B42623980D5300582D6E /* ArtistsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42523980D5300582D6E /* ArtistsCollectionViewModel.swift */; };
+		1E86B42623980D5300582D6E /* TopArtistsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42523980D5300582D6E /* TopArtistsCollectionViewModel.swift */; };
 		1E86B428239810BA00582D6E /* ObservableType+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B427239810BA00582D6E /* ObservableType+Extras.swift */; };
 		1E86B42A2398BFFF00582D6E /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B4292398BFFF00582D6E /* UIScrollView+Rx.swift */; };
 		1E896A62238C246400C745F0 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E896A61238C246400C745F0 /* UIColor+Additions.swift */; };
@@ -78,6 +78,15 @@
 		1EC2A16E23917624006E5E96 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A15F23917624006E5E96 /* Session.swift */; };
 		1EC2A17223917624006E5E96 /* SpotifyLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A16423917624006E5E96 /* SpotifyLoginPresenter.swift */; };
 		1EC2A17423917D39006E5E96 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A17323917D39006E5E96 /* SignInViewModel.swift */; };
+		1ED16E24239CB28E0012DAA1 /* TrackCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16E23239CB28E0012DAA1 /* TrackCollectionCellViewModel.swift */; };
+		1ED16E26239CB2DC0012DAA1 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16E25239CB2DC0012DAA1 /* Track.swift */; };
+		1ED16E28239CB3E90012DAA1 /* TopTracksViewControllerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16E27239CB3E90012DAA1 /* TopTracksViewControllerState.swift */; };
+		1EDB2F46239CB5C600B5D099 /* TrackCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB2F45239CB5C600B5D099 /* TrackCollectionCell.swift */; };
+		1EDB2F48239CBA5D00B5D099 /* TopTracksEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB2F47239CBA5D00B5D099 /* TopTracksEndpointResponse.swift */; };
+		1EDB2F4A239CBF8B00B5D099 /* TimeInterval+Int+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB2F49239CBF8B00B5D099 /* TimeInterval+Int+Additions.swift */; };
+		1EDB2F4C239CC2D900B5D099 /* TopTracksCollectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB2F4B239CC2D900B5D099 /* TopTracksCollectionCoordinator.swift */; };
+		1EDB2F50239CC46A00B5D099 /* TopTracksCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB2F4F239CC46A00B5D099 /* TopTracksCollectionViewModel.swift */; };
+		1EDB2F52239CC54A00B5D099 /* TopTracksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB2F51239CC54A00B5D099 /* TopTracksCollectionViewController.swift */; };
 		1EEDC1192398018400D6B06B /* ArtistCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEDC1182398018400D6B06B /* ArtistCollectionCellViewModel.swift */; };
 		458FD1945C8A908882478374 /* Pods_SpotifyDaily_SpotifyDailyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1948A5420E2E2FE1B69A8A11 /* Pods_SpotifyDaily_SpotifyDailyTests.framework */; };
 		8F515307A5178E374E8EF40F /* Pods_SpotifyDaily.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8CC02E396098B17CEAB7D17 /* Pods_SpotifyDaily.framework */; };
@@ -123,10 +132,10 @@
 		1E583A0323909E0200DC033F /* ViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		1E7129E5239B0653007F538B /* UIViewController+Present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Present.swift"; sourceTree = "<group>"; };
 		1E7129E7239B0B12007F538B /* ColorPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreference.swift; sourceTree = "<group>"; };
-		1E7488F02398CEC500798BD0 /* ArtistsCollectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCollectionCoordinator.swift; sourceTree = "<group>"; };
-		1E86B42123980C1B00582D6E /* ArtistsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCollectionViewController.swift; sourceTree = "<group>"; };
+		1E7488F02398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsCollectionCoordinator.swift; sourceTree = "<group>"; };
+		1E86B42123980C1B00582D6E /* TopArtistsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsCollectionViewController.swift; sourceTree = "<group>"; };
 		1E86B42323980C9500582D6E /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
-		1E86B42523980D5300582D6E /* ArtistsCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCollectionViewModel.swift; sourceTree = "<group>"; };
+		1E86B42523980D5300582D6E /* TopArtistsCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsCollectionViewModel.swift; sourceTree = "<group>"; };
 		1E86B427239810BA00582D6E /* ObservableType+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extras.swift"; sourceTree = "<group>"; };
 		1E86B4292398BFFF00582D6E /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		1E896A61238C246400C745F0 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
@@ -172,6 +181,15 @@
 		1EC2A15F23917624006E5E96 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		1EC2A16423917624006E5E96 /* SpotifyLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyLoginPresenter.swift; sourceTree = "<group>"; };
 		1EC2A17323917D39006E5E96 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		1ED16E23239CB28E0012DAA1 /* TrackCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCollectionCellViewModel.swift; sourceTree = "<group>"; };
+		1ED16E25239CB2DC0012DAA1 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		1ED16E27239CB3E90012DAA1 /* TopTracksViewControllerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTracksViewControllerState.swift; sourceTree = "<group>"; };
+		1EDB2F45239CB5C600B5D099 /* TrackCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCollectionCell.swift; sourceTree = "<group>"; };
+		1EDB2F47239CBA5D00B5D099 /* TopTracksEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTracksEndpointResponse.swift; sourceTree = "<group>"; };
+		1EDB2F49239CBF8B00B5D099 /* TimeInterval+Int+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Int+Additions.swift"; sourceTree = "<group>"; };
+		1EDB2F4B239CC2D900B5D099 /* TopTracksCollectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTracksCollectionCoordinator.swift; sourceTree = "<group>"; };
+		1EDB2F4F239CC46A00B5D099 /* TopTracksCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTracksCollectionViewModel.swift; sourceTree = "<group>"; };
+		1EDB2F51239CC54A00B5D099 /* TopTracksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTracksCollectionViewController.swift; sourceTree = "<group>"; };
 		1EEDC1182398018400D6B06B /* ArtistCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		D5E444B7BEE18E14E5C9048C /* Pods-SpotifyDaily-SpotifyDailyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyDaily-SpotifyDailyTests.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyDaily-SpotifyDailyTests/Pods-SpotifyDaily-SpotifyDailyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8CC02E396098B17CEAB7D17 /* Pods_SpotifyDaily.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotifyDaily.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +267,7 @@
 			children = (
 				1E271FA8239B0C350017AF7D /* UISegmentedControl+Additions.swift */,
 				1E271FAA239B0C570017AF7D /* UILabel+Additions.swift */,
+				1EDB2F49239CBF8B00B5D099 /* TimeInterval+Int+Additions.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -279,6 +298,7 @@
 				1E37D9512391E1680047613B /* ProfileEndpointResponse.swift */,
 				1E37D9532391E19C0047613B /* TokenEndpointResponse.swift */,
 				1E11092F23956F6D00C3BD21 /* TopArtistsEndpointResponse.swift */,
+				1EDB2F47239CBA5D00B5D099 /* TopTracksEndpointResponse.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -333,15 +353,15 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		1E4D05512397FA7100EE4EEA /* Collections */ = {
+		1E4D05512397FA7100EE4EEA /* Top Artists */ = {
 			isa = PBXGroup;
 			children = (
 				1EEDC1172398017900D6B06B /* Cell */,
-				1E86B42123980C1B00582D6E /* ArtistsCollectionViewController.swift */,
-				1E86B42523980D5300582D6E /* ArtistsCollectionViewModel.swift */,
-				1E7488F02398CEC500798BD0 /* ArtistsCollectionCoordinator.swift */,
+				1E7488F02398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift */,
+				1E86B42523980D5300582D6E /* TopArtistsCollectionViewModel.swift */,
+				1E86B42123980C1B00582D6E /* TopArtistsCollectionViewController.swift */,
 			);
-			path = Collections;
+			path = "Top Artists";
 			sourceTree = "<group>";
 		};
 		1E86B42B2398C00800582D6E /* Rx */ = {
@@ -442,7 +462,8 @@
 		1EB830D8238CE7A400C002DA /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				1E4D05512397FA7100EE4EEA /* Collections */,
+				1ED16E22239CB2720012DAA1 /* Top Tracks */,
+				1E4D05512397FA7100EE4EEA /* Top Artists */,
 				1EB830D5238CE37400C002DA /* DashboardCoordinator.swift */,
 				1EB830D3238CC97E00C002DA /* DashboardViewController.swift */,
 				1EB60BB023917FE6001DA148 /* DashboardViewModel.swift */,
@@ -460,6 +481,7 @@
 				1EC2A15F23917624006E5E96 /* Session.swift */,
 				1EC2A15723917623006E5E96 /* User.swift */,
 				1E11093123958B9E00C3BD21 /* Artist.swift */,
+				1ED16E25239CB2DC0012DAA1 /* Track.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -506,6 +528,26 @@
 			path = Spotify;
 			sourceTree = "<group>";
 		};
+		1ED16E22239CB2720012DAA1 /* Top Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				1ED16E29239CB4490012DAA1 /* Cell */,
+				1EDB2F4B239CC2D900B5D099 /* TopTracksCollectionCoordinator.swift */,
+				1EDB2F4F239CC46A00B5D099 /* TopTracksCollectionViewModel.swift */,
+				1EDB2F51239CC54A00B5D099 /* TopTracksCollectionViewController.swift */,
+			);
+			path = "Top Tracks";
+			sourceTree = "<group>";
+		};
+		1ED16E29239CB4490012DAA1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1EDB2F45239CB5C600B5D099 /* TrackCollectionCell.swift */,
+				1ED16E23239CB28E0012DAA1 /* TrackCollectionCellViewModel.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		1EEDC1172398017900D6B06B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				1EBDF99B239602DB00325E7F /* ArtistsCollectionViewControllerState.swift */,
+				1ED16E27239CB3E90012DAA1 /* TopTracksViewControllerState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -730,7 +773,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E1109342395972300C3BD21 /* URL+Queries.swift in Sources */,
-				1E86B42223980C1B00582D6E /* ArtistsCollectionViewController.swift in Sources */,
+				1E86B42223980C1B00582D6E /* TopArtistsCollectionViewController.swift in Sources */,
 				1EA8FDAB2391866A00498AA6 /* DrawerMenuCoordinator.swift in Sources */,
 				1EB830D6238CE37400C002DA /* DashboardCoordinator.swift in Sources */,
 				1E11093023956F6D00C3BD21 /* TopArtistsEndpointResponse.swift in Sources */,
@@ -741,9 +784,12 @@
 				1EC2A16623917624006E5E96 /* User.swift in Sources */,
 				1EC2A17223917624006E5E96 /* SpotifyLoginPresenter.swift in Sources */,
 				1EC2A17423917D39006E5E96 /* SignInViewModel.swift in Sources */,
+				1EDB2F4C239CC2D900B5D099 /* TopTracksCollectionCoordinator.swift in Sources */,
 				1EC2A13C23916E5D006E5E96 /* DataKeys.swift in Sources */,
 				1E86B42A2398BFFF00582D6E /* UIScrollView+Rx.swift in Sources */,
 				1EC2A16523917624006E5E96 /* URLBuilder.swift in Sources */,
+				1EDB2F48239CBA5D00B5D099 /* TopTracksEndpointResponse.swift in Sources */,
+				1EDB2F46239CB5C600B5D099 /* TrackCollectionCell.swift in Sources */,
 				1EC2A16823917624006E5E96 /* SpotifyLoginButton.swift in Sources */,
 				1EEDC1192398018400D6B06B /* ArtistCollectionCellViewModel.swift in Sources */,
 				1EC2A16723917624006E5E96 /* Constants.swift in Sources */,
@@ -755,7 +801,7 @@
 				1EC2A16C23917624006E5E96 /* SafariDelegate.swift in Sources */,
 				1EAB9487238F083900C45AD4 /* UIImage+Additions.swift in Sources */,
 				1E271FAB239B0C570017AF7D /* UILabel+Additions.swift in Sources */,
-				1E7488F12398CEC500798BD0 /* ArtistsCollectionCoordinator.swift in Sources */,
+				1E7488F12398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift in Sources */,
 				1E356505238EC9D200C407F1 /* SettingsCoordinator.swift in Sources */,
 				1E583A0423909E0200DC033F /* ViewControllerUtils.swift in Sources */,
 				1E37D9522391E1680047613B /* ProfileEndpointResponse.swift in Sources */,
@@ -764,6 +810,7 @@
 				1E7129E8239B0B12007F538B /* ColorPreference.swift in Sources */,
 				1EC2A13823916D86006E5E96 /* Data+Json.swift in Sources */,
 				1EC2A16E23917624006E5E96 /* Session.swift in Sources */,
+				1EDB2F4A239CBF8B00B5D099 /* TimeInterval+Int+Additions.swift in Sources */,
 				1E271FA9239B0C350017AF7D /* UISegmentedControl+Additions.swift in Sources */,
 				1EA8FDB82391AC8700498AA6 /* Container+RegisterDependencies.swift in Sources */,
 				1EBDF99C239602DB00325E7F /* ArtistsCollectionViewControllerState.swift in Sources */,
@@ -777,10 +824,14 @@
 				1EC2A16B23917624006E5E96 /* SpotifyLogin.swift in Sources */,
 				1E896A6A238C2A8D00C745F0 /* SignInCoordinator.swift in Sources */,
 				1EA8FDC02391AD4000498AA6 /* RecommendationsViewModel.swift in Sources */,
+				1EDB2F52239CC54A00B5D099 /* TopTracksCollectionViewController.swift in Sources */,
+				1ED16E28239CB3E90012DAA1 /* TopTracksViewControllerState.swift in Sources */,
+				1EDB2F50239CC46A00B5D099 /* TopTracksCollectionViewModel.swift in Sources */,
 				1EA8FDC22391AD4A00498AA6 /* SettingsViewModel.swift in Sources */,
 				1EC2A133239169EA006E5E96 /* UserDataManager.swift in Sources */,
 				1E896A68238C29F400C745F0 /* BaseCoordinator.swift in Sources */,
-				1E86B42623980D5300582D6E /* ArtistsCollectionViewModel.swift in Sources */,
+				1E86B42623980D5300582D6E /* TopArtistsCollectionViewModel.swift in Sources */,
+				1ED16E26239CB2DC0012DAA1 /* Track.swift in Sources */,
 				1EC2A129239166B5006E5E96 /* Token.swift in Sources */,
 				1E7129E6239B0653007F538B /* UIViewController+Present.swift in Sources */,
 				1EA8FDAF2391869300498AA6 /* DrawerMenuViewController.swift in Sources */,
@@ -788,6 +839,7 @@
 				1E896A62238C246400C745F0 /* UIColor+Additions.swift in Sources */,
 				1EA8FDBA2391AC9500498AA6 /* Container+Services.swift in Sources */,
 				1E86B428239810BA00582D6E /* ObservableType+Extras.swift in Sources */,
+				1ED16E24239CB28E0012DAA1 /* TrackCollectionCellViewModel.swift in Sources */,
 				1EB60BB323918085001DA148 /* BaseNavigationController.swift in Sources */,
 				1EC2A16D23917624006E5E96 /* Scope.swift in Sources */,
 				1E3AFA75238F1B4C00FAD3E6 /* RecommendationsCoordinator.swift in Sources */,

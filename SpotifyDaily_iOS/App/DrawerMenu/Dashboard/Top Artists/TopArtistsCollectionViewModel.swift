@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol CollectionsViewModelInput {
+protocol TopArtistsCollectionsViewModelInput {
     /// Call when the bottom of the list is reached
     var loadMore: BehaviorSubject<Bool> { get }
     
@@ -23,26 +23,23 @@ protocol CollectionsViewModelInput {
      /// Call when an artist is selected
     func artistSelected(artist: Artist)
 }
-protocol CollectionsViewModelOutput {
-    /// Emits a boolean when the pull-to-refresh control is refreshing or not.
-    var isRefreshing: Observable<Bool>! { get }
-
+protocol TopArtistsCollectionsViewModelOutput {
     /// Emites the child viewModels
-    var collectionCellsModelType: Observable<[CollectionCellViewModelType]> { get }
+    var collectionCellsModelType: Observable<[ArtistCollectionCellViewModelType]> { get }
     
     var title: Observable<String>! { get }
 }
-protocol CollectionsViewModelType {
-    var input: CollectionsViewModelInput { get }
-    var output: CollectionsViewModelOutput { get }
+protocol TopArtistsCollectionsViewModelType {
+    var input: TopArtistsCollectionsViewModelInput { get }
+    var output: TopArtistsCollectionsViewModelOutput { get }
 }
 
-class ArtistsCollectionViewModel: CollectionsViewModelType,
-                            CollectionsViewModelInput,
-                            CollectionsViewModelOutput {
+class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
+                            TopArtistsCollectionsViewModelInput,
+                            TopArtistsCollectionsViewModelOutput {
     // MARK: Inputs & Outputs
-    var input: CollectionsViewModelInput { return self }
-    var output: CollectionsViewModelOutput { return self }
+    var input: TopArtistsCollectionsViewModelInput { return self }
+    var output: TopArtistsCollectionsViewModelOutput { return self }
 
     // MARK: Inputs
     let loadMore = BehaviorSubject<Bool>(value: false)
@@ -52,9 +49,7 @@ class ArtistsCollectionViewModel: CollectionsViewModelType,
     }
 
     // MARK: Outputs
-    var isRefreshing: Observable<Bool>!
-
-    lazy var collectionCellsModelType: Observable<[CollectionCellViewModelType]> = {
+    lazy var collectionCellsModelType: Observable<[ArtistCollectionCellViewModelType]> = {
         return artistCollections.mapMany { ArtistCollectionCellViewModel(artist: $0) }
     }()
     
@@ -69,7 +64,6 @@ class ArtistsCollectionViewModel: CollectionsViewModelType,
     
     var artistsTimeRange = BehaviorRelay<String>(value: "")
     var artistsLimit = BehaviorRelay<Int>(value: 0)
-    let artists = BehaviorRelay<[Artist]>(value: [])
 
     // MARK: Init
     init(sessionService: SessionService, dataManager: DataManager) {
@@ -80,7 +74,7 @@ class ArtistsCollectionViewModel: CollectionsViewModelType,
         // Initializing utputs
         title = Observable.just("Your Top Artists")
         
-        guard let artistsCollectionState = self.dataManager.get(key: DataKeys.artistsCollectionState, type: ArtistsCollectionViewControllerState.self) else { return }
+        guard let artistsCollectionState = self.dataManager.get(key: DataKeys.topArtistsCollectionState, type: ArtistsCollectionViewControllerState.self) else { return }
         
         self.artistsTimeRange.accept(artistsCollectionState.artistsTimeRange)
         self.artistsLimit.accept(artistsCollectionState.artistsLimit)
@@ -88,7 +82,7 @@ class ArtistsCollectionViewModel: CollectionsViewModelType,
         artistCollections = Observable.combineLatest(self.artistsTimeRange, self.artistsLimit)
             .flatMap { timeRange, limit -> Observable<[Artist]> in
                 let newDashboardState = ArtistsCollectionViewControllerState(artistsTimeRange: timeRange, artistsLimit: limit)
-                self.dataManager.set(key: DataKeys.artistsCollectionState, value: newDashboardState)
+                self.dataManager.set(key: DataKeys.topArtistsCollectionState, value: newDashboardState)
                 return self.sessionService.getTopArtists(timeRange: timeRange, limit: limit)
         }
     }

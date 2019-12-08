@@ -9,7 +9,6 @@
 import Foundation
 
 struct ArtistsCollectionViewControllerState: Codable, Equatable {
-  // MARK: - Properties
-    internal var artistsTimeRange: String
-    internal var artistsLimit: Int
+    let artistsTimeRange: String
+    let artistsLimit: Int
 }

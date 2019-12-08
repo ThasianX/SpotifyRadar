@@ -6,6 +6,7 @@ import RxSwift
 internal let apiTokenEndpointURL = "https://accounts.spotify.com/api/token"
 internal let profileServiceEndpointURL = "https://api.spotify.com/v1/me"
 internal let topArtistsEndpointURL = "https://api.spotify.com/v1/me/top/artists"
+internal let topTracksEndpointURL = "https://api.spotify.com/v1/me/top/tracks"
 
 class Networking {
     internal func createSignInResponse(code: String,
@@ -87,6 +88,41 @@ class Networking {
                     let artistResponse = try JSONDecoder().decode(TopArtistsEndpointResponse.self, from: data ?? Data())
                     Logger.info("Artist response successful")
                     observer.onNext(artistResponse)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    
+    internal func userTopTracksRequest(accessToken: String?, timeRange: String, limit: Int) -> Observable<TopTracksEndpointResponse> {
+        guard let accessToken = accessToken else {
+            fatalError("Unable to retrieve user profile due to invalid access token")
+        }
+        
+        return Observable<TopTracksEndpointResponse>.create { observer in
+            var topTracksURL = URL(string: topTracksEndpointURL)!
+            let queryItems = [URLQueryItem(name: "time_range", value: timeRange),
+            URLQueryItem(name: "limit", value: String(limit))]
+            topTracksURL.appending(queryItems)
+            
+            Logger.info("URL created: \(topTracksURL.absoluteString)")
+            
+            var urlRequest = URLRequest(url: topTracksURL)
+            let authHeaderValue = "Bearer \(accessToken)"
+            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                do {
+                    let trackResponse = try JSONDecoder().decode(TopTracksEndpointResponse.self, from: data ?? Data())
+                    Logger.info("Track response successful")
+                    observer.onNext(trackResponse)
                 } catch let error {
                     observer.onError(error)
                 }

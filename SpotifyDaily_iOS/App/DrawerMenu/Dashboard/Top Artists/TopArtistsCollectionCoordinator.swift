@@ -9,18 +9,18 @@
 import Foundation
 import UIKit
 
-class ArtistsCollectionCoordinator: BaseCoordinator {
+class TopArtistsCollectionCoordinator: BaseCoordinator {
     
     var artistsCollectionViewController: BaseNavigationController!
     
-    private let viewModel: ArtistsCollectionViewModel
+    private let viewModel: TopArtistsCollectionViewModel
     
-    init(viewModel: ArtistsCollectionViewModel) {
+    init(viewModel: TopArtistsCollectionViewModel) {
         self.viewModel = viewModel
     }
 
     override func start() {
-        var viewController = ArtistsCollectionViewController()
+        var viewController = TopArtistsCollectionViewController()
         viewController.bind(to: self.viewModel)
         
         artistsCollectionViewController = BaseNavigationController(rootViewController: viewController)

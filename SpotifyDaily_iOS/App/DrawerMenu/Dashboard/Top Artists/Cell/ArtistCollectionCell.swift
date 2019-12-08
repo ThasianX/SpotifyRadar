@@ -21,7 +21,7 @@ class ArtistCollectionCell: UICollectionViewCell, BindableType {
     private let disposeBag = DisposeBag()
     
     // MARK: Viewmodel
-    var viewModel: CollectionCellViewModelType!
+    var viewModel: ArtistCollectionCellViewModelType!
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -50,11 +50,11 @@ class ArtistCollectionCell: UICollectionViewCell, BindableType {
         self.artistBackground.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor).isActive = true
         
         self.artistNameLabel.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: 8).isActive = true
-        self.artistNameLabel.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: 8).isActive = true
+        self.artistNameLabel.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -8).isActive = true
         self.artistNameLabel.centerYAnchor.constraint(equalTo: self.artistBackground.centerYAnchor, constant: -16).isActive = true
         
         self.followersLabel.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: 8).isActive = true
-        self.followersLabel.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: 8).isActive = true
+        self.followersLabel.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -8).isActive = true
         self.followersLabel.topAnchor.constraint(equalTo: self.artistNameLabel.bottomAnchor, constant: 8).isActive = true
     }
     
@@ -80,7 +80,7 @@ class ArtistCollectionCell: UICollectionViewCell, BindableType {
     }
 }
 
-extension UIImageView {
+private extension UIImageView {
     static var artistBackground: UIImageView {
         let imageView = UIImageView()
         
@@ -94,12 +94,13 @@ extension UIImageView {
     }
 }
 
-extension UILabel {
+private extension UILabel {
     static var artistNameLabel: UILabel {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         label.textAlignment = .center
+        label.numberOfLines = 0
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
