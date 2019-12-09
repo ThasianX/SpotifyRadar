@@ -9,8 +9,11 @@
 import Foundation
 
 struct RecentlyPlayedTrack: Codable, Equatable {
-    let name: String
+    let trackName: String
+    let albumName: String
+    var artistURLs: [URL]
     let duration: String
-    let context: String
+    let playedFrom: String
+    let playedAt: String
     let externalURL: URL
 }

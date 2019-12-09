@@ -144,11 +144,24 @@ struct RecentlyPlayedTracksEndpointResponse: Decodable {
         
         for item in response.items {
             let trackName = item.track.name
+            let albumName = item.track.album.name
+            
+            let artists = item.track.artists
+            var artistEndpoints = [URL]()
+            for artist in artists {
+                artistEndpoints.append(URL(string: artist.href)!)
+            }
+            
             let trackDuration = item.track.durationMS.msToSeconds.minuteSecondMS
-            let context = "\(item.context.type)".capitalizingFirstLetter()
+            let playedFrom = "\(item.context.type)".capitalizingFirstLetter()
+            
+            let playedAtISO = item.playedAt
+            let date = playedAtISO.iso8601
+            let playedAt = date!.mediumStyle
+            
             let externalURL = URL(string: item.track.externalUrls.spotify)!
             
-            let track = RecentlyPlayedTrack(name: trackName, duration: trackDuration, context: context, externalURL: externalURL)
+            let track = RecentlyPlayedTrack(trackName: trackName, albumName: albumName, artistURLs: artistEndpoints, duration: trackDuration, playedFrom: playedFrom, playedAt: playedAt, externalURL: externalURL)
             
             tracks.append(track)
         }

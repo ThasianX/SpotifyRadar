@@ -89,11 +89,11 @@ class SessionService {
         networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
             .flatMap { [unowned self] response -> Observable<User> in
                 return self.networkingClient.getUserFromEndpoint(profileResponse: response)
-            }
-            .bind(onNext: { [unowned self] in
-                let session = Session(token: self.sessionState!.token, user: $0)
-                self.updateSession(session: session)
-            })
+        }
+        .bind(onNext: { [unowned self] in
+            let session = Session(token: self.sessionState!.token, user: $0)
+            self.updateSession(session: session)
+        })
             .disposed(by: disposeBag)
     }
     
@@ -118,6 +118,14 @@ class SessionService {
             .flatMap { response -> Observable<[RecentlyPlayedTrack]> in
                 let tracks = response.tracks
                 return Observable.just(tracks)
+        }
+    }
+    
+    func getArtist(href: URL) -> Observable<Artist> {
+        return networkingClient.artistRequest(accessToken: self.token?.accessToken, artistURL: href)
+            .flatMap { response -> Observable<Artist> in
+                let artist = response.artist
+                return Observable.just(artist!)
         }
     }
     

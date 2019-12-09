@@ -67,9 +67,36 @@ class Networking {
         }
     }
     
+    internal func artistRequest(accessToken: String?, artistURL: URL) -> Observable<ArtistEndpointResponse> {
+        guard let accessToken = accessToken else {
+            fatalError("Unable to retrieve artist due to invalid access token")
+        }
+        
+        return Observable<ArtistEndpointResponse>.create { observer in
+            var urlRequest = URLRequest(url: artistURL)
+            let authHeaderValue = "Bearer \(accessToken)"
+            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                do {
+                    let artistResponse = try JSONDecoder().decode(ArtistEndpointResponse.self, from: data ?? Data())
+                    observer.onNext(artistResponse)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    
     internal func userRecentlyPlayedRequest(accessToken: String?, limit: Int) -> Observable<RecentlyPlayedTracksEndpointResponse> {
         guard let accessToken = accessToken else {
-            fatalError("Unable to retrieve user profile due to invalid access token")
+            fatalError("Unable to retrieve recently played due to invalid access token")
         }
         
         return Observable<RecentlyPlayedTracksEndpointResponse>.create { observer in
@@ -102,7 +129,7 @@ class Networking {
     
     internal func userTopArtistsRequest(accessToken: String?, timeRange: String, limit: Int) -> Observable<TopArtistsEndpointResponse> {
         guard let accessToken = accessToken else {
-            fatalError("Unable to retrieve user profile due to invalid access token")
+            fatalError("Unable to retrieve top artists due to invalid access token")
         }
         
         return Observable<TopArtistsEndpointResponse>.create { observer in
@@ -136,7 +163,7 @@ class Networking {
     
     internal func userTopTracksRequest(accessToken: String?, timeRange: String, limit: Int) -> Observable<TopTracksEndpointResponse> {
         guard let accessToken = accessToken else {
-            fatalError("Unable to retrieve user profile due to invalid access token")
+            fatalError("Unable to retrieve top tracks due to invalid access token")
         }
         
         return Observable<TopTracksEndpointResponse>.create { observer in

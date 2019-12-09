@@ -89,4 +89,3 @@ class TopTracksCollectionViewModel: TopTracksCollectionsViewModelType,
         }
     }
 }
-
