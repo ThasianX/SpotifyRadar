@@ -10,13 +10,13 @@ import Foundation
 
 class SignInViewModel {
     
-    private let loginPresenter: SpotifyLoginPresenter
+    private let safariService: SafariService
     
-    init(loginPresenter: SpotifyLoginPresenter) {
-        self.loginPresenter = loginPresenter
+    init(safariService: SafariService) {
+        self.safariService = safariService
     }
     
     func presentSignInBrowser(vc: SignInViewController){
-        loginPresenter.login(from: vc, scopes: [.userReadPrivate, .userReadEmail, .userReadTop, .userReadRecentlyPlayed])
+        safariService.login(from: vc, scopes: [.userReadPrivate, .userReadEmail, .userReadTop, .userReadRecentlyPlayed])
     }
 }

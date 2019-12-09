@@ -21,7 +21,7 @@ protocol TopTracksCollectionsViewModelInput {
     var tracksLimit: BehaviorRelay<Int> { get }
 
      /// Call when an artist is selected
-    func trackSelected(track: Track)
+    func trackSelected(from viewController: (UIViewController), track: Track)
 }
 protocol TopTracksCollectionsViewModelOutput {
     /// Emites the child viewModels
@@ -44,8 +44,8 @@ class TopTracksCollectionViewModel: TopTracksCollectionsViewModelType,
     // MARK: Inputs
     let loadMore = BehaviorSubject<Bool>(value: false)
     
-    func trackSelected(track: Track) {
-        
+    func trackSelected(from viewController: (UIViewController), track: Track){
+        safariService.presentSafari(from: viewController, for: track.externalURL)
     }
 
     // MARK: Outputs
@@ -58,6 +58,7 @@ class TopTracksCollectionViewModel: TopTracksCollectionsViewModelType,
     // MARK: Private
     private let sessionService: SessionService
     private let dataManager: DataManager
+    private let safariService: SafariService
     
     private let disposeBag = DisposeBag()
     private var trackCollections: Observable<[Track]>!
@@ -66,18 +67,19 @@ class TopTracksCollectionViewModel: TopTracksCollectionsViewModelType,
     var tracksLimit = BehaviorRelay<Int>(value: 0)
 
     // MARK: Init
-    init(sessionService: SessionService, dataManager: DataManager) {
+    init(sessionService: SessionService, dataManager: DataManager, safariService: SafariService) {
 
         self.sessionService = sessionService
         self.dataManager = dataManager
+        self.safariService = safariService
         
         // Initializing utputs
         title = Observable.just("Your Top Tracks")
         
-        guard let artistsCollectionState = self.dataManager.get(key: DataKeys.topArtistsCollectionState, type: ArtistsCollectionViewControllerState.self) else { return }
+        guard let tracksCollectionState = self.dataManager.get(key: DataKeys.topTracksCollectionState, type: TopTracksViewControllerState.self) else { return }
         
-        self.tracksTimeRange.accept(artistsCollectionState.artistsTimeRange)
-        self.tracksLimit.accept(artistsCollectionState.artistsLimit)
+        self.tracksTimeRange.accept(tracksCollectionState.tracksTimeRange)
+        self.tracksLimit.accept(tracksCollectionState.tracksLimit)
         
         trackCollections = Observable.combineLatest(self.tracksTimeRange, self.tracksLimit)
             .flatMap { timeRange, limit -> Observable<[Track]> in

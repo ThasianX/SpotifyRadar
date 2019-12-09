@@ -21,7 +21,7 @@ protocol TopArtistsCollectionsViewModelInput {
     var artistsLimit: BehaviorRelay<Int> { get }
 
      /// Call when an artist is selected
-    func artistSelected(artist: Artist)
+    func artistSelected(from viewController: (UIViewController), artist: Artist)
 }
 protocol TopArtistsCollectionsViewModelOutput {
     /// Emites the child viewModels
@@ -44,10 +44,10 @@ class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
     // MARK: Inputs
     let loadMore = BehaviorSubject<Bool>(value: false)
     
-    func artistSelected(artist: Artist) {
-        // Navigate to spotify and open artist page
+    func artistSelected(from viewController: (UIViewController), artist: Artist) {
+        safariService.presentSafari(from: viewController, for: artist.externalURL)
     }
-
+    
     // MARK: Outputs
     lazy var collectionCellsModelType: Observable<[ArtistCollectionCellViewModelType]> = {
         return artistCollections.mapMany { ArtistCollectionCellViewModel(artist: $0) }
@@ -58,6 +58,7 @@ class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
     // MARK: Private
     private let sessionService: SessionService
     private let dataManager: DataManager
+    private let safariService: SafariService
     
     private let disposeBag = DisposeBag()
     private var artistCollections: Observable<[Artist]>!
@@ -66,22 +67,23 @@ class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
     var artistsLimit = BehaviorRelay<Int>(value: 0)
 
     // MARK: Init
-    init(sessionService: SessionService, dataManager: DataManager) {
+    init(sessionService: SessionService, dataManager: DataManager, safariService: SafariService) {
 
         self.sessionService = sessionService
         self.dataManager = dataManager
+        self.safariService = safariService
         
         // Initializing utputs
         title = Observable.just("Your Top Artists")
         
-        guard let artistsCollectionState = self.dataManager.get(key: DataKeys.topArtistsCollectionState, type: ArtistsCollectionViewControllerState.self) else { return }
+        guard let artistsCollectionState = self.dataManager.get(key: DataKeys.topArtistsCollectionState, type: TopArtistsViewControllerState.self) else { return }
         
         self.artistsTimeRange.accept(artistsCollectionState.artistsTimeRange)
         self.artistsLimit.accept(artistsCollectionState.artistsLimit)
         
         artistCollections = Observable.combineLatest(self.artistsTimeRange, self.artistsLimit)
             .flatMap { timeRange, limit -> Observable<[Artist]> in
-                let newDashboardState = ArtistsCollectionViewControllerState(artistsTimeRange: timeRange, artistsLimit: limit)
+                let newDashboardState = TopArtistsViewControllerState(artistsTimeRange: timeRange, artistsLimit: limit)
                 self.dataManager.set(key: DataKeys.topArtistsCollectionState, value: newDashboardState)
                 return self.sessionService.getTopArtists(timeRange: timeRange, limit: limit)
         }

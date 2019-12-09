@@ -44,7 +44,6 @@ struct TopArtistsEndpointResponse: Decodable {
             let followers = item.followers.total
             let externalURL = URL(string: item.external_urls.spotify)!
             let artist = Artist(name: name, image: url, followers: followers, externalURL: externalURL)
-            Logger.info("Artist: \(artist)")
             
             self.artists.append(artist)
         }

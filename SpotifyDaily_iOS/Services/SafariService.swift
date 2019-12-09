@@ -15,8 +15,7 @@
 import Foundation
 import SafariServices
 
-/// Use the login presenter to manually present the login authentication screen.
-class SpotifyLoginPresenter {
+class SafariService {
     
     private let spotifyLogin: SpotifyLogin
     
@@ -42,6 +41,11 @@ class SpotifyLoginPresenter {
         } else {
             assertionFailure("Unable to login.")
         }
+    }
+    
+    /// Returns a safari view controller for a given url. Requires: URL is not nil
+    func presentSafari(from viewController: (UIViewController), for url: URL){
+        return viewController.present(SFSafariViewController(url: url), animated: true)
     }
 
 }

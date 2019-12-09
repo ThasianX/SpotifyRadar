@@ -57,7 +57,10 @@
 		1EB60BB323918085001DA148 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB60BB223918085001DA148 /* BaseNavigationController.swift */; };
 		1EB830D4238CC97E00C002DA /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB830D3238CC97E00C002DA /* DashboardViewController.swift */; };
 		1EB830D6238CE37400C002DA /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB830D5238CE37400C002DA /* DashboardCoordinator.swift */; };
-		1EBDF99C239602DB00325E7F /* ArtistsCollectionViewControllerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBDF99B239602DB00325E7F /* ArtistsCollectionViewControllerState.swift */; };
+		1EB8884C239DFEC600DE3731 /* RecentlyPlayedTracksEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB8884B239DFEC600DE3731 /* RecentlyPlayedTracksEndpointResponse.swift */; };
+		1EB8884E239E037300DE3731 /* RecentlyPlayedTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB8884D239E037300DE3731 /* RecentlyPlayedTrack.swift */; };
+		1EB88850239E04AF00DE3731 /* String+Capitlization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB8884F239E04AF00DE3731 /* String+Capitlization.swift */; };
+		1EBDF99C239602DB00325E7F /* TopArtistsViewControllerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBDF99B239602DB00325E7F /* TopArtistsViewControllerState.swift */; };
 		1EC2A12723916547006E5E96 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A12623916547006E5E96 /* SignInResponse.swift */; };
 		1EC2A129239166B5006E5E96 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A128239166B5006E5E96 /* Token.swift */; };
 		1EC2A12E23916861006E5E96 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A12D23916861006E5E96 /* SessionService.swift */; };
@@ -76,7 +79,7 @@
 		1EC2A16C23917624006E5E96 /* SafariDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A15D23917624006E5E96 /* SafariDelegate.swift */; };
 		1EC2A16D23917624006E5E96 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A15E23917624006E5E96 /* Scope.swift */; };
 		1EC2A16E23917624006E5E96 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A15F23917624006E5E96 /* Session.swift */; };
-		1EC2A17223917624006E5E96 /* SpotifyLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A16423917624006E5E96 /* SpotifyLoginPresenter.swift */; };
+		1EC2A17223917624006E5E96 /* SafariService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A16423917624006E5E96 /* SafariService.swift */; };
 		1EC2A17423917D39006E5E96 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2A17323917D39006E5E96 /* SignInViewModel.swift */; };
 		1ED16E24239CB28E0012DAA1 /* TrackCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16E23239CB28E0012DAA1 /* TrackCollectionCellViewModel.swift */; };
 		1ED16E26239CB2DC0012DAA1 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16E25239CB2DC0012DAA1 /* Track.swift */; };
@@ -159,7 +162,10 @@
 		1EB60BB223918085001DA148 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		1EB830D3238CC97E00C002DA /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		1EB830D5238CE37400C002DA /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
-		1EBDF99B239602DB00325E7F /* ArtistsCollectionViewControllerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCollectionViewControllerState.swift; sourceTree = "<group>"; };
+		1EB8884B239DFEC600DE3731 /* RecentlyPlayedTracksEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTracksEndpointResponse.swift; sourceTree = "<group>"; };
+		1EB8884D239E037300DE3731 /* RecentlyPlayedTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTrack.swift; sourceTree = "<group>"; };
+		1EB8884F239E04AF00DE3731 /* String+Capitlization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitlization.swift"; sourceTree = "<group>"; };
+		1EBDF99B239602DB00325E7F /* TopArtistsViewControllerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsViewControllerState.swift; sourceTree = "<group>"; };
 		1EC15DF92395D7DE0058A4B1 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC2A12623916547006E5E96 /* SignInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
 		1EC2A128239166B5006E5E96 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -179,7 +185,7 @@
 		1EC2A15D23917624006E5E96 /* SafariDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariDelegate.swift; sourceTree = "<group>"; };
 		1EC2A15E23917624006E5E96 /* Scope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
 		1EC2A15F23917624006E5E96 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		1EC2A16423917624006E5E96 /* SpotifyLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyLoginPresenter.swift; sourceTree = "<group>"; };
+		1EC2A16423917624006E5E96 /* SafariService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariService.swift; sourceTree = "<group>"; };
 		1EC2A17323917D39006E5E96 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		1ED16E23239CB28E0012DAA1 /* TrackCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		1ED16E25239CB2DC0012DAA1 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -268,6 +274,7 @@
 				1E271FA8239B0C350017AF7D /* UISegmentedControl+Additions.swift */,
 				1E271FAA239B0C570017AF7D /* UILabel+Additions.swift */,
 				1EDB2F49239CBF8B00B5D099 /* TimeInterval+Int+Additions.swift */,
+				1EB8884F239E04AF00DE3731 /* String+Capitlization.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -299,6 +306,7 @@
 				1E37D9532391E19C0047613B /* TokenEndpointResponse.swift */,
 				1E11092F23956F6D00C3BD21 /* TopArtistsEndpointResponse.swift */,
 				1EDB2F47239CBA5D00B5D099 /* TopTracksEndpointResponse.swift */,
+				1EB8884B239DFEC600DE3731 /* RecentlyPlayedTracksEndpointResponse.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -482,6 +490,7 @@
 				1EC2A15723917623006E5E96 /* User.swift */,
 				1E11093123958B9E00C3BD21 /* Artist.swift */,
 				1ED16E25239CB2DC0012DAA1 /* Track.swift */,
+				1EB8884D239E037300DE3731 /* RecentlyPlayedTrack.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -494,7 +503,7 @@
 				1EC2A15A23917623006E5E96 /* Networking.swift */,
 				1EC2A12D23916861006E5E96 /* SessionService.swift */,
 				1EC2A132239169EA006E5E96 /* UserDataManager.swift */,
-				1EC2A16423917624006E5E96 /* SpotifyLoginPresenter.swift */,
+				1EC2A16423917624006E5E96 /* SafariService.swift */,
 				1E583A0123901D5B00DC033F /* Logger.swift */,
 			);
 			path = Services;
@@ -560,7 +569,7 @@
 		1EF44CB82399FA8500D9E1F5 /* State */ = {
 			isa = PBXGroup;
 			children = (
-				1EBDF99B239602DB00325E7F /* ArtistsCollectionViewControllerState.swift */,
+				1EBDF99B239602DB00325E7F /* TopArtistsViewControllerState.swift */,
 				1ED16E27239CB3E90012DAA1 /* TopTracksViewControllerState.swift */,
 			);
 			path = State;
@@ -776,13 +785,14 @@
 				1E86B42223980C1B00582D6E /* TopArtistsCollectionViewController.swift in Sources */,
 				1EA8FDAB2391866A00498AA6 /* DrawerMenuCoordinator.swift in Sources */,
 				1EB830D6238CE37400C002DA /* DashboardCoordinator.swift in Sources */,
+				1EB8884C239DFEC600DE3731 /* RecentlyPlayedTracksEndpointResponse.swift in Sources */,
 				1E11093023956F6D00C3BD21 /* TopArtistsEndpointResponse.swift in Sources */,
 				1EA8FDAD2391868100498AA6 /* DrawerMenuViewModel.swift in Sources */,
 				1EC2A131239168BA006E5E96 /* DataManager.swift in Sources */,
 				1EB830D4238CC97E00C002DA /* DashboardViewController.swift in Sources */,
 				1E022BDB238B5888007D2EE6 /* SignInViewController.swift in Sources */,
 				1EC2A16623917624006E5E96 /* User.swift in Sources */,
-				1EC2A17223917624006E5E96 /* SpotifyLoginPresenter.swift in Sources */,
+				1EC2A17223917624006E5E96 /* SafariService.swift in Sources */,
 				1EC2A17423917D39006E5E96 /* SignInViewModel.swift in Sources */,
 				1EDB2F4C239CC2D900B5D099 /* TopTracksCollectionCoordinator.swift in Sources */,
 				1EC2A13C23916E5D006E5E96 /* DataKeys.swift in Sources */,
@@ -801,6 +811,8 @@
 				1EC2A16C23917624006E5E96 /* SafariDelegate.swift in Sources */,
 				1EAB9487238F083900C45AD4 /* UIImage+Additions.swift in Sources */,
 				1E271FAB239B0C570017AF7D /* UILabel+Additions.swift in Sources */,
+				1EB88850239E04AF00DE3731 /* String+Capitlization.swift in Sources */,
+				1EB8884E239E037300DE3731 /* RecentlyPlayedTrack.swift in Sources */,
 				1E7488F12398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift in Sources */,
 				1E356505238EC9D200C407F1 /* SettingsCoordinator.swift in Sources */,
 				1E583A0423909E0200DC033F /* ViewControllerUtils.swift in Sources */,
@@ -813,7 +825,7 @@
 				1EDB2F4A239CBF8B00B5D099 /* TimeInterval+Int+Additions.swift in Sources */,
 				1E271FA9239B0C350017AF7D /* UISegmentedControl+Additions.swift in Sources */,
 				1EA8FDB82391AC8700498AA6 /* Container+RegisterDependencies.swift in Sources */,
-				1EBDF99C239602DB00325E7F /* ArtistsCollectionViewControllerState.swift in Sources */,
+				1EBDF99C239602DB00325E7F /* TopArtistsViewControllerState.swift in Sources */,
 				1EC2A16923917624006E5E96 /* Networking.swift in Sources */,
 				1EA8FDBE2391AD2100498AA6 /* Container+Coordinators.swift in Sources */,
 				1E356507238ED3D000C407F1 /* UIImageView+Additions.swift in Sources */,

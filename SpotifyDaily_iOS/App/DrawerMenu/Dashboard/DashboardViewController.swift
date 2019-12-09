@@ -15,6 +15,7 @@ final class DashboardViewController: ViewControllerWithSideMenu {
     // MARK: View components
     private lazy var topArtistsButton = UIButton.topArtistsButton
     private lazy var topTracksButton = UIButton.topTracksButton
+    private lazy var recentlyPlayedButton = UIButton.recentlyPlayedButton
     
     // MARK: Private fields
     private let disposeBag = DisposeBag()
@@ -30,6 +31,7 @@ final class DashboardViewController: ViewControllerWithSideMenu {
     private func setUpView() {
         self.view.addSubview(topArtistsButton)
         self.view.addSubview(topTracksButton)
+        self.view.addSubview(recentlyPlayedButton)
         
         let layoutGuide = self.view.safeAreaLayoutGuide
         
@@ -38,6 +40,9 @@ final class DashboardViewController: ViewControllerWithSideMenu {
         
         topTracksButton.topAnchor.constraint(equalTo: topArtistsButton.bottomAnchor, constant: 16).isActive = true
         topTracksButton.centerXAnchor.constraint(equalTo: layoutGuide.centerXAnchor).isActive = true
+        
+        recentlyPlayedButton.topAnchor.constraint(equalTo: topTracksButton.bottomAnchor, constant: 16).isActive = true
+        recentlyPlayedButton.centerXAnchor.constraint(equalTo: layoutGuide.centerXAnchor).isActive = true
         
         self.setUpBindings()
     }
@@ -54,6 +59,10 @@ final class DashboardViewController: ViewControllerWithSideMenu {
         
         topTracksButton.rx.tap
             .bind(to: viewModel.presentTopTracks)
+            .disposed(by: disposeBag)
+        
+        recentlyPlayedButton.rx.tap
+            .bind(to: viewModel.presentRecentlyPlayed)
             .disposed(by: disposeBag)
     }
 }
@@ -72,6 +81,16 @@ private extension UIButton {
     static var topTracksButton: UIButton {
         let button = UIButton()
         button.setTitle("Navigate to Top Tracks", for: .normal)
+        button.backgroundColor = .blue
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }
+    
+    static var recentlyPlayedButton: UIButton {
+        let button = UIButton()
+        button.setTitle("Navigate to Recently Played Tracks", for: .normal)
         button.backgroundColor = .blue
         
         button.translatesAutoresizingMaskIntoConstraints = false

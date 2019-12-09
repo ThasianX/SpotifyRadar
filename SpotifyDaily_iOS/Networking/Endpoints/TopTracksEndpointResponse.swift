@@ -81,8 +81,6 @@ struct TopTracksEndpointResponse: Decodable {
             
             let track = Track(name: trackName, duration: trackDuration, artists: artists, albumImage: albumImageURL, externalURL: externalURL)
             
-            Logger.info("\(track)")
-            
             tracks.append(track)
         }
     }

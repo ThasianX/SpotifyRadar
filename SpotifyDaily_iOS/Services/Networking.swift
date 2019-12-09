@@ -7,6 +7,7 @@ internal let apiTokenEndpointURL = "https://accounts.spotify.com/api/token"
 internal let profileServiceEndpointURL = "https://api.spotify.com/v1/me"
 internal let topArtistsEndpointURL = "https://api.spotify.com/v1/me/top/artists"
 internal let topTracksEndpointURL = "https://api.spotify.com/v1/me/top/tracks"
+internal let recentlyPlayedEndpointURL = "https://api.spotify.com/v1/me/player/recently-played"
 
 class Networking {
     internal func createSignInResponse(code: String,
@@ -66,6 +67,39 @@ class Networking {
         }
     }
     
+    internal func userRecentlyPlayedRequest(accessToken: String?, limit: Int) -> Observable<RecentlyPlayedTracksEndpointResponse> {
+        guard let accessToken = accessToken else {
+            fatalError("Unable to retrieve user profile due to invalid access token")
+        }
+        
+        return Observable<RecentlyPlayedTracksEndpointResponse>.create { observer in
+            var recentlyPlayedURL = URL(string: recentlyPlayedEndpointURL)!
+            let queryItems = [URLQueryItem(name: "limit", value: String(limit))]
+            recentlyPlayedURL.appending(queryItems)
+            
+            Logger.info("URL created: \(recentlyPlayedURL.absoluteString)")
+            
+            var urlRequest = URLRequest(url: recentlyPlayedURL)
+            let authHeaderValue = "Bearer \(accessToken)"
+            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                do {
+                    let trackResponse = try JSONDecoder().decode(RecentlyPlayedTracksEndpointResponse.self, from: data ?? Data())
+                    observer.onNext(trackResponse)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    
     internal func userTopArtistsRequest(accessToken: String?, timeRange: String, limit: Int) -> Observable<TopArtistsEndpointResponse> {
         guard let accessToken = accessToken else {
             fatalError("Unable to retrieve user profile due to invalid access token")
@@ -86,7 +120,6 @@ class Networking {
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 do {
                     let artistResponse = try JSONDecoder().decode(TopArtistsEndpointResponse.self, from: data ?? Data())
-                    Logger.info("Artist response successful")
                     observer.onNext(artistResponse)
                 } catch let error {
                     observer.onError(error)
@@ -121,7 +154,6 @@ class Networking {
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 do {
                     let trackResponse = try JSONDecoder().decode(TopTracksEndpointResponse.self, from: data ?? Data())
-                    Logger.info("Track response successful")
                     observer.onNext(trackResponse)
                 } catch let error {
                     observer.onError(error)

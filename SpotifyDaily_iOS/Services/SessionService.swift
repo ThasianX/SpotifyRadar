@@ -84,7 +84,7 @@ class SessionService {
         self.signOutSubject.onNext(Void())
     }
     
-    // MARK: User state
+    // MARK: Networking methods
     func refreshProfile() {
         networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
             .flatMap { [unowned self] response -> Observable<User> in
@@ -108,6 +108,14 @@ class SessionService {
     func getTopTracks(timeRange: String, limit: Int) -> Observable<[Track]>{
         return networkingClient.userTopTracksRequest(accessToken: self.token?.accessToken, timeRange: timeRange, limit: limit)
             .flatMap { response -> Observable<[Track]> in
+                let tracks = response.tracks
+                return Observable.just(tracks)
+        }
+    }
+    
+    func getRecentlyPlayedTracks(limit: Int) -> Observable<[RecentlyPlayedTrack]>{
+        return networkingClient.userRecentlyPlayedRequest(accessToken: self.token?.accessToken, limit: limit)
+            .flatMap { response -> Observable<[RecentlyPlayedTrack]> in
                 let tracks = response.tracks
                 return Observable.just(tracks)
         }
@@ -146,7 +154,7 @@ class SessionService {
     }
     
     private func setDefaultData() {
-        let topArtistsState = ArtistsCollectionViewControllerState(artistsTimeRange:
+        let topArtistsState = TopArtistsViewControllerState(artistsTimeRange:
             "medium_term", artistsLimit: 10)
         self.dataManager.set(key: DataKeys.topArtistsCollectionState, value: topArtistsState)
         

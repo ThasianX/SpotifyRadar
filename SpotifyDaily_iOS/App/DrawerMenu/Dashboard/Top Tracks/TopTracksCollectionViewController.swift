@@ -61,7 +61,7 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
         collectionView.topAnchor.constraint(equalTo: artistsTimeRangeControl.bottomAnchor, constant: Constraints.controlMargin*2).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: artistsTimeRangeControl.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: artistsTimeRangeControl.trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 
     private func configureCollectionView() {
@@ -85,8 +85,6 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
     }
     
     func bindViewModel() {
-        Logger.info("Binding view model")
-        
         let input = viewModel.input
         let output = viewModel.output
         
@@ -120,13 +118,14 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
             }
         .map { $0.viewModel }
         .flatMap { $0.output.track }
-        .bind(onNext: { input.trackSelected(track: $0)})
+        .bind(onNext: { [unowned self] in
+            input.trackSelected(from: self, track: $0)
+        })
         .disposed(by: self.disposeBag)
     }
 
     private var collectionViewDataSource: CollectionViewSectionedDataSource<TracksSectionModel>.ConfigureCell {
         return { _, tableView, indexPath, cellModel in
-            Logger.info("Binding cell to view model")
             var cell: TrackCollectionCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "trackCollectionCell", for: indexPath) as! TrackCollectionCell
             cell.bind(to: cellModel)
             return cell

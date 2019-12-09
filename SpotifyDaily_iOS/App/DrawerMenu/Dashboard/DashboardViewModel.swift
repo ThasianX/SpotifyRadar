@@ -23,11 +23,29 @@ class DashboardViewModel {
     // MARK: Public fields
     let presentTopArtists = PublishSubject<Void>()
     let presentTopTracks = PublishSubject<Void>()
+    let presentRecentlyPlayed = PublishSubject<Void>()
     let title = "User Dashboard"
     
     // MARK: - Initialization
     init(sessionService: SessionService, dataManager: DataManager) {
         self.sessionService = sessionService
         self.dataManager = dataManager
+        
+        presentRecentlyPlayed
+            .bind(onNext: { self.printRecentlyPlayed() })
+        .disposed(by: disposeBag)
+    }
+    
+    private func printRecentlyPlayed() {
+        Logger.info("Printing recently played tracks")
+        
+        let tracks = sessionService.getRecentlyPlayedTracks(limit: 10)
+        
+        tracks.bind(onNext: {
+            for track in $0 {
+                Logger.info("\(track)")
+            }
+        })
+        .disposed(by: disposeBag)
     }
 }

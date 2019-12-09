@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ArtistsCollectionViewControllerState: Codable, Equatable {
+struct TopArtistsViewControllerState: Codable, Equatable {
     let artistsTimeRange: String
     let artistsLimit: Int
 }
