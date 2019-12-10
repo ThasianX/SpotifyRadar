@@ -20,5 +20,6 @@ extension Container {
         self.autoregister(SettingsViewModel.self, initializer: SettingsViewModel.init)
         self.autoregister(TopArtistsCollectionViewModel.self, initializer: TopArtistsCollectionViewModel.init)
         self.autoregister(TopTracksCollectionViewModel.self, initializer: TopTracksCollectionViewModel.init)
+        self.autoregister(RecentlyPlayedTracksViewModel.self, initializer: RecentlyPlayedTracksViewModel.init)
     }
 }

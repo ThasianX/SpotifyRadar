@@ -21,7 +21,7 @@ class DashboardCoordinator: BaseCoordinator {
         self.dashboardViewModel = dashboardViewModel
         self.dataManager = dataManager
     }
-
+    
     override func start() {
         let viewController = DashboardViewController()
         viewController.viewModel = dashboardViewModel
@@ -35,12 +35,17 @@ class DashboardCoordinator: BaseCoordinator {
         dashboardViewModel.presentTopArtists.bind(onNext: { [weak self] in
             self?.presentTopArtists()
         })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         dashboardViewModel.presentTopTracks.bind(onNext: { [weak self] in
             self?.presentTopTracks()
         })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
+        
+        dashboardViewModel.presentRecentlyPlayed.bind(onNext: { [weak self] in
+            self?.presentRecentlyPlayedTracks()
+        })
+            .disposed(by: disposeBag)
     }
     
     private func presentTopArtists() {
@@ -56,6 +61,15 @@ class DashboardCoordinator: BaseCoordinator {
         Logger.info("Presenting top tracks")
         
         let coordinator = AppDelegate.container.resolve(TopTracksCollectionCoordinator.self)!
+        coordinator.navigationController = self.navigationController
+        
+        self.start(coordinator: coordinator)
+    }
+    
+    private func presentRecentlyPlayedTracks() {
+        Logger.info("Presenting recently played tracks")
+        
+        let coordinator = AppDelegate.container.resolve(RecentlyPlayedTracksCoordinator.self)!
         coordinator.navigationController = self.navigationController
         
         self.start(coordinator: coordinator)

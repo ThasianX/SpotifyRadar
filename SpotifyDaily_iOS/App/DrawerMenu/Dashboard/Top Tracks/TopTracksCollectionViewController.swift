@@ -23,13 +23,12 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
     
     // MARK: View components
     private var collectionView: UICollectionView!
-    private let artistsTimeRangeControl = UISegmentedControl.timeRangeControl
+    private let tracksTimeRangeControl = UISegmentedControl.timeRangeControl
     private let topTracksTitle = UILabel.modalTitle
     
     // MARK: Private
     private var dataSource: RxCollectionViewSectionedReloadDataSource<TracksSectionModel>!
     private let disposeBag = DisposeBag()
-    private var selectedArtistTimeRange = 0
     private let timeRangeItems = ["short_term", "medium_term", "long_term"]
     
     override func viewDidLoad() {
@@ -45,7 +44,7 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
         
         self.view.addSubview(topTracksTitle)
         self.view.addSubview(collectionView)
-        self.view.addSubview(artistsTimeRangeControl)
+        self.view.addSubview(tracksTimeRangeControl)
         
         let layoutGuide = self.view.safeAreaLayoutGuide
         
@@ -53,14 +52,14 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
         topTracksTitle.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         topTracksTitle.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         
-        artistsTimeRangeControl.topAnchor.constraint(equalTo: topTracksTitle.bottomAnchor, constant: Constraints.controlMargin).isActive = true
-        artistsTimeRangeControl.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
-        artistsTimeRangeControl.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
-        artistsTimeRangeControl.heightAnchor.constraint(equalToConstant: Constraints.height).isActive = true
+        tracksTimeRangeControl.topAnchor.constraint(equalTo: topTracksTitle.bottomAnchor, constant: Constraints.controlMargin).isActive = true
+        tracksTimeRangeControl.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
+        tracksTimeRangeControl.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
+        tracksTimeRangeControl.heightAnchor.constraint(equalToConstant: Constraints.height).isActive = true
         
-        collectionView.topAnchor.constraint(equalTo: artistsTimeRangeControl.bottomAnchor, constant: Constraints.controlMargin*2).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: artistsTimeRangeControl.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: artistsTimeRangeControl.trailingAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: tracksTimeRangeControl.bottomAnchor, constant: Constraints.controlMargin*2).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 
@@ -88,7 +87,7 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
         let input = viewModel.input
         let output = viewModel.output
         
-        self.artistsTimeRangeControl.selectedSegmentIndex = self.timeRangeItems.firstIndex(of: viewModel.input.tracksTimeRange.value)!
+        self.tracksTimeRangeControl.selectedSegmentIndex = self.timeRangeItems.firstIndex(of: viewModel.input.tracksTimeRange.value)!
         
         output.collectionCellsModelType
             .map { [TracksSectionModel(model: "", items: $0)] }
@@ -99,9 +98,9 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
             .bind(to: topTracksTitle.rx.text)
             .disposed(by: disposeBag)
         
-        artistsTimeRangeControl.rx.selectedSegmentIndex
+        tracksTimeRangeControl.rx.selectedSegmentIndex
             .bind(onNext: { [weak self] index in
-            let title = self?.artistsTimeRangeControl.titleForSegment(at: index)
+            let title = self?.tracksTimeRangeControl.titleForSegment(at: index)
             input.tracksTimeRange.accept(title!)
         })
             .disposed(by: disposeBag)

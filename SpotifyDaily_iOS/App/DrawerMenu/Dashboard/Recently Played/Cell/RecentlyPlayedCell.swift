@@ -24,7 +24,7 @@ class RecentlyPlayedCell: UITableViewCell, BindableType {
     private let disposeBag = DisposeBag()
     
     // MARK: Viewmodel
-    var viewModel: TrackCollectionCellViewModelType!
+    var viewModel: RecentlyPlayedCellViewModelType!
     
     override func awakeFromNib() {
         setUpView()
@@ -72,6 +72,41 @@ class RecentlyPlayedCell: UITableViewCell, BindableType {
     func bindViewModel() {
         let output = viewModel.output
         
+        output.track
+            .map { $0.trackName }
+            .bind(to: trackName.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.track
+            .map { $0.albumName }
+            .bind(to: albumName.rx.text)
+        .disposed(by: disposeBag)
+        
+        output.track
+            .map { $0.artistURLs }
+        .bind(onNext: { [unowned self] urls in
+            for url in urls {
+                let image = UIImageView.artistImage
+                image.load(url: url, targetSize: CGSize(width: 40, height: 40))
+                self.artistImages.addArrangedSubview(image)
+            }
+        })
+        .disposed(by: disposeBag)
+        
+        output.track
+            .map { $0.duration }
+            .bind(to: trackDuration.rx.text)
+        .disposed(by: disposeBag)
+        
+        output.track
+            .map { $0.playedFrom }
+            .bind(to: playedFrom.rx.text)
+        .disposed(by: disposeBag)
+        
+        output.track
+            .map{ $0.playedAt }
+            .bind(to: playedAt.rx.text)
+        .disposed(by: disposeBag)
     }
 }
 

@@ -29,7 +29,6 @@ final class TopArtistsCollectionViewController: UIViewController, BindableType {
     // MARK: Private
     private var dataSource: RxCollectionViewSectionedReloadDataSource<ArtistsSectionModel>!
     private let disposeBag = DisposeBag()
-    private var selectedArtistTimeRange = 0
     private let timeRangeItems = ["short_term", "medium_term", "long_term"]
     
     override func viewDidLoad() {
@@ -59,14 +58,12 @@ final class TopArtistsCollectionViewController: UIViewController, BindableType {
         artistsTimeRangeControl.heightAnchor.constraint(equalToConstant: Constraints.height).isActive = true
         
         collectionView.topAnchor.constraint(equalTo: artistsTimeRangeControl.bottomAnchor, constant: Constraints.controlMargin*2).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: artistsTimeRangeControl.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: artistsTimeRangeControl.trailingAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 
     private func configureCollectionView() {
-        Logger.info("Configuring collection view")
-        
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false

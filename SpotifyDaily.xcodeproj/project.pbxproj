@@ -11,6 +11,8 @@
 		1E022BDB238B5888007D2EE6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BDA238B5888007D2EE6 /* SignInViewController.swift */; };
 		1E022BE0238B5888007D2EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BDF238B5888007D2EE6 /* Assets.xcassets */; };
 		1E022BE3238B5888007D2EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BE1238B5888007D2EE6 /* LaunchScreen.storyboard */; };
+		1E0C077023A030BB00820B87 /* RecentlyPlayedTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0C076F23A030BB00820B87 /* RecentlyPlayedTracksViewController.swift */; };
+		1E0C077223A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0C077123A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift */; };
 		1E100DF12393444C00DE0291 /* SettingsRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E100DF02393444C00DE0291 /* SettingsRootView.swift */; };
 		1E11093023956F6D00C3BD21 /* TopArtistsEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11092F23956F6D00C3BD21 /* TopArtistsEndpointResponse.swift */; };
 		1E11093223958B9E00C3BD21 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11093123958B9E00C3BD21 /* Artist.swift */; };
@@ -119,6 +121,8 @@
 		1E022BDF238B5888007D2EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E022BE2238B5888007D2EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E022BE4238B5888007D2EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E0C076F23A030BB00820B87 /* RecentlyPlayedTracksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTracksViewController.swift; sourceTree = "<group>"; };
+		1E0C077123A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTracksCoordinator.swift; sourceTree = "<group>"; };
 		1E100DF02393444C00DE0291 /* SettingsRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRootView.swift; sourceTree = "<group>"; };
 		1E11092F23956F6D00C3BD21 /* TopArtistsEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsEndpointResponse.swift; sourceTree = "<group>"; };
 		1E11093123958B9E00C3BD21 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
@@ -555,6 +559,8 @@
 			children = (
 				1EC982F6239E9380004BF1B8 /* Cell */,
 				1EC67A9F239EA9120030CB00 /* RecentlyPlayedTracksViewModel.swift */,
+				1E0C076F23A030BB00820B87 /* RecentlyPlayedTracksViewController.swift */,
+				1E0C077123A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift */,
 			);
 			path = "Recently Played";
 			sourceTree = "<group>";
@@ -861,6 +867,7 @@
 				1EBDF99C239602DB00325E7F /* TopArtistsViewControllerState.swift in Sources */,
 				1EC2A16923917624006E5E96 /* Networking.swift in Sources */,
 				1EA8FDBE2391AD2100498AA6 /* Container+Coordinators.swift in Sources */,
+				1E0C077223A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift in Sources */,
 				1E356507238ED3D000C407F1 /* UIImageView+Additions.swift in Sources */,
 				1EA8FDBC2391AD0100498AA6 /* Container+ViewModels.swift in Sources */,
 				1EB60BB123917FE6001DA148 /* DashboardViewModel.swift in Sources */,
@@ -881,6 +888,7 @@
 				1E7129E6239B0653007F538B /* UIViewController+Present.swift in Sources */,
 				1EA8FDAF2391869300498AA6 /* DrawerMenuViewController.swift in Sources */,
 				1E11093223958B9E00C3BD21 /* Artist.swift in Sources */,
+				1E0C077023A030BB00820B87 /* RecentlyPlayedTracksViewController.swift in Sources */,
 				1EC67AA0239EA9120030CB00 /* RecentlyPlayedTracksViewModel.swift in Sources */,
 				1E896A62238C246400C745F0 /* UIColor+Additions.swift in Sources */,
 				1EA8FDBA2391AC9500498AA6 /* Container+Services.swift in Sources */,

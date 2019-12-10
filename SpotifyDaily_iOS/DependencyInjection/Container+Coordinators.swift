@@ -19,5 +19,6 @@ extension Container {
         self.autoregister(SettingsCoordinator.self, initializer: SettingsCoordinator.init)
         self.autoregister(TopArtistsCollectionCoordinator.self, initializer: TopArtistsCollectionCoordinator.init)
         self.autoregister(TopTracksCollectionCoordinator.self, initializer: TopTracksCollectionCoordinator.init)
+        self.autoregister(RecentlyPlayedTracksCoordinator.self, initializer: RecentlyPlayedTracksCoordinator.init)
     }
 }

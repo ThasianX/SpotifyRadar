@@ -19,7 +19,7 @@ protocol RecentlyPlayedTracksViewModelInput {
 }
 protocol RecentlyPlayedTracksViewModelOutput {
     /// Emites the child viewModels
-    var collectionCellsModelType: Observable<[RecentlyPlayedCellViewModelType]> { get }
+    var tableViewCellsModelType: Observable<[RecentlyPlayedCellViewModelType]> { get }
     
     /// Emits the title of the view controller
     var title: Observable<String>! { get }
@@ -44,7 +44,7 @@ class RecentlyPlayedTracksViewModel: RecentlyPlayedTracksViewModelType,
     }
 
     // MARK: Outputs
-    lazy var collectionCellsModelType: Observable<[RecentlyPlayedCellViewModelType]> = {
+    lazy var tableViewCellsModelType: Observable<[RecentlyPlayedCellViewModelType]> = {
         return trackCollections.mapMany { RecentlyPlayedCellViewModel(track: $0) }
     }()
     
