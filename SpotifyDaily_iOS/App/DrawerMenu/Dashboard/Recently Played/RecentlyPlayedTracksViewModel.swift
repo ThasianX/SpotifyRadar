@@ -13,8 +13,8 @@ import RxCocoa
 protocol RecentlyPlayedTracksViewModelInput {
     /// Call when the bottom of the list is reached
     var loadMore: BehaviorSubject<Bool> { get }
-
-     /// Call when an artist is selected
+    
+    /// Call when an artist is selected
     func trackSelected(from viewController: (UIViewController), track: RecentlyPlayedTrack)
 }
 protocol RecentlyPlayedTracksViewModelOutput {
@@ -30,26 +30,26 @@ protocol RecentlyPlayedTracksViewModelType {
 }
 
 class RecentlyPlayedTracksViewModel: RecentlyPlayedTracksViewModelType,
-                            RecentlyPlayedTracksViewModelInput,
-                            RecentlyPlayedTracksViewModelOutput {
+    RecentlyPlayedTracksViewModelInput,
+RecentlyPlayedTracksViewModelOutput {
     // MARK: Inputs & Outputs
     var input: RecentlyPlayedTracksViewModelInput { return self }
     var output: RecentlyPlayedTracksViewModelOutput { return self }
-
+    
     // MARK: Inputs
     let loadMore = BehaviorSubject<Bool>(value: false)
     
     func trackSelected(from viewController: (UIViewController), track: RecentlyPlayedTrack){
         safariService.presentSafari(from: viewController, for: track.externalURL)
     }
-
+    
     // MARK: Outputs
     lazy var tableViewCellsModelType: Observable<[RecentlyPlayedCellViewModelType]> = {
         return trackCollections.mapMany { RecentlyPlayedCellViewModel(track: $0) }
     }()
     
     var title: Observable<String>!
-
+    
     // MARK: Private
     private let sessionService: SessionService
     private let dataManager: DataManager
@@ -57,10 +57,10 @@ class RecentlyPlayedTracksViewModel: RecentlyPlayedTracksViewModelType,
     
     private let disposeBag = DisposeBag()
     private var trackCollections: Observable<[RecentlyPlayedTrack]>!
-
+    
     // MARK: Init
     init(sessionService: SessionService, dataManager: DataManager, safariService: SafariService) {
-
+        
         self.sessionService = sessionService
         self.dataManager = dataManager
         self.safariService = safariService
@@ -76,11 +76,14 @@ class RecentlyPlayedTracksViewModel: RecentlyPlayedTracksViewModelType,
                     var urls = [URL]()
                     for url in track.artistURLs {
                         self.sessionService.getArtist(href: url)
-                            .bind(onNext: { urls.append($0.image)})
+                            .map { $0.image }
+                            .bind(onNext: {
+                                Logger.info("Artist Image: \($0.absoluteString)")
+                                urls.append($0)
+                            })
                             .disposed(by: self.disposeBag)
                     }
-                    
-                    let updatedTrack = RecentlyPlayedTrack(trackName: track.trackName, albumName: track.albumName, artistURLs: urls, duration: track.duration, playedFrom: track.playedFrom, playedAt: track.playedFrom, externalURL: track.externalURL)
+                    let updatedTrack = RecentlyPlayedTrack(trackName: track.trackName, albumName: track.albumName, artistURLs: urls, duration: track.duration, playedFrom: track.playedFrom, playedAt: track.playedAt, externalURL: track.externalURL)
                     updatedTracks.append(updatedTrack)
                 }
                 

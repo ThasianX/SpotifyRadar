@@ -22,7 +22,7 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
     var viewModel: TopTracksCollectionsViewModelType!
     
     // MARK: View components
-    private var collectionView: UICollectionView!
+    private var collectionView = UICollectionView.defaultCollectionView
     private let tracksTimeRangeControl = UISegmentedControl.timeRangeControl
     private let topTracksTitle = UILabel.modalTitle
     
@@ -64,19 +64,6 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
     }
 
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = .white
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-
-        let spacing = (1 / UIScreen.main.scale) + 16
-        let cellWidth = (UIScreen.main.bounds.width / 2) - spacing
-
-        flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
-        flowLayout.sectionInset = UIEdgeInsets(top: 16.0, left: 8.0, bottom: 0, right: 8.0)
-        flowLayout.minimumLineSpacing = spacing
-
         collectionView.register(TrackCollectionCell.self, forCellWithReuseIdentifier: "trackCollectionCell")
         dataSource = RxCollectionViewSectionedReloadDataSource<TracksSectionModel>(
             configureCell:  collectionViewDataSource
@@ -124,8 +111,8 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
     }
 
     private var collectionViewDataSource: CollectionViewSectionedDataSource<TracksSectionModel>.ConfigureCell {
-        return { _, tableView, indexPath, cellModel in
-            var cell: TrackCollectionCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "trackCollectionCell", for: indexPath) as! TrackCollectionCell
+        return { _, collectionView, indexPath, cellModel in
+            var cell: TrackCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "trackCollectionCell", for: indexPath) as! TrackCollectionCell
             cell.bind(to: cellModel)
             return cell
         }

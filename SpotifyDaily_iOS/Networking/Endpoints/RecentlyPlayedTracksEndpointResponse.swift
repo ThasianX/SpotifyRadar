@@ -51,7 +51,6 @@ fileprivate struct RecentlyPlayedTracksEndpointModel: Decodable {
         let availableMarkets: [String]
         let discNumber, durationMS: Int
         let explicit: Bool
-        let externalIDS: ExternalIDS
         let externalUrls: ExternalUrls
         let href: String
         let id: String
@@ -68,7 +67,6 @@ fileprivate struct RecentlyPlayedTracksEndpointModel: Decodable {
             case discNumber = "disc_number"
             case durationMS = "duration_ms"
             case explicit
-            case externalIDS = "external_ids"
             case externalUrls = "external_urls"
             case href, id
             case isLocal = "is_local"
@@ -122,11 +120,6 @@ fileprivate struct RecentlyPlayedTracksEndpointModel: Decodable {
         let height: Int
         let url: String
         let width: Int
-    }
-    
-    // MARK: - ExternalIDS
-    struct ExternalIDS: Codable {
-        let isrc: String
     }
     
     let items: [Item]

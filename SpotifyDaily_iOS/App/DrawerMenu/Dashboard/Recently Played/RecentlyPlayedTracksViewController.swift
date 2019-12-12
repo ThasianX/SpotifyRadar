@@ -87,6 +87,7 @@ final class RecentlyPlayedTracksViewController: UIViewController, BindableType {
             .flatMap { [weak self] indexPath -> Observable<RecentlyPlayedCell> in
                 guard let cell = self?.tableView.cellForRow(at: indexPath) as? RecentlyPlayedCell
                     else { return .empty() }
+                self?.tableView.deselectRow(at: indexPath, animated: true)
                 return .just(cell)
             }
         .map { $0.viewModel }
@@ -97,9 +98,10 @@ final class RecentlyPlayedTracksViewController: UIViewController, BindableType {
         .disposed(by: self.disposeBag)
     }
 
-    private var tableViewDataSource: RxTableViewSectionedReloadDataSource<TracksSectionModel>.ConfigureCell {
+    private var tableViewDataSource:
+        RxTableViewSectionedReloadDataSource<TracksSectionModel>.ConfigureCell {
         return { _, tableView, indexPath, cellModel in
-            var cell: RecentlyPlayedCell = self.tableView.dequeueReusableCell(withIdentifier: "recentlyPlayedCell", for: indexPath) as! RecentlyPlayedCell
+            var cell: RecentlyPlayedCell = tableView.dequeueReusableCell(withIdentifier: "recentlyPlayedCell", for: indexPath) as! RecentlyPlayedCell
             cell.bind(to: cellModel)
             return cell
         }

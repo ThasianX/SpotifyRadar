@@ -23,10 +23,11 @@ class DashboardCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        let viewController = DashboardViewController()
-        viewController.viewModel = dashboardViewModel
+        var viewController = DashboardViewController()
         
         self.navigationController.viewControllers = [viewController]
+        
+        viewController.bind(to: dashboardViewModel)
         
         setUpBindings()
     }

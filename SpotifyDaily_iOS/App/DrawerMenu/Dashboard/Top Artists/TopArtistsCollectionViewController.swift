@@ -22,7 +22,7 @@ final class TopArtistsCollectionViewController: UIViewController, BindableType {
     var viewModel: TopArtistsCollectionsViewModelType!
     
     // MARK: View components
-    private var collectionView: UICollectionView!
+    private var collectionView = UICollectionView.defaultCollectionView
     private let artistsTimeRangeControl = UISegmentedControl.timeRangeControl
     private let topArtistsTitle = UILabel.modalTitle
     
@@ -64,19 +64,6 @@ final class TopArtistsCollectionViewController: UIViewController, BindableType {
     }
 
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = .white
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-
-        let spacing = (1 / UIScreen.main.scale) + 16
-        let cellWidth = (UIScreen.main.bounds.width / 2) - spacing
-
-        flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
-        flowLayout.sectionInset = UIEdgeInsets(top: 16.0, left: 8.0, bottom: 0, right: 8.0)
-        flowLayout.minimumLineSpacing = spacing
-
         collectionView.register(ArtistCollectionCell.self, forCellWithReuseIdentifier: "artistCollectionCell")
         dataSource = RxCollectionViewSectionedReloadDataSource<ArtistsSectionModel>(
             configureCell:  collectionViewDataSource
@@ -124,8 +111,8 @@ final class TopArtistsCollectionViewController: UIViewController, BindableType {
     }
 
     private var collectionViewDataSource: CollectionViewSectionedDataSource<ArtistsSectionModel>.ConfigureCell {
-        return { _, tableView, indexPath, cellModel in
-            var cell: ArtistCollectionCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "artistCollectionCell", for: indexPath) as! ArtistCollectionCell
+        return { _, collectionView, indexPath, cellModel in
+            var cell: ArtistCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "artistCollectionCell", for: indexPath) as! ArtistCollectionCell
             cell.bind(to: cellModel)
             return cell
         }

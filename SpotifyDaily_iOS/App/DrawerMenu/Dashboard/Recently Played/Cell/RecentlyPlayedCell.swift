@@ -26,9 +26,16 @@ class RecentlyPlayedCell: UITableViewCell, BindableType {
     // MARK: Viewmodel
     var viewModel: RecentlyPlayedCellViewModelType!
     
-    override func awakeFromNib() {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         setUpView()
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("Loading this view from a nib is unsupported in favor of initializer dependency injection.")
+    }
+    
 
     private func setUpView() {
         self.addSubview(trackName)
@@ -55,6 +62,7 @@ class RecentlyPlayedCell: UITableViewCell, BindableType {
         self.artistImages.topAnchor.constraint(equalTo: albumName.bottomAnchor, constant: Constraints.innerMargins).isActive = true
         self.artistImages.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         self.artistImages.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.artistImages.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
         
         self.trackDuration.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
         self.trackDuration.leadingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
@@ -65,8 +73,9 @@ class RecentlyPlayedCell: UITableViewCell, BindableType {
         self.playedFrom.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         
         self.playedAt.topAnchor.constraint(equalTo: playedFrom.bottomAnchor, constant: Constraints.innerMargins).isActive = true
-        self.playedFrom.leadingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
-        self.playedFrom.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.playedAt.leadingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
+        self.playedAt.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.playedAt.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
     }
     
     func bindViewModel() {
