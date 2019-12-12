@@ -20,7 +20,6 @@ class SettingsCoordinator: BaseCoordinator {
     override func start() {
         let viewController = SettingsViewController()
         viewController.viewModel = self.settingsViewModel
-        viewController.viewModel?.refreshProfile()
         
         self.navigationController.viewControllers = [viewController]
     }

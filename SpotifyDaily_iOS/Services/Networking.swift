@@ -38,7 +38,7 @@ class Networking {
                     token: Token(accessToken: tokenResponse.accessToken,
                                  refreshToken: session.token.refreshToken,
                                  expirationDate: Date(timeIntervalSinceNow: tokenResponse.expiresIn)),
-                    user: session.user)
+                    userId: session.userId)
                 
                 Logger.info("Session has been renewed.")
                 
@@ -93,8 +93,6 @@ class Networking {
             
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 do {
-                    data?.printJSON()
-                    
                     let trackResponse = try JSONDecoder().decode(RecentlyPlayedTracksEndpointResponse.self, from: data ?? Data())
                     observer.onNext(trackResponse)
                 } catch let error {
@@ -206,28 +204,6 @@ class Networking {
         }
         .observeOn(MainScheduler.instance)
         .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-    }
-    
-    internal func getUserFromEndpoint(profileResponse: ProfileEndpointResponse) -> Observable<User> {
-        
-        return Observable<User>.create { observer in
-            let user = User(country: profileResponse.country,
-                            displayName: profileResponse.displayName,
-                            email: profileResponse.email,
-                            filterEnabled: profileResponse.filterEnabled,
-                            profileUrl: profileResponse.profileUrl,
-                            numberOfFollowers: profileResponse.numberOfFollowers,
-                            endpointUrl: profileResponse.endpointUrl,
-                            id: profileResponse.id,
-                            avatarUrl: profileResponse.avatarUrl,
-                            subscriptionLevel: profileResponse.subscriptionLevel,
-                            uriUrl: profileResponse.uriUrl)
-            
-            observer.onNext(user)
-            observer.onCompleted()
-            
-            return Disposables.create()
-        }
     }
     
     private func authRequest(requestBody: String,

@@ -49,7 +49,8 @@ struct ArtistEndpointResponse: Decodable {
         let response = try ArtistEndpointModel(from: decoder)
         
         let name = response.name
-        let image = URL(string: response.images.first!.url)!
+        
+        let image = response.images.count > 0 ? URL(string: response.images.first!.url) : nil
         let followers = response.followers.total
         let externalURL = URL(string: response.externalUrls.spotify)!
         

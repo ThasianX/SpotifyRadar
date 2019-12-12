@@ -76,7 +76,7 @@ RecentlyPlayedTracksViewModelOutput {
                     var urls = [URL]()
                     for url in track.artistURLs {
                         self.sessionService.getArtist(href: url)
-                            .map { $0.image }
+                            .compactMap { $0.image }
                             .bind(onNext: {
                                 Logger.info("Artist Image: \($0.absoluteString)")
                                 urls.append($0)

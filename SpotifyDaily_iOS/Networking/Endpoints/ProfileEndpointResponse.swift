@@ -83,6 +83,5 @@ extension ProfileEndpointResponse: Decodable {
         subscriptionLevel = try container.decode(String.self, forKey: .product)
 
         uriUrl = try container.decode(String.self, forKey: .uri)
-        
     }
 }

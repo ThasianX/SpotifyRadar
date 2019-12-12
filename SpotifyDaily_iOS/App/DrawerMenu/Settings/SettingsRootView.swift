@@ -90,23 +90,23 @@ class SettingsRootView: UIView {
         .disposed(by: disposeBag)
         
         // MARK: Values
-        viewModel.userSubject
-        .map { $0?.avatarUrl }
+        viewModel.user
+        .map { $0.avatarUrl }
         .distinctUntilChanged()
-        .map { URL(string: $0!)!}
+        .map { URL(string: $0)!}
         .bind(onNext: { [unowned self] url in
             self.userAvatar.load(url: url, targetSize: CGSize(width: 200, height: 200))
         })
         .disposed(by: disposeBag)
         
-        viewModel.userSubject
-            .map { $0?.country }
+        viewModel.user
+            .map { $0.country }
         .distinctUntilChanged()
         .bind(onNext: { [unowned self] country in
             let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 15)]
             let myString = NSMutableAttributedString(string: "COUNTRY: ", attributes: attribute1)
             let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 18)]
-            myString.append(NSMutableAttributedString(string: country!.uppercased(), attributes: attribute2))
+            myString.append(NSMutableAttributedString(string: country.uppercased(), attributes: attribute2))
             let myRange = NSRange(location: 0, length: 9)
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             
@@ -114,14 +114,14 @@ class SettingsRootView: UIView {
         })
         .disposed(by: disposeBag)
         
-        viewModel.userSubject
-        .map { $0?.displayName }
+        viewModel.user
+        .map { $0.displayName }
         .distinctUntilChanged()
         .bind(onNext: { [unowned self] displayName in
             let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 20)]
             let myString = NSMutableAttributedString(string: "USER: ", attributes: attribute1)
             let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 45)]
-            myString.append(NSMutableAttributedString(string: displayName!.uppercased(), attributes: attribute2))
+            myString.append(NSMutableAttributedString(string: displayName.uppercased(), attributes: attribute2))
             let myRange = NSRange(location: 0, length: 6)
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             
@@ -129,14 +129,14 @@ class SettingsRootView: UIView {
         })
         .disposed(by: disposeBag)
         
-        viewModel.userSubject
-        .map { $0?.email }
+        viewModel.user
+        .map { $0.email }
         .distinctUntilChanged()
         .bind(onNext: { [unowned self] email in
             let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 15)]
             let myString = NSMutableAttributedString(string: "EMAIL: ", attributes: attribute1)
             let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 18)]
-            myString.append(NSMutableAttributedString(string: email!.uppercased(), attributes: attribute2))
+            myString.append(NSMutableAttributedString(string: email.uppercased(), attributes: attribute2))
             let myRange = NSRange(location: 0, length: 7)
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             
@@ -144,14 +144,14 @@ class SettingsRootView: UIView {
         })
         .disposed(by: disposeBag)
         
-        viewModel.userSubject
-            .map { $0?.filterEnabled.description }
+        viewModel.user
+            .map { $0.filterEnabled.description }
         .distinctUntilChanged()
         .bind(onNext: { [unowned self] filterEnabled in
             let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 15)]
             let myString = NSMutableAttributedString(string: "FILTER ENABLED: ", attributes: attribute1)
             let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 18)]
-            myString.append(NSMutableAttributedString(string: filterEnabled!.uppercased(), attributes: attribute2))
+            myString.append(NSMutableAttributedString(string: filterEnabled.uppercased(), attributes: attribute2))
             let myRange = NSRange(location: 0, length: 16)
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             
@@ -159,14 +159,14 @@ class SettingsRootView: UIView {
         })
         .disposed(by: disposeBag)
         
-        viewModel.userSubject
-        .map { $0?.profileUrl }
+        viewModel.user
+        .map { $0.profileUrl }
         .distinctUntilChanged()
         .bind(onNext: { [unowned self] profileUrl in
             let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 15)]
             let myString = NSMutableAttributedString(string: "PROFILE LINK: ", attributes: attribute1)
             let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 18)]
-            myString.append(NSMutableAttributedString(string: profileUrl!.uppercased(), attributes: attribute2))
+            myString.append(NSMutableAttributedString(string: profileUrl.uppercased(), attributes: attribute2))
             let myRange = NSRange(location: 0, length: 14)
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             
@@ -174,14 +174,14 @@ class SettingsRootView: UIView {
         })
         .disposed(by: disposeBag)
         
-        viewModel.userSubject
-            .map { $0?.numberOfFollowers }
+        viewModel.user
+            .map { $0.numberOfFollowers }
         .distinctUntilChanged()
         .bind(onNext: { [unowned self] numberOfFollowers in
             let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 20)]
             let myString = NSMutableAttributedString(string: "FOLLOWER COUNT: ", attributes: attribute1)
             let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 35)]
-            myString.append(NSMutableAttributedString(string: "\(numberOfFollowers!)", attributes: attribute2))
+            myString.append(NSMutableAttributedString(string: "\(numberOfFollowers)", attributes: attribute2))
             let myRange = NSRange(location: 0, length: 16)
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             
@@ -189,14 +189,14 @@ class SettingsRootView: UIView {
         })
         .disposed(by: disposeBag)
         
-        viewModel.userSubject
-        .map { $0?.endpointUrl }
+        viewModel.user
+        .map { $0.endpointUrl }
         .distinctUntilChanged()
         .bind(onNext: { [unowned self] endpointUrl in
             let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 15)]
             let myString = NSMutableAttributedString(string: "PROFILE API ENDPOINT: ", attributes: attribute1)
             let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 18)]
-            myString.append(NSMutableAttributedString(string: endpointUrl!.uppercased(), attributes: attribute2))
+            myString.append(NSMutableAttributedString(string: endpointUrl.uppercased(), attributes: attribute2))
             let myRange = NSRange(location: 0, length: 22)
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             
@@ -204,14 +204,14 @@ class SettingsRootView: UIView {
         })
         .disposed(by: disposeBag)
         
-        viewModel.userSubject
-        .map { $0?.id }
+        viewModel.user
+        .map { $0.id }
         .distinctUntilChanged()
         .bind(onNext: { [unowned self] id in
             let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 15)]
             let myString = NSMutableAttributedString(string: "USER ID: ", attributes: attribute1)
             let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 18)]
-            myString.append(NSMutableAttributedString(string: id!.uppercased(), attributes: attribute2))
+            myString.append(NSMutableAttributedString(string: id.uppercased(), attributes: attribute2))
             let myRange = NSRange(location: 0, length: 9)
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             
@@ -219,14 +219,14 @@ class SettingsRootView: UIView {
         })
         .disposed(by: disposeBag)
         
-        viewModel.userSubject
-        .map { $0?.subscriptionLevel }
+        viewModel.user
+        .map { $0.subscriptionLevel }
         .distinctUntilChanged()
         .bind(onNext: { [unowned self] subscriptionLevel in
             let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 15)]
             let myString = NSMutableAttributedString(string: "SUBSCRIPTION LEVEL: ", attributes: attribute1)
             let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 18)]
-            myString.append(NSMutableAttributedString(string: subscriptionLevel!.uppercased(), attributes: attribute2))
+            myString.append(NSMutableAttributedString(string: subscriptionLevel.uppercased(), attributes: attribute2))
             let myRange = NSRange(location: 0, length: 20)
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             
@@ -234,14 +234,14 @@ class SettingsRootView: UIView {
         })
         .disposed(by: disposeBag)
         
-        viewModel.userSubject
-        .map { $0?.uriUrl }
+        viewModel.user
+        .map { $0.uriUrl }
         .distinctUntilChanged()
         .bind(onNext: { [unowned self] uriUrl in
             let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 15)]
             let myString = NSMutableAttributedString(string: "PROFILE SEARCH URI: ", attributes: attribute1)
             let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 18)]
-            myString.append(NSMutableAttributedString(string: uriUrl!.uppercased(), attributes: attribute2))
+            myString.append(NSMutableAttributedString(string: uriUrl.uppercased(), attributes: attribute2))
             let myRange = NSRange(location: 0, length: 20)
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             

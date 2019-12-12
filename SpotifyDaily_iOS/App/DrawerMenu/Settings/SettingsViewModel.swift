@@ -15,20 +15,14 @@ class SettingsViewModel {
     let dataManager: DataManager
     private let disposeBag = DisposeBag()
     
-    let userSubject: BehaviorSubject<User?>
+    let user: Observable<User>
     
     let title = "Settings"
     
     init(sessionService: SessionService, dataManager: DataManager) {
         self.sessionService = sessionService
         self.dataManager = dataManager
-        self.userSubject = BehaviorSubject<User?>(value: sessionService.sessionState?.user)
-    }
-    
-    // TODO: Debug what's going on. Getting nil for user
-    func refreshProfile(){
-        sessionService.refreshProfile()
-        userSubject.onNext(sessionService.sessionState?.user)
+        self.user = sessionService.getUserProfile()
     }
     
     func logout(){

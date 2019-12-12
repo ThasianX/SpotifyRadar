@@ -48,10 +48,8 @@ class SessionService {
     }
     
     private func loadSession() {
-        self.sessionState = self.dataManager.get(key: DataKeys.session, type: Session.self)
-        self.token = self.sessionState?.token
-        
-        Logger.info("\(token): \(sessionState)")
+        self.sessionState = dataManager.get(key: DataKeys.session, type: Session.self)
+        self.token = sessionState?.token
         
         checkIfTokenValid()
     }
@@ -87,16 +85,12 @@ class SessionService {
     }
     
     // MARK: Networking methods
-    func refreshProfile() {
-        networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
-            .flatMap { [unowned self] response -> Observable<User> in
-                return self.networkingClient.getUserFromEndpoint(profileResponse: response)
+    func getUserProfile() -> Observable<User> {
+        return networkingClient.userProfileRequest(accessToken: self.token?.accessToken)
+            .flatMap { response -> Observable<User> in
+                let user = User(country: response.country, displayName: response.displayName, email: response.email, filterEnabled: response.filterEnabled, profileUrl: response.profileUrl, numberOfFollowers: response.numberOfFollowers, endpointUrl: response.endpointUrl, id: response.id, avatarUrl: response.avatarUrl, subscriptionLevel: response.subscriptionLevel, uriUrl: response.uriUrl)
+                return Observable.just(user)
         }
-        .bind(onNext: { [unowned self] in
-            let session = Session(token: self.sessionState!.token, user: $0)
-            self.updateSession(session: session)
-        })
-            .disposed(by: disposeBag)
     }
     
     func getTopArtists(timeRange: String, limit: Int) -> Observable<[Artist]>{
@@ -146,16 +140,10 @@ class SessionService {
         guard let token = self.token else {
             fatalError("Unable to create session due to invalid token")
         }
-        
-        self.networkingClient.getUserFromEndpoint(profileResponse: profileResponse)
-            .bind(onNext: { [weak self] in
-                Logger.info("Setting session")
-                self?.sessionState = Session(token: token, user: $0)
-                self?.dataManager.set(key: DataKeys.session, value: self?.sessionState)
-                self?.setDefaultData()
-                self?.signInSubject.onNext(Void())
-            })
-            .disposed(by: disposeBag)
+        sessionState = Session(token: token, userId: Int(profileResponse.id)!)
+        dataManager.set(key: DataKeys.session, value: self.sessionState)
+        setDefaultData()
+        signInSubject.onNext(Void())
     }
     
     private func updateSession(session: Session) {
