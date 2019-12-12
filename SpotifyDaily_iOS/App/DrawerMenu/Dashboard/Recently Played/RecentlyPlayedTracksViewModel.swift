@@ -83,7 +83,7 @@ RecentlyPlayedTracksViewModelOutput {
                             })
                             .disposed(by: self.disposeBag)
                     }
-                    let updatedTrack = RecentlyPlayedTrack(trackName: track.trackName, albumName: track.albumName, artistURLs: urls, duration: track.duration, playedFrom: track.playedFrom, playedAt: track.playedAt, externalURL: track.externalURL)
+                    let updatedTrack = RecentlyPlayedTrack(trackName: track.trackName, albumName: track.albumName, artistURLs: urls, duration: track.duration, playedAt: track.playedAt, externalURL: track.externalURL)
                     updatedTracks.append(updatedTrack)
                 }
                 

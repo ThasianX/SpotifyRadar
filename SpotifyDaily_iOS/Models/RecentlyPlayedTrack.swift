@@ -13,7 +13,6 @@ struct RecentlyPlayedTrack: Codable, Equatable {
     let albumName: String
     var artistURLs: [URL]
     let duration: String
-    let playedFrom: String
     let playedAt: String
     let externalURL: URL
 }

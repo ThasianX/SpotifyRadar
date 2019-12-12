@@ -13,57 +13,36 @@ class Networking {
     internal func createSignInResponse(code: String,
                                        redirectURL: URL,
                                        clientID: String,
-                                       clientSecret: String,
-                                       completion: @escaping (SignInResponse?, Error?) -> Void) {
+                                       clientSecret: String) -> Observable<SignInResponse>{
         let requestBody = "code=\(code)&grant_type=authorization_code&redirect_uri=\(redirectURL.absoluteString)"
-        authRequest(requestBody: requestBody,
-                    clientID: clientID,
-                    clientSecret: clientSecret) { response, error in
-                        if let response = response, error == nil {
-                            let signInResponse = SignInResponse(accessToken: response.accessToken, refreshToken: response.refreshToken, expirationDate: Date(timeIntervalSinceNow: response.expiresIn))
-                            completion(signInResponse, error)
-                        } else {
-                            DispatchQueue.main.async {
-                                completion(nil, error)
-                            }
-                        }
+        
+        return authRequest(requestBody: requestBody, clientID: clientID, clientSecret: clientSecret)
+            .flatMap { tokenResponse -> Observable<SignInResponse> in
+                let signInResponse = SignInResponse(accessToken: tokenResponse.accessToken, refreshToken: tokenResponse.refreshToken, expirationDate: Date(timeIntervalSinceNow: tokenResponse.expiresIn))
+                return Observable.just(signInResponse)
         }
     }
     
     internal func renewSession(session: Session?,
                                clientID: String,
-                               clientSecret: String,
-                               completion: @escaping (Session?, Error?) -> Void) {
+                               clientSecret: String) -> Observable<Session> {
         guard let session = session, let refreshToken = session.token.refreshToken else {
-            DispatchQueue.main.async {
-                completion(nil, LoginError.noSession)
-            }
-            return
+            fatalError("No current session exists")
         }
+        
         let requestBody = "grant_type=refresh_token&refresh_token=\(refreshToken)"
         
-        Logger.info("Request body created: \(requestBody)")
-        
-        authRequest(requestBody: requestBody,
-                    clientID: clientID,
-                    clientSecret: clientSecret) { response, error in
-                        if let response = response, error == nil {
-                            let session = Session(
-                                token: Token(accessToken: response.accessToken,
-                                             refreshToken: session.token.refreshToken,
-                                             expirationDate: Date(timeIntervalSinceNow: response.expiresIn)),
-                                user: session.user)
-                            
-                            Logger.info("New session was created with access token: \(response.accessToken)")
-                            
-                            DispatchQueue.main.async {
-                                completion(session, nil)
-                            }
-                        } else {
-                            DispatchQueue.main.async {
-                                completion(nil, error)
-                            }
-                        }
+        return authRequest(requestBody: requestBody, clientID: clientID, clientSecret: clientSecret)
+            .flatMap { tokenResponse -> Observable<Session> in
+                let session = Session(
+                    token: Token(accessToken: tokenResponse.accessToken,
+                                 refreshToken: session.token.refreshToken,
+                                 expirationDate: Date(timeIntervalSinceNow: tokenResponse.expiresIn)),
+                    user: session.user)
+                
+                Logger.info("Session has been renewed.")
+                
+                return Observable.just(session)
         }
     }
     
@@ -92,6 +71,8 @@ class Networking {
                 task.cancel()
             }
         }
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
     }
     
     internal func userRecentlyPlayedRequest(accessToken: String?, limit: Int) -> Observable<RecentlyPlayedTracksEndpointResponse> {
@@ -112,6 +93,8 @@ class Networking {
             
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 do {
+                    data?.printJSON()
+                    
                     let trackResponse = try JSONDecoder().decode(RecentlyPlayedTracksEndpointResponse.self, from: data ?? Data())
                     observer.onNext(trackResponse)
                 } catch let error {
@@ -135,7 +118,7 @@ class Networking {
         return Observable<TopArtistsEndpointResponse>.create { observer in
             var topArtistsURL = URL(string: topArtistsEndpointURL)!
             let queryItems = [URLQueryItem(name: "time_range", value: timeRange),
-            URLQueryItem(name: "limit", value: String(limit))]
+                              URLQueryItem(name: "limit", value: String(limit))]
             topArtistsURL.appending(queryItems)
             
             Logger.info("URL created: \(topArtistsURL.absoluteString)")
@@ -169,7 +152,7 @@ class Networking {
         return Observable<TopTracksEndpointResponse>.create { observer in
             var topTracksURL = URL(string: topTracksEndpointURL)!
             let queryItems = [URLQueryItem(name: "time_range", value: timeRange),
-            URLQueryItem(name: "limit", value: String(limit))]
+                              URLQueryItem(name: "limit", value: String(limit))]
             topTracksURL.appending(queryItems)
             
             Logger.info("URL created: \(topTracksURL.absoluteString)")
@@ -249,38 +232,40 @@ class Networking {
     
     private func authRequest(requestBody: String,
                              clientID: String,
-                             clientSecret: String,
-                             completion: @escaping (TokenEndpointResponse?, Error?) -> Void) {
+                             clientSecret: String) -> Observable<TokenEndpointResponse> {
         guard let authString = "\(clientID):\(clientSecret)"
             .data(using: .ascii)?.base64EncodedString(options: .endLineWithLineFeed) else {
-                DispatchQueue.main.async {
-                    completion(nil, LoginError.configurationMissing)
-                }
-                return
+                fatalError("Login configuration missing")
         }
-        let endpoint = URL(string: apiTokenEndpointURL)!
-        var urlRequest = URLRequest(url: endpoint)
-        urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
-        urlRequest.httpMethod = "POST"
         
-        let authHeaderValue = "Basic \(authString)"
-        urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
-        urlRequest.httpBody = requestBody.data(using: .utf8)
-        
-        let task = URLSession.shared.dataTask(with: urlRequest,
-                                              completionHandler: { (data, _, error) in
-                                                if let data = data,
-                                                    let authResponse = try? JSONDecoder().decode(TokenEndpointResponse.self, from: data), error == nil {
-                                                    DispatchQueue.main.async {
-                                                        completion(authResponse, error)
-                                                    }
-                                                } else {
-                                                    DispatchQueue.main.async {
-                                                        completion(nil, error)
-                                                    }
-                                                }
-        })
-        task.resume()
+        return Observable<TokenEndpointResponse>.create { observer in
+            let endpoint = URL(string: apiTokenEndpointURL)!
+            var urlRequest = URLRequest(url: endpoint)
+            urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
+            urlRequest.httpMethod = "POST"
+            
+            let authHeaderValue = "Basic \(authString)"
+            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            urlRequest.httpBody = requestBody.data(using: .utf8)
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                do {
+                    let authResponse = try JSONDecoder().decode(TokenEndpointResponse.self, from: data ?? Data())
+                    Logger.info("On next called with auth response")
+                    observer.onNext(authResponse)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
     }
     
 }

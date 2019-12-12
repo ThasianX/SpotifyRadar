@@ -20,8 +20,8 @@ import RxSwift
 class SpotifyLogin {
     
     weak internal var safariVC: SFSafariViewController?
-    
     internal var urlBuilder: URLBuilder?
+    private let disposeBag = DisposeBag()
     
     private var configuration: Configuration
     private let sessionService: SessionService
@@ -48,7 +48,7 @@ class SpotifyLogin {
     /// - Returns: Whether or not the URL was handled.
     public func applicationOpenURL(_ url: URL) -> Bool {
         guard let urlBuilder = urlBuilder else {
-                return false
+            return false
         }
         
         guard urlBuilder.canHandleURL(url) else {
@@ -61,15 +61,13 @@ class SpotifyLogin {
         if let code = parsedURL.code, !parsedURL.error {
             networkingClient.createSignInResponse(code: code,
                                                   redirectURL: configuration.redirectURL,
-                                            clientID: configuration.clientID,
-                                            clientSecret: configuration.clientSecret,
-                                            completion: { [weak self] response, error in
-                                                DispatchQueue.main.async {
-                                                    if error == nil {
-                                                        self?.sessionService.signIn(response: response!)
-                                                    }
-                                                }
-            })
+                                                  clientID: configuration.clientID,
+                                                  clientSecret: configuration.clientSecret)
+                .bind(onNext: { [weak self] response in
+                    Logger.info("Signing in")
+                    self?.sessionService.signIn(response: response)
+                })
+                .disposed(by: disposeBag)
         }
         
         return true

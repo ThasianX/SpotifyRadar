@@ -51,6 +51,8 @@ class SessionService {
         self.sessionState = self.dataManager.get(key: DataKeys.session, type: Session.self)
         self.token = self.sessionState?.token
         
+        Logger.info("\(token): \(sessionState)")
+        
         checkIfTokenValid()
     }
     
@@ -58,11 +60,11 @@ class SessionService {
     // MARK: Token State
     func checkIfTokenValid(){
         if self.token != nil && !self.token!.isValid() {
-            self.networkingClient.renewSession(session: sessionState, clientID: configuration.clientID, clientSecret: configuration.clientSecret) { [weak self] session, error in
-                if let session = session, error == nil {
-                    self?.updateSession(session: session)
-                }
-            }
+            self.networkingClient.renewSession(session: sessionState, clientID: configuration.clientID, clientSecret: configuration.clientSecret)
+                .bind(onNext: { [unowned self] session in
+                    self.updateSession(session: session)
+                })
+            .disposed(by: disposeBag)
         }
     }
     
@@ -147,6 +149,7 @@ class SessionService {
         
         self.networkingClient.getUserFromEndpoint(profileResponse: profileResponse)
             .bind(onNext: { [weak self] in
+                Logger.info("Setting session")
                 self?.sessionState = Session(token: token, user: $0)
                 self?.dataManager.set(key: DataKeys.session, value: self?.sessionState)
                 self?.setDefaultData()

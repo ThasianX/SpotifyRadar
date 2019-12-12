@@ -18,24 +18,10 @@ fileprivate struct RecentlyPlayedTracksEndpointModel: Decodable {
     struct Item: Codable {
         let track: Track
         let playedAt: String
-        let context: Context
 
         enum CodingKeys: String, CodingKey {
             case track
             case playedAt = "played_at"
-            case context
-        }
-    }
-
-    // MARK: - Context
-    struct Context: Codable {
-        let externalUrls: ExternalUrls
-        let href: String
-        let type, uri: String
-
-        enum CodingKeys: String, CodingKey {
-            case externalUrls = "external_urls"
-            case href, type, uri
         }
     }
 
@@ -146,7 +132,6 @@ struct RecentlyPlayedTracksEndpointResponse: Decodable {
             }
             
             let trackDuration = item.track.durationMS.msToSeconds.minuteSecondMS
-            let playedFrom = "\(item.context.type)".capitalizingFirstLetter()
             
             let playedAtISO = item.playedAt
             let date = playedAtISO.iso8601
@@ -154,7 +139,7 @@ struct RecentlyPlayedTracksEndpointResponse: Decodable {
             
             let externalURL = URL(string: item.track.externalUrls.spotify)!
             
-            let track = RecentlyPlayedTrack(trackName: trackName, albumName: albumName, artistURLs: artistEndpoints, duration: trackDuration, playedFrom: playedFrom, playedAt: playedAt, externalURL: externalURL)
+            let track = RecentlyPlayedTrack(trackName: trackName, albumName: albumName, artistURLs: artistEndpoints, duration: trackDuration, playedAt: playedAt, externalURL: externalURL)
             
             tracks.append(track)
         }

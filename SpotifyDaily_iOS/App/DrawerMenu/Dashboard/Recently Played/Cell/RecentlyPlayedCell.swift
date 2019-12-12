@@ -54,29 +54,23 @@ class RecentlyPlayedCell: UITableViewCell, BindableType {
         
         self.trackName.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
         self.trackName.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
-        self.trackName.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.trackName.trailingAnchor.constraint(equalTo: trackDuration.leadingAnchor, constant: -Constraints.outerMargins).isActive = true
+        
+        self.trackDuration.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
+        self.trackDuration.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         
         self.albumName.topAnchor.constraint(equalTo: trackName.bottomAnchor, constant: Constraints.innerMargins).isActive = true
         self.albumName.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
-        self.albumName.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.albumName.trailingAnchor.constraint(equalTo: playedAt.leadingAnchor, constant: -Constraints.outerMargins).isActive = true
+        
+        self.playedAt.topAnchor.constraint(equalTo: trackDuration.bottomAnchor, constant: Constraints.innerMargins).isActive = true
+       self.playedAt.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         
         self.artistImages.topAnchor.constraint(equalTo: albumName.bottomAnchor, constant: Constraints.innerMargins).isActive = true
         self.artistImages.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         self.artistImages.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: -Constraints.outerMargins).isActive = true
         self.artistImages.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
         
-        self.trackDuration.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
-        self.trackDuration.leadingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
-        self.trackDuration.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
-        
-        self.playedFrom.topAnchor.constraint(equalTo: trackDuration.bottomAnchor, constant: Constraints.innerMargins).isActive = true
-        self.playedFrom.leadingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
-        self.playedFrom.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
-        
-        self.playedAt.topAnchor.constraint(equalTo: playedFrom.bottomAnchor, constant: Constraints.innerMargins).isActive = true
-        self.playedAt.leadingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
-        self.playedAt.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
-        self.playedAt.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
     }
     
     func bindViewModel() {
@@ -106,11 +100,6 @@ class RecentlyPlayedCell: UITableViewCell, BindableType {
         output.track
             .map { $0.duration }
             .bind(to: trackDuration.rx.text)
-        .disposed(by: disposeBag)
-        
-        output.track
-            .map { $0.playedFrom }
-            .bind(to: playedFrom.rx.text)
         .disposed(by: disposeBag)
         
         output.track
