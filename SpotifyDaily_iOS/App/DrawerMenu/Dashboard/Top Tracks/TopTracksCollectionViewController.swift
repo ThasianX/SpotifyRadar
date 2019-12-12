@@ -38,7 +38,7 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
     }
     
     private func setUpView() {
-        self.view.backgroundColor = ColorPreference.mainColor
+        self.view.backgroundColor = ColorPreference.secondaryColor
         
         configureCollectionView()
         

@@ -12,7 +12,7 @@ import UIKit
 extension UICollectionView {
     static var defaultCollectionView: UICollectionView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout

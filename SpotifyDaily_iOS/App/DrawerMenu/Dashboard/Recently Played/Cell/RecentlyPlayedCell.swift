@@ -13,12 +13,12 @@ import RxSwift
 class RecentlyPlayedCell: UITableViewCell, BindableType {
     // MARK: - Properties
     // MARK: View components
-    fileprivate let trackName = UILabel.trackLabel
-    fileprivate let albumName = UILabel.albumLabel
-    fileprivate let artistImages = UIStackView.artistsStackView
-    fileprivate let trackDuration = UILabel.rightLabel
-    fileprivate let playedFrom = UILabel.rightLabel
-    fileprivate let playedAt = UILabel.rightLabel
+    private lazy var trackName = UILabel.trackLabel
+    private lazy var albumName = UILabel.albumLabel
+    private lazy var artistImages = UIStackView.artistsStackView
+    private lazy var trackDuration = UILabel.rightLabel
+    private lazy var playedFrom = UILabel.rightLabel
+    private lazy var playedAt = UILabel.rightLabel
     
     // MARK: Rx
     private let disposeBag = DisposeBag()
@@ -29,6 +29,7 @@ class RecentlyPlayedCell: UITableViewCell, BindableType {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.backgroundColor = .clear
         setUpView()
     }
     
@@ -154,7 +155,7 @@ private extension UIStackView {
 private extension UILabel {
     static var trackLabel: UILabel {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = ColorPreference.tertiaryColor
         label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -166,7 +167,7 @@ private extension UILabel {
     
     static var albumLabel: UILabel {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = ColorPreference.tertiaryColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -178,7 +179,7 @@ private extension UILabel {
     
     static var rightLabel: UILabel {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = ColorPreference.tertiaryColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textAlignment = .right
         

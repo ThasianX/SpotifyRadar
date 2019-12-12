@@ -47,6 +47,7 @@ final class DashboardViewController: ViewControllerWithSideMenu, BindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = ColorPreference.secondaryColor
         title = "Spotify Daily Dashboard"
         self.setUpView()
     }
@@ -68,7 +69,7 @@ final class DashboardViewController: ViewControllerWithSideMenu, BindableType {
         topArtistsButton.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         topArtistsButton.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         
-        topArtistsCollectionView.topAnchor.constraint(equalTo: topArtistsButton.bottomAnchor, constant: Constraints.innerMargins).isActive = true
+        topArtistsCollectionView.topAnchor.constraint(equalTo: topArtistsButton.bottomAnchor).isActive = true
         topArtistsCollectionView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         topArtistsCollectionView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         topArtistsCollectionView.heightAnchor.constraint(equalToConstant: Constraints.offset).isActive = true
@@ -77,7 +78,7 @@ final class DashboardViewController: ViewControllerWithSideMenu, BindableType {
         topTracksButton.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         topTracksButton.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         
-        topTracksCollectionView.topAnchor.constraint(equalTo: topTracksButton.bottomAnchor, constant: Constraints.innerMargins).isActive = true
+        topTracksCollectionView.topAnchor.constraint(equalTo: topTracksButton.bottomAnchor).isActive = true
         topTracksCollectionView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         topTracksCollectionView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         topTracksCollectionView.heightAnchor.constraint(equalToConstant: Constraints.offset).isActive = true
@@ -86,7 +87,7 @@ final class DashboardViewController: ViewControllerWithSideMenu, BindableType {
         recentlyPlayedButton.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         recentlyPlayedButton.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         
-        recentlyPlayedTracksTableView.topAnchor.constraint(equalTo: recentlyPlayedButton.bottomAnchor, constant: Constraints.innerMargins).isActive = true
+        recentlyPlayedTracksTableView.topAnchor.constraint(equalTo: recentlyPlayedButton.bottomAnchor, constant: Constraints.outerMargins).isActive = true
         recentlyPlayedTracksTableView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         recentlyPlayedTracksTableView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         recentlyPlayedTracksTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -106,7 +107,9 @@ final class DashboardViewController: ViewControllerWithSideMenu, BindableType {
     
     private func configureTableView() {
         recentlyPlayedTracksTableView = UITableView()
-        recentlyPlayedTracksTableView.backgroundColor = .white
+        recentlyPlayedTracksTableView.backgroundColor = .clear
+        recentlyPlayedTracksTableView.separatorStyle = .singleLine
+        recentlyPlayedTracksTableView.separatorColor = ColorPreference.tertiaryColor
         recentlyPlayedTracksTableView.translatesAutoresizingMaskIntoConstraints = false
         
         recentlyPlayedTracksTableView.register(RecentlyPlayedCell.self, forCellReuseIdentifier: "recentlyPlayedCell")
@@ -219,7 +222,6 @@ private extension UIButton {
     static var topArtistsButton: UIButton {
         let button = UIButton()
         button.setTitle("Your Top Artists", for: .normal)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -228,7 +230,6 @@ private extension UIButton {
     static var topTracksButton: UIButton {
         let button = UIButton()
         button.setTitle("Your Top Tracks", for: .normal)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -237,7 +238,6 @@ private extension UIButton {
     static var recentlyPlayedButton: UIButton {
         let button = UIButton()
         button.setTitle("Your Recently Played Tracks", for: .normal)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button

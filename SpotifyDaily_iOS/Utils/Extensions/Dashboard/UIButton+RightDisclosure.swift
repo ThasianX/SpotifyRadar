@@ -27,8 +27,10 @@ extension UIButton
         self.imageView?.contentMode = .scaleAspectFit
         self.setImage(image, for: .normal)
         self.imageEdgeInsets = UIEdgeInsets(top: 0, left: self.bounds.size.width-image.size.width*1.5, bottom: 0, right: 0);
-        self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.darkGray.cgColor
+        self.layer.cornerRadius = 20
+        self.layer.masksToBounds = true
+        self.backgroundColor = ColorPreference.secondaryColor
+        self.tintColor = ColorPreference.mainColor
         self.contentEdgeInsets = UIEdgeInsets(top: 10,left: 0,bottom: 10,right: 0)
     }
     

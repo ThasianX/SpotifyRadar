@@ -36,7 +36,7 @@ final class RecentlyPlayedTracksViewController: UIViewController, BindableType {
     }
     
     private func setUpView() {
-        self.view.backgroundColor = ColorPreference.mainColor
+        self.view.backgroundColor = ColorPreference.secondaryColor
         
         configureTableView()
         
@@ -57,7 +57,9 @@ final class RecentlyPlayedTracksViewController: UIViewController, BindableType {
 
     private func configureTableView() {
         tableView = UITableView()
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = ColorPreference.tertiaryColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         tableView.register(RecentlyPlayedCell.self, forCellReuseIdentifier: "recentlyPlayedCell")

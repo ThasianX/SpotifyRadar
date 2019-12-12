@@ -13,12 +13,13 @@ import RxCocoa
 
 class DrawerMenuViewController: UIViewController {
     
-    private var selectedRow: Int = 1
+    private var selectedRow: Int = 0
     private let disposeBag = DisposeBag()
     
     private lazy var tableView = UITableView.tableView
     
     private lazy var appLabel = UILabel.appLabel
+    private lazy var appLogo = UIImageView.appLogo
     
     var viewModel: DrawerMenuViewModel? {
         didSet {
@@ -33,14 +34,18 @@ class DrawerMenuViewController: UIViewController {
     }
     
     private func setUpView(){
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = ColorPreference.secondaryColor
         
         self.view.addSubview(self.appLabel)
+        self.view.addSubview(self.appLogo)
         self.view.addSubview(self.tableView)
         
         let layoutGuide = self.view.safeAreaLayoutGuide
         
-        self.appLabel.centerXAnchor.constraint(equalTo: layoutGuide.centerXAnchor).isActive = true
+        self.appLogo.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: 16).isActive = true
+        self.appLogo.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: 2).isActive = true
+        
+        self.appLabel.leadingAnchor.constraint(equalTo: appLogo.trailingAnchor, constant: 12).isActive = true
         self.appLabel.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: 16).isActive = true
         
         self.tableView.topAnchor.constraint(equalTo: appLabel.bottomAnchor, constant: 30).isActive = true
@@ -55,8 +60,9 @@ class DrawerMenuViewController: UIViewController {
         viewModel.menuItems
             .bind(to: tableView.rx.items(cellIdentifier: "menuCell", cellType: UITableViewCell.self)) { [weak self] row, model, cell in
                 cell.selectionStyle = .none
+                cell.textLabel?.font = UIFont(helveticaStyle: .light, size: 20)
                 cell.textLabel?.text = model.uppercased()
-                cell.textLabel?.textColor = self?.selectedRow == row ? .white : .darkGray
+                cell.textLabel?.textColor = self?.selectedRow == row ? ColorPreference.tertiaryColor : ColorPreference.tertiaryColor
                 cell.backgroundColor = self?.selectedRow == row
                     ? ColorPreference.mainColor
                     : UIColor.clear
@@ -88,6 +94,7 @@ extension UITableView {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
         tableView.isScrollEnabled = false
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -100,11 +107,26 @@ extension UILabel {
     static var appLabel: UILabel {
         let label = UILabel()
         label.text = "Spotify Daily"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont(helveticaStyle: .bold, size: 30)
+        label.textColor = ColorPreference.tertiaryColor
         label.textAlignment = .center
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
+    }
+}
+
+extension UIImageView {
+    static var appLogo: UIImageView {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let image = UIImage(named: "logo")
+        imageView.image = image
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 20
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
     }
 }

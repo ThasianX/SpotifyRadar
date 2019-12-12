@@ -13,10 +13,10 @@ import RxSwift
 class TrackCollectionCell: UICollectionViewCell, BindableType {
     // MARK: - Properties
     // MARK: View components
-    fileprivate let albumBackground = UIImageView.albumBackground
-    fileprivate let trackName = UILabel.trackLabel
-    fileprivate let artistName = UILabel.artistLabel
-    fileprivate let trackDuration = UILabel.durationLabel
+    private lazy var albumBackground = UIImageView.albumBackground
+    private lazy var trackName = UILabel.trackLabel
+    private lazy var artistName = UILabel.artistLabel
+    private lazy var trackDuration = UILabel.durationLabel
     
     // MARK: Rx
     private let disposeBag = DisposeBag()

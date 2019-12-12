@@ -10,5 +10,7 @@ import Foundation
 import UIKit
 
 enum ColorPreference {
-    static let mainColor = UIColor(red: 0x71 / 0xFF, green: 0xBC / 0xFF, blue: 0xBD / 0xFF, alpha: 1)
+    static let mainColor = UIColor(hexString: "#1DB954")
+    static let secondaryColor = UIColor.black
+    static let tertiaryColor = UIColor.white
 }

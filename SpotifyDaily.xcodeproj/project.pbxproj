@@ -27,6 +27,7 @@
 		1E37D9542391E19C0047613B /* TokenEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E37D9532391E19C0047613B /* TokenEndpointResponse.swift */; };
 		1E3AFA75238F1B4C00FAD3E6 /* RecommendationsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AFA74238F1B4C00FAD3E6 /* RecommendationsCoordinator.swift */; };
 		1E4661D523A1C95800D5DECA /* UIButton+RightDisclosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4661D423A1C95800D5DECA /* UIButton+RightDisclosure.swift */; };
+		1E4661D923A1F51F00D5DECA /* UIFont+Helvetica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4661D823A1F51E00D5DECA /* UIFont+Helvetica.swift */; };
 		1E4D05502397F3DD00EE4EEA /* ArtistCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D054F2397F3DD00EE4EEA /* ArtistCollectionCell.swift */; };
 		1E526AAA23945BA4005F09E8 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E526AA923945BA4005F09E8 /* Configuration.swift */; };
 		1E583A0223901D5B00DC033F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E583A0123901D5B00DC033F /* Logger.swift */; };
@@ -141,6 +142,7 @@
 		1E37D9532391E19C0047613B /* TokenEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenEndpointResponse.swift; sourceTree = "<group>"; };
 		1E3AFA74238F1B4C00FAD3E6 /* RecommendationsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsCoordinator.swift; sourceTree = "<group>"; };
 		1E4661D423A1C95800D5DECA /* UIButton+RightDisclosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+RightDisclosure.swift"; sourceTree = "<group>"; };
+		1E4661D823A1F51E00D5DECA /* UIFont+Helvetica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Helvetica.swift"; sourceTree = "<group>"; };
 		1E4D054F2397F3DD00EE4EEA /* ArtistCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCollectionCell.swift; sourceTree = "<group>"; };
 		1E526AA923945BA4005F09E8 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		1E583A0123901D5B00DC033F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				1E896A61238C246400C745F0 /* UIColor+Additions.swift */,
+				1E4661D823A1F51E00D5DECA /* UIFont+Helvetica.swift */,
 				1E356506238ED3D000C407F1 /* UIImageView+Additions.swift */,
 				1EAB9486238F083900C45AD4 /* UIImage+Additions.swift */,
 				1E7129E5239B0653007F538B /* UIViewController+Present.swift */,
@@ -900,6 +903,7 @@
 				1E896A62238C246400C745F0 /* UIColor+Additions.swift in Sources */,
 				1EA8FDBA2391AC9500498AA6 /* Container+Services.swift in Sources */,
 				1E86B428239810BA00582D6E /* ObservableType+Extras.swift in Sources */,
+				1E4661D923A1F51F00D5DECA /* UIFont+Helvetica.swift in Sources */,
 				1ED16E24239CB28E0012DAA1 /* TrackCollectionCellViewModel.swift in Sources */,
 				1EB60BB323918085001DA148 /* BaseNavigationController.swift in Sources */,
 				1EC2A16D23917624006E5E96 /* Scope.swift in Sources */,

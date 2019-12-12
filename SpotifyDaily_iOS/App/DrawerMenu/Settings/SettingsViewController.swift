@@ -27,6 +27,7 @@ final class SettingsViewController: ViewControllerWithSideMenu {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = ColorPreference.secondaryColor
         title = viewModel?.title
     }
     
