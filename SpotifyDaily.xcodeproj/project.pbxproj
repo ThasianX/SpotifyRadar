@@ -423,6 +423,9 @@
 				1EA8FDB52391AB2100498AA6 /* Base */,
 				1EB830D7238CE79C00C002DA /* SignIn */,
 				1EA8FDA92391865E00498AA6 /* DrawerMenu */,
+				1EAB948B238F161200C45AD4 /* Recommendations */,
+				1EB830D8238CE7A400C002DA /* Dashboard */,
+				1E3759A2238D7AFD00928EDD /* Settings */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -444,9 +447,6 @@
 				1EA8FDAA2391866A00498AA6 /* DrawerMenuCoordinator.swift */,
 				1EA8FDAE2391869300498AA6 /* DrawerMenuViewController.swift */,
 				1EA8FDAC2391868100498AA6 /* DrawerMenuViewModel.swift */,
-				1EAB948B238F161200C45AD4 /* Recommendations */,
-				1EB830D8238CE7A400C002DA /* Dashboard */,
-				1E3759A2238D7AFD00928EDD /* Settings */,
 			);
 			path = DrawerMenu;
 			sourceTree = "<group>";

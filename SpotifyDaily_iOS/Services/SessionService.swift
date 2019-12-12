@@ -27,7 +27,7 @@ class SessionService {
     private let signInSubject = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
     
-    private(set) var sessionState: Session?
+    private var sessionState: Session?
     private var token: Token?
     
     // MARK: Public fields
@@ -43,29 +43,25 @@ class SessionService {
         self.dataManager = dataManager
         self.networkingClient = networkingClient
         self.configuration = configuration
-        
-        self.loadSession()
     }
     
-    private func loadSession() {
+    func loadSession() -> Observable<Session?>{
         self.sessionState = dataManager.get(key: DataKeys.session, type: Session.self)
         self.token = sessionState?.token
         
-        checkIfTokenValid()
-    }
-    
-    // MARK: - Public methods
-    // MARK: Token State
-    func checkIfTokenValid(){
+        // Renews session if token is nil
         if self.token != nil && !self.token!.isValid() {
-            self.networkingClient.renewSession(session: sessionState, clientID: configuration.clientID, clientSecret: configuration.clientSecret)
-                .bind(onNext: { [unowned self] session in
+            return self.networkingClient.renewSession(session: sessionState, clientID: configuration.clientID, clientSecret: configuration.clientSecret)
+                .flatMap { [unowned self] session -> Observable<Session?> in
                     self.updateSession(session: session)
-                })
-            .disposed(by: disposeBag)
+                    return Observable.just(session)
+            }
+        } else {
+            return Observable.just(sessionState)
         }
     }
     
+    // MARK: - Public methods
     // MARK: Sign In State
     func signIn(response: SignInResponse) {
         self.setToken(response: response)

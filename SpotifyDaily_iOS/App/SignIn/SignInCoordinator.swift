@@ -16,6 +16,10 @@ class SignInCoordinator: BaseCoordinator {
         self.viewModel = viewModel
     }
     
+    deinit {
+        Logger.info("SignInCoordinator dellocated")
+    }
+    
     override func start() {
         let viewController = SignInViewController()
         viewController.viewModel = viewModel

@@ -64,7 +64,7 @@ class SpotifyLogin {
                                                   clientID: configuration.clientID,
                                                   clientSecret: configuration.clientSecret)
                 .bind(onNext: { [weak self] response in
-                    Logger.info("Signing in")
+                    Logger.info("Signing user in")
                     self?.sessionService.signIn(response: response)
                 })
                 .disposed(by: disposeBag)

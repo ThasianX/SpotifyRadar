@@ -33,6 +33,10 @@ final class SignInViewController: UIViewController {
         setUpBindings()
     }
     
+    deinit {
+        Logger.info("SignInViewController dellocated")
+    }
+    
     //MARK: View configuration
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

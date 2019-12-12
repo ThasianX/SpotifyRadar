@@ -227,7 +227,6 @@ class Networking {
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 do {
                     let authResponse = try JSONDecoder().decode(TokenEndpointResponse.self, from: data ?? Data())
-                    Logger.info("On next called with auth response")
                     observer.onNext(authResponse)
                 } catch let error {
                     observer.onError(error)

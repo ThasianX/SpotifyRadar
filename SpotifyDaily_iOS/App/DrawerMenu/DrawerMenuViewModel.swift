@@ -26,4 +26,8 @@ class DrawerMenuViewModel {
         self.sessionService = sessionService
         self.dataManager = dataManager
     }
+    
+    deinit {
+        Logger.info("DrawerMenuViewModel dellocated")
+    }
 }

@@ -22,6 +22,10 @@ class DrawerMenuCoordinator: BaseCoordinator {
         self.sessionService = sessionService
     }
     
+    deinit {
+        Logger.info("DrawerMenuCoordinator dellocated")
+    }
+    
     override func start() {
         self.drawerMenuViewModel.didSelectScreen
             .distinctUntilChanged()

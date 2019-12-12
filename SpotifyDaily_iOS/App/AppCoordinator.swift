@@ -28,9 +28,11 @@ class AppCoordinator: BaseCoordinator {
     override func start() {
         self.window.makeKeyAndVisible()
         
-        self.sessionService.sessionState == nil
-            ? self.showSignIn()
-            : self.showDashboard()
+        self.sessionService.loadSession()
+            .bind(onNext: { [unowned self] session in
+                session == nil ? self.showSignIn() : self.showDashboard()
+            })
+            .disposed(by: disposeBag)
         
         self.subscribeToSessionChanges()
     }
@@ -38,8 +40,6 @@ class AppCoordinator: BaseCoordinator {
     //MARK: Helper methods
     
     private func showSignIn() {
-        Logger.info("User not authenticated. Creating Sign In Coordinator")
-        
         self.removeChildCoordinators()
         
         let coordinator = AppDelegate.container.resolve(SignInCoordinator.self)!
@@ -52,8 +52,6 @@ class AppCoordinator: BaseCoordinator {
     }
     
     private func showDashboard() {
-        Logger.info("User authenticated. Creating DrawerMenu Coordinator")
-        
         self.removeChildCoordinators()
         
         let coordinator = AppDelegate.container.resolve(DrawerMenuCoordinator.self)!

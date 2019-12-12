@@ -33,6 +33,10 @@ class DrawerMenuViewController: UIViewController {
         self.setUpView()
     }
     
+    deinit {
+        Logger.info("DrawerMenuViewController dellocated")
+    }
+    
     private func setUpView(){
         self.view.backgroundColor = ColorPreference.secondaryColor
         
@@ -56,6 +60,9 @@ class DrawerMenuViewController: UIViewController {
     
     private func setUpBindings() {
         guard let viewModel = self.viewModel else { return }
+        
+        self.tableView.delegate = nil
+        self.tableView.dataSource = nil
         
         viewModel.menuItems
             .bind(to: tableView.rx.items(cellIdentifier: "menuCell", cellType: UITableViewCell.self)) { [weak self] row, model, cell in

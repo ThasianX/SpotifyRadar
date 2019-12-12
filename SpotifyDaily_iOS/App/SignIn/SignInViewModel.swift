@@ -16,6 +16,10 @@ class SignInViewModel {
         self.safariService = safariService
     }
     
+    deinit {
+        Logger.info("SignInViewModel dellocated")
+    }
+    
     func presentSignInBrowser(vc: SignInViewController){
         safariService.login(from: vc, scopes: [.userReadPrivate, .userReadEmail, .userReadTop, .userReadRecentlyPlayed])
     }
