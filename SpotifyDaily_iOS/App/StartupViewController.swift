@@ -31,6 +31,8 @@ class StartupViewController: UIViewController {
         
         let layoutGuide = self.view.safeAreaLayoutGuide
         
+        backgroundImage.heightAnchor.constraint(equalToConstant: 128).isActive = true
+        backgroundImage.widthAnchor.constraint(equalToConstant: 128).isActive = true
         backgroundImage.centerXAnchor.constraint(equalTo: layoutGuide.centerXAnchor).isActive = true
         backgroundImage.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor).isActive = true
     }
