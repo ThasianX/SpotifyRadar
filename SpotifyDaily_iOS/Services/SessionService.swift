@@ -150,11 +150,11 @@ class SessionService {
     
     private func setDefaultData() {
         let topArtistsState = TopArtistsViewControllerState(artistsTimeRange:
-            "medium_term", artistsLimit: 10)
+            "medium_term", artistsLimit: 20)
         self.dataManager.set(key: DataKeys.topArtistsCollectionState, value: topArtistsState)
         
         let topTracksState = TopTracksViewControllerState(tracksTimeRange:
-            "medium_term", tracksLimit: 10)
+            "medium_term", tracksLimit: 20)
         self.dataManager.set(key: DataKeys.topTracksCollectionState, value: topTracksState)
     }
 }

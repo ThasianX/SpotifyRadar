@@ -102,6 +102,7 @@ private extension UIImageView {
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 8
         imageView.dim(withAlpha: 0.2)
+        imageView.contentMode = .scaleAspectFill
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         

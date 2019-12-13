@@ -57,19 +57,22 @@ class RecentlyPlayedCell: UITableViewCell, BindableType {
         
         self.trackName.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
         self.trackName.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
-        self.trackName.trailingAnchor.constraint(equalTo: trackDuration.leadingAnchor, constant: -Constraints.outerMargins).isActive = true
-        
-        self.trackDuration.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
-        self.trackDuration.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.trackName.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
         
         self.albumName.topAnchor.constraint(equalTo: trackName.bottomAnchor, constant: Constraints.innerMargins).isActive = true
         self.albumName.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
-        self.albumName.trailingAnchor.constraint(equalTo: playedAt.leadingAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.albumName.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
+        self.albumName.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
+        
+        self.trackDuration.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
+        self.trackDuration.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.trackDuration.leadingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
         
         self.playedAt.topAnchor.constraint(equalTo: trackDuration.bottomAnchor, constant: Constraints.innerMargins*1.5).isActive = true
-       self.playedAt.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.playedAt.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.playedAt.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         
-        self.artistImages.topAnchor.constraint(equalTo: albumName.bottomAnchor, constant: Constraints.innerMargins).isActive = true
+        self.artistImages.topAnchor.constraint(equalTo: playedAt.bottomAnchor, constant: Constraints.innerMargins).isActive = true
         self.artistImages.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         self.artistImages.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: -Constraints.outerMargins).isActive = true
         self.artistImages.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
