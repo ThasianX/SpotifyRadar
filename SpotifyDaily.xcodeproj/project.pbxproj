@@ -45,6 +45,7 @@
 		1E896A68238C29F400C745F0 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E896A67238C29F400C745F0 /* BaseCoordinator.swift */; };
 		1E896A6A238C2A8D00C745F0 /* SignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E896A69238C2A8D00C745F0 /* SignInCoordinator.swift */; };
 		1E9CD1F023A1B07C00A342B4 /* UICollectionView+DefaultConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9CD1EF23A1B07C00A342B4 /* UICollectionView+DefaultConfiguration.swift */; };
+		1EA684B223A33C0F001BD6F4 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA684B123A33C0F001BD6F4 /* StartupViewController.swift */; };
 		1EA8FDA82391843400498AA6 /* ViewControllerWithSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA8FDA72391843400498AA6 /* ViewControllerWithSideMenu.swift */; };
 		1EA8FDAB2391866A00498AA6 /* DrawerMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA8FDAA2391866A00498AA6 /* DrawerMenuCoordinator.swift */; };
 		1EA8FDAD2391868100498AA6 /* DrawerMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA8FDAC2391868100498AA6 /* DrawerMenuViewModel.swift */; };
@@ -160,6 +161,7 @@
 		1E896A67238C29F400C745F0 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		1E896A69238C2A8D00C745F0 /* SignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
 		1E9CD1EF23A1B07C00A342B4 /* UICollectionView+DefaultConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+DefaultConfiguration.swift"; sourceTree = "<group>"; };
+		1EA684B123A33C0F001BD6F4 /* StartupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
 		1EA8FDA72391843400498AA6 /* ViewControllerWithSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerWithSideMenu.swift; sourceTree = "<group>"; };
 		1EA8FDAA2391866A00498AA6 /* DrawerMenuCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuCoordinator.swift; sourceTree = "<group>"; };
 		1EA8FDAC2391868100498AA6 /* DrawerMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuViewModel.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				1E896A63238C27F000C745F0 /* AppCoordinator.swift */,
+				1EA684B123A33C0F001BD6F4 /* StartupViewController.swift */,
 				1EA8FDB52391AB2100498AA6 /* Base */,
 				1EB830D7238CE79C00C002DA /* SignIn */,
 				1EA8FDA92391865E00498AA6 /* DrawerMenu */,
@@ -867,6 +870,7 @@
 				1E37D9522391E1680047613B /* ProfileEndpointResponse.swift in Sources */,
 				1EC2A13523916D33006E5E96 /* Json.swift in Sources */,
 				1E583A0223901D5B00DC033F /* Logger.swift in Sources */,
+				1EA684B223A33C0F001BD6F4 /* StartupViewController.swift in Sources */,
 				1E7129E8239B0B12007F538B /* ColorPreference.swift in Sources */,
 				1EC2A13823916D86006E5E96 /* Data+Json.swift in Sources */,
 				1EC2A16E23917624006E5E96 /* Session.swift in Sources */,

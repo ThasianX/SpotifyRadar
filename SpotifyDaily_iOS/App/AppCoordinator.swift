@@ -28,6 +28,11 @@ class AppCoordinator: BaseCoordinator {
     override func start() {
         self.window.makeKeyAndVisible()
         
+        ViewControllerUtils.setRootViewController(
+        window: self.window,
+        viewController: StartupViewController(),
+        withAnimation: true)
+        
         self.sessionService.loadSession()
             .bind(onNext: { [unowned self] session in
                 session == nil ? self.showSignIn() : self.showDashboard()
