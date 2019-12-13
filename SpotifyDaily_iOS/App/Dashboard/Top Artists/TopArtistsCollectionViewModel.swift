@@ -22,6 +22,9 @@ protocol TopArtistsCollectionsViewModelInput {
 
      /// Call when an artist is selected
     func artistSelected(from viewController: (UIViewController), artist: Artist)
+    
+    /// Call when view controller is dismissed
+    var dismissed: PublishSubject<Void> { get }
 }
 protocol TopArtistsCollectionsViewModelOutput {
     /// Emites the child viewModels
@@ -47,6 +50,8 @@ class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
     func artistSelected(from viewController: (UIViewController), artist: Artist) {
         safariService.presentSafari(from: viewController, for: artist.externalURL)
     }
+    
+    let dismissed = PublishSubject<Void>()
     
     // MARK: Outputs
     lazy var collectionCellsModelType: Observable<[ArtistCollectionCellViewModelType]> = {

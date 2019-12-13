@@ -8,12 +8,15 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 class RecentlyPlayedTracksCoordinator: BaseCoordinator {
     
     var recentlyPlayedViewController: BaseNavigationController!
+    weak var parentViewModel: DashboardViewModel!
     
     private let viewModel: RecentlyPlayedTracksViewModel
+    private let disposeBag = DisposeBag()
     
     init(viewModel: RecentlyPlayedTracksViewModel) {
         self.viewModel = viewModel
@@ -22,7 +25,7 @@ class RecentlyPlayedTracksCoordinator: BaseCoordinator {
     deinit {
         Logger.info("RecentlyPlayedTracksCoordinator dellocated")
     }
-
+    
     override func start() {
         var viewController = RecentlyPlayedTracksViewController()
         viewController.bind(to: self.viewModel)
@@ -31,6 +34,10 @@ class RecentlyPlayedTracksCoordinator: BaseCoordinator {
         recentlyPlayedViewController.navigationBar.isHidden = true
         
         self.navigationController.presentOnTop(recentlyPlayedViewController, animated: true)
+        
+        viewModel.input.dismissed
+            .bind(to: parentViewModel.childDismissed)
+            .disposed(by: disposeBag)
     }
     
 }

@@ -39,6 +39,11 @@ final class RecentlyPlayedTracksViewController: UIViewController, BindableType {
         Logger.info("RecentlyPlayedTracksViewController dellocated")
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        Logger.info("View did disappear")
+        viewModel.input.dismissed.onNext(Void())
+    }
+    
     private func setUpView() {
         self.view.backgroundColor = ColorPreference.secondaryColor
         

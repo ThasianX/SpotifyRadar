@@ -23,6 +23,7 @@ class DrawerMenuViewController: UIViewController {
     
     var viewModel: DrawerMenuViewModel? {
         didSet {
+            self.selectedRow = 0
             self.setUpBindings()
         }
     }

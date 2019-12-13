@@ -8,12 +8,15 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 class TopArtistsCollectionCoordinator: BaseCoordinator {
     
     var artistsCollectionViewController: BaseNavigationController!
+    weak var parentViewModel: DashboardViewModel!
     
     private let viewModel: TopArtistsCollectionViewModel
+    private let disposeBag = DisposeBag()
     
     init(viewModel: TopArtistsCollectionViewModel) {
         self.viewModel = viewModel
@@ -31,6 +34,10 @@ class TopArtistsCollectionCoordinator: BaseCoordinator {
         artistsCollectionViewController.navigationBar.isHidden = true
         
         self.navigationController.presentOnTop(artistsCollectionViewController, animated: true)
+        
+        viewModel.input.dismissed
+            .bind(to: parentViewModel.childDismissed)
+            .disposed(by: disposeBag)
     }
     
 }

@@ -18,6 +18,8 @@ protocol DashboardViewModelInput {
     var presentTopArtists: PublishSubject<Void> { get }
     var presentTopTracks: PublishSubject<Void> { get }
     var presentRecentlyPlayed: PublishSubject<Void> { get }
+    
+    var childDismissed: PublishSubject<Void> { get }
 }
 
 protocol DashboardViewModelOutput {
@@ -61,6 +63,8 @@ class DashboardViewModel: DashboardViewModelType, DashboardViewModelInput, Dashb
     let presentTopArtists = PublishSubject<Void>()
     let presentTopTracks = PublishSubject<Void>()
     let presentRecentlyPlayed = PublishSubject<Void>()
+    
+    let childDismissed = PublishSubject<Void>()
     
     // MARK: Outputs
     lazy var topArtistsCellModelType: Observable<[ArtistCollectionCellViewModelType]> = {

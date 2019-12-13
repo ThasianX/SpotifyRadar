@@ -22,6 +22,9 @@ protocol TopTracksCollectionsViewModelInput {
 
      /// Call when an artist is selected
     func trackSelected(from viewController: (UIViewController), track: Track)
+    
+    /// Call when view controller is dismissed
+    var dismissed: PublishSubject<Void> { get }
 }
 protocol TopTracksCollectionsViewModelOutput {
     /// Emites the child viewModels
@@ -47,7 +50,9 @@ class TopTracksCollectionViewModel: TopTracksCollectionsViewModelType,
     func trackSelected(from viewController: (UIViewController), track: Track){
         safariService.presentSafari(from: viewController, for: track.externalURL)
     }
-
+    
+    let dismissed = PublishSubject<Void>()
+    
     // MARK: Outputs
     lazy var collectionCellsModelType: Observable<[TrackCollectionCellViewModelType]> = {
         return trackCollections.mapMany { TrackCollectionCellViewModel(track: $0) }

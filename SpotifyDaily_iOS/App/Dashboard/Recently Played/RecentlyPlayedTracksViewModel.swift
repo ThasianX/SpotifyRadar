@@ -16,6 +16,9 @@ protocol RecentlyPlayedTracksViewModelInput {
     
     /// Call when an artist is selected
     func trackSelected(from viewController: (UIViewController), track: RecentlyPlayedTrack)
+    
+    /// Call when view controller is dismissed
+    var dismissed: PublishSubject<Void> { get }
 }
 protocol RecentlyPlayedTracksViewModelOutput {
     /// Emites the child viewModels
@@ -42,6 +45,8 @@ RecentlyPlayedTracksViewModelOutput {
     func trackSelected(from viewController: (UIViewController), track: RecentlyPlayedTrack){
         safariService.presentSafari(from: viewController, for: track.externalURL)
     }
+    
+    let dismissed = PublishSubject<Void>()
     
     // MARK: Outputs
     lazy var tableViewCellsModelType: Observable<[RecentlyPlayedCellViewModelType]> = {
