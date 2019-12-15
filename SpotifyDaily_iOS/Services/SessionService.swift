@@ -136,7 +136,7 @@ class SessionService {
         guard let token = self.token else {
             fatalError("Unable to create session due to invalid token")
         }
-        sessionState = Session(token: token, userId: Int(profileResponse.id)!)
+        sessionState = Session(token: token, userId: profileResponse.id)
         dataManager.set(key: DataKeys.session, value: self.sessionState)
         setDefaultData()
         signInSubject.onNext(Void())

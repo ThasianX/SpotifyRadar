@@ -16,7 +16,7 @@ fileprivate struct TopTracksEndpointModel: Decodable {
         let durationMS: Int
         let externalUrls: ExternalUrls
         let name: String
-        let previewURL: String
+        let previewURL: String?
 
         enum CodingKeys: String, CodingKey {
             case album, artists

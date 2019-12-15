@@ -53,8 +53,12 @@ extension ProfileEndpointResponse: Decodable {
         let container = try decoder.container(keyedBy: RootKeys.self)
         country = try container.decode(String.self, forKey: .country)
         displayName = try container.decode(String.self, forKey: .displayName)
-        email = try container.decode(String.self, forKey: .email)
-
+        if let _email = try container.decode(String?.self, forKey: .email) {
+            email = _email
+        } else {
+            email = "None - Facebook"
+        }
+        
         let explicitContentContainer = try container.nestedContainer(keyedBy: ExplicitContentKeys.self, forKey: .explicitContent)
         filterEnabled = try explicitContentContainer.decode(Bool.self, forKey: .filterEnabled)
 
@@ -75,10 +79,12 @@ extension ProfileEndpointResponse: Decodable {
             let imageUrl = try imageContainer.decode(String.self, forKey: .url)
             imagesArray.append(imageUrl)
         }
-        guard let image = imagesArray.first else {
-            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath + [RootKeys.images], debugDescription: "images cannot be empty"))
+        
+        if imagesArray.count == 0 {
+            imagesArray.append("")
         }
-        avatarUrl = image
+        
+        avatarUrl = imagesArray.first!
 
         subscriptionLevel = try container.decode(String.self, forKey: .product)
 

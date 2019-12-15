@@ -43,7 +43,7 @@ fileprivate struct RecentlyPlayedTracksEndpointModel: Decodable {
         let isLocal: Bool
         let name: String
         let popularity: Int
-        let previewURL: String
+        let previewURL: String?
         let trackNumber: Int
         let type, uri: String
 
@@ -109,8 +109,8 @@ fileprivate struct RecentlyPlayedTracksEndpointModel: Decodable {
     }
     
     let items: [Item]
-    let next: String
-    let cursors: Cursors
+    let next: String?
+    let cursors: Cursors?
     let limit: Int
     let href: String
 }

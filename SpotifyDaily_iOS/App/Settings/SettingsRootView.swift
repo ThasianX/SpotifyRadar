@@ -97,9 +97,13 @@ class SettingsRootView: UIView {
         viewModel.user
         .map { $0.avatarUrl }
         .distinctUntilChanged()
-        .map { URL(string: $0)!}
         .bind(onNext: { [unowned self] url in
-            self.userAvatar.load(url: url, targetSize: CGSize(width: 200, height: 200))
+            if url == "" {
+                let defaultImage = UIImage(named: "default_user")?.resize(targetSize: CGSize(width: 200, height: 200))
+                self.userAvatar.image = defaultImage
+            } else {
+                self.userAvatar.load(url: URL(string: url)!, targetSize: CGSize(width: 200, height: 200))
+            }
         })
         .disposed(by: disposeBag)
         

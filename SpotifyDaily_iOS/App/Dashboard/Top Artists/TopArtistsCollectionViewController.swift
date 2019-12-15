@@ -83,7 +83,15 @@ final class TopArtistsCollectionViewController: UIViewController, BindableType {
         let input = viewModel.input
         let output = viewModel.output
         
-        self.artistsTimeRangeControl.selectedSegmentIndex = self.timeRangeItems.firstIndex(of: viewModel.input.artistsTimeRange.value)!
+        artistsTimeRangeControl.selectedSegmentIndex = self.timeRangeItems.firstIndex(of: viewModel.input.artistsTimeRange.value)!
+        
+        artistsTimeRangeControl.rx.selectedSegmentIndex
+            .skip(1)
+            .bind(onNext: { [weak self] index in
+            let title = self?.artistsTimeRangeControl.titleForSegment(at: index)
+            input.artistsTimeRange.accept(title!)
+        })
+            .disposed(by: disposeBag)
         
         output.collectionCellsModelType
             .map { [ArtistsSectionModel(model: "", items: $0)] }
@@ -94,13 +102,6 @@ final class TopArtistsCollectionViewController: UIViewController, BindableType {
             .bind(to: topArtistsTitle.rx.text)
             .disposed(by: disposeBag)
         
-        artistsTimeRangeControl.rx.selectedSegmentIndex
-            .bind(onNext: { [weak self] index in
-            let title = self?.artistsTimeRangeControl.titleForSegment(at: index)
-            input.artistsTimeRange.accept(title!)
-        })
-            .disposed(by: disposeBag)
-
         collectionView.rx.reachedBottom()
             .bind(to: input.loadMore)
             .disposed(by: disposeBag)

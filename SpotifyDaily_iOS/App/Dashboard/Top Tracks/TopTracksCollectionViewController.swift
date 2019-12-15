@@ -83,7 +83,15 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
         let input = viewModel.input
         let output = viewModel.output
         
-        self.tracksTimeRangeControl.selectedSegmentIndex = self.timeRangeItems.firstIndex(of: viewModel.input.tracksTimeRange.value)!
+        tracksTimeRangeControl.selectedSegmentIndex = self.timeRangeItems.firstIndex(of: viewModel.input.tracksTimeRange.value)!
+        
+        tracksTimeRangeControl.rx.selectedSegmentIndex
+            .skip(1)
+            .bind(onNext: { [weak self] index in
+            let title = self?.tracksTimeRangeControl.titleForSegment(at: index)
+            input.tracksTimeRange.accept(title!)
+        })
+            .disposed(by: disposeBag)
         
         output.collectionCellsModelType
             .map { [TracksSectionModel(model: "", items: $0)] }
@@ -94,13 +102,6 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
             .bind(to: topTracksTitle.rx.text)
             .disposed(by: disposeBag)
         
-        tracksTimeRangeControl.rx.selectedSegmentIndex
-            .bind(onNext: { [weak self] index in
-            let title = self?.tracksTimeRangeControl.titleForSegment(at: index)
-            input.tracksTimeRange.accept(title!)
-        })
-            .disposed(by: disposeBag)
-
         collectionView.rx.reachedBottom()
             .bind(to: input.loadMore)
             .disposed(by: disposeBag)
