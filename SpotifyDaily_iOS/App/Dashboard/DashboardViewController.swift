@@ -19,7 +19,7 @@ final class DashboardViewController: ViewControllerWithSideMenu, BindableType {
     private lazy var recentlyPlayedButton = UIButton.recentlyPlayedButton
     private lazy var topArtistsCollectionView = UICollectionView.defaultCollectionView
     private lazy var topTracksCollectionView = UICollectionView.defaultCollectionView
-    private var recentlyPlayedTracksTableView: UITableView!
+    private lazy var recentlyPlayedTracksTableView = UITableView.defaultTableView
     
     // MARK: Section models
     typealias ArtistsSectionModel = SectionModel<String, ArtistCollectionCellViewModelType>
@@ -110,12 +110,6 @@ final class DashboardViewController: ViewControllerWithSideMenu, BindableType {
     }
     
     private func configureTableView() {
-        recentlyPlayedTracksTableView = UITableView()
-        recentlyPlayedTracksTableView.backgroundColor = .clear
-        recentlyPlayedTracksTableView.separatorStyle = .singleLine
-        recentlyPlayedTracksTableView.separatorColor = ColorPreference.tertiaryColor
-        recentlyPlayedTracksTableView.translatesAutoresizingMaskIntoConstraints = false
-        
         recentlyPlayedTracksTableView.register(RecentlyPlayedCell.self, forCellReuseIdentifier: "recentlyPlayedCell")
         recentlyPlayedTracksDataSource = RxTableViewSectionedReloadDataSource<RecentlyPlayedTracksSectionModel>(
             configureCell:  recentlyPlayedTracksTableViewDataSource

@@ -15,6 +15,7 @@ fileprivate struct TopTracksEndpointModel: Decodable {
         let artists: [Artist]
         let durationMS: Int
         let externalUrls: ExternalUrls
+        let id: String
         let name: String
         let previewURL: String?
 
@@ -23,6 +24,7 @@ fileprivate struct TopTracksEndpointModel: Decodable {
             case durationMS = "duration_ms"
             case externalUrls = "external_urls"
             case name
+            case id
             case previewURL = "preview_url"
         }
     }
@@ -68,6 +70,7 @@ struct TopTracksEndpointResponse: Decodable {
         
         for item in response.items {
             let trackName = item.name
+            let trackId = item.id
             let trackDuration = item.durationMS.msToSeconds.minuteSecondMS
             let externalURL = URL(string: item.externalUrls.spotify)!
             
@@ -79,7 +82,7 @@ struct TopTracksEndpointResponse: Decodable {
             
             let albumImageURL = URL(string: item.album.images.first!.url)!
             
-            let track = Track(name: trackName, duration: trackDuration, artists: artists, albumImage: albumImageURL, externalURL: externalURL)
+            let track = Track(name: trackName, id: trackId, duration: trackDuration, artists: artists, albumImage: albumImageURL, externalURL: externalURL)
             
             tracks.append(track)
         }

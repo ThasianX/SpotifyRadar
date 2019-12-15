@@ -10,6 +10,7 @@ import Foundation
 
 struct Track: Codable, Equatable {
     let name: String
+    let id: String
     let duration: String
     let artists: String
     let albumImage: URL

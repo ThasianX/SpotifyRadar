@@ -15,7 +15,7 @@ extension Container {
     func registerViewModels() {
         self.autoregister(SignInViewModel.self, initializer: SignInViewModel.init)
         self.autoregister(DrawerMenuViewModel.self, initializer: DrawerMenuViewModel.init)
-        self.autoregister(RecommendationsViewModel.self, initializer: RecommendationsViewModel.init)
+        self.autoregister(SearchArtistsViewModel.self, initializer: SearchArtistsViewModel.init)
         self.autoregister(DashboardViewModel.self, initializer: DashboardViewModel.init)
         self.autoregister(SettingsViewModel.self, initializer: SettingsViewModel.init)
         self.autoregister(TopArtistsCollectionViewModel.self, initializer: TopArtistsCollectionViewModel.init)

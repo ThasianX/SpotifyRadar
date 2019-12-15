@@ -13,6 +13,7 @@ fileprivate struct TopArtistsEndpointModel: Decodable {
         var external_urls: ExternalUrls
         var followers: Followers
         var genres: [String]
+        var id: String
         var images: [Image]
         var name: String
     }
@@ -40,10 +41,11 @@ struct TopArtistsEndpointResponse: Decodable {
         
         for item in response.items {
             let name = item.name
+            let id = item.id
             let url = URL(string: item.images.first!.url)!
             let followers = item.followers.total
             let externalURL = URL(string: item.external_urls.spotify)!
-            let artist = Artist(name: name, image: url, followers: followers, externalURL: externalURL)
+            let artist = Artist(name: name, id: id,image: url, followers: followers, externalURL: externalURL)
             
             self.artists.append(artist)
         }

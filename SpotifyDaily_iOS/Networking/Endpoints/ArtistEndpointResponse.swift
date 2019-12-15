@@ -49,11 +49,12 @@ struct ArtistEndpointResponse: Decodable {
         let response = try ArtistEndpointModel(from: decoder)
         
         let name = response.name
+        let id = response.id
         
         let image = response.images.count > 0 ? URL(string: response.images.first!.url) : nil
         let followers = response.followers.total
         let externalURL = URL(string: response.externalUrls.spotify)!
         
-        artist = Artist(name: name, image: image, followers: followers, externalURL: externalURL)
+        artist = Artist(name: name, id: id, image: image, followers: followers, externalURL: externalURL)
     }
 }

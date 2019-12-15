@@ -10,6 +10,7 @@ import Foundation
 
 struct Artist: Codable, Equatable {
     let name: String
+    let id: String
     let image: URL?
     let followers: Int
     let externalURL: URL

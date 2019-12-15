@@ -22,7 +22,7 @@ final class RecentlyPlayedTracksViewController: UIViewController, BindableType {
     var viewModel: RecentlyPlayedTracksViewModelType!
     
     // MARK: View components
-    private var tableView: UITableView!
+    private var tableView = UITableView.defaultTableView
     private let recentlyPlayedTitle = UILabel.modalTitle
     
     // MARK: Private
@@ -65,12 +65,6 @@ final class RecentlyPlayedTracksViewController: UIViewController, BindableType {
     }
 
     private func configureTableView() {
-        tableView = UITableView()
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .singleLine
-        tableView.separatorColor = ColorPreference.tertiaryColor
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-
         tableView.register(RecentlyPlayedCell.self, forCellReuseIdentifier: "recentlyPlayedCell")
         dataSource = RxTableViewSectionedReloadDataSource<TracksSectionModel>(
             configureCell:  tableViewDataSource
