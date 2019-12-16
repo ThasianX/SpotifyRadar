@@ -72,7 +72,7 @@ class AddArtistsViewController: ViewControllerWithSideMenu, BindableType {
         resultsTableView.topAnchor.constraint(equalTo: layoutGuide.topAnchor).isActive = true
         resultsTableView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor).isActive = true
         resultsTableView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
-        resultsTableView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
+        resultsTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         
     }
     
