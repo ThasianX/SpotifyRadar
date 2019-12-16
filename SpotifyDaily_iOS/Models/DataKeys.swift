@@ -12,4 +12,5 @@ struct DataKeys {
     static let session = "session"
     static let topArtistsCollectionState = "topArtistsCollectionState"
     static let topTracksCollectionState = "topTracksCollectionState"
+    static let artistPortfolioState = "artistPortfolioState"
 }

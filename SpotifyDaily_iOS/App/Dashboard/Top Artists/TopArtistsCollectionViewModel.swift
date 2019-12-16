@@ -81,7 +81,7 @@ class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
         // Initializing utputs
         title = Observable.just("Your Top Artists")
         
-        guard let artistsCollectionState = self.dataManager.get(key: DataKeys.topArtistsCollectionState, type: TopArtistsViewControllerState.self) else { return }
+        let artistsCollectionState = self.dataManager.get(key: DataKeys.topArtistsCollectionState, type: TopArtistsViewControllerState.self)!
         
         self.artistsTimeRange.accept(artistsCollectionState.artistsTimeRange)
         self.artistsLimit.accept(artistsCollectionState.artistsLimit)

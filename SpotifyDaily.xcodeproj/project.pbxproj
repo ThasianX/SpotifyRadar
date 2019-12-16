@@ -38,6 +38,7 @@
 		1E7129E6239B0653007F538B /* UIViewController+Present.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7129E5239B0653007F538B /* UIViewController+Present.swift */; };
 		1E7129E8239B0B12007F538B /* ColorPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7129E7239B0B12007F538B /* ColorPreference.swift */; };
 		1E7488F12398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7488F02398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift */; };
+		1E7DA2E623A716CB0045FE17 /* ArtistPortfolioState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7DA2E523A716CB0045FE17 /* ArtistPortfolioState.swift */; };
 		1E86B42223980C1B00582D6E /* TopArtistsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42123980C1B00582D6E /* TopArtistsCollectionViewController.swift */; };
 		1E86B42423980C9500582D6E /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42323980C9500582D6E /* BindableType.swift */; };
 		1E86B42623980D5300582D6E /* TopArtistsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42523980D5300582D6E /* TopArtistsCollectionViewModel.swift */; };
@@ -158,6 +159,7 @@
 		1E7129E5239B0653007F538B /* UIViewController+Present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Present.swift"; sourceTree = "<group>"; };
 		1E7129E7239B0B12007F538B /* ColorPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreference.swift; sourceTree = "<group>"; };
 		1E7488F02398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsCollectionCoordinator.swift; sourceTree = "<group>"; };
+		1E7DA2E523A716CB0045FE17 /* ArtistPortfolioState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistPortfolioState.swift; sourceTree = "<group>"; };
 		1E86B42123980C1B00582D6E /* TopArtistsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsCollectionViewController.swift; sourceTree = "<group>"; };
 		1E86B42323980C9500582D6E /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
 		1E86B42523980D5300582D6E /* TopArtistsCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsCollectionViewModel.swift; sourceTree = "<group>"; };
@@ -445,7 +447,7 @@
 				1EA8FDB52391AB2100498AA6 /* Base */,
 				1EB830D7238CE79C00C002DA /* SignIn */,
 				1EA8FDA92391865E00498AA6 /* DrawerMenu */,
-				1EAB948B238F161200C45AD4 /* Recommendations */,
+				1EAB948B238F161200C45AD4 /* Search Artists */,
 				1EB830D8238CE7A400C002DA /* Dashboard */,
 				1E3759A2238D7AFD00928EDD /* Settings */,
 			);
@@ -494,7 +496,7 @@
 			path = DependencyInjection;
 			sourceTree = "<group>";
 		};
-		1EAB948B238F161200C45AD4 /* Recommendations */ = {
+		1EAB948B238F161200C45AD4 /* Search Artists */ = {
 			isa = PBXGroup;
 			children = (
 				1E43D76F23A5D7CF000CF906 /* Cell */,
@@ -502,7 +504,7 @@
 				1EAB948C238F164B00C45AD4 /* SearchArtistsViewController.swift */,
 				1EA8FDBF2391AD4000498AA6 /* SearchArtistsViewModel.swift */,
 			);
-			path = Recommendations;
+			path = "Search Artists";
 			sourceTree = "<group>";
 		};
 		1EB830D7238CE79C00C002DA /* SignIn */ = {
@@ -640,6 +642,7 @@
 			children = (
 				1EBDF99B239602DB00325E7F /* TopArtistsViewControllerState.swift */,
 				1ED16E27239CB3E90012DAA1 /* TopTracksViewControllerState.swift */,
+				1E7DA2E523A716CB0045FE17 /* ArtistPortfolioState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -941,6 +944,7 @@
 				1EC982F8239E9391004BF1B8 /* RecentlyPlayedCell.swift in Sources */,
 				1E526AAA23945BA4005F09E8 /* Configuration.swift in Sources */,
 				1E4D05502397F3DD00EE4EEA /* ArtistCollectionCell.swift in Sources */,
+				1E7DA2E623A716CB0045FE17 /* ArtistPortfolioState.swift in Sources */,
 				1EA8FDB12391875500498AA6 /* DrawerMenuScreen.swift in Sources */,
 				1EC2A13A23916DC9006E5E96 /* Encodable+Json.swift in Sources */,
 				1EC2A12723916547006E5E96 /* SignInResponse.swift in Sources */,

@@ -94,7 +94,7 @@ class SearchArtistsViewController: ViewControllerWithSideMenu {
             .map { $0.viewModel }
             .flatMap { $0.output.artist }
             .bind(onNext: { [unowned self] in
-                input.artistSelected(from: self, track: $0)
+                input.artistSelected(from: self, artist: $0)
             })
             .disposed(by: self.disposeBag)
         

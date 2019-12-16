@@ -81,7 +81,7 @@ class TopTracksCollectionViewModel: TopTracksCollectionsViewModelType,
         // Initializing utputs
         title = Observable.just("Your Top Tracks")
         
-        guard let tracksCollectionState = self.dataManager.get(key: DataKeys.topTracksCollectionState, type: TopTracksViewControllerState.self) else { return }
+        let tracksCollectionState = self.dataManager.get(key: DataKeys.topTracksCollectionState, type: TopTracksViewControllerState.self)!
         
         self.tracksTimeRange.accept(tracksCollectionState.tracksTimeRange)
         self.tracksLimit.accept(tracksCollectionState.tracksLimit)

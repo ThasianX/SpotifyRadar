@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Artist: Codable, Equatable {
+struct Artist: Codable, Hashable {
     let name: String
     let id: String
     let image: URL?
