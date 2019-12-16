@@ -8,6 +8,7 @@ internal let profileServiceEndpointURL = "https://api.spotify.com/v1/me"
 internal let topArtistsEndpointURL = "https://api.spotify.com/v1/me/top/artists"
 internal let topTracksEndpointURL = "https://api.spotify.com/v1/me/top/tracks"
 internal let recentlyPlayedEndpointURL = "https://api.spotify.com/v1/me/player/recently-played"
+internal let searchItemEndpointURL = "https://api.spotify.com/v1/search"
 
 class Networking {
     internal func createSignInResponse(code: String,
@@ -44,6 +45,40 @@ class Networking {
                 
                 return Observable.just(session)
         }
+    }
+    
+    internal func searchArtistsRequest(accessToken: String?, artistQuery: String, limit: Int) -> Observable<ArtistSearchEndpointResponse> {
+        guard let accessToken = accessToken else {
+            fatalError("Unable to retrieve artist due to invalid access token")
+        }
+        
+        return Observable<ArtistSearchEndpointResponse>.create { observer in
+            var searchURL = URL(string: searchItemEndpointURL)!
+            let queryItems = [URLQueryItem(name: "q", value: artistQuery),
+                              URLQueryItem(name: "type", value: String(limit))]
+            searchURL.appending(queryItems)
+            
+            var urlRequest = URLRequest(url: searchURL)
+            let authHeaderValue = "Bearer \(accessToken)"
+            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                do {
+                    let artistResponse = try JSONDecoder().decode(ArtistSearchEndpointResponse.self, from: data ?? Data())
+                    observer.onNext(artistResponse)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
     }
     
     internal func artistRequest(accessToken: String?, artistURL: URL) -> Observable<ArtistEndpointResponse> {

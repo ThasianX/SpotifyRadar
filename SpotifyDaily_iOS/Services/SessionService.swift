@@ -121,6 +121,14 @@ class SessionService {
         }
     }
     
+    func searchArtistResults(query: String, limit: Int) -> Observable<[Artist]> {
+        return networkingClient.searchArtistsRequest(accessToken: self.token?.accessToken, artistQuery: query, limit: limit)
+            .flatMap { response -> Observable<[Artist]> in
+                let artists = response.artists
+                return Observable.just(artists)
+        }
+    }
+    
     // MARK: - Private Session Management Methods
     private func setToken(response: SignInResponse) {
         guard let accessToken = response.accessToken,

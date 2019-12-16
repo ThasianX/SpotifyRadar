@@ -13,6 +13,7 @@
 		1E022BE3238B5888007D2EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BE1238B5888007D2EE6 /* LaunchScreen.storyboard */; };
 		1E0C077023A030BB00820B87 /* RecentlyPlayedTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0C076F23A030BB00820B87 /* RecentlyPlayedTracksViewController.swift */; };
 		1E0C077223A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0C077123A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift */; };
+		1E0F403E23A7109C00ABFB3E /* ArtistSearchEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0F403D23A7109C00ABFB3E /* ArtistSearchEndpointResponse.swift */; };
 		1E100DF12393444C00DE0291 /* SettingsRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E100DF02393444C00DE0291 /* SettingsRootView.swift */; };
 		1E11093023956F6D00C3BD21 /* TopArtistsEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11092F23956F6D00C3BD21 /* TopArtistsEndpointResponse.swift */; };
 		1E11093223958B9E00C3BD21 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11093123958B9E00C3BD21 /* Artist.swift */; };
@@ -130,6 +131,7 @@
 		1E022BE4238B5888007D2EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E0C076F23A030BB00820B87 /* RecentlyPlayedTracksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTracksViewController.swift; sourceTree = "<group>"; };
 		1E0C077123A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTracksCoordinator.swift; sourceTree = "<group>"; };
+		1E0F403D23A7109C00ABFB3E /* ArtistSearchEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistSearchEndpointResponse.swift; sourceTree = "<group>"; };
 		1E100DF02393444C00DE0291 /* SettingsRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRootView.swift; sourceTree = "<group>"; };
 		1E11092F23956F6D00C3BD21 /* TopArtistsEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsEndpointResponse.swift; sourceTree = "<group>"; };
 		1E11093123958B9E00C3BD21 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				1EDB2F47239CBA5D00B5D099 /* TopTracksEndpointResponse.swift */,
 				1EB8884B239DFEC600DE3731 /* RecentlyPlayedTracksEndpointResponse.swift */,
 				1EC67AA1239EAC530030CB00 /* ArtistEndpointResponse.swift */,
+				1E0F403D23A7109C00ABFB3E /* ArtistSearchEndpointResponse.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -913,6 +916,7 @@
 				1ED16E28239CB3E90012DAA1 /* TopTracksViewControllerState.swift in Sources */,
 				1EDB2F50239CC46A00B5D099 /* TopTracksCollectionViewModel.swift in Sources */,
 				1EA8FDC22391AD4A00498AA6 /* SettingsViewModel.swift in Sources */,
+				1E0F403E23A7109C00ABFB3E /* ArtistSearchEndpointResponse.swift in Sources */,
 				1EC2A133239169EA006E5E96 /* UserDataManager.swift in Sources */,
 				1E896A68238C29F400C745F0 /* BaseCoordinator.swift in Sources */,
 				1E86B42623980D5300582D6E /* TopArtistsCollectionViewModel.swift in Sources */,
