@@ -43,7 +43,7 @@ class DrawerMenuCoordinator: BaseCoordinator {
         switch screen {
         case .recommended:
             self.removeChildCoordinators()
-            let coordinator = AppDelegate.container.resolve(SearchArtistsCoordinator.self)!
+            let coordinator = AppDelegate.container.resolve(AddArtistsCoordinator.self)!
             coordinator.navigationController = self.navigationController
             self.start(coordinator: coordinator)
             

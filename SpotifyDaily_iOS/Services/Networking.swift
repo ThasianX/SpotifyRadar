@@ -55,7 +55,8 @@ class Networking {
         return Observable<ArtistSearchEndpointResponse>.create { observer in
             var searchURL = URL(string: searchItemEndpointURL)!
             let queryItems = [URLQueryItem(name: "q", value: artistQuery),
-                              URLQueryItem(name: "type", value: String(limit))]
+                              URLQueryItem(name: "type", value: "artist"),
+                              URLQueryItem(name: "limit", value: String(limit))]
             searchURL.appending(queryItems)
             
             var urlRequest = URLRequest(url: searchURL)

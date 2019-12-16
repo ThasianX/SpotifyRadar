@@ -15,7 +15,7 @@ class SearchArtistCell: UITableViewCell, BindableType {
     // MARK: View components
     private lazy var artistName = UILabel.artistName
     private lazy var artistImage = UIImageView.artistImage
-    private lazy var portfolioDescription = UILabel.portfolioDescription
+    lazy var portfolioDescription = UILabel.portfolioDescription
     
     // MARK: Rx
     private let disposeBag = DisposeBag()
@@ -49,17 +49,16 @@ class SearchArtistCell: UITableViewCell, BindableType {
     private func setUpConstraints() {
         let layoutGuide = self.safeAreaLayoutGuide
         
+        self.artistImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
         self.artistImage.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
         self.artistImage.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         self.artistImage.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
         
         self.artistName.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: Constraints.innerMargins).isActive = true
-        self.artistName.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
-        self.artistName.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
-        self.artistName.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins*3).isActive = true
+        self.artistName.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor).isActive = true
+        self.artistName.widthAnchor.constraint(equalTo: layoutGuide.widthAnchor, multiplier: 0.6).isActive = true
         
-        self.portfolioDescription.leadingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins*3.5).isActive = true
-        self.portfolioDescription.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
+        self.portfolioDescription.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor).isActive = true
         self.portfolioDescription.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
     }
     
@@ -70,9 +69,9 @@ class SearchArtistCell: UITableViewCell, BindableType {
             .map { $0.image }
             .bind(onNext: { url in
                 if let url = url {
-                    self.artistImage.load(url: url, targetSize: CGSize(width: 200, height: 200))
+                    self.artistImage.load(url: url, targetSize: CGSize(width: 40, height: 40))
                 } else {
-                    let image = UIImage(named: "default_artist_image")?.resize(targetSize: CGSize(width: 200, height: 200))
+                    let image = UIImage(named: "default_artist_image")?.resize(targetSize: CGSize(width: 40, height: 40))
                     self.artistImage.image = image
                 }
             })

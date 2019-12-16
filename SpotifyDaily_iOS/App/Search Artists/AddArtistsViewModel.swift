@@ -10,34 +10,42 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol SearchArtistsViewModelViewModelInput {
+protocol AddArtistsViewModelInput {
     /// Call when an artist is selected
     func artistSelected(from viewController: (UIViewController), artist: Artist)
     
     /// Call when user inputs text into search bar
     var searchText: PublishSubject<String> { get }
 }
-protocol SearchArtistsViewModelViewModelOutput {
+protocol AddArtistsViewModelOutput {
     /// Emites the child viewModels
     var tableViewCellsModelType: Observable<[SearchArtistCellViewModelType]> { get }
-    
-    var title: String { get }
 }
-protocol SearchArtistsViewModelViewModelType {
-    var input: SearchArtistsViewModelViewModelInput { get }
-    var output: SearchArtistsViewModelViewModelOutput { get }
+protocol AddArtistsViewModelViewModelType {
+    var input: AddArtistsViewModelInput { get }
+    var output: AddArtistsViewModelOutput { get }
 }
 
-class SearchArtistsViewModel: SearchArtistsViewModelViewModelType,
-    SearchArtistsViewModelViewModelInput,
-SearchArtistsViewModelViewModelOutput {
+class AddArtistsViewModel: AddArtistsViewModelViewModelType,
+    AddArtistsViewModelInput,
+AddArtistsViewModelOutput {
     // MARK: Inputs & Outputs
-    var input: SearchArtistsViewModelViewModelInput { return self }
-    var output: SearchArtistsViewModelViewModelOutput { return self }
+    var input: AddArtistsViewModelInput { return self }
+    var output: AddArtistsViewModelOutput { return self }
     
     // MARK: Inputs
     func artistSelected(from viewController: (UIViewController), artist: Artist) {
-        portfolioArtists.insert(artist)
+        if portfolioArtists.insert(artist).inserted {
+            let state = ArtistPortfolioState(artists: portfolioArtists)
+            dataManager.set(key: DataKeys.artistPortfolioState, value: state)
+            
+            let alert = UIAlertController(title: "\(artist.name) was added to your portfolio", message: nil, preferredStyle: .alert)
+            viewController.present(alert, animated: true, completion: nil)
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5){
+              alert.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     let searchText = PublishSubject<String>()
@@ -47,8 +55,6 @@ SearchArtistsViewModelViewModelOutput {
         return artistResults.mapMany { [unowned self] in SearchArtistCellViewModel(artist: $0, inPortfolio: self.portfolioArtists.contains($0)) }
     }()
     
-    let title = "Search Artists"
-    
     // MARK: Private
     private let sessionService: SessionService
     private let dataManager: DataManager
@@ -56,7 +62,7 @@ SearchArtistsViewModelViewModelOutput {
     
     private let disposeBag = DisposeBag()
     private var artistResults: Observable<[Artist]>!
-    private var portfolioArtists: Set<Artist>
+    private var portfolioArtists: Set<Artist>!
     
     // MARK: Init
     init(sessionService: SessionService, dataManager: DataManager, safariService: SafariService) {
@@ -69,14 +75,12 @@ SearchArtistsViewModelViewModelOutput {
         
         self.portfolioArtists = artistPortfolioState.artists
         
-        searchText.bind(onNext: { [unowned self] text in
-            self.artistResults = self.sessionService.searchArtistResults(query: text, limit: 15)
-        })
-        .disposed(by: disposeBag)
-        
+        self.artistResults = searchText.flatMapLatest { [unowned self] text -> Observable<[Artist]> in
+            return (text == "") ? Observable.from([]) : self.sessionService.searchArtistResults(query: text, limit: 15)
+        }
     }
     
     deinit {
-        Logger.info("SearchArtistsViewModel dellocated")
+        Logger.info("AddArtistsViewModel dellocated")
     }
 }

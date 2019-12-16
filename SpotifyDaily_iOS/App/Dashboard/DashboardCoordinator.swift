@@ -32,7 +32,6 @@ class DashboardCoordinator: BaseCoordinator {
         self.navigationController.viewControllers = [viewController]
         
         viewController.bind(to: dashboardViewModel)
-        
         setUpBindings()
     }
     

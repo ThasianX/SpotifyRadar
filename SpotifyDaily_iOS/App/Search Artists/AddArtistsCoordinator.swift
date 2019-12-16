@@ -10,25 +10,24 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchArtistsCoordinator: BaseCoordinator {
+class AddArtistsCoordinator: BaseCoordinator {
     
     private let disposeBag = DisposeBag()
     private let sessionService: SessionService
-    private let searchArtistsViewModel: SearchArtistsViewModel
+    private let addArtistsViewModel: AddArtistsViewModel
     
-    init(sessionService: SessionService, searchArtistsViewModel: SearchArtistsViewModel) {
+    init(sessionService: SessionService, addArtistsViewModel: AddArtistsViewModel) {
         self.sessionService = sessionService
-        self.searchArtistsViewModel = searchArtistsViewModel
+        self.addArtistsViewModel = addArtistsViewModel
     }
     
     deinit {
-        Logger.info("SearchArtistsCoordinator dellocated")
+        Logger.info("AddArtistsCoordinator dellocated")
     }
     
     override func start() {
-        let viewController = SearchArtistsViewController()
-        viewController.viewModel = self.searchArtistsViewModel
-        
+        var viewController = AddArtistsViewController()
         self.navigationController.viewControllers = [viewController]
+        viewController.bind(to: addArtistsViewModel)
     }
 }

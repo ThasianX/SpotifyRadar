@@ -11,47 +11,62 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class SearchArtistsViewController: ViewControllerWithSideMenu {
+class AddArtistsViewController: ViewControllerWithSideMenu, BindableType {
     
     // MARK: - Properties
     // MARK: Section model
-    typealias SearchArtistSectionModel = SectionModel<String, SearchArtistCellViewModelType>
+    typealias AddArtistSectionModel = SectionModel<String, SearchArtistCellViewModelType>
     
     // MARK: View model
-    var viewModel: SearchArtistsViewModel!
+    var viewModel: AddArtistsViewModel!
     
     // MARK: UIView Components
     private var resultsTableView = UITableView.defaultTableView
     private let searchController = UISearchController(searchResultsController: nil)
+    
+    // MARK: Public
     var searchBar: UISearchBar { return searchController.searchBar }
     
     // MARK: Private
     private let disposeBag = DisposeBag()
-    private var dataSource: RxTableViewSectionedReloadDataSource<SearchArtistSectionModel>!
+    private var dataSource: RxTableViewSectionedReloadDataSource<AddArtistSectionModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureSearchController()
         self.setUpView()
-        self.setUpBindings()
     }
     
     deinit {
-        Logger.info("SearchArtistsViewController dellocated")
+        Logger.info("AddArtistsViewController dellocated")
     }
     
     private func configureSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
-        searchBar.showsCancelButton = true
+        searchBar.showsCancelButton = false
         searchBar.placeholder = "Enter Artist Name..."
+        searchBar.barTintColor = ColorPreference.secondaryColor
+        searchBar.tintColor = ColorPreference.mainColor
+        searchBar.searchTextField.textColor = ColorPreference.mainColor
         resultsTableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
-        searchController.searchBar.tintColor = UIColor.white
-        searchController.searchBar.barTintColor = UIColor.red
+    }
+    
+    private func configureTableView() {
+        resultsTableView.register(SearchArtistCell.self, forCellReuseIdentifier: "searchArtistCell")
+        dataSource = RxTableViewSectionedReloadDataSource<AddArtistSectionModel>(
+            configureCell:  tableViewDataSource
+        )
     }
     
     private func setUpView() {
+        self.view.backgroundColor = ColorPreference.secondaryColor
+        
+        configureTableView()
+        configureSearchController()
+        
+        self.view.addSubview(resultsTableView)
+        
         let layoutGuide = self.view.safeAreaLayoutGuide
         
         resultsTableView.topAnchor.constraint(equalTo: layoutGuide.topAnchor).isActive = true
@@ -61,63 +76,59 @@ class SearchArtistsViewController: ViewControllerWithSideMenu {
         
     }
     
-    private func setUpBindings() {
+    func bindViewModel() {
         let input = viewModel.input
         let output = viewModel.output
         
-        self.title = viewModel.output.title
+        searchBar.rx.textDidBeginEditing
+            .bind(onNext: { self.searchBar.showsCancelButton = true })
+            .disposed(by: disposeBag)
+        
+        searchBar.rx.textDidEndEditing
+            .bind(onNext: { self.searchBar.showsCancelButton = false })
+            .disposed(by: disposeBag)
         
         searchBar.rx.text.orEmpty
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
-        .distinctUntilChanged()
+            .distinctUntilChanged()
             .observeOn(MainScheduler.instance)
             .bind(to: input.searchText)
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         searchBar.rx.cancelButtonClicked
             .map { "" }
             .bind(to: input.searchText)
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         output.tableViewCellsModelType
-            .map { [SearchArtistSectionModel(model: "", items: $0)] }
-            .bind(to: resultsTableView.rx.items(dataSource: dataSource))
+            .map {
+                Logger.info("Reloading tableview")
+                return [AddArtistSectionModel(model: "", items: $0)]
+        }
+        .bind(to: resultsTableView.rx.items(dataSource: dataSource))
         .disposed(by: disposeBag)
         
         resultsTableView.rx.itemSelected
             .flatMap { [weak self] indexPath -> Observable<SearchArtistCell> in
-                    guard let cell = self?.resultsTableView.cellForRow(at: indexPath) as? SearchArtistCell
-                        else { return .empty() }
-                    self?.resultsTableView.deselectRow(at: indexPath, animated: true)
-                    return .just(cell)
-                }
-            .map { $0.viewModel }
-            .flatMap { $0.output.artist }
-            .bind(onNext: { [unowned self] in
-                input.artistSelected(from: self, artist: $0)
-            })
+                guard let cell = self?.resultsTableView.cellForRow(at: indexPath) as? SearchArtistCell
+                    else { return .empty() }
+                cell.portfolioDescription.text = "In Portfolio"
+                self?.resultsTableView.deselectRow(at: indexPath, animated: true)
+                return .just(cell)
+        }
+        .map { $0.viewModel }
+        .flatMap { $0.output.artist }
+        .bind(onNext: { [unowned self] in
+            input.artistSelected(from: self, artist: $0)
+        })
             .disposed(by: self.disposeBag)
-        
-        // TODO: Add binding to update resulttableview after click
     }
     
-    private func configureTableView() {
-        resultsTableView.register(SearchArtistCell.self, forCellReuseIdentifier: "searchArtistCell")
-        dataSource = RxTableViewSectionedReloadDataSource<SearchArtistSectionModel>(
-            configureCell:  tableViewDataSource
-        )
-    }
-    
-    private var tableViewDataSource: TableViewSectionedDataSource<SearchArtistSectionModel>.ConfigureCell {
+    private var tableViewDataSource: TableViewSectionedDataSource<AddArtistSectionModel>.ConfigureCell {
         return { _, tableView, indexPath, cellModel in
             var cell: SearchArtistCell = tableView.dequeueReusableCell(withIdentifier: "searchArtistCell", for: indexPath) as! SearchArtistCell
             cell.bind(to: cellModel)
             return cell
         }
     }
-
-    
-}
-
-private extension UIView {
 }

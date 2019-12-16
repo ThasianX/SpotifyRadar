@@ -61,10 +61,15 @@ struct ArtistSearchEndpointResponse: Decodable {
         for item in response.artists.items {
             let name = item.name
             let id = item.id
-            let url = URL(string: item.images.first!.url)!
+            
+            var artistImage: URL?
+            if let image = item.images.first {
+                artistImage = URL(string: image.url)!
+            }
+            
             let followers = item.followers.total
             let externalURL = URL(string: item.externalUrls.spotify)!
-            let artist = Artist(name: name, id: id,image: url, followers: followers, externalURL: externalURL)
+            let artist = Artist(name: name, id: id, image: artistImage, followers: followers, externalURL: externalURL)
             
             self.artists.append(artist)
         }
