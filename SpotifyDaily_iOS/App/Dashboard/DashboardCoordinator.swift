@@ -54,12 +54,12 @@ class DashboardCoordinator: BaseCoordinator {
         dashboardViewModel.childDismissed.bind(onNext: { [weak self] in
             self?.removeChildCoordinators()
         })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
     
     private func presentTopArtists() {
         Logger.info("Presenting top artists")
-
+        
         let coordinator = AppDelegate.container.resolve(TopArtistsCollectionCoordinator.self)!
         coordinator.navigationController = self.navigationController
         coordinator.parentViewModel = self.dashboardViewModel
@@ -69,7 +69,7 @@ class DashboardCoordinator: BaseCoordinator {
     
     private func presentTopTracks() {
         Logger.info("Presenting top tracks")
-
+        
         let coordinator = AppDelegate.container.resolve(TopTracksCollectionCoordinator.self)!
         coordinator.navigationController = self.navigationController
         coordinator.parentViewModel = self.dashboardViewModel
@@ -79,7 +79,7 @@ class DashboardCoordinator: BaseCoordinator {
     
     private func presentRecentlyPlayedTracks() {
         Logger.info("Presenting recently played tracks")
-
+        
         let coordinator = AppDelegate.container.resolve(RecentlyPlayedTracksCoordinator.self)!
         coordinator.navigationController = self.navigationController
         coordinator.parentViewModel = self.dashboardViewModel

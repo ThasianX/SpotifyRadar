@@ -13,7 +13,7 @@ import RxCocoa
 class AddArtistsCoordinator: BaseCoordinator {
     
     var addArtistsViewController: BaseNavigationController!
-    var parentViewModel: NewReleasesViewModel!
+    weak var parentViewModel: EditPortfolioViewModel!
     
     private let disposeBag = DisposeBag()
     private let viewModel: AddArtistsViewModel

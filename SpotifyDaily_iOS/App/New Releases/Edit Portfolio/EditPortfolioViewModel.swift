@@ -12,24 +12,27 @@ import RxCocoa
 
 protocol EditPortfolioViewModelInput {
     /// Call when an artist is selected
-    func artistDeleted(artist: Artist)
+    func artistDeleted(at indexPath: IndexPath)
     
     /// Call when add button pressed
     var addArtists: PublishSubject<Void> { get }
     
     /// Call when view controller is dismissed
     var dismissed: PublishSubject<Void> { get }
+    
+    /// Call when view controller is dismissed
+    var childDismissed: PublishSubject<Void> { get }
 }
 protocol EditPortfolioViewModelOutput {
     /// Emites the child viewModels
     var tableViewCellsModelType: Observable<[EditPortfolioCellViewModelType]> { get }
 }
-protocol EditPortfolioTracksViewModelType {
+protocol EditPortfolioViewModelType {
     var input: EditPortfolioViewModelInput { get }
     var output: EditPortfolioViewModelOutput { get }
 }
 
-class EditPortfolioViewModel: EditPortfolioTracksViewModelType,
+class EditPortfolioViewModel: EditPortfolioViewModelType,
     EditPortfolioViewModelInput,
 EditPortfolioViewModelOutput {
     
@@ -38,12 +41,11 @@ EditPortfolioViewModelOutput {
     var output: EditPortfolioViewModelOutput { return self }
     
     // MARK: Inputs
-    func artistDeleted(artist: Artist) {
+    func artistDeleted(at indexPath: IndexPath) {
         var artists = portfolioArtists.value
-        let index = artists.firstIndex(of: artist)!
-        artists.remove(at: index)
+        artists.remove(at: indexPath.row)
         var dates = portfolioDates.value
-        dates.remove(at: index)
+        dates.remove(at: indexPath.row)
         
         portfolioArtists.accept(artists)
         portfolioDates.accept(dates)
@@ -51,6 +53,7 @@ EditPortfolioViewModelOutput {
     
     let addArtists = PublishSubject<Void>()
     let dismissed = PublishSubject<Void>()
+    var childDismissed = PublishSubject<Void>()
     
     // MARK: Outputs
     lazy var tableViewCellsModelType: Observable<[EditPortfolioCellViewModelType]> = {

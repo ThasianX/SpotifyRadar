@@ -13,7 +13,7 @@ import RxCocoa
 protocol NewReleasesViewModelInput {
     func trackSelected(from viewController: (UIViewController), track: NewTrack)
     
-    var presentEditPortfolio: PublishSubject<Void> { get }
+    var presentPortfolio: PublishSubject<Void> { get }
     
     var childDismissed: PublishSubject<Void> { get }
 }
@@ -46,7 +46,7 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
         safariService.presentSafari(from: viewController, for: track.externalURL)
     }
     
-    let presentEditPortfolio = PublishSubject<Void>()
+    let presentPortfolio = PublishSubject<Void>()
     
     let childDismissed = PublishSubject<Void>()
     

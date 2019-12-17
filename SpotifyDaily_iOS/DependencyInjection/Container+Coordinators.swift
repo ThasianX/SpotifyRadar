@@ -15,6 +15,7 @@ extension Container {
         self.autoregister(SignInCoordinator.self, initializer: SignInCoordinator.init)
         self.autoregister(DrawerMenuCoordinator.self, initializer: DrawerMenuCoordinator.init)
         self.autoregister(NewReleasesCoordinator.self, initializer: NewReleasesCoordinator.init)
+        self.autoregister(EditPortfolioCoordinator.self, initializer: EditPortfolioCoordinator.init)
         self.autoregister(AddArtistsCoordinator.self, initializer: AddArtistsCoordinator.init)
         self.autoregister(DashboardCoordinator.self, initializer: DashboardCoordinator.init)
         self.autoregister(TopArtistsCollectionCoordinator.self, initializer: TopArtistsCollectionCoordinator.init)

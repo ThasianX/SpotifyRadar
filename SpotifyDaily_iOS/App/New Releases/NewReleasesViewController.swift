@@ -32,6 +32,8 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavigationBar()
+        configureTableView()
         setUpView()
     }
     
@@ -41,10 +43,6 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
     
     private func setUpView() {
         self.view.backgroundColor = ColorPreference.secondaryColor
-        
-        configureNavigationBar()
-        configureTableView()
-        
         self.view.addSubview(tableView)
         
         let layoutGuide = self.view.safeAreaLayoutGuide
@@ -56,10 +54,14 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
     }
     
     private func configureNavigationBar() {
-        self.view.backgroundColor = ColorPreference.secondaryColor
-        self.title = "Your Portfolio"
+        self.title = "New Releases"
         
-        editPortfolio = UIBarButtonItem(title: "Edit Portfolio", style: .plain, target: self, action: nil)
+        if #available(iOS 13.0, *) {
+            editPortfolio = UIBarButtonItem(image: UIImage(systemName: "archivebox"), style: .plain, target: self, action: nil)
+        } else {
+            editPortfolio = UIBarButtonItem(title: "Edit Portfolio", style: .plain, target: self, action: nil)
+        }
+        
         self.navigationItem.rightBarButtonItem = editPortfolio
     }
 
@@ -94,10 +96,8 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         .disposed(by: self.disposeBag)
         
         editPortfolio.rx.tap
-            .bind(to: input.presentEditPortfolio)
+            .bind(to: input.presentPortfolio)
         .disposed(by: disposeBag)
-        
-        
     }
 
     private var tableViewDataSource:

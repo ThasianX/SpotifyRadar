@@ -50,9 +50,9 @@ class EditPortfolioCell: UITableViewCell, BindableType {
         let layoutGuide = self.safeAreaLayoutGuide
         
         self.artistImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        self.artistImage.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
+        self.artistImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        self.artistImage.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor).isActive = true
         self.artistImage.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
-        self.artistImage.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
         
         self.artistName.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: Constraints.innerMargins).isActive = true
         self.artistName.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor).isActive = true
@@ -84,7 +84,7 @@ class EditPortfolioCell: UITableViewCell, BindableType {
             .disposed(by: disposeBag)
         
         output.dateAdded
-            .map { $0.mediumDateShortTime }
+            .map { $0.mediumDateNoTime }
             .bind(to: dateAdded.rx.text)
             .disposed(by: disposeBag)
     }

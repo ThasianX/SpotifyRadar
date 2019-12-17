@@ -38,7 +38,7 @@ class NewReleasesCoordinator: BaseCoordinator {
     private func setUpBindings() {
         let input = viewModel.input
         
-        input.presentEditPortfolio.bind(onNext: { [weak self] in
+        input.presentPortfolio.bind(onNext: { [weak self] in
             self?.presentEditPortfolio()
         })
             .disposed(by: disposeBag)
@@ -51,8 +51,9 @@ class NewReleasesCoordinator: BaseCoordinator {
     
     private func presentEditPortfolio() {
         Logger.info("Presenting edit portfolio")
+        print(CFGetRetainCount(viewModel))
 
-        let coordinator = AppDelegate.container.resolve(AddArtistsCoordinator.self)!
+        let coordinator = AppDelegate.container.resolve(EditPortfolioCoordinator.self)!
         coordinator.navigationController = self.navigationController
         coordinator.parentViewModel = self.viewModel
 
