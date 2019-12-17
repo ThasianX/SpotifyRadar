@@ -9,7 +9,7 @@
 import Foundation
 
 enum DrawerMenuScreen: Int {
-    case recommended
+    case new_releases
     case dashboard
     case settings
 }

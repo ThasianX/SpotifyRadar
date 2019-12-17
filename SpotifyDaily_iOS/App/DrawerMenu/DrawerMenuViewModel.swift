@@ -14,10 +14,10 @@ class DrawerMenuViewModel {
     private let sessionService: SessionService
     private let dataManager: DataManager
     
-    let didSelectScreen = BehaviorSubject(value: DrawerMenuScreen.recommended)
+    let didSelectScreen = BehaviorSubject(value: DrawerMenuScreen.new_releases)
     
     let menuItems = Observable.just([
-        "Recommended",
+        "New Releases",
         "Dashboard",
         "Settings"
     ])

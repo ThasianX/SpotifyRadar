@@ -41,7 +41,7 @@ class DrawerMenuCoordinator: BaseCoordinator {
         Logger.info("Selected screen: \(screen)")
         
         switch screen {
-        case .recommended:
+        case .new_releases:
             self.removeChildCoordinators()
             let coordinator = AppDelegate.container.resolve(AddArtistsCoordinator.self)!
             coordinator.navigationController = self.navigationController
