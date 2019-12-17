@@ -23,7 +23,6 @@ final class EditPortfolioViewController: UIViewController, BindableType {
     
     // MARK: View components
     private var tableView = UITableView.defaultTableView
-    private var editButton: UIBarButtonItem!
     private var addButton: UIBarButtonItem!
     
     // MARK: Private
@@ -62,31 +61,24 @@ final class EditPortfolioViewController: UIViewController, BindableType {
     private func configureNavigationBar() {
         self.title = "Your Portfolio"
         
-        editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: nil)
         addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: nil)
         
-        self.navigationItem.leftBarButtonItem = editButton
         self.navigationItem.rightBarButtonItem = addButton
     }
 
     private func configureTableView() {
+        tableView.allowsSelection = false
         tableView.register(EditPortfolioCell.self, forCellReuseIdentifier: "editPortfolioCell")
         dataSource = RxTableViewSectionedReloadDataSource<PortfolioSectionModel>(
-            configureCell:  tableViewDataSource
+            configureCell:  tableViewDataSource,
+            canEditRowAtIndexPath: tableViewCanEdit
         )
     }
     
     func bindViewModel() {
         let input = viewModel.input
         let output = viewModel.output
-        
-        editButton.rx.tap
-            .bind(onNext: { [unowned self] in
-                self.tableView.setEditing(!self.tableView.isEditing, animated: true)
-                self.editButton.title = self.tableView.isEditing ? "Done" : "Edit"
-            })
-            .disposed(by: disposeBag)
-        
+    
         addButton.rx.tap
             .bind(to: input.addArtists)
             .disposed(by: disposeBag)
@@ -94,7 +86,7 @@ final class EditPortfolioViewController: UIViewController, BindableType {
         tableView.rx.itemDeleted
             .bind(onNext: { input.artistDeleted(at: $0) })
             .disposed(by: disposeBag)
-                
+            
         output.tableViewCellsModelType
             .map { [PortfolioSectionModel(model: "", items: $0)]}
             .bind(to: tableView.rx.items(dataSource: dataSource))
@@ -109,6 +101,11 @@ final class EditPortfolioViewController: UIViewController, BindableType {
         }
     }
     
+    private var tableViewCanEdit: RxTableViewSectionedReloadDataSource<PortfolioSectionModel>.CanEditRowAtIndexPath {
+        return { _, _ in
+            return true
+        }
+    }
 }
 
 private struct Constraints {
