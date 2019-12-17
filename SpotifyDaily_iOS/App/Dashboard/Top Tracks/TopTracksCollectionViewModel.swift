@@ -68,8 +68,8 @@ class TopTracksCollectionViewModel: TopTracksCollectionsViewModelType,
     private let disposeBag = DisposeBag()
     private var trackCollections: Observable<[Track]>!
     
-    var tracksTimeRange = BehaviorRelay<String>(value: "")
-    var tracksLimit = BehaviorRelay<Int>(value: 0)
+    var tracksTimeRange: BehaviorRelay<String>
+    var tracksLimit: BehaviorRelay<Int>
 
     // MARK: Init
     init(sessionService: SessionService, dataManager: DataManager, safariService: SafariService) {
@@ -83,8 +83,8 @@ class TopTracksCollectionViewModel: TopTracksCollectionsViewModelType,
         
         let tracksCollectionState = self.dataManager.get(key: DataKeys.topTracksCollectionState, type: TopTracksViewControllerState.self)!
         
-        self.tracksTimeRange.accept(tracksCollectionState.tracksTimeRange)
-        self.tracksLimit.accept(tracksCollectionState.tracksLimit)
+        self.tracksTimeRange = BehaviorRelay<String>(value: tracksCollectionState.tracksTimeRange)
+        self.tracksLimit = BehaviorRelay<Int>(value: tracksCollectionState.tracksLimit)
         
         trackCollections = Observable.combineLatest(self.tracksTimeRange, self.tracksLimit)
             .flatMap { timeRange, limit -> Observable<[Track]> in

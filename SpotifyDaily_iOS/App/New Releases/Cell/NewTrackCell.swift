@@ -14,8 +14,8 @@ class NewTrackCell: UITableViewCell, BindableType {
     // MARK: - Properties
     // MARK: View components
     private lazy var trackName = UILabel.trackLabel
-    private lazy var albumName = UILabel.albumLabel
-    private lazy var trackDuration = UILabel.rightLabel
+    private lazy var artistNames = UILabel.artistNamesLabel
+    private lazy var trackDuration = UILabel.durationLabel
     
     // MARK: Rx
     private let disposeBag = DisposeBag()
@@ -40,7 +40,7 @@ class NewTrackCell: UITableViewCell, BindableType {
 
     private func setUpView() {
         self.addSubview(trackName)
-        self.addSubview(albumName)
+        self.addSubview(artistNames)
         self.addSubview(trackDuration)
         
         self.setUpConstraints()
@@ -51,16 +51,15 @@ class NewTrackCell: UITableViewCell, BindableType {
         
         self.trackName.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
         self.trackName.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
-        self.trackName.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
+        self.trackName.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins*3).isActive = true
         
-        self.albumName.topAnchor.constraint(equalTo: trackName.bottomAnchor, constant: Constraints.innerMargins).isActive = true
-        self.albumName.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
-        self.albumName.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
-        self.albumName.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.artistNames.topAnchor.constraint(equalTo: trackName.bottomAnchor, constant: Constraints.innerMargins).isActive = true
+        self.artistNames.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
+        self.artistNames.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.artistNames.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins*3).isActive = true
         
-        self.trackDuration.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
+        self.trackDuration.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor).isActive = true
         self.trackDuration.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
-        self.trackDuration.leadingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
         
     }
     
@@ -73,8 +72,15 @@ class NewTrackCell: UITableViewCell, BindableType {
             .disposed(by: disposeBag)
         
         output.track
-            .map { $0.albumName }
-            .bind(to: albumName.rx.text)
+            .map { $0.artistNames }
+            .bind(onNext: { [unowned self] names in
+                var artistsString = ""
+                for name in names {
+                    artistsString += "\(name), "
+                }
+                artistsString.removeLast(2)
+                self.artistNames.text = artistsString
+            })
         .disposed(by: disposeBag)
         
         output.track
@@ -102,7 +108,7 @@ private extension UILabel {
         return label
     }
     
-    static var albumLabel: UILabel {
+    static var artistNamesLabel: UILabel {
         let label = UILabel()
         label.textColor = ColorPreference.tertiaryColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
@@ -114,7 +120,7 @@ private extension UILabel {
         return label
     }
     
-    static var rightLabel: UILabel {
+    static var durationLabel: UILabel {
         let label = UILabel()
         label.textColor = ColorPreference.tertiaryColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)

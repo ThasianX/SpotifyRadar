@@ -12,12 +12,12 @@ import RxSwift
 
 class NewReleasesCoordinator: BaseCoordinator {
     
-    private let viewModel: NewReleasesViewModelType
+    private let viewModel: NewReleasesViewModel
     private let dataManager: DataManager
     
     private let disposeBag = DisposeBag()
     
-    init(viewModel: NewReleasesViewModelType, dataManager: DataManager) {
+    init(viewModel: NewReleasesViewModel, dataManager: DataManager) {
         self.viewModel = viewModel
         self.dataManager = dataManager
     }
@@ -38,11 +38,6 @@ class NewReleasesCoordinator: BaseCoordinator {
     private func setUpBindings() {
         let input = viewModel.input
         
-        input.presentAddArtists.bind(onNext: { [weak self] in
-            self?.presentAddArtists()
-        })
-            .disposed(by: disposeBag)
-        
         input.presentEditPortfolio.bind(onNext: { [weak self] in
             self?.presentEditPortfolio()
         })
@@ -54,24 +49,14 @@ class NewReleasesCoordinator: BaseCoordinator {
         .disposed(by: disposeBag)
     }
     
-    private func presentAddArtists() {
-        Logger.info("Presenting add artists")
-
-//        let coordinator = AppDelegate.container.resolve(TopArtistsCollectionCoordinator.self)!
-//        coordinator.navigationController = self.navigationController
-//        coordinator.parentViewModel = self.viewModel
-//
-//        self.start(coordinator: coordinator)
-    }
-    
     private func presentEditPortfolio() {
         Logger.info("Presenting edit portfolio")
 
-//        let coordinator = AppDelegate.container.resolve(TopTracksCollectionCoordinator.self)!
-//        coordinator.navigationController = self.navigationController
-//        coordinator.parentViewModel = self.viewModel
-//
-//        self.start(coordinator: coordinator)
+        let coordinator = AppDelegate.container.resolve(AddArtistsCoordinator.self)!
+        coordinator.navigationController = self.navigationController
+        coordinator.parentViewModel = self.viewModel
+
+        self.start(coordinator: coordinator)
     }
     
 }

@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class NewReleasesViewController: UIViewController, BindableType {
+final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType {
     
     // MARK: - Properties
     // MARK: Section model
@@ -22,7 +22,8 @@ final class NewReleasesViewController: UIViewController, BindableType {
     var viewModel: NewReleasesViewModelType!
     
     // MARK: View components
-    private var tableView = UITableView.defaultTableView
+    private lazy var tableView = UITableView.defaultTableView
+    private var editPortfolio: UIBarButtonItem!
     
     // MARK: Private
     private var dataSource: RxTableViewSectionedReloadDataSource<TracksSectionModel>!
@@ -41,6 +42,7 @@ final class NewReleasesViewController: UIViewController, BindableType {
     private func setUpView() {
         self.view.backgroundColor = ColorPreference.secondaryColor
         
+        configureNavigationBar()
         configureTableView()
         
         self.view.addSubview(tableView)
@@ -51,6 +53,14 @@ final class NewReleasesViewController: UIViewController, BindableType {
         tableView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+    }
+    
+    private func configureNavigationBar() {
+        self.view.backgroundColor = ColorPreference.secondaryColor
+        self.title = "Your Portfolio"
+        
+        editPortfolio = UIBarButtonItem(title: "Edit Portfolio", style: .plain, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = editPortfolio
     }
 
     private func configureTableView() {
@@ -65,7 +75,7 @@ final class NewReleasesViewController: UIViewController, BindableType {
         let output = viewModel.output
         
         output.newTracksCellModelType
-            .map { [TracksSectionModel(model: "", items: $0)] }
+            .map { [TracksSectionModel(model: "New Releases", items: $0)] }
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
 
@@ -82,6 +92,12 @@ final class NewReleasesViewController: UIViewController, BindableType {
             input.trackSelected(from: self, track: $0)
         })
         .disposed(by: self.disposeBag)
+        
+        editPortfolio.rx.tap
+            .bind(to: input.presentEditPortfolio)
+        .disposed(by: disposeBag)
+        
+        
     }
 
     private var tableViewDataSource:

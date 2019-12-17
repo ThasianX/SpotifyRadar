@@ -14,7 +14,6 @@ protocol NewReleasesViewModelInput {
     func trackSelected(from viewController: (UIViewController), track: NewTrack)
     
     var presentEditPortfolio: PublishSubject<Void> { get }
-    var presentAddArtists: PublishSubject<Void> { get }
     
     var childDismissed: PublishSubject<Void> { get }
 }
@@ -48,7 +47,6 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
     }
     
     let presentEditPortfolio = PublishSubject<Void>()
-    let presentAddArtists = PublishSubject<Void>()
     
     let childDismissed = PublishSubject<Void>()
     
@@ -67,6 +65,7 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
         self.safariService = safariService
         
         // Scan through portfolio artists and append new tracks to newTracks
+        newTracks = Observable.just([NewTrack(trackName: "fds", albumName: "dss", artistNames: ["Micheal","dss"], duration: "43", externalURL: URL(string: "fdfd")!)])
     }
     
     deinit {

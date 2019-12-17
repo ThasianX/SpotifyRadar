@@ -165,7 +165,7 @@ class SessionService {
             "medium_term", tracksLimit: 20)
         self.dataManager.set(key: DataKeys.topTracksCollectionState, value: topTracksState)
         
-        let artistPortfolioState = ArtistPortfolioState(artists: [])
-        self.dataManager.set(key: DataKeys.artistPortfolioState, value: artistPortfolioState)
+        let artistPortfolioState = UserPortfolioState(artists: [], dates: [])
+        self.dataManager.set(key: DataKeys.userPortfolioState, value: artistPortfolioState)
     }
 }

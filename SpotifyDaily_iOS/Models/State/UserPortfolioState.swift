@@ -8,6 +8,7 @@
 
 import Foundation
 
-struct ArtistPortfolioState: Codable, Equatable {
-    let artists: Set<Artist>
+struct UserPortfolioState: Codable, Equatable {
+    let artists: [Artist]
+    let dates: [Date]
 }

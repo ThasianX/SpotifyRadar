@@ -11,6 +11,11 @@
 		1E022BDB238B5888007D2EE6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E022BDA238B5888007D2EE6 /* SignInViewController.swift */; };
 		1E022BE0238B5888007D2EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BDF238B5888007D2EE6 /* Assets.xcassets */; };
 		1E022BE3238B5888007D2EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E022BE1238B5888007D2EE6 /* LaunchScreen.storyboard */; };
+		1E0BB30823A9563300A8741B /* ArtistAlbumsResponseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0BB30723A9563300A8741B /* ArtistAlbumsResponseEndpoint.swift */; };
+		1E0BB30E23A95D2400A8741B /* EditPortfolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0BB30D23A95D2400A8741B /* EditPortfolioCell.swift */; };
+		1E0BB31023A95E3000A8741B /* EditPortfolioCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0BB30F23A95E3000A8741B /* EditPortfolioCellViewModel.swift */; };
+		1E0BB31223A9605800A8741B /* EditPortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0BB31123A9605800A8741B /* EditPortfolioViewModel.swift */; };
+		1E0BB31423A96BA500A8741B /* EditPortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0BB31323A96BA500A8741B /* EditPortfolioViewController.swift */; };
 		1E0C077023A030BB00820B87 /* RecentlyPlayedTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0C076F23A030BB00820B87 /* RecentlyPlayedTracksViewController.swift */; };
 		1E0C077223A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0C077123A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift */; };
 		1E0F403E23A7109C00ABFB3E /* ArtistSearchEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0F403D23A7109C00ABFB3E /* ArtistSearchEndpointResponse.swift */; };
@@ -44,7 +49,7 @@
 		1E7129E6239B0653007F538B /* UIViewController+Present.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7129E5239B0653007F538B /* UIViewController+Present.swift */; };
 		1E7129E8239B0B12007F538B /* ColorPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7129E7239B0B12007F538B /* ColorPreference.swift */; };
 		1E7488F12398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7488F02398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift */; };
-		1E7DA2E623A716CB0045FE17 /* ArtistPortfolioState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7DA2E523A716CB0045FE17 /* ArtistPortfolioState.swift */; };
+		1E7DA2E623A716CB0045FE17 /* UserPortfolioState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7DA2E523A716CB0045FE17 /* UserPortfolioState.swift */; };
 		1E86B42223980C1B00582D6E /* TopArtistsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42123980C1B00582D6E /* TopArtistsCollectionViewController.swift */; };
 		1E86B42423980C9500582D6E /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42323980C9500582D6E /* BindableType.swift */; };
 		1E86B42623980D5300582D6E /* TopArtistsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E86B42523980D5300582D6E /* TopArtistsCollectionViewModel.swift */; };
@@ -136,6 +141,11 @@
 		1E022BDF238B5888007D2EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E022BE2238B5888007D2EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E022BE4238B5888007D2EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E0BB30723A9563300A8741B /* ArtistAlbumsResponseEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAlbumsResponseEndpoint.swift; sourceTree = "<group>"; };
+		1E0BB30D23A95D2400A8741B /* EditPortfolioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPortfolioCell.swift; sourceTree = "<group>"; };
+		1E0BB30F23A95E3000A8741B /* EditPortfolioCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPortfolioCellViewModel.swift; sourceTree = "<group>"; };
+		1E0BB31123A9605800A8741B /* EditPortfolioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPortfolioViewModel.swift; sourceTree = "<group>"; };
+		1E0BB31323A96BA500A8741B /* EditPortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPortfolioViewController.swift; sourceTree = "<group>"; };
 		1E0C076F23A030BB00820B87 /* RecentlyPlayedTracksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTracksViewController.swift; sourceTree = "<group>"; };
 		1E0C077123A0357000820B87 /* RecentlyPlayedTracksCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTracksCoordinator.swift; sourceTree = "<group>"; };
 		1E0F403D23A7109C00ABFB3E /* ArtistSearchEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistSearchEndpointResponse.swift; sourceTree = "<group>"; };
@@ -171,7 +181,7 @@
 		1E7129E5239B0653007F538B /* UIViewController+Present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Present.swift"; sourceTree = "<group>"; };
 		1E7129E7239B0B12007F538B /* ColorPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreference.swift; sourceTree = "<group>"; };
 		1E7488F02398CEC500798BD0 /* TopArtistsCollectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsCollectionCoordinator.swift; sourceTree = "<group>"; };
-		1E7DA2E523A716CB0045FE17 /* ArtistPortfolioState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistPortfolioState.swift; sourceTree = "<group>"; };
+		1E7DA2E523A716CB0045FE17 /* UserPortfolioState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPortfolioState.swift; sourceTree = "<group>"; };
 		1E86B42123980C1B00582D6E /* TopArtistsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsCollectionViewController.swift; sourceTree = "<group>"; };
 		1E86B42323980C9500582D6E /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
 		1E86B42523980D5300582D6E /* TopArtistsCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsCollectionViewModel.swift; sourceTree = "<group>"; };
@@ -312,6 +322,25 @@
 			path = SpotifyDaily_iOS;
 			sourceTree = "<group>";
 		};
+		1E0BB30B23A95CCD00A8741B /* Edit Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				1E0BB30C23A95D1D00A8741B /* Cell */,
+				1E0BB31123A9605800A8741B /* EditPortfolioViewModel.swift */,
+				1E0BB31323A96BA500A8741B /* EditPortfolioViewController.swift */,
+			);
+			path = "Edit Portfolio";
+			sourceTree = "<group>";
+		};
+		1E0BB30C23A95D1D00A8741B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1E0BB30D23A95D2400A8741B /* EditPortfolioCell.swift */,
+				1E0BB30F23A95E3000A8741B /* EditPortfolioCellViewModel.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		1E271FA7239B0C1B0017AF7D /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +385,7 @@
 				1EB8884B239DFEC600DE3731 /* RecentlyPlayedTracksEndpointResponse.swift */,
 				1EC67AA1239EAC530030CB00 /* ArtistEndpointResponse.swift */,
 				1E0F403D23A7109C00ABFB3E /* ArtistSearchEndpointResponse.swift */,
+				1E0BB30723A9563300A8741B /* ArtistAlbumsResponseEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -653,10 +683,11 @@
 		1EE4321A23A83B0000D711E1 /* New Releases */ = {
 			isa = PBXGroup;
 			children = (
+				1E0BB30B23A95CCD00A8741B /* Edit Portfolio */,
 				1E601C4E23A8B45F00A25FCD /* Cell */,
+				1E601C5323A8B77900A25FCD /* NewReleasesCoordinator.swift */,
 				1E601C4823A8AF0200A25FCD /* NewReleasesViewModel.swift */,
 				1E601C5123A8B5AA00A25FCD /* NewReleasesViewController.swift */,
-				1E601C5323A8B77900A25FCD /* NewReleasesCoordinator.swift */,
 				1EAB948B238F161200C45AD4 /* Add Artists */,
 			);
 			path = "New Releases";
@@ -676,7 +707,7 @@
 			children = (
 				1EBDF99B239602DB00325E7F /* TopArtistsViewControllerState.swift */,
 				1ED16E27239CB3E90012DAA1 /* TopTracksViewControllerState.swift */,
-				1E7DA2E523A716CB0045FE17 /* ArtistPortfolioState.swift */,
+				1E7DA2E523A716CB0045FE17 /* UserPortfolioState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -912,6 +943,7 @@
 				1EEDC1192398018400D6B06B /* ArtistCollectionCellViewModel.swift in Sources */,
 				1EC2A16723917624006E5E96 /* Constants.swift in Sources */,
 				1E100DF12393444C00DE0291 /* SettingsRootView.swift in Sources */,
+				1E0BB31423A96BA500A8741B /* EditPortfolioViewController.swift in Sources */,
 				1E9CD1F023A1B07C00A342B4 /* UICollectionView+DefaultConfiguration.swift in Sources */,
 				1EC2A12E23916861006E5E96 /* SessionService.swift in Sources */,
 				1E601C5423A8B77900A25FCD /* NewReleasesCoordinator.swift in Sources */,
@@ -919,6 +951,7 @@
 				1E022BD7238B5888007D2EE6 /* AppDelegate.swift in Sources */,
 				1E896A64238C27F000C745F0 /* AppCoordinator.swift in Sources */,
 				1EC2A16C23917624006E5E96 /* SafariDelegate.swift in Sources */,
+				1E0BB31023A95E3000A8741B /* EditPortfolioCellViewModel.swift in Sources */,
 				1EAB9487238F083900C45AD4 /* UIImage+Additions.swift in Sources */,
 				1E271FAB239B0C570017AF7D /* UILabel+Additions.swift in Sources */,
 				1EB88850239E04AF00DE3731 /* String+Capitlization.swift in Sources */,
@@ -927,6 +960,8 @@
 				1E356505238EC9D200C407F1 /* SettingsCoordinator.swift in Sources */,
 				1E9D40A123A5CFA100E8CD33 /* UITableView+Configuration.swift in Sources */,
 				1E583A0423909E0200DC033F /* ViewControllerUtils.swift in Sources */,
+				1E0BB30823A9563300A8741B /* ArtistAlbumsResponseEndpoint.swift in Sources */,
+				1E0BB31223A9605800A8741B /* EditPortfolioViewModel.swift in Sources */,
 				1E37D9522391E1680047613B /* ProfileEndpointResponse.swift in Sources */,
 				1EC2A13523916D33006E5E96 /* Json.swift in Sources */,
 				1E583A0223901D5B00DC033F /* Logger.swift in Sources */,
@@ -952,6 +987,7 @@
 				1EA8FDC02391AD4000498AA6 /* AddArtistsViewModel.swift in Sources */,
 				1EDB2F52239CC54A00B5D099 /* TopTracksCollectionViewController.swift in Sources */,
 				1E601C4923A8AF0200A25FCD /* NewReleasesViewModel.swift in Sources */,
+				1E0BB30E23A95D2400A8741B /* EditPortfolioCell.swift in Sources */,
 				1ED16E28239CB3E90012DAA1 /* TopTracksViewControllerState.swift in Sources */,
 				1EDB2F50239CC46A00B5D099 /* TopTracksCollectionViewModel.swift in Sources */,
 				1EA8FDC22391AD4A00498AA6 /* SettingsViewModel.swift in Sources */,
@@ -984,7 +1020,7 @@
 				1EC982F8239E9391004BF1B8 /* RecentlyPlayedCell.swift in Sources */,
 				1E526AAA23945BA4005F09E8 /* Configuration.swift in Sources */,
 				1E4D05502397F3DD00EE4EEA /* ArtistCollectionCell.swift in Sources */,
-				1E7DA2E623A716CB0045FE17 /* ArtistPortfolioState.swift in Sources */,
+				1E7DA2E623A716CB0045FE17 /* UserPortfolioState.swift in Sources */,
 				1EA8FDB12391875500498AA6 /* DrawerMenuScreen.swift in Sources */,
 				1EC2A13A23916DC9006E5E96 /* Encodable+Json.swift in Sources */,
 				1EC2A12723916547006E5E96 /* SignInResponse.swift in Sources */,

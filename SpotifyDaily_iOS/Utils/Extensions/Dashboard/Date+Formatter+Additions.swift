@@ -27,12 +27,18 @@ extension DateFormatter {
 extension Formatter {
     static let iso8601 = ISO8601DateFormatter([.withInternetDateTime, .withFractionalSeconds])
     
-    static let medium = DateFormatter(dateStyle: .medium, timeStyle: .short)
+    static let mediumDateShortTime = DateFormatter(dateStyle: .medium, timeStyle: .short)
+    
+    static let mediumDateNoTime = DateFormatter(dateStyle: .medium, timeStyle: .none)
 }
 
 extension Date {
-    var mediumStyle: String {
-        return Formatter.medium.string(from: self)
+    var mediumDateShortTime: String {
+        return Formatter.mediumDateShortTime.string(from: self)
+    }
+    
+    var mediumDateNoTime: String {
+        return Formatter.mediumDateNoTime.string(from: self)
     }
 }
 

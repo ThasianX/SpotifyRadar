@@ -12,13 +12,14 @@ import RxCocoa
 
 class AddArtistsCoordinator: BaseCoordinator {
     
-    private let disposeBag = DisposeBag()
-    private let sessionService: SessionService
-    private let addArtistsViewModel: AddArtistsViewModel
+    var addArtistsViewController: BaseNavigationController!
+    var parentViewModel: NewReleasesViewModel!
     
-    init(sessionService: SessionService, addArtistsViewModel: AddArtistsViewModel) {
-        self.sessionService = sessionService
-        self.addArtistsViewModel = addArtistsViewModel
+    private let disposeBag = DisposeBag()
+    private let viewModel: AddArtistsViewModel
+    
+    init(viewModel: AddArtistsViewModel) {
+        self.viewModel = viewModel
     }
     
     deinit {
@@ -27,7 +28,16 @@ class AddArtistsCoordinator: BaseCoordinator {
     
     override func start() {
         var viewController = AddArtistsViewController()
-        self.navigationController.viewControllers = [viewController]
-        viewController.bind(to: addArtistsViewModel)
+        viewController.bind(to: viewModel)
+        
+        addArtistsViewController = BaseNavigationController(rootViewController: viewController)
+        addArtistsViewController.navigationBar.isHidden = true
+        addArtistsViewController.navigationBar.barTintColor = ColorPreference.secondaryColor
+        
+        self.navigationController.presentOnTop(addArtistsViewController, animated: true)
+        
+        viewModel.input.dismissed
+            .bind(to: parentViewModel.input.childDismissed)
+        .disposed(by: disposeBag)
     }
 }

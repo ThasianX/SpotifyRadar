@@ -16,6 +16,9 @@ protocol AddArtistsViewModelInput {
     
     /// Call when user inputs text into search bar
     var searchText: PublishSubject<String> { get }
+    
+    /// Call when view controller is dismissed
+    var dismissed: PublishSubject<Void> { get }
 }
 protocol AddArtistsViewModelOutput {
     /// Emites the child viewModels
@@ -35,9 +38,12 @@ AddArtistsViewModelOutput {
     
     // MARK: Inputs
     func artistSelected(from viewController: (UIViewController), artist: Artist) {
-        if portfolioArtists.insert(artist).inserted {
-            let state = ArtistPortfolioState(artists: portfolioArtists)
-            dataManager.set(key: DataKeys.artistPortfolioState, value: state)
+        if !portfolioArtists.contains(artist) {
+            portfolioArtists.append(artist)
+            portfolioDates.append(Date())
+            
+            let state = UserPortfolioState(artists: portfolioArtists, dates: portfolioDates)
+            dataManager.set(key: DataKeys.userPortfolioState, value: state)
             
             let alert = UIAlertController(title: "\(artist.name) was added to your portfolio", message: nil, preferredStyle: .alert)
             viewController.present(alert, animated: true, completion: nil)
@@ -49,6 +55,7 @@ AddArtistsViewModelOutput {
     }
     
     let searchText = PublishSubject<String>()
+    let dismissed = PublishSubject<Void>()
     
     // MARK: Outputs
     lazy var tableViewCellsModelType: Observable<[SearchArtistCellViewModelType]> = {
@@ -62,7 +69,8 @@ AddArtistsViewModelOutput {
     
     private let disposeBag = DisposeBag()
     private var artistResults: Observable<[Artist]>!
-    private var portfolioArtists: Set<Artist>!
+    private var portfolioArtists: [Artist]!
+    private var portfolioDates: [Date]!
     
     // MARK: Init
     init(sessionService: SessionService, dataManager: DataManager, safariService: SafariService) {
@@ -71,9 +79,10 @@ AddArtistsViewModelOutput {
         self.dataManager = dataManager
         self.safariService = safariService
         
-        let artistPortfolioState = self.dataManager.get(key: DataKeys.artistPortfolioState, type: ArtistPortfolioState.self)!
+        let userPortfolioState = self.dataManager.get(key: DataKeys.userPortfolioState, type: UserPortfolioState.self)!
         
-        self.portfolioArtists = artistPortfolioState.artists
+        self.portfolioArtists = userPortfolioState.artists
+        self.portfolioDates = userPortfolioState.dates
         
         self.artistResults = searchText.flatMapLatest { [unowned self] text -> Observable<[Artist]> in
             return (text == "") ? Observable.from([]) : self.sessionService.searchArtistResults(query: text, limit: 15)

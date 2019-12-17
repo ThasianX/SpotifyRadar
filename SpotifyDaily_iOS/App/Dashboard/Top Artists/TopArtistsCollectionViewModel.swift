@@ -68,8 +68,8 @@ class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
     private let disposeBag = DisposeBag()
     private var artistCollections: Observable<[Artist]>!
     
-    var artistsTimeRange = BehaviorRelay<String>(value: "")
-    var artistsLimit = BehaviorRelay<Int>(value: 0)
+    var artistsTimeRange: BehaviorRelay<String>
+    var artistsLimit: BehaviorRelay<Int>
 
     // MARK: Init
     init(sessionService: SessionService, dataManager: DataManager, safariService: SafariService) {
@@ -83,9 +83,10 @@ class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
         
         let artistsCollectionState = self.dataManager.get(key: DataKeys.topArtistsCollectionState, type: TopArtistsViewControllerState.self)!
         
-        self.artistsTimeRange.accept(artistsCollectionState.artistsTimeRange)
-        self.artistsLimit.accept(artistsCollectionState.artistsLimit)
-        
+       
+        self.artistsTimeRange = BehaviorRelay<String>(value: artistsCollectionState.artistsTimeRange)
+        self.artistsLimit = BehaviorRelay<Int>(value: artistsCollectionState.artistsLimit)
+       
         artistCollections = Observable.combineLatest(self.artistsTimeRange, self.artistsLimit)
             .flatMap { timeRange, limit -> Observable<[Artist]> in
                 let newDashboardState = TopArtistsViewControllerState(artistsTimeRange: timeRange, artistsLimit: limit)

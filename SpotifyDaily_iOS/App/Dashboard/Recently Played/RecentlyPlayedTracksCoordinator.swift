@@ -36,7 +36,7 @@ class RecentlyPlayedTracksCoordinator: BaseCoordinator {
         self.navigationController.presentOnTop(recentlyPlayedViewController, animated: true)
         
         viewModel.input.dismissed
-            .bind(to: parentViewModel.childDismissed)
+            .bind(to: parentViewModel.input.childDismissed)
             .disposed(by: disposeBag)
     }
     

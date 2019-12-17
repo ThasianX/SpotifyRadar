@@ -135,7 +135,7 @@ struct RecentlyPlayedTracksEndpointResponse: Decodable {
             
             let playedAtISO = item.playedAt
             let date = playedAtISO.iso8601
-            let playedAt = date!.mediumStyle
+            let playedAt = date!.mediumDateShortTime
             
             let externalURL = URL(string: item.track.externalUrls.spotify)!
             

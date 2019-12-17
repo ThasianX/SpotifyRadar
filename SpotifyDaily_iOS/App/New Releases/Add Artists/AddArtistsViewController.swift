@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class AddArtistsViewController: ViewControllerWithSideMenu, BindableType {
+class AddArtistsViewController: UIViewController, BindableType {
     
     // MARK: - Properties
     // MARK: Section model
@@ -22,7 +22,7 @@ class AddArtistsViewController: ViewControllerWithSideMenu, BindableType {
     
     // MARK: UIView Components
     private var resultsTableView = UITableView.defaultTableView
-    private let searchController = UISearchController(searchResultsController: nil)
+    private var searchController: UISearchController!
     
     // MARK: Public
     var searchBar: UISearchBar { return searchController.searchBar }
@@ -34,14 +34,25 @@ class AddArtistsViewController: ViewControllerWithSideMenu, BindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setUpView()
+        configureTableView()
+        configureSearchController()
+        setUpView()
     }
     
     deinit {
         Logger.info("AddArtistsViewController dellocated")
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        Logger.info("View did disappear")
+        searchController.dismiss(animated: true, completion: nil)
+        viewModel.input.dismissed.onNext(Void())
+    }
+    
+    
     private func configureSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        
         searchController.obscuresBackgroundDuringPresentation = false
         searchBar.showsCancelButton = false
         searchBar.placeholder = "Enter Artist Name..."
@@ -61,9 +72,6 @@ class AddArtistsViewController: ViewControllerWithSideMenu, BindableType {
     
     private func setUpView() {
         self.view.backgroundColor = ColorPreference.secondaryColor
-        
-        configureTableView()
-        configureSearchController()
         
         self.view.addSubview(resultsTableView)
         
