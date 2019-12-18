@@ -1,51 +1,54 @@
 //
-//  TopTracksEndpointResponse.swift
+//  AlbumTracksEndpointResponse.swift
 //  SpotifyDaily
 //
-//  Created by Kevin Li on 12/7/19.
+//  Created by Kevin Li on 12/18/19.
 //  Copyright © 2019 Kevin Li. All rights reserved.
 //
 
 import Foundation
 
-fileprivate struct TopTracksEndpointModel: Decodable {
+fileprivate struct AlbumTracksEndpointModel: Decodable {
     // MARK: - Item
     struct Item: Codable {
-        let album: Album
         let artists: [Artist]
-        let durationMS: Int
+        let availableMarkets: [String]
+        let discNumber, durationMS: Int
+        let explicit: Bool
         let externalUrls: ExternalUrls
+        let href: String
         let id: String
+        let isLocal: Bool
         let name: String
         let previewURL: String?
-
-        enum CodingKeys: String, CodingKey {
-            case album, artists
-            case durationMS = "duration_ms"
-            case externalUrls = "external_urls"
-            case name
-            case id
-            case previewURL = "preview_url"
-        }
-    }
-
-    // MARK: - Album
-    struct Album: Codable {
-        let artists: [Artist]
-        let images: [Image]
+        let trackNumber: Int
+        let type, uri: String
 
         enum CodingKeys: String, CodingKey {
             case artists
-            case images
+            case availableMarkets = "available_markets"
+            case discNumber = "disc_number"
+            case durationMS = "duration_ms"
+            case explicit
+            case externalUrls = "external_urls"
+            case href, id
+            case isLocal = "is_local"
+            case name
+            case previewURL = "preview_url"
+            case trackNumber = "track_number"
+            case type, uri
         }
     }
 
     // MARK: - Artist
     struct Artist: Codable {
-        let name: String
+        let externalUrls: ExternalUrls
+        let href: String
+        let id, name, type, uri: String
 
         enum CodingKeys: String, CodingKey {
-            case name
+            case externalUrls = "external_urls"
+            case href, id, name, type, uri
         }
     }
 
@@ -53,20 +56,15 @@ fileprivate struct TopTracksEndpointModel: Decodable {
     struct ExternalUrls: Codable {
         let spotify: String
     }
-
-    // MARK: - Image
-    struct Image: Codable {
-        let url: String
-    }
     
-    var items: [Item]
+    let items: [Item]
 }
 
-struct TopTracksEndpointResponse: Decodable {
+struct AlbumTracksEndpointResponse: Decodable {
     var tracks = [Track]()
     
     init(from decoder: Decoder) throws {
-        let response = try TopTracksEndpointModel(from: decoder)
+        let response = try AlbumTracksEndpointModel(from: decoder)
         
         for item in response.items {
             let trackName = item.name
@@ -80,9 +78,7 @@ struct TopTracksEndpointResponse: Decodable {
             }
             artists.removeLast(2)
             
-            let albumImage = item.album.images.count > 0 ? URL(string: item.album.images.first!.url) : nil
-            
-            let track = Track(name: trackName, id: trackId, duration: trackDuration, artists: artists, albumImage: albumImage, externalURL: externalURL)
+            let track = Track(name: trackName, id: trackId, duration: trackDuration, artists: artists, albumImage: nil, externalURL: externalURL)
             
             tracks.append(track)
         }
