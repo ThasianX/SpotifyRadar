@@ -128,6 +128,22 @@ class SessionService {
                 return Observable.just(artists)
         }
     }
+
+    func getNewTracksForArtist(artist: Artist) -> Observable<[NewTrack]> {
+        return networkingClient.artistAlbumsRequest(accessToken: self.token?.accessToken, artistId: artist.id, limit: 1)
+            .flatMap { [unowned self] albumResponse -> Observable<[NewTrack]> in
+                let recentAlbum = albumResponse.albums.first!
+                return self.networkingClient.albumTracksRequest(accessToken: self.token?.accessToken, albumId: recentAlbum.albumId)
+                    .flatMap { tracksResponse -> Observable<[NewTrack]> in
+                        var newTracks = [NewTrack]()
+                        for track in tracksResponse.tracks {
+                            let newTrack = NewTrack(trackName: track.name, albumName: recentAlbum.albumName, releaseDate: recentAlbum.releaseDate.mediumDateNoTime, artistNames: track.artists, duration: track.duration, externalURL: track.externalURL)
+                            newTracks.append(newTrack)
+                        }
+                        return Observable.just(newTracks)
+                }
+        }
+    }
     
     // MARK: - Private Session Management Methods
     private func setToken(response: SignInResponse) {

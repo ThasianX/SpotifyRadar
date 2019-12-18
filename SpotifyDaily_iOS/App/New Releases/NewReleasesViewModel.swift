@@ -47,7 +47,6 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
     }
     
     let presentPortfolio = PublishSubject<Void>()
-    
     let childDismissed = PublishSubject<Void>()
     
     // MARK: Outputs
@@ -57,6 +56,7 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
     
     // MARK: Private
     private var newTracks: Observable<[NewTrack]>!
+    private var portfolioArtists: BehaviorRelay<[Artist]>
     
     // MARK: - Initialization
     init(sessionService: SessionService, dataManager: DataManager, safariService: SafariService) {
@@ -64,8 +64,19 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
         self.dataManager = dataManager
         self.safariService = safariService
         
-        // Scan through portfolio artists and append new tracks to newTracks
-        newTracks = Observable.just([NewTrack(trackName: "fds", albumName: "dss", artistNames: ["Micheal","dss"], duration: "43", externalURL: URL(string: "fdfd")!)])
+        let userPortfolioState = self.dataManager.get(key: DataKeys.userPortfolioState, type: UserPortfolioState.self)!
+        
+        self.portfolioArtists = BehaviorRelay<[Artist]>(value: userPortfolioState.artists)
+        
+        newTracks = portfolioArtists
+            .distinctUntilChanged()
+            .flatMapLatest { [unowned self] artists -> Observable<[NewTrack]> in
+                var observable = Observable<[NewTrack]>.empty()
+                for artist in artists {
+                    observable = observable.concat(self.sessionService.getNewTracksForArtist(artist: artist))
+                }
+                return observable
+        }
     }
     
     deinit {
