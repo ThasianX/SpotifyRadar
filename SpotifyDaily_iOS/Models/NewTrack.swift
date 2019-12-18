@@ -11,6 +11,7 @@ import Foundation
 struct NewTrack: Codable, Equatable {
     let trackName: String
     let albumName: String
+    let releaseDate: String
     let artistNames: [String]
     let duration: String
     let externalURL: URL

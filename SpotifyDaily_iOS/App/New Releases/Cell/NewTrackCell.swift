@@ -15,7 +15,8 @@ class NewTrackCell: UITableViewCell, BindableType {
     // MARK: View components
     private lazy var trackName = UILabel.trackLabel
     private lazy var artistNames = UILabel.artistNamesLabel
-    private lazy var trackDuration = UILabel.durationLabel
+    private lazy var trackDuration = UILabel.rightLabel
+    private lazy var releaseDate = UILabel.rightLabel
     
     // MARK: Rx
     private let disposeBag = DisposeBag()
@@ -37,7 +38,7 @@ class NewTrackCell: UITableViewCell, BindableType {
     deinit {
         Logger.info("NewTrackCell dellocated")
     }
-
+    
     private func setUpView() {
         self.addSubview(trackName)
         self.addSubview(artistNames)
@@ -56,10 +57,13 @@ class NewTrackCell: UITableViewCell, BindableType {
         self.artistNames.topAnchor.constraint(equalTo: trackName.bottomAnchor, constant: Constraints.innerMargins).isActive = true
         self.artistNames.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         self.artistNames.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
-        self.artistNames.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins*3).isActive = true
+        self.artistNames.widthAnchor.constraint(equalTo: layoutGuide.widthAnchor, multiplier: 0.6).isActive = true
         
-        self.trackDuration.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor).isActive = true
+        self.trackDuration.centerYAnchor.constraint(equalTo: trackName.centerYAnchor).isActive = true
         self.trackDuration.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
+        
+        self.releaseDate.centerYAnchor.constraint(equalTo: artistNames.centerYAnchor).isActive = true
+        self.releaseDate.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         
     }
     
@@ -81,17 +85,22 @@ class NewTrackCell: UITableViewCell, BindableType {
                 artistsString.removeLast(2)
                 self.artistNames.text = artistsString
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         output.track
             .map { $0.duration }
             .bind(to: trackDuration.rx.text)
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
+        
+        output.track
+            .map { $0.releaseDate }
+            .bind(to: releaseDate.rx.text)
+            .disposed(by: disposeBag)
     }
 }
 
 private struct Constraints {
-    static let outerMargins = CGFloat(8)
+    static let outerMargins = CGFloat(16)
     static let innerMargins = CGFloat(4)
 }
 
@@ -99,7 +108,7 @@ private extension UILabel {
     static var trackLabel: UILabel {
         let label = UILabel()
         label.textColor = ColorPreference.tertiaryColor
-        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         label.textAlignment = .left
         label.numberOfLines = 0
         
@@ -111,7 +120,7 @@ private extension UILabel {
     static var artistNamesLabel: UILabel {
         let label = UILabel()
         label.textColor = ColorPreference.tertiaryColor
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textAlignment = .left
         label.numberOfLines = 0
         
@@ -120,7 +129,7 @@ private extension UILabel {
         return label
     }
     
-    static var durationLabel: UILabel {
+    static var rightLabel: UILabel {
         let label = UILabel()
         label.textColor = ColorPreference.tertiaryColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)

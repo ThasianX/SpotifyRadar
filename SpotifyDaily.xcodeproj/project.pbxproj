@@ -473,8 +473,8 @@
 		1E601C4E23A8B45F00A25FCD /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				1E601C4A23A8B26900A25FCD /* NewTracksCellViewModel.swift */,
 				1E601C4F23A8B47D00A25FCD /* NewTrackCell.swift */,
+				1E601C4A23A8B26900A25FCD /* NewTracksCellViewModel.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

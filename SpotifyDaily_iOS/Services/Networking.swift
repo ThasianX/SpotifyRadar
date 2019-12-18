@@ -9,6 +9,8 @@ internal let topArtistsEndpointURL = "https://api.spotify.com/v1/me/top/artists"
 internal let topTracksEndpointURL = "https://api.spotify.com/v1/me/top/tracks"
 internal let recentlyPlayedEndpointURL = "https://api.spotify.com/v1/me/player/recently-played"
 internal let searchItemEndpointURL = "https://api.spotify.com/v1/search"
+internal let artistAlbumsEndpointURL = "https://api.spotify.com/v1/artists/{id}/albums"
+internal let albumTracksEndpointURL = "https://api.spotify.com/v1/albums/{id}/tracks"
 
 class Networking {
     internal func createSignInResponse(code: String,
@@ -45,6 +47,72 @@ class Networking {
                 
                 return Observable.just(session)
         }
+    }
+    
+    internal func albumTracksRequest(accessToken: String?, albumId: String) -> Observable<AlbumTracksEndpointResponse> {
+        guard let accessToken = accessToken else {
+            fatalError("Unable to retrieve artist due to invalid access token")
+        }
+        
+        return Observable<AlbumTracksEndpointResponse>.create { observer in
+            let albumString = albumTracksEndpointURL.replacingOccurrences(of: "{id}", with: albumId)
+            let albumURL = URL(string: albumString)!
+            
+            var urlRequest = URLRequest(url: albumURL)
+            let authHeaderValue = "Bearer \(accessToken)"
+            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                do {
+                    let tracksResponse = try JSONDecoder().decode(AlbumTracksEndpointResponse.self, from: data ?? Data())
+                    observer.onNext(tracksResponse)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+    }
+    
+    internal func artistAlbumsRequest(accessToken: String?, artistId: String, limit: Int) -> Observable<ArtistAlbumsEndpointResponse> {
+        guard let accessToken = accessToken else {
+            fatalError("Unable to retrieve artist due to invalid access token")
+        }
+        
+        return Observable<ArtistAlbumsEndpointResponse>.create { observer in
+            let artistString = artistAlbumsEndpointURL.replacingOccurrences(of: "{id}", with: artistId)
+            var artistURL = URL(string: artistString)!
+            let queryItems = [URLQueryItem(name: "limit", value: String(limit))]
+            artistURL.appending(queryItems)
+            
+            var urlRequest = URLRequest(url: artistURL)
+            let authHeaderValue = "Bearer \(accessToken)"
+            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                do {
+                    let albumResponse = try JSONDecoder().decode(ArtistAlbumsEndpointResponse.self, from: data ?? Data())
+                    observer.onNext(albumResponse)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
     }
     
     internal func searchArtistsRequest(accessToken: String?, artistQuery: String, limit: Int) -> Observable<ArtistSearchEndpointResponse> {
