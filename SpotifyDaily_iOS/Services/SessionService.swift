@@ -133,15 +133,18 @@ class SessionService {
         return networkingClient.artistAlbumsRequest(accessToken: self.token?.accessToken, artistId: artist.id, limit: 1)
             .flatMap { [unowned self] albumResponse -> Observable<[NewTrack]> in
                 let recentAlbum = albumResponse.albums.first!
-                return self.networkingClient.albumTracksRequest(accessToken: self.token?.accessToken, albumId: recentAlbum.albumId)
-                    .flatMap { tracksResponse -> Observable<[NewTrack]> in
-                        var newTracks = [NewTrack]()
-                        for track in tracksResponse.tracks {
-                            let newTrack = NewTrack(trackName: track.name, albumName: recentAlbum.albumName, releaseDate: recentAlbum.releaseDate.mediumDateNoTime, artistNames: track.artistNames, duration: track.duration, externalURL: track.externalURL)
-                            newTracks.append(newTrack)
-                        }
-                        return Observable.just(newTracks)
+                if Date().timeIntervalSince(recentAlbum.releaseDate) < (60*60*24*30*2) {
+                    return self.networkingClient.albumTracksRequest(accessToken: self.token?.accessToken, albumId: recentAlbum.albumId)
+                        .flatMap { tracksResponse -> Observable<[NewTrack]> in
+                            var newTracks = [NewTrack]()
+                            for track in tracksResponse.tracks {
+                                let newTrack = NewTrack(trackName: track.name, albumName: recentAlbum.albumName, releaseDate: recentAlbum.releaseDate.mediumDateNoTime, artistNames: track.artistNames, duration: track.duration, externalURL: track.externalURL)
+                                newTracks.append(newTrack)
+                            }
+                            return Observable.just(newTracks)
+                    }
                 }
+                return Observable<[NewTrack]>.empty()
         }
     }
     

@@ -20,7 +20,7 @@ protocol NewReleasesViewModelInput {
 
 protocol NewReleasesViewModelOutput {
     var newTracksCellModelType: Observable<[NewTracksCellViewModelType]> { get }
-    var emptyTableView: BehaviorSubject<Bool> { get }
+    var emptyPortfolio: BehaviorRelay<Bool> { get }
 }
 
 protocol NewReleasesViewModelType {
@@ -57,7 +57,7 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
         }
     }()
     
-    let emptyTableView = BehaviorSubject<Bool>(value: false)
+    let emptyPortfolio = BehaviorRelay<Bool>(value: false)
     
     // MARK: Private
     private var newTracks: Observable<[NewTrack]>!
@@ -76,7 +76,7 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
         newTracks = portfolioArtists
             .distinctUntilChanged()
             .flatMapLatest { [unowned self] artists -> Observable<[NewTrack]> in
-                artists.isEmpty ? self.emptyTableView.onNext(true) : self.emptyTableView.onNext(false)
+                artists.isEmpty ? self.emptyPortfolio.accept(true) : self.emptyPortfolio.accept(false)
                 
                 var observable = Observable<[NewTrack]>.empty()
                 for artist in artists {
@@ -89,7 +89,7 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
             let userPortfolioState = self.dataManager.get(key: DataKeys.userPortfolioState, type: UserPortfolioState.self)!
             self.portfolioArtists.accept(userPortfolioState.artists)
         })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
     
     deinit {

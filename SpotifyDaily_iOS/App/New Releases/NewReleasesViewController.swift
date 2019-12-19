@@ -84,11 +84,12 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         let output = viewModel.output
         
         output.newTracksCellModelType
-            .map { [TracksSectionModel(model: "New Releases", items: $0)] }
+            .map {
+                [TracksSectionModel(model: "New Releases", items: $0)] }
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        output.emptyTableView
+        output.emptyPortfolio
             .bind(onNext: { [unowned self] empty in
                 if empty {
                     self.tableView.isHidden = true
@@ -137,7 +138,7 @@ private struct Constraints {
 extension UILabel {
     static var emptyLabel: UILabel {
         let label = UILabel()
-        label.text = "Add artists to see new releases"
+        label.text = "Add artists to your portfolio to see new releases"
         label.font = UIFont.init(helveticaStyle: .bold, size: 40)
         label.textColor = ColorPreference.tertiaryColor
         label.backgroundColor = ColorPreference.secondaryColor
