@@ -20,5 +20,8 @@ Using the spotify API, this app pulls in recent songs from artists in the user's
 - For the login process, also directly authenticate with the spotify app
 - Rare bug: AppDelegate crashes because the rootviewcontroller isn’t set by the time its didfinishlaunchingoptions method returns. I have a line in AppCoordinator that just needs to be uncommented in the case that this happens
 - Add notifications when a new track is released by an artist in user’s portfolio
+- Refresh dashboard after one of its subviews is dismissed
 
 ### Screenshots
+
+<img src="./App Images/setup.png" height="500"> <img src="./App Images/sidemenu.png" height="500"> <img src="./App Images/noartists.png" height="500"> <img src="./App Images/addartists.png" height="500"> <img src="./App Images/portfolio.png" height="500"> <img src="./App Images/newreleases.png" height="500"> <img src="./App Images/dashboard.png" height="500">  <img src="./App Images/topartists.png" height="500"> <img src="./App Images/safari.png" height="500"> <img src="./App Images/toptracks.png" height="500"> <img src="./App Images/recentlyplayed.png" height="500"> <img src="./App Images/settings.png" height="500"> 
