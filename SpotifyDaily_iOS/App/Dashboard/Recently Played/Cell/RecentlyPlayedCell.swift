@@ -64,11 +64,11 @@ class RecentlyPlayedCell: UITableViewCell, BindableType {
         self.albumName.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
         self.albumName.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
         
-        self.trackDuration.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
+        self.trackDuration.centerYAnchor.constraint(equalTo: trackName.centerYAnchor).isActive = true
         self.trackDuration.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         self.trackDuration.leadingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins).isActive = true
         
-        self.playedAt.topAnchor.constraint(equalTo: trackDuration.bottomAnchor, constant: Constraints.innerMargins*1.5).isActive = true
+        self.playedAt.centerYAnchor.constraint(equalTo: albumName.centerYAnchor).isActive = true
         self.playedAt.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         self.playedAt.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         

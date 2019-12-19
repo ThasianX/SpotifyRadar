@@ -77,8 +77,7 @@ class EditPortfolioCell: UITableViewCell, BindableType {
                 if let url = url {
                     self.artistImage.load(url: url, targetSize: CGSize(width: 40, height: 40))
                 } else {
-                    let image = UIImage(named: "default_artist_image")?.resize(targetSize: CGSize(width: 40, height: 40))
-                    self.artistImage.image = image
+                    self.artistImage.load(url: URL(string: DefaultImages.defaultArtist)!, targetSize: CGSize(width: 40, height: 40))
                 }
             })
             .disposed(by: disposeBag)

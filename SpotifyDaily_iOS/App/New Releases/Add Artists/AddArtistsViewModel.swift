@@ -85,7 +85,7 @@ AddArtistsViewModelOutput {
         self.portfolioDates = userPortfolioState.dates
         
         self.artistResults = searchText.flatMapLatest { [unowned self] text -> Observable<[Artist]> in
-            return (text == "") ? Observable.from([]) : self.sessionService.searchArtistResults(query: text, limit: 15)
+            return (text == "") ? Observable.from([]) : self.sessionService.searchArtistResults(query: text, limit: 20)
         }
     }
     
