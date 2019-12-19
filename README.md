@@ -1,4 +1,4 @@
-# Spotify Daily **Archived
+# Spotify Daily **Archived - Screenshots below
 
 Using the spotify API, this app pulls in recent songs from artists in the user's portfolio and gives the user an overview of their top artists, top tracks, and recently listened to tracks.
 
