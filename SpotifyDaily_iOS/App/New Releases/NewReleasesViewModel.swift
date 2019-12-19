@@ -20,6 +20,7 @@ protocol NewReleasesViewModelInput {
 
 protocol NewReleasesViewModelOutput {
     var newTracksCellModelType: Observable<[NewTracksCellViewModelType]> { get }
+    var emptyTableView: BehaviorSubject<Bool> { get }
 }
 
 protocol NewReleasesViewModelType {
@@ -51,8 +52,12 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
     
     // MARK: Outputs
     lazy var newTracksCellModelType: Observable<[NewTracksCellViewModelType]> = {
-        return newTracks.mapMany { NewTracksCellViewModel(track: $0) }
+        return newTracks.mapMany {
+            return NewTracksCellViewModel(track: $0)
+        }
     }()
+    
+    let emptyTableView = BehaviorSubject<Bool>(value: false)
     
     // MARK: Private
     private var newTracks: Observable<[NewTrack]>!
@@ -71,6 +76,8 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
         newTracks = portfolioArtists
             .distinctUntilChanged()
             .flatMapLatest { [unowned self] artists -> Observable<[NewTrack]> in
+                artists.isEmpty ? self.emptyTableView.onNext(true) : self.emptyTableView.onNext(false)
+                
                 var observable = Observable<[NewTrack]>.empty()
                 for artist in artists {
                     observable = observable.concat(self.sessionService.getNewTracksForArtist(artist: artist)).scan([], accumulator: +)

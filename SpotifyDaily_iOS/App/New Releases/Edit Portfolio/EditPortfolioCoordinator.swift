@@ -27,8 +27,6 @@ class EditPortfolioCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        print(CFGetRetainCount(viewModel))
-        
         var viewController = EditPortfolioViewController()
         viewController.bind(to: viewModel)
         

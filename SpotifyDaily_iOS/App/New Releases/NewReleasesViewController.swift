@@ -24,6 +24,7 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
     // MARK: View components
     private lazy var tableView = UITableView.defaultTableView
     private var editPortfolio: UIBarButtonItem!
+    private lazy var emptyLabel = UILabel.emptyLabel
     
     // MARK: Private
     private var dataSource: RxTableViewSectionedReloadDataSource<TracksSectionModel>!
@@ -44,6 +45,7 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
     private func setUpView() {
         self.view.backgroundColor = ColorPreference.secondaryColor
         self.view.addSubview(tableView)
+        self.view.addSubview(emptyLabel)
         
         let layoutGuide = self.view.safeAreaLayoutGuide
         
@@ -51,6 +53,11 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         tableView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        emptyLabel.topAnchor.constraint(equalTo: layoutGuide.topAnchor).isActive = true
+        emptyLabel.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
+        emptyLabel.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
+        emptyLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
     private func configureNavigationBar() {
@@ -79,6 +86,18 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         output.newTracksCellModelType
             .map { [TracksSectionModel(model: "New Releases", items: $0)] }
             .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        output.emptyTableView
+            .bind(onNext: { [unowned self] empty in
+                if empty {
+                    self.tableView.isHidden = true
+                    self.emptyLabel.isHidden = false
+                } else {
+                    self.tableView.isHidden = false
+                    self.emptyLabel.isHidden = true
+                }
+            })
             .disposed(by: disposeBag)
 
         tableView.rx.itemSelected
@@ -113,4 +132,19 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
 
 private struct Constraints {
     static let outerMargins = CGFloat(16)
+}
+
+extension UILabel {
+    static var emptyLabel: UILabel {
+        let label = UILabel()
+        label.text = "Add artists to see new releases"
+        label.font = UIFont.init(helveticaStyle: .bold, size: 40)
+        label.textColor = ColorPreference.tertiaryColor
+        label.backgroundColor = ColorPreference.secondaryColor
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }
 }

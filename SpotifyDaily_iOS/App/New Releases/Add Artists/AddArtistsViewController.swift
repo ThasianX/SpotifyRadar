@@ -110,7 +110,6 @@ class AddArtistsViewController: UIViewController, BindableType {
         
         output.tableViewCellsModelType
             .map {
-                Logger.info("Reloading tableview")
                 return [AddArtistSectionModel(model: "", items: $0)]
         }
         .bind(to: resultsTableView.rx.items(dataSource: dataSource))

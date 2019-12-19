@@ -51,7 +51,6 @@ class NewReleasesCoordinator: BaseCoordinator {
     
     private func presentEditPortfolio() {
         Logger.info("Presenting edit portfolio")
-        print(CFGetRetainCount(viewModel))
 
         let coordinator = AppDelegate.container.resolve(EditPortfolioCoordinator.self)!
         coordinator.navigationController = self.navigationController
