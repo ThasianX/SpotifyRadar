@@ -23,6 +23,9 @@ Using the spotify API, this app pulls in recent songs from artists in the user's
 - Add notifications when a new track is released by an artist in user’s portfolio
 - Refresh dashboard after one of its subviews is dismissed
 
+### Installing
+- I've already committed the pods so all you have to do is open xcworkspace and run the app on an emulator of your choice, preferabbly iPhone X and above
+
 ### Screenshots
 
 <img src="./App Images/setup.png" height="500"> <img src="./App Images/sidemenu.png" height="500"> <img src="./App Images/noartists.png" height="500"> <img src="./App Images/addartists.png" height="500"> <img src="./App Images/portfolio.png" height="500"> <img src="./App Images/newreleases.png" height="500"> <img src="./App Images/dashboard.png" height="500">  <img src="./App Images/topartists.png" height="500"> <img src="./App Images/safari.png" height="500"> <img src="./App Images/toptracks.png" height="500"> <img src="./App Images/recentlyplayed.png" height="500"> <img src="./App Images/settings.png" height="500"> 
