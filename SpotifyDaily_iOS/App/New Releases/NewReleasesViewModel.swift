@@ -16,11 +16,14 @@ protocol NewReleasesViewModelInput {
     var presentPortfolio: PublishSubject<Void> { get }
     
     var childDismissed: PublishSubject<Void> { get }
+    
+    var sliderValue: BehaviorRelay<Float> { get }
 }
 
 protocol NewReleasesViewModelOutput {
     var newTracksCellModelType: Observable<[NewTracksCellViewModelType]> { get }
     var emptyPortfolio: BehaviorRelay<Bool> { get }
+    var emptyTracks: BehaviorRelay<Bool> { get }
 }
 
 protocol NewReleasesViewModelType {
@@ -49,6 +52,7 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
     
     let presentPortfolio = PublishSubject<Void>()
     let childDismissed = PublishSubject<Void>()
+    let sliderValue: BehaviorRelay<Float>
     
     // MARK: Outputs
     lazy var newTracksCellModelType: Observable<[NewTracksCellViewModelType]> = {
@@ -58,6 +62,7 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
     }()
     
     let emptyPortfolio = BehaviorRelay<Bool>(value: false)
+    let emptyTracks = BehaviorRelay<Bool>(value: false)
     
     // MARK: Private
     private var newTracks: Observable<[NewTrack]>!
@@ -70,20 +75,33 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
         self.safariService = safariService
         
         let userPortfolioState = self.dataManager.get(key: DataKeys.userPortfolioState, type: UserPortfolioState.self)!
-        
         self.portfolioArtists = BehaviorRelay<[Artist]>(value: userPortfolioState.artists)
         
-        newTracks = portfolioArtists
-            .distinctUntilChanged()
-            .flatMapLatest { [unowned self] artists -> Observable<[NewTrack]> in
+        let newReleasesTimeRange = self.dataManager.get(key: DataKeys.newReleasesTimeRange, type: Float.self)!
+        self.sliderValue = BehaviorRelay<Float>(value: newReleasesTimeRange)
+        
+        newTracks = Observable.combineLatest(portfolioArtists, sliderValue)
+            .flatMapLatest { [unowned self] artists, value -> Observable<[NewTrack]> in
                 artists.isEmpty ? self.emptyPortfolio.accept(true) : self.emptyPortfolio.accept(false)
                 
-                var observable = Observable<[NewTrack]>.empty()
+                var observable = Observable<[NewTrack]>.just([])
                 for artist in artists {
-                    observable = observable.concat(self.sessionService.getNewTracksForArtist(artist: artist)).scan([], accumulator: +)
+                    observable = observable.concat(self.sessionService.getNewTracksForArtist(artist: artist, months: Double(value))).scan([], accumulator: +)
                 }
                 return observable
         }
+        
+        newTracks.bind(onNext: { [unowned self] tracks in
+            Logger.info("Newtracks bind: \(tracks.isEmpty) && \(!self.emptyPortfolio.value)")
+            tracks.isEmpty ? self.emptyTracks.accept(true) : self.emptyTracks.accept(false)
+        })
+            .disposed(by: disposeBag)
+        
+        // Skips the initial behavior value and also the initial value call from the view controller's slider
+        sliderValue.skip(2).bind(onNext: { [unowned self] value in
+            self.dataManager.set(key: DataKeys.newReleasesTimeRange, value: value)
+        })
+            .disposed(by: disposeBag)
         
         childDismissed.bind(onNext: { [unowned self] in
             let userPortfolioState = self.dataManager.get(key: DataKeys.userPortfolioState, type: UserPortfolioState.self)!

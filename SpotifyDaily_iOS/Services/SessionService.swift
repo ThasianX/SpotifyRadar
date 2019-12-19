@@ -129,11 +129,11 @@ class SessionService {
         }
     }
 
-    func getNewTracksForArtist(artist: Artist) -> Observable<[NewTrack]> {
+    func getNewTracksForArtist(artist: Artist, months: Double) -> Observable<[NewTrack]> {
         return networkingClient.artistAlbumsRequest(accessToken: self.token?.accessToken, artistId: artist.id, limit: 1)
             .flatMap { [unowned self] albumResponse -> Observable<[NewTrack]> in
                 let recentAlbum = albumResponse.albums.first!
-                if Date().timeIntervalSince(recentAlbum.releaseDate) < (60*60*24*30*2) {
+                if Date().timeIntervalSince(recentAlbum.releaseDate) < (60*60*24*30*Double(months)) {
                     return self.networkingClient.albumTracksRequest(accessToken: self.token?.accessToken, albumId: recentAlbum.albumId)
                         .flatMap { tracksResponse -> Observable<[NewTrack]> in
                             var newTracks = [NewTrack]()
@@ -186,5 +186,8 @@ class SessionService {
         
         let artistPortfolioState = UserPortfolioState(artists: [], dates: [])
         self.dataManager.set(key: DataKeys.userPortfolioState, value: artistPortfolioState)
+        
+        let newReleasesTimeRange = Float(exactly: 2)
+        self.dataManager.set(key: DataKeys.newReleasesTimeRange, value: newReleasesTimeRange)
     }
 }

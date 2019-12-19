@@ -23,8 +23,10 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
     
     // MARK: View components
     private lazy var tableView = UITableView.defaultTableView
-    private var editPortfolio: UIBarButtonItem!
     private lazy var emptyLabel = UILabel.emptyLabel
+    private lazy var sliderTimeRange = UILabel.sliderTimeRangeLabel
+    private lazy var newReleasesSlider = UISlider.newReleasesSlider
+    private var editPortfolio: UIBarButtonItem!
     
     // MARK: Private
     private var dataSource: RxTableViewSectionedReloadDataSource<TracksSectionModel>!
@@ -46,17 +48,29 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         self.view.backgroundColor = ColorPreference.secondaryColor
         self.view.addSubview(tableView)
         self.view.addSubview(emptyLabel)
+        self.view.addSubview(sliderTimeRange)
+        self.view.addSubview(newReleasesSlider)
         
         let layoutGuide = self.view.safeAreaLayoutGuide
         
-        tableView.topAnchor.constraint(equalTo: layoutGuide.topAnchor).isActive = true
+        sliderTimeRange.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
+        sliderTimeRange.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
+        sliderTimeRange.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
+        sliderTimeRange.heightAnchor.constraint(equalToConstant: Constraints.height).isActive = true
+        
+        newReleasesSlider.topAnchor.constraint(equalTo: sliderTimeRange.bottomAnchor, constant: Constraints.outerMargins).isActive = true
+        newReleasesSlider.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
+        newReleasesSlider.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
+        newReleasesSlider.heightAnchor.constraint(equalToConstant: Constraints.height).isActive = true
+        
+        tableView.topAnchor.constraint(equalTo: newReleasesSlider.bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-        emptyLabel.topAnchor.constraint(equalTo: layoutGuide.topAnchor).isActive = true
-        emptyLabel.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
-        emptyLabel.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
+        emptyLabel.topAnchor.constraint(equalTo: newReleasesSlider.bottomAnchor).isActive = true
+        emptyLabel.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
+        emptyLabel.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         emptyLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
@@ -89,11 +103,16 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        output.emptyPortfolio
-            .bind(onNext: { [unowned self] empty in
-                if empty {
+        Observable.combineLatest(output.emptyPortfolio, output.emptyTracks)
+            .bind(onNext: { [unowned self] emptyPortfolio, emptyTracks in
+                if emptyPortfolio {
                     self.tableView.isHidden = true
                     self.emptyLabel.isHidden = false
+                    self.emptyLabel.text = "Add artists to your portfolio to see new releases"
+                } else if emptyTracks {
+                    self.tableView.isHidden = true
+                    self.emptyLabel.isHidden = false
+                    self.emptyLabel.text = "No new releases"
                 } else {
                     self.tableView.isHidden = false
                     self.emptyLabel.isHidden = true
@@ -118,6 +137,16 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         editPortfolio.rx.tap
             .bind(to: input.presentPortfolio)
         .disposed(by: disposeBag)
+        
+        newReleasesSlider.value = input.sliderValue.value
+        
+        newReleasesSlider.rx.value
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .bind(onNext: { [unowned self] value in
+                self.sliderTimeRange.text = "New releases within the past \(Int(value)) months"
+                input.sliderValue.accept(value)
+            })
+        .disposed(by: disposeBag)
     }
 
     private var tableViewDataSource:
@@ -128,17 +157,16 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
             return cell
         }
     }
-    
 }
 
 private struct Constraints {
     static let outerMargins = CGFloat(16)
+    static let height = CGFloat(30)
 }
 
-extension UILabel {
+private extension UILabel {
     static var emptyLabel: UILabel {
         let label = UILabel()
-        label.text = "Add artists to your portfolio to see new releases"
         label.font = UIFont.init(helveticaStyle: .bold, size: 40)
         label.textColor = ColorPreference.tertiaryColor
         label.backgroundColor = ColorPreference.secondaryColor
@@ -147,5 +175,32 @@ extension UILabel {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
+    }
+    
+    static var sliderTimeRangeLabel: UILabel {
+        let label = UILabel()
+        label.font = UIFont.init(helveticaStyle: .bold, size: 15)
+        label.textColor = ColorPreference.tertiaryColor
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }
+}
+
+private extension UISlider {
+    static var newReleasesSlider: UISlider {
+        let slider = UISlider()
+        slider.minimumValue = 1
+        slider.maximumValue = 12
+        slider.minimumTrackTintColor = UIColor(hexString: "#4CAF50")
+        slider.maximumTrackTintColor = ColorPreference.tertiaryColor
+        
+        let thumbImage = UIImage(named: "spotify_thumb_image")?.resize(targetSize: CGSize(width: 30, height: 30))
+        slider.setThumbImage(thumbImage, for: .normal)
+        
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        
+        return slider
     }
 }

@@ -13,4 +13,5 @@ struct DataKeys {
     static let topArtistsCollectionState = "topArtistsCollectionState"
     static let topTracksCollectionState = "topTracksCollectionState"
     static let userPortfolioState = "artistPortfolioState"
+    static let newReleasesTimeRange = "newReleasesTimeRange"
 }
