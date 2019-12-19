@@ -66,7 +66,7 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
         tracksTimeRangeControl.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         tracksTimeRangeControl.heightAnchor.constraint(equalToConstant: Constraints.height).isActive = true
         
-        collectionView.topAnchor.constraint(equalTo: tracksTimeRangeControl.bottomAnchor, constant: Constraints.controlMargin*2).isActive = true
+        collectionView.topAnchor.constraint(equalTo: tracksTimeRangeControl.bottomAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true

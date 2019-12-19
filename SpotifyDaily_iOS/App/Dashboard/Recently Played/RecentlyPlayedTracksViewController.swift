@@ -58,7 +58,7 @@ final class RecentlyPlayedTracksViewController: UIViewController, BindableType {
         recentlyPlayedTitle.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         recentlyPlayedTitle.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         
-        tableView.topAnchor.constraint(equalTo: recentlyPlayedTitle.bottomAnchor, constant: Constraints.outerMargins*2).isActive = true
+        tableView.topAnchor.constraint(equalTo: recentlyPlayedTitle.bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true

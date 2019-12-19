@@ -48,7 +48,7 @@ final class DashboardViewController: ViewControllerWithSideMenu, BindableType {
         super.viewDidLoad()
         
         self.view.backgroundColor = ColorPreference.secondaryColor
-        title = "Spotify Daily Dashboard"
+        title = "Dashboard"
         self.setUpView()
     }
     

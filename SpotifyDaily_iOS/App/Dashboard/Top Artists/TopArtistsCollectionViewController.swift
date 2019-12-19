@@ -66,7 +66,7 @@ final class TopArtistsCollectionViewController: UIViewController, BindableType {
         artistsTimeRangeControl.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         artistsTimeRangeControl.heightAnchor.constraint(equalToConstant: Constraints.height).isActive = true
         
-        collectionView.topAnchor.constraint(equalTo: artistsTimeRangeControl.bottomAnchor, constant: Constraints.controlMargin*2).isActive = true
+        collectionView.topAnchor.constraint(equalTo: artistsTimeRangeControl.bottomAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true

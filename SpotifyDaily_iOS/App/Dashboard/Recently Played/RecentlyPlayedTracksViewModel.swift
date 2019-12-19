@@ -73,7 +73,7 @@ RecentlyPlayedTracksViewModelOutput {
         // Initializing utputs
         title = Observable.just("Your Recently Played Tracks")
         
-        trackCollections = sessionService.getRecentlyPlayedTracks(limit: 20)
+        trackCollections = sessionService.getRecentlyPlayedTracks(limit: 50)
             .flatMapLatest { [unowned self] tracks -> Observable<[RecentlyPlayedTrack]> in
                 var updatedTracks = [RecentlyPlayedTrack]()
                 

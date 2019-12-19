@@ -13,7 +13,7 @@ import RxCocoa
 
 class DrawerMenuViewController: UIViewController {
     
-    private var selectedRow: Int = 0
+    private var selectedRow: Int = 1
     private let disposeBag = DisposeBag()
     
     private lazy var tableView = UITableView.tableView
@@ -23,7 +23,7 @@ class DrawerMenuViewController: UIViewController {
     
     var viewModel: DrawerMenuViewModel? {
         didSet {
-            self.selectedRow = 0
+            self.selectedRow = 1
             self.setUpBindings()
         }
     }

@@ -102,7 +102,7 @@ private extension UILabel {
     static var trackLabel: UILabel {
         let label = UILabel()
         label.textColor = ColorPreference.tertiaryColor
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         label.textAlignment = .left
         label.numberOfLines = 0
         

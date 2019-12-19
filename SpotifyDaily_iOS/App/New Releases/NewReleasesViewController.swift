@@ -71,7 +71,7 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         emptyLabel.topAnchor.constraint(equalTo: newReleasesSlider.bottomAnchor).isActive = true
         emptyLabel.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         emptyLabel.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
-        emptyLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        emptyLabel.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor).isActive = true
     }
     
     private func configureNavigationBar() {

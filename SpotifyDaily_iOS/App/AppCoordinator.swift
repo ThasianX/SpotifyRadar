@@ -26,16 +26,17 @@ class AppCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        self.window.makeKeyAndVisible()
         
-        ViewControllerUtils.setRootViewController(
-        window: self.window,
-        viewController: StartupViewController(),
-        withAnimation: true)
+        // Uncomment this line out if you are getting problems with the root view controller not being set by the time appdelegate returns.
+//        ViewControllerUtils.setRootViewController(
+//        window: self.window,
+//        viewController: StartupViewController(),
+//        withAnimation: true)
         
         self.sessionService.loadSession()
             .bind(onNext: { [unowned self] session in
                 session == nil ? self.showSignIn() : self.showDashboard()
+                self.window.makeKeyAndVisible()
             })
             .disposed(by: disposeBag)
         
