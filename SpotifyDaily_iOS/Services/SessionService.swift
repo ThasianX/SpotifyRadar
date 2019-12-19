@@ -137,7 +137,7 @@ class SessionService {
                     .flatMap { tracksResponse -> Observable<[NewTrack]> in
                         var newTracks = [NewTrack]()
                         for track in tracksResponse.tracks {
-                            let newTrack = NewTrack(trackName: track.name, albumName: recentAlbum.albumName, releaseDate: recentAlbum.releaseDate.mediumDateNoTime, artistNames: track.artists, duration: track.duration, externalURL: track.externalURL)
+                            let newTrack = NewTrack(trackName: track.name, albumName: recentAlbum.albumName, releaseDate: recentAlbum.releaseDate.mediumDateNoTime, artistNames: track.artistNames, duration: track.duration, externalURL: track.externalURL)
                             newTracks.append(newTrack)
                         }
                         return Observable.just(newTracks)

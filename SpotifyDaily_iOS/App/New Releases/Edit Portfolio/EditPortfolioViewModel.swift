@@ -46,6 +46,9 @@ EditPortfolioViewModelOutput {
         artists.remove(at: indexPath.row)
         var dates = portfolioDates.value
         dates.remove(at: indexPath.row)
+
+        let newState = UserPortfolioState(artists: artists, dates: dates)
+        dataManager.set(key: DataKeys.userPortfolioState, value: newState)
         
         portfolioArtists.accept(artists)
         portfolioDates.accept(dates)
@@ -85,10 +88,15 @@ EditPortfolioViewModelOutput {
         
         portfolio = Observable.combineLatest(portfolioArtists, portfolioDates)
             .flatMap { artists, dates -> Observable<[(Artist, Date)]> in
-                let newState = UserPortfolioState(artists: artists, dates: dates)
-                self.dataManager.set(key: DataKeys.userPortfolioState, value: newState)
                 return Observable.just(Array(zip(artists, dates)))
         }
+        
+        childDismissed.bind(onNext: { [unowned self] in
+            let userPortfolioState = self.dataManager.get(key: DataKeys.userPortfolioState, type: UserPortfolioState.self)!
+            self.portfolioArtists.accept(userPortfolioState.artists)
+            self.portfolioDates.accept(userPortfolioState.dates)
+        })
+        .disposed(by: disposeBag)
     }
     
     deinit {

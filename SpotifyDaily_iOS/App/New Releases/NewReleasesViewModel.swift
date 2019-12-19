@@ -73,14 +73,19 @@ class NewReleasesViewModel: NewReleasesViewModelType, NewReleasesViewModelInput,
             .flatMapLatest { [unowned self] artists -> Observable<[NewTrack]> in
                 var observable = Observable<[NewTrack]>.empty()
                 for artist in artists {
-                    observable = observable.concat(self.sessionService.getNewTracksForArtist(artist: artist))
+                    observable = observable.concat(self.sessionService.getNewTracksForArtist(artist: artist)).scan([], accumulator: +)
                 }
                 return observable
         }
+        
+        childDismissed.bind(onNext: { [unowned self] in
+            let userPortfolioState = self.dataManager.get(key: DataKeys.userPortfolioState, type: UserPortfolioState.self)!
+            self.portfolioArtists.accept(userPortfolioState.artists)
+        })
+        .disposed(by: disposeBag)
     }
     
     deinit {
         Logger.info("NewReleasesViewModel dellocated")
     }
-    
 }

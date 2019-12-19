@@ -43,6 +43,7 @@ class NewTrackCell: UITableViewCell, BindableType {
         self.addSubview(trackName)
         self.addSubview(artistNames)
         self.addSubview(trackDuration)
+        self.addSubview(releaseDate)
         
         self.setUpConstraints()
     }
@@ -51,19 +52,19 @@ class NewTrackCell: UITableViewCell, BindableType {
         let layoutGuide = self.safeAreaLayoutGuide
         
         self.trackName.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: Constraints.outerMargins).isActive = true
-        self.trackName.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
+        self.trackName.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins*2).isActive = true
         self.trackName.trailingAnchor.constraint(equalTo: layoutGuide.centerXAnchor, constant: Constraints.outerMargins*3).isActive = true
         
         self.artistNames.topAnchor.constraint(equalTo: trackName.bottomAnchor, constant: Constraints.innerMargins).isActive = true
-        self.artistNames.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
+        self.artistNames.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins*2).isActive = true
         self.artistNames.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -Constraints.outerMargins).isActive = true
         self.artistNames.widthAnchor.constraint(equalTo: layoutGuide.widthAnchor, multiplier: 0.6).isActive = true
         
         self.trackDuration.centerYAnchor.constraint(equalTo: trackName.centerYAnchor).isActive = true
-        self.trackDuration.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.trackDuration.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins*2).isActive = true
         
         self.releaseDate.centerYAnchor.constraint(equalTo: artistNames.centerYAnchor).isActive = true
-        self.releaseDate.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
+        self.releaseDate.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins*2).isActive = true
         
     }
     
@@ -77,14 +78,7 @@ class NewTrackCell: UITableViewCell, BindableType {
         
         output.track
             .map { $0.artistNames }
-            .bind(onNext: { [unowned self] names in
-                var artistsString = ""
-                for name in names {
-                    artistsString += "\(name), "
-                }
-                artistsString.removeLast(2)
-                self.artistNames.text = artistsString
-            })
+            .bind(to: artistNames.rx.text)
             .disposed(by: disposeBag)
         
         output.track
@@ -100,7 +94,7 @@ class NewTrackCell: UITableViewCell, BindableType {
 }
 
 private struct Constraints {
-    static let outerMargins = CGFloat(16)
+    static let outerMargins = CGFloat(8)
     static let innerMargins = CGFloat(4)
 }
 

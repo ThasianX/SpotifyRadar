@@ -120,6 +120,7 @@
 		1EDB2F52239CC54A00B5D099 /* TopTracksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB2F51239CC54A00B5D099 /* TopTracksCollectionViewController.swift */; };
 		1EDD2EEC23AAA79E007D7213 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD2EEB23AAA79E007D7213 /* Album.swift */; };
 		1EDD2EEE23AAAFC1007D7213 /* AlbumTracksEndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD2EED23AAAFC1007D7213 /* AlbumTracksEndpointResponse.swift */; };
+		1EDD2EF023AB27AE007D7213 /* DefaultImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD2EEF23AB27AE007D7213 /* DefaultImages.swift */; };
 		1EEDC1192398018400D6B06B /* ArtistCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEDC1182398018400D6B06B /* ArtistCollectionCellViewModel.swift */; };
 		458FD1945C8A908882478374 /* Pods_SpotifyDaily_SpotifyDailyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1948A5420E2E2FE1B69A8A11 /* Pods_SpotifyDaily_SpotifyDailyTests.framework */; };
 		8F515307A5178E374E8EF40F /* Pods_SpotifyDaily.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8CC02E396098B17CEAB7D17 /* Pods_SpotifyDaily.framework */; };
@@ -256,6 +257,7 @@
 		1EDB2F51239CC54A00B5D099 /* TopTracksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTracksCollectionViewController.swift; sourceTree = "<group>"; };
 		1EDD2EEB23AAA79E007D7213 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		1EDD2EED23AAAFC1007D7213 /* AlbumTracksEndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTracksEndpointResponse.swift; sourceTree = "<group>"; };
+		1EDD2EEF23AB27AE007D7213 /* DefaultImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImages.swift; sourceTree = "<group>"; };
 		1EEDC1182398018400D6B06B /* ArtistCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		D5E444B7BEE18E14E5C9048C /* Pods-SpotifyDaily-SpotifyDailyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyDaily-SpotifyDailyTests.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyDaily-SpotifyDailyTests/Pods-SpotifyDaily-SpotifyDailyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8CC02E396098B17CEAB7D17 /* Pods_SpotifyDaily.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotifyDaily.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -437,6 +439,7 @@
 				1E583A0323909E0200DC033F /* ViewControllerUtils.swift */,
 				1EC2A13423916D33006E5E96 /* Json.swift */,
 				1E7129E7239B0B12007F538B /* ColorPreference.swift */,
+				1EDD2EEF23AB27AE007D7213 /* DefaultImages.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -936,6 +939,7 @@
 				1E11093023956F6D00C3BD21 /* TopArtistsEndpointResponse.swift in Sources */,
 				1EA8FDAD2391868100498AA6 /* DrawerMenuViewModel.swift in Sources */,
 				1EC2A131239168BA006E5E96 /* DataManager.swift in Sources */,
+				1EDD2EF023AB27AE007D7213 /* DefaultImages.swift in Sources */,
 				1EB830D4238CC97E00C002DA /* DashboardViewController.swift in Sources */,
 				1E022BDB238B5888007D2EE6 /* SignInViewController.swift in Sources */,
 				1E43D77323A5E7ED000CF906 /* SearchArtistCellViewModel.swift in Sources */,

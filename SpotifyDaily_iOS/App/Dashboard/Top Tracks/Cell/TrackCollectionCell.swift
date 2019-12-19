@@ -89,7 +89,7 @@ class TrackCollectionCell: UICollectionViewCell, BindableType {
         .disposed(by: disposeBag)
         
         output.track
-            .map { $0.artists }
+            .map { $0.artistNames }
             .bind(to: artistName.rx.text)
         .disposed(by: disposeBag)
         

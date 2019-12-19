@@ -72,13 +72,13 @@ struct AlbumTracksEndpointResponse: Decodable {
             let trackDuration = item.durationMS.msToSeconds.minuteSecondMS
             let externalURL = URL(string: item.externalUrls.spotify)!
             
-            var artists = ""
+            var artistNames = ""
             for artist in item.artists {
-                artists += "\(artist.name), "
+                artistNames += "\(artist.name), "
             }
-            artists.removeLast(2)
+            artistNames.removeLast(2)
             
-            let track = Track(name: trackName, id: trackId, duration: trackDuration, artists: artists, albumImage: nil, externalURL: externalURL)
+            let track = Track(name: trackName, id: trackId, duration: trackDuration, artistNames: artistNames, albumImage: nil, externalURL: externalURL)
             
             tracks.append(track)
         }

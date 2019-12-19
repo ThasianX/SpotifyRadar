@@ -12,7 +12,7 @@ struct Track: Codable, Equatable {
     let name: String
     let id: String
     let duration: String
-    let artists: String
+    let artistNames: String
     let albumImage: URL?
     let externalURL: URL
 }

@@ -48,7 +48,7 @@ AddArtistsViewModelOutput {
             let alert = UIAlertController(title: "\(artist.name) was added to your portfolio", message: nil, preferredStyle: .alert)
             viewController.present(alert, animated: true, completion: nil)
 
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5){
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1){
               alert.dismiss(animated: true, completion: nil)
             }
         }
