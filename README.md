@@ -7,6 +7,7 @@ Using the spotify API, this app pulls in recent songs from artists in the user's
 - Learn the Spotify API
 - Learn how to create views programmatically
 - Refine understanding of RxSwift
+- Learn networking
 - Useful for me since I listen to Spotify a lot and would like to tailor the recommendation system to recommend better songs for me
 
 ### Unfinished todos
