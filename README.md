@@ -10,8 +10,7 @@ Using the spotify API, this app pulls in recent songs from artists in the user's
 - Learn networking
 - Useful for me since I listen to Spotify a lot and would like to tailor the recommendation system to recommend better songs for me
 
-### Unfinished todos
-- Bug: Artist images not displaying in stackview - look into scan operator
+### Unfinished todos 
 - Add a UIRefresh control to hide the initial population of cells, which would make the interface seem cleaner
 - Save cell view model states to cache to prevent lag
 - Fix tableview layout error("UITableView was told to layout its visible cells and other contents without being in the view hierarchy”)- doesn’t have any adverse effects so I’ll leave it for now
@@ -24,7 +23,7 @@ Using the spotify API, this app pulls in recent songs from artists in the user's
 - Refresh dashboard after one of its subviews is dismissed
 
 ### Installing
-- I've already committed the pods so all you have to do is open xcworkspace and run the app on an emulator of your choice, preferabbly iPhone X and above
+- I've already committed the pods so all you have to do is open xcworkspace and run the app on an emulator of your choice, preferably iPhone X and above
 
 ### Screenshots
 
