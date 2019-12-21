@@ -23,7 +23,7 @@ Using the spotify API, this app pulls in recent songs from artists in the user's
 - Refresh dashboard after one of its subviews is dismissed
 
 ### Installing
-- I've already committed the pods so all you have to do is open xcworkspace and run the app on an emulator of your choice, preferabbly iPhone X and above
+- I've already committed the pods so all you have to do is open xcworkspace and run the app on an emulator of your choice, preferably iPhone X and above
 
 ### Screenshots
 
