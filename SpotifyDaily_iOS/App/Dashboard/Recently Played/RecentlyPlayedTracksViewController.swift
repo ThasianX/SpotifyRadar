@@ -40,7 +40,6 @@ final class RecentlyPlayedTracksViewController: UIViewController, BindableType {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        Logger.info("View did disappear")
         viewModel.input.dismissed.onNext(Void())
     }
     
@@ -82,10 +81,6 @@ final class RecentlyPlayedTracksViewController: UIViewController, BindableType {
         
         output.title
             .bind(to: recentlyPlayedTitle.rx.text)
-            .disposed(by: disposeBag)
-        
-        tableView.rx.reachedBottom()
-            .bind(to: input.loadMore)
             .disposed(by: disposeBag)
 
         tableView.rx.itemSelected

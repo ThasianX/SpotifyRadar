@@ -72,7 +72,8 @@ class SearchArtistCell: UITableViewCell, BindableType {
                 if let url = url {
                     self.artistImage.load(url: url, targetSize: CGSize(width: 40, height: 40))
                 } else {
-                    self.artistImage.load(url: URL(string: DefaultImages.defaultArtist)!, targetSize: CGSize(width: 40, height: 40))
+                    let image = UIImage(named: "default_artist")?.resize(targetSize: CGSize(width: 40, height: 40))
+                    self.artistImage.image = image
                 }
             })
             .disposed(by: disposeBag)

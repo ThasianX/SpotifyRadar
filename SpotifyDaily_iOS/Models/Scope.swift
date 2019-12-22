@@ -1,3 +1,5 @@
+// Credits: https://github.com/spotify/SpotifyLogin/blob/master/Sources/Scope.swift
+
 import Foundation
 
 /// User scopes, specifying exactly what types of data the application wants to access.

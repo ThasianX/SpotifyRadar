@@ -11,8 +11,6 @@ import RxSwift
 import RxCocoa
 
 protocol TopArtistsCollectionsViewModelInput {
-    /// Call when the bottom of the list is reached
-    var loadMore: BehaviorSubject<Bool> { get }
     
     /// Call when a time range is selected for querying the user's top artists
     var artistsTimeRange: BehaviorRelay<String> { get }
@@ -45,8 +43,6 @@ class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
     var output: TopArtistsCollectionsViewModelOutput { return self }
 
     // MARK: Inputs
-    let loadMore = BehaviorSubject<Bool>(value: false)
-    
     func artistSelected(from viewController: (UIViewController), artist: Artist) {
         safariService.presentSafari(from: viewController, for: artist.externalURL)
     }

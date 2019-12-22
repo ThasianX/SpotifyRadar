@@ -11,9 +11,6 @@ import RxSwift
 import RxCocoa
 
 protocol RecentlyPlayedTracksViewModelInput {
-    /// Call when the bottom of the list is reached
-    var loadMore: BehaviorSubject<Bool> { get }
-    
     /// Call when an artist is selected
     func trackSelected(from viewController: (UIViewController), track: RecentlyPlayedTrack)
     
@@ -40,8 +37,6 @@ RecentlyPlayedTracksViewModelOutput {
     var output: RecentlyPlayedTracksViewModelOutput { return self }
     
     // MARK: Inputs
-    let loadMore = BehaviorSubject<Bool>(value: false)
-    
     func trackSelected(from viewController: (UIViewController), track: RecentlyPlayedTrack){
         safariService.presentSafari(from: viewController, for: track.externalURL)
     }

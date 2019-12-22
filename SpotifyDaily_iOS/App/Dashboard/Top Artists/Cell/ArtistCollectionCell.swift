@@ -71,7 +71,8 @@ class ArtistCollectionCell: UICollectionViewCell, BindableType {
                 if let url = url {
                     self.artistBackground.load(url: url, targetSize: CGSize(width: 200, height: 200))
                 } else {
-                    self.artistBackground.load(url: URL(string: DefaultImages.defaultArtist)!, targetSize: CGSize(width: 200, height: 200))
+                    let image = UIImage(named: "default_artist")?.resize(targetSize: CGSize(width: 200, height: 200))
+                    self.artistBackground.image = image
                 }
             })
             .disposed(by: self.disposeBag)

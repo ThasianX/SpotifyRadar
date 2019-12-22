@@ -44,7 +44,6 @@ class AddArtistsViewController: UIViewController, BindableType {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        Logger.info("View did disappear")
         searchController.dismiss(animated: true, completion: nil)
         viewModel.input.dismissed.onNext(Void())
     }

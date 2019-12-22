@@ -42,7 +42,6 @@ final class EditPortfolioViewController: UIViewController, BindableType {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        Logger.info("View did disappear")
         viewModel.input.dismissed.onNext(Void())
     }
     

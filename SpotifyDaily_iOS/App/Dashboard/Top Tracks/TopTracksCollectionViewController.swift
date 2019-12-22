@@ -42,7 +42,6 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        Logger.info("View did disappear")
         viewModel.input.dismissed.onNext(Void())
     }
     
@@ -101,11 +100,7 @@ final class TopTracksCollectionViewController: UIViewController, BindableType {
         output.title
             .bind(to: topTracksTitle.rx.text)
             .disposed(by: disposeBag)
-        
-        collectionView.rx.reachedBottom()
-            .bind(to: input.loadMore)
-            .disposed(by: disposeBag)
-
+    
         collectionView.rx.itemSelected
             .flatMap { [weak self] indexPath -> Observable<TrackCollectionCell> in
                 guard let cell = self?.collectionView.cellForItem(at: indexPath) as? TrackCollectionCell

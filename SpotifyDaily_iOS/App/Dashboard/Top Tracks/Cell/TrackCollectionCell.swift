@@ -77,7 +77,8 @@ class TrackCollectionCell: UICollectionViewCell, BindableType {
                 if let url = url {
                     self.albumBackground.load(url: url, targetSize: CGSize(width: 200, height: 200))
                 } else {
-                    self.albumBackground.load(url: URL(string: DefaultImages.defaultAlbum)!, targetSize: CGSize(width: 200, height: 200))
+                    let image = UIImage(named: "default_album")?.resize(targetSize: CGSize(width: 200, height: 200))
+                    self.albumBackground.image = image
                 }
             })
             .disposed(by: self.disposeBag)

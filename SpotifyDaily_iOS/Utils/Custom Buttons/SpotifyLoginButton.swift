@@ -1,3 +1,5 @@
+// Credits: https://github.com/spotify/SpotifyLogin/blob/master/Sources/SpotifyLoginButton.swift
+
 import UIKit
 
 class SpotifyLoginButton: UIButton {

@@ -1,8 +1,7 @@
 import Foundation
 import RxSwift
 
-// MARK: Constants
-
+// MARK: - Constants
 internal let apiTokenEndpointURL = "https://accounts.spotify.com/api/token"
 internal let profileServiceEndpointURL = "https://api.spotify.com/v1/me"
 internal let topArtistsEndpointURL = "https://api.spotify.com/v1/me/top/artists"
@@ -12,7 +11,47 @@ internal let searchItemEndpointURL = "https://api.spotify.com/v1/search"
 internal let artistAlbumsEndpointURL = "https://api.spotify.com/v1/artists/{id}/albums"
 internal let albumTracksEndpointURL = "https://api.spotify.com/v1/albums/{id}/tracks"
 
-class Networking {
+// MARK: - Networking
+final class Networking {
+    
+    private func authRequest(requestBody: String,
+                             clientID: String,
+                             clientSecret: String) -> Observable<TokenEndpointResponse> {
+        guard let authString = "\(clientID):\(clientSecret)"
+            .data(using: .ascii)?.base64EncodedString(options: .endLineWithLineFeed) else {
+                fatalError("Login configuration missing")
+        }
+        
+        return Observable<TokenEndpointResponse>.create { observer in
+            let endpoint = URL(string: apiTokenEndpointURL)!
+            var urlRequest = URLRequest(url: endpoint)
+            urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
+            urlRequest.httpMethod = "POST"
+            
+            let authHeaderValue = "Basic \(authString)"
+            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
+            urlRequest.httpBody = requestBody.data(using: .utf8)
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                do {
+                    let authResponse = try JSONDecoder().decode(TokenEndpointResponse.self, from: data ?? Data())
+                    observer.onNext(authResponse)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+    }
+    
+    // MARK: - Sign In
     internal func createSignInResponse(code: String,
                                        redirectURL: URL,
                                        clientID: String,
@@ -26,6 +65,7 @@ class Networking {
         }
     }
     
+    // MARK: - Session
     internal func renewSession(session: Session?,
                                clientID: String,
                                clientSecret: String) -> Observable<Session> {
@@ -49,6 +89,7 @@ class Networking {
         }
     }
     
+    // MARK: - New Releases
     internal func albumTracksRequest(accessToken: String?, albumId: String) -> Observable<AlbumTracksEndpointResponse> {
         guard let accessToken = accessToken else {
             fatalError("Unable to retrieve artist due to invalid access token")
@@ -150,6 +191,7 @@ class Networking {
         .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
     }
     
+    // MARK: - Dashboard
     internal func artistRequest(accessToken: String?, artistURL: URL) -> Observable<ArtistEndpointResponse> {
         guard let accessToken = accessToken else {
             fatalError("Unable to retrieve artist due to invalid access token")
@@ -210,6 +252,8 @@ class Networking {
                 task.cancel()
             }
         }
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
     }
     
     internal func userTopArtistsRequest(accessToken: String?, timeRange: String, limit: Int) -> Observable<TopArtistsEndpointResponse> {
@@ -280,6 +324,7 @@ class Networking {
         }
     }
     
+    // MARK: - Settings
     internal func userProfileRequest(accessToken: String?) -> Observable<ProfileEndpointResponse> {
         guard let accessToken = accessToken else {
             fatalError("Unable to retrieve user profile due to invalid access token")
@@ -309,46 +354,4 @@ class Networking {
         .observeOn(MainScheduler.instance)
         .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
     }
-    
-    private func authRequest(requestBody: String,
-                             clientID: String,
-                             clientSecret: String) -> Observable<TokenEndpointResponse> {
-        guard let authString = "\(clientID):\(clientSecret)"
-            .data(using: .ascii)?.base64EncodedString(options: .endLineWithLineFeed) else {
-                fatalError("Login configuration missing")
-        }
-        
-        return Observable<TokenEndpointResponse>.create { observer in
-            let endpoint = URL(string: apiTokenEndpointURL)!
-            var urlRequest = URLRequest(url: endpoint)
-            urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
-            urlRequest.httpMethod = "POST"
-            
-            let authHeaderValue = "Basic \(authString)"
-            urlRequest.addValue(authHeaderValue, forHTTPHeaderField: "Authorization")
-            urlRequest.httpBody = requestBody.data(using: .utf8)
-            
-            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-                do {
-                    let authResponse = try JSONDecoder().decode(TokenEndpointResponse.self, from: data ?? Data())
-                    observer.onNext(authResponse)
-                } catch let error {
-                    observer.onError(error)
-                }
-                observer.onCompleted()
-            }
-            task.resume()
-            
-            return Disposables.create {
-                task.cancel()
-            }
-        }
-        .observeOn(MainScheduler.instance)
-        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-    }
-    
-}
-
-public enum EndpointError: Error {
-    case missingAccessToken
 }

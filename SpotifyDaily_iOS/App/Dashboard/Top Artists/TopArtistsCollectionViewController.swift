@@ -42,7 +42,6 @@ final class TopArtistsCollectionViewController: UIViewController, BindableType {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        Logger.info("View did disappear")
         viewModel.input.dismissed.onNext(Void())
     }
     
@@ -100,10 +99,6 @@ final class TopArtistsCollectionViewController: UIViewController, BindableType {
         
         output.title
             .bind(to: topArtistsTitle.rx.text)
-            .disposed(by: disposeBag)
-        
-        collectionView.rx.reachedBottom()
-            .bind(to: input.loadMore)
             .disposed(by: disposeBag)
 
         collectionView.rx.itemSelected
