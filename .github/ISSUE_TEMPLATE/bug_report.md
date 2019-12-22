@@ -21,11 +21,13 @@ assignees: ''
   1.
   2.
   3.
+  
+## Possible solution
+
 
 ## Specifications
 
   - XCode Version:
-  - OS:
 
 
 <- Delete if none ->
