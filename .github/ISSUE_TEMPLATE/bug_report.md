@@ -7,26 +7,26 @@ assignees: ''
 
 ---
 
-'*' - Mandatory
-## Description*
+## Description
 
 
-## Expected Behavior*
+## Expected Behavior
 
 
-## Actual Behavior*
+## Actual Behavior
 
 
-## Steps to Reproduce the Problem*
+## Steps to Reproduce the Problem
 
   1.
   2.
   3.
 
-## Specifications*
+## Specifications
 
   - XCode Version:
   - OS:
 
 
+<- Delete if none ->
 ## Screenshots
