@@ -24,6 +24,9 @@ $ git rebase upstream/develop
 * Please submit separate pull requests for different features; i.e. try not to shove multiple, unrelated changes into one pull request.
 * Please make sure the pull request only contains changes that you've made intentionally; if you didn't mean to touch a file, you should probably not include it in your commit. Here are some files that may have changes in them:
   - `project.pbxproj`: This file may change if you sign the project with a different developer account. Changes due to adding or removing files are OK, generally.
+  
+### Don't know where to start?
+Unsure where to begin contributing to SpotifyDaily? You can start by looking through the [beginner](https://github.com/ThasianX/SpotifyDaily/labels/good%20first%20issue) and [help-wanted](https://github.com/ThasianX/SpotifyDaily/labels/help%20wanted) issues.
 
 ### Technical tips
 
@@ -34,8 +37,8 @@ $ git rebase upstream/develop
 
 ### Current structure
 
-* Every screen in the app should have a coordinator, viewmodel, and viewcontroller.
-* `SessionService` encapsulates the state of the app and is where networking responses should be parsed into their respective models, wrapped in an Observable.
+* Every screen in the app should have a `Coordinator`, `Viewmodel`, and `ViewController`, pertaining to the MVVM and Coordinator architecture present in the app.
+* `SessionService` encapsulates the state of the app and is where networking responses should be parsed into their respective models, wrapped in an `Observable`.
 * Window related logic should be in any `Coordinator`.
   - Call `start(coordinator: _)` to transition to another screen
   - `Coordinator` subclasses should inject the viewmodel into their respective viewcontrollers.
