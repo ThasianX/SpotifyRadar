@@ -18,13 +18,14 @@ Open xcworkspace and run
 
 ## Built With
 
+* [Cocoapods](https://github.com/CocoaPods/CocoaPods) - Dependency Management
 * [Swinject](https://github.com/Swinject/Swinject) - Dependency Injection
 * [SideMenu](https://github.com/jonkykong/SideMenu) - Menu navigation
 * [RxSwift](https://github.com/ReactiveX/RxSwift)  -Swift version of [Rx](https://github.com/Reactive-Extensions/Rx.NET)
 
 ## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute–it has information on the process for handling contributions, and tips on how the code is structured to make your work easier, and the process for submitting pull requests to us.
+- If you find a bug, or would like to suggest a new feature or enhancement, it'd be nice if you could [search the issue tracker first](https://github.com/ThasianX/SpotifyDaily/issues); while we don't mind duplicates, keeping issues unique helps us save time and considates effort. If you can't find your issue, feel free to [file a new one](https://github.com/ThasianX/SpotifyDaily/issues/new).
+- Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute–it has information on the process for handling contributions, and tips on how the code is structured to make your work easier, and the process for submitting pull requests to us.
 
 ## License
 
