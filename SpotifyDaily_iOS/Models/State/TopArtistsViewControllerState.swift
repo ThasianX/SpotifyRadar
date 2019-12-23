@@ -10,5 +10,4 @@ import Foundation
 
 struct TopArtistsViewControllerState: Codable, Equatable {
     let artistsTimeRange: String
-    let artistsLimit: Int
 }

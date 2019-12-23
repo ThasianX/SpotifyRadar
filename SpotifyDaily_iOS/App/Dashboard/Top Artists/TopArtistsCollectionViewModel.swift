@@ -15,9 +15,6 @@ protocol TopArtistsCollectionsViewModelInput {
     /// Call when a time range is selected for querying the user's top artists
     var artistsTimeRange: BehaviorRelay<String> { get }
     
-    /// Call when a limit for the number of artists is selected for querying the user's top artists
-    var artistsLimit: BehaviorRelay<Int> { get }
-
      /// Call when an artist is selected
     func artistSelected(from viewController: (UIViewController), artist: Artist)
     
@@ -65,7 +62,6 @@ class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
     private var artistCollections: Observable<[Artist]>!
     
     var artistsTimeRange: BehaviorRelay<String>
-    var artistsLimit: BehaviorRelay<Int>
 
     // MARK: Init
     init(sessionService: SessionService, dataManager: DataManager, safariService: SafariService) {
@@ -81,13 +77,12 @@ class TopArtistsCollectionViewModel: TopArtistsCollectionsViewModelType,
         
        
         self.artistsTimeRange = BehaviorRelay<String>(value: artistsCollectionState.artistsTimeRange)
-        self.artistsLimit = BehaviorRelay<Int>(value: artistsCollectionState.artistsLimit)
        
-        artistCollections = Observable.combineLatest(self.artistsTimeRange, self.artistsLimit)
-            .flatMap { timeRange, limit -> Observable<[Artist]> in
-                let newDashboardState = TopArtistsViewControllerState(artistsTimeRange: timeRange, artistsLimit: limit)
+        artistCollections = self.artistsTimeRange
+            .flatMap { [unowned self] timeRange -> Observable<[Artist]> in
+                let newDashboardState = TopArtistsViewControllerState(artistsTimeRange: timeRange)
                 self.dataManager.set(key: DataKeys.topArtistsCollectionState, value: newDashboardState)
-                return self.sessionService.getTopArtists(timeRange: timeRange, limit: limit)
+                return self.sessionService.getTopArtists(timeRange: timeRange, limit: 50)
         }
     }
     

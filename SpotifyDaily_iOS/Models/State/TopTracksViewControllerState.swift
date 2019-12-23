@@ -10,5 +10,4 @@ import Foundation
 
 struct TopTracksViewControllerState: Codable, Equatable {
     let tracksTimeRange: String
-    let tracksLimit: Int
 }

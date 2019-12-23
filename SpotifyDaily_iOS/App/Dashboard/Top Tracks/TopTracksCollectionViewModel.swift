@@ -13,9 +13,6 @@ import RxCocoa
 protocol TopTracksCollectionsViewModelInput {
     /// Call when a time range is selected for querying the user's top artists
     var tracksTimeRange: BehaviorRelay<String> { get }
-    
-    /// Call when a limit for the number of artists is selected for querying the user's top artists
-    var tracksLimit: BehaviorRelay<Int> { get }
 
      /// Call when an artist is selected
     func trackSelected(from viewController: (UIViewController), track: Track)
@@ -64,7 +61,6 @@ class TopTracksCollectionViewModel: TopTracksCollectionsViewModelType,
     private var trackCollections: Observable<[Track]>!
     
     var tracksTimeRange: BehaviorRelay<String>
-    var tracksLimit: BehaviorRelay<Int>
 
     // MARK: Init
     init(sessionService: SessionService, dataManager: DataManager, safariService: SafariService) {
@@ -79,13 +75,12 @@ class TopTracksCollectionViewModel: TopTracksCollectionsViewModelType,
         let tracksCollectionState = self.dataManager.get(key: DataKeys.topTracksCollectionState, type: TopTracksViewControllerState.self)!
         
         self.tracksTimeRange = BehaviorRelay<String>(value: tracksCollectionState.tracksTimeRange)
-        self.tracksLimit = BehaviorRelay<Int>(value: tracksCollectionState.tracksLimit)
         
-        trackCollections = Observable.combineLatest(self.tracksTimeRange, self.tracksLimit)
-            .flatMap { timeRange, limit -> Observable<[Track]> in
-                let newDashboardState = TopTracksViewControllerState(tracksTimeRange: timeRange, tracksLimit: limit)
+        trackCollections = self.tracksTimeRange
+            .flatMap { [unowned self] timeRange -> Observable<[Track]> in
+                let newDashboardState = TopTracksViewControllerState(tracksTimeRange: timeRange)
                 self.dataManager.set(key: DataKeys.topTracksCollectionState, value: newDashboardState)
-                return self.sessionService.getTopTracks(timeRange: timeRange, limit: limit)
+                return self.sessionService.getTopTracks(timeRange: timeRange, limit: 50)
         }
     }
     
