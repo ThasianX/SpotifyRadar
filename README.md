@@ -12,6 +12,8 @@ Pods have already been committed so no need to run 'pod install'
 
 ### Installing
 
+Since Spotify has strict limits on API calls and the app is currently using my API keys, you may want to create a [spotify application](https://developer.spotify.com/dashboard/applications) and save your clientId and clientSecret to `SpotifyDaily_iOS/Services/Configuration.swift` for best experience. Of course, when you make a PR, don't include `Configuration.swift` in it.
+
 ```
 Open xcworkspace and run
 ```
