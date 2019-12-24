@@ -2,7 +2,7 @@
 
 Spotify Daily is an iOS application that allows users to pull in new song releases from their favorite artists and provides users with important metrics like their top tracks, top artists, and recently played tracks, queryable by time range.
 
-Architecture: MVVM + Coordinator + RxSwift
+**Architecture**: MVVM + Coordinator + RxSwift
 
 ## Getting Started
 
