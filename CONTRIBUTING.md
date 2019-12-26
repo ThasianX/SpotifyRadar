@@ -12,11 +12,11 @@ SpotifyDaily follows the standard fork/commit/pull request process for integrati
 
 1. Fork and clone the repository
 2. Open `SpotifyDaily.xcworkspace` in Xcode. Make sure you are using XCode 11; SpotifyDaily may build with another version but this is not guaranteed.
-3. Commit your changes, test them, push to your repository, and submit a pull request against ThasianX/SpotifyDaily's `master` branch.
+3. Commit your changes, test them, push to your repository, and submit a pull request against ThasianX/SpotifyDaily's `develop` branch.
 
 Some tips for your pull request:
 
-* If you found `master` has been updated before your change was merged, you can rebase in the new changes before opening a pull request:
+* If you found `develop` has been updated before your change was merged, you can rebase in the new changes before opening a pull request:
 
 ```console
 $ git rebase upstream/develop
