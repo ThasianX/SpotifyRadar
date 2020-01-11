@@ -9,12 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SpotifyDaily-SpotifyDailyTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SpotifyDaily.xcscheme</key>
+		<key>Pods-SpotifyRadar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

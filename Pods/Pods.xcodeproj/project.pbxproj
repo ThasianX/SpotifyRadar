@@ -126,7 +126,6 @@
 		4601619849965948D91509BFB7CE86BF /* UITextField+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13CB7BCA39AD6BFFCE21F568D4DA38 /* UITextField+Rx.swift */; };
 		464C33E968DB4039D6F100B66D2CDA6C /* RxPickerViewDataSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21B2192D8B5300D5AC777A1D0AFCC4 /* RxPickerViewDataSourceType.swift */; };
 		4659DD868A7DD83C6B4A5CDFA143C300 /* NotificationCenter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4715575B8D0ECBB60969356AECF8F /* NotificationCenter+Rx.swift */; };
-		4903C647851F875CBFED0C2B5FA3B00B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAB91934FF65927E19F6810760F92C6 /* Foundation.framework */; };
 		4A6FE915E4D94D1630CBC36E5BE95670 /* SwinjectAutoregistration-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 060C1C054E5DE337775772807AAE6E9D /* SwinjectAutoregistration-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4ABDE110575BAB32C2B12B05F32052D8 /* UIBarButtonItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F4AEF3BA1B3266BAA949BAE9F93D2 /* UIBarButtonItem+Rx.swift */; };
 		4ADD9779C99C30B2EE80A1A2DD573D49 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E41A3D01FA7E2796CF8746B8FAAE18 /* RxSwift.framework */; };
@@ -157,6 +156,7 @@
 		58DFA666FF2F8EF67310B2CC54C494FC /* ItemPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7AC5A51180E67D34423B42D8E99D6 /* ItemPath.swift */; };
 		592D2347A18A00653DFF0AF4251E46B2 /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEA50ADFD9EFEB280023DCA9B470A52 /* Timeout.swift */; };
 		5937BBBCD6B708ADDEF32BA5E4FD2BF2 /* DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DCE1AB6F0DF9B1BDD725F1798D5462 /* DisposeBag.swift */; };
+		59626D21FE6CDA10A2536E6562321FC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAB91934FF65927E19F6810760F92C6 /* Foundation.framework */; };
 		59E2B3FE2DBF8022E4917C6E289EE7D6 /* RxCollectionViewSectionedAnimatedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4ECF04011791A8185908365DC275A6 /* RxCollectionViewSectionedAnimatedDataSource.swift */; };
 		5B0479E4E42FB5F5B771E331F63FD11A /* UIActivityIndicatorView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3DBA58D8EFF596BA6DC084FDA8BF1 /* UIActivityIndicatorView+Rx.swift */; };
 		5B1D259FB0CB8889B3E3DDA5E158321C /* ImmediateSchedulerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B99BF4C7EECB805989F1249C21D7358 /* ImmediateSchedulerType.swift */; };
@@ -177,7 +177,6 @@
 		63E2CC6CD18520C62D986203AD5C5D74 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0A46083C705CDA08504306FE72C2B4 /* Window.swift */; };
 		654FC8398243C2E2E3F8D1863F27028B /* UIWebView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D354A9DB7CD31705E46417ACB6B28B /* UIWebView+Rx.swift */; };
 		65FF91A9492E4E08B8B4D8B5878FC196 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAB91934FF65927E19F6810760F92C6 /* Foundation.framework */; };
-		696E7623D968E7FD10147D2882B3AEB7 /* Pods-SpotifyDaily-SpotifyDailyTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 17D89237F936DBFF7399923E5AA6741C /* Pods-SpotifyDaily-SpotifyDailyTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A41803D71142C9B8BDA08FD83212897 /* NSTextStorage+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E335D1FEBE76481DA0500E5E9F1BA911 /* NSTextStorage+Rx.swift */; };
 		6A976A2B7F75BDAF4C015780D265CC91 /* CollectionViewSectionedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3878173B67A2F5170CD8B88F871D4E7 /* CollectionViewSectionedDataSource.swift */; };
 		6AADFA956516A6DC262186665EFD99D8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55F76A43A2D2239344C7E3CE56F57E0 /* Observable.swift */; };
@@ -207,6 +206,7 @@
 		7900C9262B767711A6B109EAED52EF8A /* UI+SectionedViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8676484DCE3355A8602500EA9EC9 /* UI+SectionedViewType.swift */; };
 		797F78E38B84AD04989D285EA28FBFEC /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AEF0A56BF1FC5AB09F7A60CC39AB1A /* SynchronizedResolver.Arguments.swift */; };
 		7A377D6B6C745B0B3035B7F69BE5551E /* Observable+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23C3A7C02C42CBDC2298402EF2C6B80 /* Observable+Bind.swift */; };
+		7B8A51C49DF6B6AC9892726D8F434583 /* Pods-SpotifyRadar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C151CF3E53CF2AFA7C4A0F4692A5DE8B /* Pods-SpotifyRadar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7BA346CC6EAFFE261903123A2CAB9BDC /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5540F08BE87969A8A923BEEA1481A67 /* UIView+Rx.swift */; };
 		7BAAD6C852ABA952EF51282994E8DD84 /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E743683022F8ADA7E5903286C0E7289 /* SectionModel.swift */; };
 		7C5EECD44203ACF66DAF24D42E46FC1E /* RxTextViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC77922B85AB308764D324EB919DBC87 /* RxTextViewDelegateProxy.swift */; };
@@ -265,7 +265,6 @@
 		A109B0247F5D04C633F4E2E73753068B /* Differentiator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E6E9F627B056BB011FA7C2A6D031E73 /* Differentiator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A26D8000B95488FED0701DF3FFF315F8 /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C49EC1C51194E771F3156863E558062 /* _Resolver.swift */; };
 		A35C62088F8D04AC5EBC5C1F406AC120 /* RxSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F11A3613995F16BB082C065D01241C20 /* RxSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A3B4AA6FC5676ACD78A6C375D415125F /* Pods-SpotifyDaily-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BF88289F9C054BDDE0E7E9BDD1930800 /* Pods-SpotifyDaily-dummy.m */; };
 		A4D25312A0CC165FB3DE4A4C7B499A25 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A085DC5A52F2820AE38C2FE74827FD4 /* Container.Arguments.swift */; };
 		A735217C70939149D5640EB8A936ECF7 /* TakeUntil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C61166CEAF68E45A0D5E9FFCD185D /* TakeUntil.swift */; };
 		A7FAA9E16858041F9A72021F726637F4 /* Completable+AndThen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC2E0C6F1579D7A8D465A07231CC0FF /* Completable+AndThen.swift */; };
@@ -313,7 +312,7 @@
 		C26345BF7506D17AC1E098787D6FCAAD /* RxDataSources-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0777099FD7A310CF6E1B11DA561237D /* RxDataSources-dummy.m */; };
 		C375F94C1B4EE60AD6F9364461DDD69B /* ObserverBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29E7D5B578204CEC0D414E7780029C4 /* ObserverBase.swift */; };
 		C37C3F40271755E68C586C4BF43FFD3D /* UINavigationItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C571004A34BA7F9FE624276B79AA5C /* UINavigationItem+Rx.swift */; };
-		C3EE134D32F6B57E9CA180E9E25CDF8C /* Pods-SpotifyDaily-SpotifyDailyTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 038ECC3B2BBD2B928595290DE8FF5CB2 /* Pods-SpotifyDaily-SpotifyDailyTests-dummy.m */; };
+		C4B923F98F716BBC74D87C472671A1B1 /* Pods-SpotifyRadar-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBEE4A622898AF726D8E6BD57161E2A /* Pods-SpotifyRadar-dummy.m */; };
 		C4D2ACE4BEFACB336A501CD2AD20E045 /* UITabBarItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A5E4856329DC79525EFFA3CAA29BD /* UITabBarItem+Rx.swift */; };
 		C53426C08803D4BAC2BD0223CB4D8BD7 /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB91CD1E6A6D3A4A375BE1A886DD78 /* Catch.swift */; };
 		C5D08AD707EEA2A637673B0E04030EE0 /* RxDataSources-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F954816C4077E66C0A5F7C6887AAA665 /* RxDataSources-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -389,12 +388,10 @@
 		FA211F2C89DF99EF0ABDDD41B3AC231E /* String+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15C41375BBFA499BE346CB86996A17E /* String+Rx.swift */; };
 		FA9E918652A18F831988906618D13420 /* TakeLast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793EB4FE973878F92D18DBDEBFD8975 /* TakeLast.swift */; };
 		FB4BED652EC8187C9353CAFABA5A5B6C /* ObserveOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19B0BD0C8159E9ED3C50B04233E579 /* ObserveOn.swift */; };
-		FB6C7D4A8CD96BD27CFE6ED253ADEE48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAB91934FF65927E19F6810760F92C6 /* Foundation.framework */; };
 		FBD5014D83C1E7D5454E526F18106F05 /* NSObject+Rx+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C6F918439D3163EA9F76B4713EEE94 /* NSObject+Rx+RawRepresentable.swift */; };
 		FC3DA8E2D7CF5D0F7F39A7A570523C2B /* SingleAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EA635D50F636FFE6FDD1AEAD7111A2 /* SingleAsync.swift */; };
 		FC7CD1461FEB62322510D9BCEACE09DA /* RefCountDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD55A5D69A656F0EE8406CAF3A2CFCC /* RefCountDisposable.swift */; };
 		FE73185D40AB21945F0C1042528BCBE9 /* UIProgressView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A708078D33FC0EED576D05EA377185 /* UIProgressView+Rx.swift */; };
-		FF43BDF9B0FECBDE4F6351FB94E471E8 /* Pods-SpotifyDaily-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E8498F6906BDE865E6AAF3A3359E7E0C /* Pods-SpotifyDaily-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF517C317938BD24C0D7703F47808F0F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB9DAD6C08C3FD34C3824DB6D604E72 /* Event.swift */; };
 /* End PBXBuildFile section */
 
@@ -405,6 +402,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = EA9EA43B3B503823EE36C60D9C8A865F;
 			remoteInfo = RxSwift;
+		};
+		06A543FAD07FE501639B6334237C28D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 212F79CE462FC723AF42979B57FBB8A6;
+			remoteInfo = Differentiator;
 		};
 		07E45B0AFEEED2846D13571956E582B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -420,13 +424,6 @@
 			remoteGlobalIDString = EA9EA43B3B503823EE36C60D9C8A865F;
 			remoteInfo = RxSwift;
 		};
-		2F492F197E22A5105C045F79E64E4DE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 46065AF968A5A92D450BB21F7F24367D;
-			remoteInfo = Swinject;
-		};
 		3AA5F122E4B6C1CDC8306AE3F5C627D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -434,26 +431,19 @@
 			remoteGlobalIDString = EA9EA43B3B503823EE36C60D9C8A865F;
 			remoteInfo = RxSwift;
 		};
-		4798D42306DC0B7C0D63AAEC89F7911D /* PBXContainerItemProxy */ = {
+		441A1B8F9A438C76927FDA0C8C7FE872 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6;
 			remoteInfo = RxCocoa;
 		};
-		50A19783E19C06EC9B6B5F98157B6A80 /* PBXContainerItemProxy */ = {
+		460E065503C1C894211DCAAEA2421AE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EA9EA43B3B503823EE36C60D9C8A865F;
-			remoteInfo = RxSwift;
-		};
-		590519793655AB8DD77CF97EDE37DE60 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 212F79CE462FC723AF42979B57FBB8A6;
-			remoteInfo = Differentiator;
+			remoteGlobalIDString = 46065AF968A5A92D450BB21F7F24367D;
+			remoteInfo = Swinject;
 		};
 		5C600E3885D1E74CA474CAF3EC2CAD93 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -469,75 +459,40 @@
 			remoteGlobalIDString = 46065AF968A5A92D450BB21F7F24367D;
 			remoteInfo = Swinject;
 		};
-		6C52D815B54436E5424A2109DE5C7B57 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4622BFEF3DC16E8BD15EEFC30D4D0084;
-			remoteInfo = RxRelay;
-		};
-		7A3D13B9D1A64B5C8E62646507F82C23 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 212F79CE462FC723AF42979B57FBB8A6;
-			remoteInfo = Differentiator;
-		};
-		7F1E7FE4B69C24F7B830B2FC52D39A43 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 46065AF968A5A92D450BB21F7F24367D;
-			remoteInfo = Swinject;
-		};
-		80673A0E3B5A2D421D243DA4F90DA012 /* PBXContainerItemProxy */ = {
+		66EB08D67ED30A3905D3E415A1185A1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EA9EA43B3B503823EE36C60D9C8A865F;
 			remoteInfo = RxSwift;
 		};
-		81EFEABC5D964AEC4F55083700D46516 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4622BFEF3DC16E8BD15EEFC30D4D0084;
-			remoteInfo = RxRelay;
-		};
-		8796D0A34314419BD65578F1A2DA1DE8 /* PBXContainerItemProxy */ = {
+		A390EE514636880C5236FE24B0D7287F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3057E291093EA4CA29F959C95AD1E3D5;
 			remoteInfo = SwinjectAutoregistration;
 		};
-		991E43CFC0C7C2EC243CE82C9201B3C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 401909D4FB2014BF539896BF0CCA48C2;
-			remoteInfo = RxDataSources;
-		};
-		A92487B341BD049A96F9936C20FA1643 /* PBXContainerItemProxy */ = {
+		B146704EA2B28BB1D0444AD90031F6F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C4A0A7D8591B67FB75E2E8D215E3735B;
 			remoteInfo = SideMenu;
 		};
-		B930E0B083B60D36E74C64F834C21262 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6;
-			remoteInfo = RxCocoa;
-		};
-		D83E5C51C6F80C8F61D7BC5BFF1688D7 /* PBXContainerItemProxy */ = {
+		C9D383461C2894EB55C4F17C6B1EDA54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 401909D4FB2014BF539896BF0CCA48C2;
 			remoteInfo = RxDataSources;
+		};
+		D847784B035BE42B0DE536B565C21B6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4622BFEF3DC16E8BD15EEFC30D4D0084;
+			remoteInfo = RxRelay;
 		};
 		E237E6E7997F0C5BC5ACDB01BE6E1BA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -545,20 +500,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 212F79CE462FC723AF42979B57FBB8A6;
 			remoteInfo = Differentiator;
-		};
-		F302E61F81461A2AD7769F864073E81E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C4A0A7D8591B67FB75E2E8D215E3735B;
-			remoteInfo = SideMenu;
-		};
-		F42A417D7A6ECC9ED8B79B5A3F78223F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3057E291093EA4CA29F959C95AD1E3D5;
-			remoteInfo = SwinjectAutoregistration;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -570,7 +511,6 @@
 		02AA3988AF7A57B715EE5233F39DC14F /* SideMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SideMenu-dummy.m"; sourceTree = "<group>"; };
 		0330B6F495B07EABB6F69429C547E7CC /* VirtualTimeScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VirtualTimeScheduler.swift; path = RxSwift/Schedulers/VirtualTimeScheduler.swift; sourceTree = "<group>"; };
 		038A1C740C761CF22F6F980657C21F08 /* SharedSequence+Operators+arity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SharedSequence+Operators+arity.swift"; path = "RxCocoa/Traits/SharedSequence/SharedSequence+Operators+arity.swift"; sourceTree = "<group>"; };
-		038ECC3B2BBD2B928595290DE8FF5CB2 /* Pods-SpotifyDaily-SpotifyDailyTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SpotifyDaily-SpotifyDailyTests-dummy.m"; sourceTree = "<group>"; };
 		041E45DFF4696E084D4E4D1C3878264E /* UISegmentedControl+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UISegmentedControl+Rx.swift"; path = "RxCocoa/iOS/UISegmentedControl+Rx.swift"; sourceTree = "<group>"; };
 		04316E20998301B35E02C2CAC518B4ED /* NSButton+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSButton+Rx.swift"; path = "RxCocoa/macOS/NSButton+Rx.swift"; sourceTree = "<group>"; };
 		05002EB51E0DB8E59CB7517E33EF7CBC /* CompactMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CompactMap.swift; path = RxSwift/Observables/CompactMap.swift; sourceTree = "<group>"; };
@@ -598,7 +538,6 @@
 		159E6CC3E2283F944940FD494A53EA66 /* Disposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Disposable.swift; path = RxSwift/Disposable.swift; sourceTree = "<group>"; };
 		1696503637161AD95E90D7207586F302 /* PublishSubject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublishSubject.swift; path = RxSwift/Subjects/PublishSubject.swift; sourceTree = "<group>"; };
 		16F89E76E2CB2A5578813AE61C518915 /* Container.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Container.swift; path = Sources/Container.swift; sourceTree = "<group>"; };
-		17D89237F936DBFF7399923E5AA6741C /* Pods-SpotifyDaily-SpotifyDailyTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SpotifyDaily-SpotifyDailyTests-umbrella.h"; sourceTree = "<group>"; };
 		1973018B2F47AF157AC7090D35F81955 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = RxSwift/Observables/Filter.swift; sourceTree = "<group>"; };
 		19E7036DAFBC9EE8A7EF41CFE322B976 /* Empty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Empty.swift; path = RxSwift/Observables/Empty.swift; sourceTree = "<group>"; };
 		1A7EFBBBD231C66725CD679EC822D720 /* Array+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Sources/RxDataSources/Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -664,7 +603,6 @@
 		3A2CCC7B54CB1A9A7CAF709BEFC41D13 /* AtomicInt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomicInt.swift; path = Platform/AtomicInt.swift; sourceTree = "<group>"; };
 		3AD5202DF9BAD088820A6187B51D19C0 /* InvocableScheduledItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InvocableScheduledItem.swift; path = RxSwift/Schedulers/Internal/InvocableScheduledItem.swift; sourceTree = "<group>"; };
 		3B1ACA1DFB27961B7E676123B2621D57 /* Platform.Linux.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.Linux.swift; path = Platform/Platform.Linux.swift; sourceTree = "<group>"; };
-		3B28E8974E87FEA90A9B1DECC1DC71AC /* Pods-SpotifyDaily.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpotifyDaily.release.xcconfig"; sourceTree = "<group>"; };
 		3B8EA016708679B2F5E044C976164960 /* SideMenuAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuAnimationController.swift; path = Pod/Classes/SideMenuAnimationController.swift; sourceTree = "<group>"; };
 		3BA38DE40D75E7972117DAE0C0C51A1E /* GroupedObservable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupedObservable.swift; path = RxSwift/GroupedObservable.swift; sourceTree = "<group>"; };
 		3BFDE38405DF4A950C436A8FFDDAC7BA /* ObservableConvertibleType+SharedSequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ObservableConvertibleType+SharedSequence.swift"; path = "RxCocoa/Traits/SharedSequence/ObservableConvertibleType+SharedSequence.swift"; sourceTree = "<group>"; };
@@ -677,7 +615,6 @@
 		3E7945CD0610DB0809F6E970392AD949 /* UIControl+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIControl+Rx.swift"; path = "RxCocoa/iOS/UIControl+Rx.swift"; sourceTree = "<group>"; };
 		3FB5497B62C8C30BFCFA8A3116747630 /* FloatingPointType+IdentifiableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FloatingPointType+IdentifiableType.swift"; path = "Sources/RxDataSources/FloatingPointType+IdentifiableType.swift"; sourceTree = "<group>"; };
 		4047361ABDF4BBFF2C03962B9DC7BDB3 /* _RXDelegateProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _RXDelegateProxy.h; path = RxCocoa/Runtime/include/_RXDelegateProxy.h; sourceTree = "<group>"; };
-		40E89D73006E7A6DE638C70C1E1A0AFF /* Pods-SpotifyDaily-SpotifyDailyTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SpotifyDaily-SpotifyDailyTests-frameworks.sh"; sourceTree = "<group>"; };
 		40FE6536CC1BC627CACA9DC380F7AAA4 /* RxCocoaObjCRuntimeError+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "RxCocoaObjCRuntimeError+Extensions.swift"; path = "RxCocoa/Common/RxCocoaObjCRuntimeError+Extensions.swift"; sourceTree = "<group>"; };
 		4121ED4B421990D834421145B16F3EB6 /* CombineLatest+arity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CombineLatest+arity.swift"; path = "RxSwift/Observables/CombineLatest+arity.swift"; sourceTree = "<group>"; };
 		41BFDD3032F6193317DA1FC718370E92 /* CombineLatest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CombineLatest.swift; path = RxSwift/Observables/CombineLatest.swift; sourceTree = "<group>"; };
@@ -687,12 +624,11 @@
 		44944FBEC1A4C3250A28B3D042B23274 /* _RX.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _RX.m; path = RxCocoa/Runtime/_RX.m; sourceTree = "<group>"; };
 		45A56827C5FB84446FFC8BACDD70D2C7 /* DelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DelegateProxy.swift; path = RxCocoa/Common/DelegateProxy.swift; sourceTree = "<group>"; };
 		45EB317E50A10165F08FEFF4D82F5051 /* NSObject+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSObject+Rx.swift"; path = "RxCocoa/Foundation/NSObject+Rx.swift"; sourceTree = "<group>"; };
-		46448AA35EC3CDF2A456E28E474F5625 /* Pods_SpotifyDaily.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SpotifyDaily.framework; path = "Pods-SpotifyDaily.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		47570FB6502A2885A40CE9FB67F60168 /* Pods-SpotifyDaily.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SpotifyDaily.modulemap"; sourceTree = "<group>"; };
 		478E9A94B699FEB075BC890CE72D1D36 /* NSLayoutConstraint+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSLayoutConstraint+Rx.swift"; path = "RxCocoa/Common/NSLayoutConstraint+Rx.swift"; sourceTree = "<group>"; };
 		47C97DCEB975A84303C5D6D618CB424A /* Platform.Darwin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.Darwin.swift; path = Platform/Platform.Darwin.swift; sourceTree = "<group>"; };
 		47EA635D50F636FFE6FDD1AEAD7111A2 /* SingleAsync.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SingleAsync.swift; path = RxSwift/Observables/SingleAsync.swift; sourceTree = "<group>"; };
 		483388799FC2D2D9BD042787908A7DCA /* SwinjectAutoregistration-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwinjectAutoregistration-prefix.pch"; sourceTree = "<group>"; };
+		4852C8139D877020414B3FA7656486A1 /* Pods_SpotifyRadar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SpotifyRadar.framework; path = "Pods-SpotifyRadar.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		490249B57B7F1B04E6EE49918FFDE43D /* SynchronizedUnsubscribeType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedUnsubscribeType.swift; path = RxSwift/Concurrency/SynchronizedUnsubscribeType.swift; sourceTree = "<group>"; };
 		49B443D86509EC6F36F42E9C6EB49C8C /* NopDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NopDisposable.swift; path = RxSwift/Disposables/NopDisposable.swift; sourceTree = "<group>"; };
 		4C21B2192D8B5300D5AC777A1D0AFCC4 /* RxPickerViewDataSourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxPickerViewDataSourceType.swift; path = RxCocoa/iOS/Protocols/RxPickerViewDataSourceType.swift; sourceTree = "<group>"; };
@@ -727,7 +663,6 @@
 		5DC72A236D0193EB1EDCBFB08119706B /* UnavailableItems.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnavailableItems.swift; path = Sources/UnavailableItems.swift; sourceTree = "<group>"; };
 		5E30B4555DDBC1DB23C864EA302E0408 /* ReplaySubject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaySubject.swift; path = RxSwift/Subjects/ReplaySubject.swift; sourceTree = "<group>"; };
 		5F0A42D6D6F5190D0B2879E61DEB946D /* Initializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Initializable.swift; path = Pod/Classes/Initializable.swift; sourceTree = "<group>"; };
-		5F146E0566DEF54D56315276D535B968 /* Pods-SpotifyDaily-SpotifyDailyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpotifyDaily-SpotifyDailyTests.release.xcconfig"; sourceTree = "<group>"; };
 		601840930642872295DE5BE8DB565CAC /* RxCocoaRuntime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RxCocoaRuntime.h; path = RxCocoa/Runtime/include/RxCocoaRuntime.h; sourceTree = "<group>"; };
 		603EDE61CAE6CC3481A1D98BC2F2AAE9 /* TableViewSectionedDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TableViewSectionedDataSource.swift; path = Sources/RxDataSources/TableViewSectionedDataSource.swift; sourceTree = "<group>"; };
 		60CF5ABFD74CE5E7EB7B2BA6744814FA /* UIImageView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+Rx.swift"; path = "RxCocoa/iOS/UIImageView+Rx.swift"; sourceTree = "<group>"; };
@@ -739,11 +674,10 @@
 		643F874F18B62220969C84DB563D6A59 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Sources/Differentiator/Utilities.swift; sourceTree = "<group>"; };
 		64FF928D673B34B2BABC785A54225F63 /* Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Rx.swift; path = RxSwift/Rx.swift; sourceTree = "<group>"; };
 		65139CE1B13DFEFF9F678F6A2EB5744D /* SwinjectAutoregistration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwinjectAutoregistration.framework; path = SwinjectAutoregistration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6676DE1702992E1C9EF36FA02486EAEE /* Pods-SpotifyRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpotifyRadar.debug.xcconfig"; sourceTree = "<group>"; };
 		669E65712465714A3FE2CBCEEBA17391 /* UITableViewVibrantCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITableViewVibrantCell.swift; path = Pod/Classes/UITableViewVibrantCell.swift; sourceTree = "<group>"; };
 		66BB1A2556B1143D253C6364C1ADA199 /* _RXKVOObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _RXKVOObserver.h; path = RxCocoa/Runtime/include/_RXKVOObserver.h; sourceTree = "<group>"; };
 		674139D2234AA9D3CAFD5F622BC71F8E /* RxPickerViewDataSourceProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxPickerViewDataSourceProxy.swift; path = RxCocoa/iOS/Proxies/RxPickerViewDataSourceProxy.swift; sourceTree = "<group>"; };
-		68483CB121C7B8C97AD0DB0348AEFEDB /* Pods_SpotifyDaily_SpotifyDailyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SpotifyDaily_SpotifyDailyTests.framework; path = "Pods-SpotifyDaily-SpotifyDailyTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		68D666CF45BB5B0BB5872270A5565CE4 /* Pods-SpotifyDaily-SpotifyDailyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpotifyDaily-SpotifyDailyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		69186BA66BB3544EB07891D9E9972EF5 /* VirtualTimeConverterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VirtualTimeConverterType.swift; path = RxSwift/Schedulers/VirtualTimeConverterType.swift; sourceTree = "<group>"; };
 		692F92D73EC27270EA9CC9575C3E65B6 /* RxDataSources.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RxDataSources.framework; path = RxDataSources.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69418EC080A1208C6CC144D695C0FA7D /* ServiceEntry.TypeForwarding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServiceEntry.TypeForwarding.swift; path = Sources/ServiceEntry.TypeForwarding.swift; sourceTree = "<group>"; };
@@ -762,7 +696,6 @@
 		7598CDDED5AC814644A3D86E209EAEB7 /* SchedulerType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SchedulerType.swift; path = RxSwift/SchedulerType.swift; sourceTree = "<group>"; };
 		767368A6EE13F657E63102083854C4EC /* Logging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = RxCocoa/Foundation/Logging.swift; sourceTree = "<group>"; };
 		7723C4973CF08F4966B6B5DB60A9AEE9 /* _RXDelegateProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _RXDelegateProxy.m; path = RxCocoa/Runtime/_RXDelegateProxy.m; sourceTree = "<group>"; };
-		77747BBCC87D2B7CDE5C9A9A7299F446 /* Pods-SpotifyDaily-SpotifyDailyTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpotifyDaily-SpotifyDailyTests-Info.plist"; sourceTree = "<group>"; };
 		786ADF3AB42D8F9D8E1EBD2594C50D30 /* CheckResolved.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CheckResolved.swift; path = Sources/CheckResolved.swift; sourceTree = "<group>"; };
 		7A52A4263772428C37369C01D77D0942 /* SchedulerServices+Emulation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SchedulerServices+Emulation.swift"; path = "RxSwift/Schedulers/SchedulerServices+Emulation.swift"; sourceTree = "<group>"; };
 		7ABA852B2BFF00DDA053C9DBBC2AE19C /* _RXObjCRuntime.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _RXObjCRuntime.m; path = RxCocoa/Runtime/_RXObjCRuntime.m; sourceTree = "<group>"; };
@@ -809,8 +742,10 @@
 		92CF269F91F7E6C4C89CF5F58CC517B3 /* RxRelay-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "RxRelay-Info.plist"; sourceTree = "<group>"; };
 		92E2233387EE8B2A166E1BEDC2333C7E /* Enumerated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enumerated.swift; path = RxSwift/Observables/Enumerated.swift; sourceTree = "<group>"; };
 		945DCA6841ED537A0BD60503EF5E098C /* SideMenuPresentationStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPresentationStyle.swift; path = Pod/Classes/SideMenuPresentationStyle.swift; sourceTree = "<group>"; };
+		94C3F8E83E0D3B61D8295CE07D80464A /* Pods-SpotifyRadar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SpotifyRadar.modulemap"; sourceTree = "<group>"; };
 		953C2DC2A70174123D5CB44F1FD8BF5E /* Never.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Never.swift; path = RxSwift/Observables/Never.swift; sourceTree = "<group>"; };
 		9580F2B69D4E0644A933A23231654626 /* InstanceStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InstanceStorage.swift; path = Sources/InstanceStorage.swift; sourceTree = "<group>"; };
+		95DF0894958922B44ADAEE06FED8E030 /* Pods-SpotifyRadar-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpotifyRadar-Info.plist"; sourceTree = "<group>"; };
 		96D02AF5697FB733FB7653C48FBA2B36 /* RxTableViewSectionedReloadDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTableViewSectionedReloadDataSource.swift; path = Sources/RxDataSources/RxTableViewSectionedReloadDataSource.swift; sourceTree = "<group>"; };
 		975D73FAC820C3E517C711824A99D72B /* ItemEvents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemEvents.swift; path = RxCocoa/iOS/Events/ItemEvents.swift; sourceTree = "<group>"; };
 		98168A22FF13113A20F300565B124B31 /* ObservableConvertibleType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObservableConvertibleType.swift; path = RxSwift/ObservableConvertibleType.swift; sourceTree = "<group>"; };
@@ -820,6 +755,7 @@
 		99358226B4BA935A9A86A16DF8FD1FC5 /* Merge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Merge.swift; path = RxSwift/Observables/Merge.swift; sourceTree = "<group>"; };
 		996A374AE85A7CBBF71DE5B3153B6D41 /* RxSearchBarDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxSearchBarDelegateProxy.swift; path = RxCocoa/iOS/Proxies/RxSearchBarDelegateProxy.swift; sourceTree = "<group>"; };
 		9AC92C1CD4CB51C8F9185DA61696D032 /* SideMenuNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuNavigationController.swift; path = Pod/Classes/SideMenuNavigationController.swift; sourceTree = "<group>"; };
+		9B2CF02AFFFB073910E67DC3DBB4EA7E /* Pods-SpotifyRadar-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SpotifyRadar-frameworks.sh"; sourceTree = "<group>"; };
 		9D34DF13B0EBB4C0EB338772E8ABF0C7 /* SwinjectAutoregistration.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwinjectAutoregistration.modulemap; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DBAE790D9293D60EDD563E39094D780 /* UIPickerView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIPickerView+Rx.swift"; path = "RxCocoa/iOS/UIPickerView+Rx.swift"; sourceTree = "<group>"; };
@@ -835,6 +771,7 @@
 		A1E744A716E843888730D79F9F16CA08 /* SharedSequence+Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SharedSequence+Operators.swift"; path = "RxCocoa/Traits/SharedSequence/SharedSequence+Operators.swift"; sourceTree = "<group>"; };
 		A252AF1B82B115C1DDC47F354010C85E /* RxCocoa-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RxCocoa-dummy.m"; sourceTree = "<group>"; };
 		A45E20E07894FC6A0D082F2DB8656E56 /* RxRelay-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RxRelay-prefix.pch"; sourceTree = "<group>"; };
+		A49DB6315ACAF2EC5466981693F800CA /* Pods-SpotifyRadar-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpotifyRadar-acknowledgements.plist"; sourceTree = "<group>"; };
 		A4B04A9CBFB73B6A5E5A5A93253911BB /* Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = RxSwift/Errors.swift; sourceTree = "<group>"; };
 		A54A5080FC9C0A94EA4A8A7B75BDDBDE /* RxTableViewSectionedAnimatedDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTableViewSectionedAnimatedDataSource.swift; path = Sources/RxDataSources/RxTableViewSectionedAnimatedDataSource.swift; sourceTree = "<group>"; };
 		A61FA9C5A72F33DBA39F75B7E3805871 /* SideMenuTransitionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuTransitionController.swift; path = Pod/Classes/SideMenuTransitionController.swift; sourceTree = "<group>"; };
@@ -851,6 +788,7 @@
 		ADF090EC4589DC983B6AAFBEDD28C1A3 /* SkipWhile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkipWhile.swift; path = RxSwift/Observables/SkipWhile.swift; sourceTree = "<group>"; };
 		AE2C420DCF4C4F7E1F94FA3546988730 /* CurrentThreadScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CurrentThreadScheduler.swift; path = RxSwift/Schedulers/CurrentThreadScheduler.swift; sourceTree = "<group>"; };
 		AE61A1473B71644F8ED75791C09E9101 /* Buffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Buffer.swift; path = RxSwift/Observables/Buffer.swift; sourceTree = "<group>"; };
+		AEBEE4A622898AF726D8E6BD57161E2A /* Pods-SpotifyRadar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SpotifyRadar-dummy.m"; sourceTree = "<group>"; };
 		AF173C95E119CAA4A40CF4572A75F348 /* Differentiator-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Differentiator-Info.plist"; sourceTree = "<group>"; };
 		AF5B6241B2764DBEC520D00F1BFD6F34 /* RxRelay.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RxRelay.xcconfig; sourceTree = "<group>"; };
 		B0FB91CD1E6A6D3A4A375BE1A886DD78 /* Catch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Catch.swift; path = RxSwift/Observables/Catch.swift; sourceTree = "<group>"; };
@@ -867,7 +805,6 @@
 		B805C90787968ABA7832783EF357C2CF /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Extensions.swift"; path = "Platform/DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
 		B88FC306A5317F758047F4DDE2B5984B /* PublishRelay+Signal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "PublishRelay+Signal.swift"; path = "RxCocoa/Traits/Signal/PublishRelay+Signal.swift"; sourceTree = "<group>"; };
 		B9165FB02627C68817FC0E7923DA2265 /* AutoRegistration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutoRegistration.swift; path = Sources/AutoRegistration.swift; sourceTree = "<group>"; };
-		BAC44ACA29729594866558A27B0312E8 /* Pods-SpotifyDaily-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpotifyDaily-Info.plist"; sourceTree = "<group>"; };
 		BB19B0BD0C8159E9ED3C50B04233E579 /* ObserveOn.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObserveOn.swift; path = RxSwift/Observables/ObserveOn.swift; sourceTree = "<group>"; };
 		BC432FD48A5932251F1CAFBC4BF74894 /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RxCocoa.framework; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8CBDF021787097D3D78028CA112EC2 /* DistinctUntilChanged.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DistinctUntilChanged.swift; path = RxSwift/Observables/DistinctUntilChanged.swift; sourceTree = "<group>"; };
@@ -875,10 +812,9 @@
 		BDFDAB34F60F24EC83872C3304ABFD74 /* BehaviorRelay+Driver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "BehaviorRelay+Driver.swift"; path = "RxCocoa/Traits/Driver/BehaviorRelay+Driver.swift"; sourceTree = "<group>"; };
 		BF47B6224135A6C2A6962B1664D69D38 /* KVORepresentable+CoreGraphics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "KVORepresentable+CoreGraphics.swift"; path = "RxCocoa/Foundation/KVORepresentable+CoreGraphics.swift"; sourceTree = "<group>"; };
 		BF7D87D9E23C6EC5F59000F1C2C26C2D /* FunctionType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FunctionType.swift; path = Sources/FunctionType.swift; sourceTree = "<group>"; };
-		BF88289F9C054BDDE0E7E9BDD1930800 /* Pods-SpotifyDaily-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SpotifyDaily-dummy.m"; sourceTree = "<group>"; };
-		C042F310CB73EEF91828F433FB786684 /* Pods-SpotifyDaily.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpotifyDaily.debug.xcconfig"; sourceTree = "<group>"; };
 		C068135A8178CC83F0280F5082D05F3F /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = RxSwift/Observables/Map.swift; sourceTree = "<group>"; };
 		C0777099FD7A310CF6E1B11DA561237D /* RxDataSources-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RxDataSources-dummy.m"; sourceTree = "<group>"; };
+		C151CF3E53CF2AFA7C4A0F4692A5DE8B /* Pods-SpotifyRadar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SpotifyRadar-umbrella.h"; sourceTree = "<group>"; };
 		C23A46BEFD62FDFE1BE8EC4533BD1AF8 /* Container.Logging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Container.Logging.swift; path = Sources/Container.Logging.swift; sourceTree = "<group>"; };
 		C23C3A7C02C42CBDC2298402EF2C6B80 /* Observable+Bind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Observable+Bind.swift"; path = "RxRelay/Observable+Bind.swift"; sourceTree = "<group>"; };
 		C29E7D5B578204CEC0D414E7780029C4 /* ObserverBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObserverBase.swift; path = RxSwift/Observers/ObserverBase.swift; sourceTree = "<group>"; };
@@ -937,22 +873,18 @@
 		E195C5C8D59FD6090C216EFAEBAB1341 /* SwinjectAutoregistration-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwinjectAutoregistration-Info.plist"; sourceTree = "<group>"; };
 		E1FB87E3E7C9FF73A8978BED1E797019 /* RxCollectionViewSectionedReloadDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxCollectionViewSectionedReloadDataSource.swift; path = Sources/RxDataSources/RxCollectionViewSectionedReloadDataSource.swift; sourceTree = "<group>"; };
 		E201CA9D73B179EE0895F513164FA084 /* SectionedViewDataSourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SectionedViewDataSourceType.swift; path = RxCocoa/Common/SectionedViewDataSourceType.swift; sourceTree = "<group>"; };
-		E25FBD68BAF587662F6ACE25D506D2A4 /* Pods-SpotifyDaily-SpotifyDailyTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SpotifyDaily-SpotifyDailyTests.modulemap"; sourceTree = "<group>"; };
 		E315DA644E5492A9884F58C4474B27EA /* RxCollectionViewDataSourceProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxCollectionViewDataSourceProxy.swift; path = RxCocoa/iOS/Proxies/RxCollectionViewDataSourceProxy.swift; sourceTree = "<group>"; };
 		E335D1FEBE76481DA0500E5E9F1BA911 /* NSTextStorage+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSTextStorage+Rx.swift"; path = "RxCocoa/iOS/NSTextStorage+Rx.swift"; sourceTree = "<group>"; };
-		E391AA398F4F53CB5FFDE3D1091D91E1 /* Pods-SpotifyDaily-SpotifyDailyTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpotifyDaily-SpotifyDailyTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		E3A8002D7569F13C1C7EEDE0C298119B /* UITabBarController+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITabBarController+Rx.swift"; path = "RxCocoa/iOS/UITabBarController+Rx.swift"; sourceTree = "<group>"; };
 		E4E7A8D782B9DAD061B0C8D720AF9221 /* RxSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RxSwift.xcconfig; sourceTree = "<group>"; };
 		E56745F5DC62CE5605DC42818AE30377 /* UITextView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITextView+Rx.swift"; path = "RxCocoa/iOS/UITextView+Rx.swift"; sourceTree = "<group>"; };
 		E5D354A9DB7CD31705E46417ACB6B28B /* UIWebView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIWebView+Rx.swift"; path = "RxCocoa/iOS/UIWebView+Rx.swift"; sourceTree = "<group>"; };
 		E5F7A8A2BA598907FEED9A87B03B5A6B /* Swinject.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Swinject.modulemap; sourceTree = "<group>"; };
-		E7174FDBD6AE5FD9546EB056F45E690B /* Pods-SpotifyDaily-SpotifyDailyTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SpotifyDaily-SpotifyDailyTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E7C56EEFBE44B0F1225DCBB5D79C9123 /* HistoricalSchedulerTimeConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HistoricalSchedulerTimeConverter.swift; path = RxSwift/Schedulers/HistoricalSchedulerTimeConverter.swift; sourceTree = "<group>"; };
 		E80B011EAEC11181EA0E300EEC09ADEC /* InvocableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InvocableType.swift; path = RxSwift/Schedulers/Internal/InvocableType.swift; sourceTree = "<group>"; };
-		E8498F6906BDE865E6AAF3A3359E7E0C /* Pods-SpotifyDaily-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SpotifyDaily-umbrella.h"; sourceTree = "<group>"; };
 		E882B94802C3817B397B15E1AF5DA8E8 /* AnonymousObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnonymousObserver.swift; path = RxSwift/Observers/AnonymousObserver.swift; sourceTree = "<group>"; };
 		E8D740B20B36F906D042455EF97B78E1 /* Switch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Switch.swift; path = RxSwift/Observables/Switch.swift; sourceTree = "<group>"; };
-		E913954E8408C576AFF49F4E2D00871F /* Pods-SpotifyDaily-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpotifyDaily-acknowledgements.plist"; sourceTree = "<group>"; };
+		E90A550DB4DE7AF75BC723B725B8DFD2 /* Pods-SpotifyRadar-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SpotifyRadar-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E91B631879F7BF806CD2628E522083AE /* SwinjectAutoregistration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwinjectAutoregistration.h; path = Sources/SwinjectAutoregistration.h; sourceTree = "<group>"; };
 		E95D0751DFB3B0FCA17C620D17F76571 /* IntegerType+IdentifiableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IntegerType+IdentifiableType.swift"; path = "Sources/RxDataSources/IntegerType+IdentifiableType.swift"; sourceTree = "<group>"; };
 		E9B8EA18B649C1B108F2826070B7B9B5 /* InfiniteSequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfiniteSequence.swift; path = Platform/DataStructures/InfiniteSequence.swift; sourceTree = "<group>"; };
@@ -963,11 +895,10 @@
 		EC77922B85AB308764D324EB919DBC87 /* RxTextViewDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTextViewDelegateProxy.swift; path = RxCocoa/iOS/Proxies/RxTextViewDelegateProxy.swift; sourceTree = "<group>"; };
 		EE178DB71170CA29F54D7967F206E6FA /* IdentifiableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IdentifiableType.swift; path = Sources/Differentiator/IdentifiableType.swift; sourceTree = "<group>"; };
 		EEEE3990D5E03D077E2F7B28D957D93F /* Signal+Subscription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Signal+Subscription.swift"; path = "RxCocoa/Traits/Signal/Signal+Subscription.swift"; sourceTree = "<group>"; };
-		F080EC9E4BEEE128C3F97B513635D7C0 /* Pods-SpotifyDaily-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SpotifyDaily-frameworks.sh"; sourceTree = "<group>"; };
 		F0D8E2C504B1F378BF29D2B48BE18C1E /* NSSlider+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSSlider+Rx.swift"; path = "RxCocoa/macOS/NSSlider+Rx.swift"; sourceTree = "<group>"; };
 		F11A3613995F16BB082C065D01241C20 /* RxSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RxSwift-umbrella.h"; sourceTree = "<group>"; };
-		F152F9E4B5870960056C3C9F26ACAA95 /* Pods-SpotifyDaily-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SpotifyDaily-acknowledgements.markdown"; sourceTree = "<group>"; };
 		F1F5F63D4B76D6AA1D2D8309DADF8E81 /* RxDataSources.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RxDataSources.modulemap; sourceTree = "<group>"; };
+		F27FCF044E6923F7DA836ABEC10A7076 /* Pods-SpotifyRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpotifyRadar.release.xcconfig"; sourceTree = "<group>"; };
 		F2B551C555A437B1DC99F8CDE1CD8F57 /* RxTableViewReactiveArrayDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTableViewReactiveArrayDataSource.swift; path = RxCocoa/iOS/DataSources/RxTableViewReactiveArrayDataSource.swift; sourceTree = "<group>"; };
 		F3587B9FEF178DAFE37C10601E593904 /* Repeat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Repeat.swift; path = RxSwift/Observables/Repeat.swift; sourceTree = "<group>"; };
 		F47D5FFC904D0DBE95F57FB07DC5E505 /* ShareReplayScope.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShareReplayScope.swift; path = RxSwift/Observables/ShareReplayScope.swift; sourceTree = "<group>"; };
@@ -1001,20 +932,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		01160B456A83D284C855287082F52F60 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4903C647851F875CBFED0C2B5FA3B00B /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1660C303DE00D75F0F059DA72C8DDDCC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E8B43143E93F1A5F4F4B606B9767134B /* Foundation.framework in Frameworks */,
 				F105313AB1A53C7168273476626D6661 /* RxSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DDD7D2C6B440C8705EA61E97A6EF6A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59626D21FE6CDA10A2536E6562321FC8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,14 +1008,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B27B12C5D2EF1BE7B3CBBBC8FA98110E /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F87EAB6DB006EC4D0977A16F09A5523D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB6C7D4A8CD96BD27CFE6ED253ADEE48 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1223,6 +1146,14 @@
 			path = RxCocoa;
 			sourceTree = "<group>";
 		};
+		2295A3C0E5BAE20E18B8455C799B3F0D /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E844AC4EE5E7B83FCE8A2E410BFFC0C6 /* Pods-SpotifyRadar */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 		23447ED28690A1B76CFBB0CB5689FC16 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1295,13 +1226,20 @@
 			path = RxDataSources;
 			sourceTree = "<group>";
 		};
-		34B6FAE98763AE46FF98A4DBF8827F95 /* Targets Support Files */ = {
+		31D7B519278CB067ECEC3D52160B9FF7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CDAD0302944C4787E032B11DC83F7824 /* Pods-SpotifyDaily */,
-				EFCDD5E146F8663ADE9BC4A684B1DE82 /* Pods-SpotifyDaily-SpotifyDailyTests */,
+				D51C3D0C53D23B97B032E3BDD4F82C82 /* Differentiator.framework */,
+				4852C8139D877020414B3FA7656486A1 /* Pods_SpotifyRadar.framework */,
+				BC432FD48A5932251F1CAFBC4BF74894 /* RxCocoa.framework */,
+				692F92D73EC27270EA9CC9575C3E65B6 /* RxDataSources.framework */,
+				FF8B264DFE802855D5D67E7CDDABFC3C /* RxRelay.framework */,
+				809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift.framework */,
+				319D06AA0D1D0BA345459C039040A1ED /* SideMenu.framework */,
+				8ACA110EF3B35B3FCC08297B3799D9AD /* Swinject.framework */,
+				65139CE1B13DFEFF9F678F6A2EB5744D /* SwinjectAutoregistration.framework */,
 			);
-			name = "Targets Support Files";
+			name = Products;
 			sourceTree = "<group>";
 		};
 		38AAE4863C29A39BD8414F218E3914E1 /* Support Files */ = {
@@ -1609,49 +1547,15 @@
 			path = RxRelay;
 			sourceTree = "<group>";
 		};
-		CDAD0302944C4787E032B11DC83F7824 /* Pods-SpotifyDaily */ = {
-			isa = PBXGroup;
-			children = (
-				47570FB6502A2885A40CE9FB67F60168 /* Pods-SpotifyDaily.modulemap */,
-				F152F9E4B5870960056C3C9F26ACAA95 /* Pods-SpotifyDaily-acknowledgements.markdown */,
-				E913954E8408C576AFF49F4E2D00871F /* Pods-SpotifyDaily-acknowledgements.plist */,
-				BF88289F9C054BDDE0E7E9BDD1930800 /* Pods-SpotifyDaily-dummy.m */,
-				F080EC9E4BEEE128C3F97B513635D7C0 /* Pods-SpotifyDaily-frameworks.sh */,
-				BAC44ACA29729594866558A27B0312E8 /* Pods-SpotifyDaily-Info.plist */,
-				E8498F6906BDE865E6AAF3A3359E7E0C /* Pods-SpotifyDaily-umbrella.h */,
-				C042F310CB73EEF91828F433FB786684 /* Pods-SpotifyDaily.debug.xcconfig */,
-				3B28E8974E87FEA90A9B1DECC1DC71AC /* Pods-SpotifyDaily.release.xcconfig */,
-			);
-			name = "Pods-SpotifyDaily";
-			path = "Target Support Files/Pods-SpotifyDaily";
-			sourceTree = "<group>";
-		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				49C73B09885F488B40FED66D136DA56F /* Frameworks */,
 				FC7DD8778215BAF0503F7B2220CC46BC /* Pods */,
-				D6CA4BE4F7962A6B3B3C820DC520326E /* Products */,
-				34B6FAE98763AE46FF98A4DBF8827F95 /* Targets Support Files */,
+				31D7B519278CB067ECEC3D52160B9FF7 /* Products */,
+				2295A3C0E5BAE20E18B8455C799B3F0D /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		D6CA4BE4F7962A6B3B3C820DC520326E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D51C3D0C53D23B97B032E3BDD4F82C82 /* Differentiator.framework */,
-				46448AA35EC3CDF2A456E28E474F5625 /* Pods_SpotifyDaily.framework */,
-				68483CB121C7B8C97AD0DB0348AEFEDB /* Pods_SpotifyDaily_SpotifyDailyTests.framework */,
-				BC432FD48A5932251F1CAFBC4BF74894 /* RxCocoa.framework */,
-				692F92D73EC27270EA9CC9575C3E65B6 /* RxDataSources.framework */,
-				FF8B264DFE802855D5D67E7CDDABFC3C /* RxRelay.framework */,
-				809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift.framework */,
-				319D06AA0D1D0BA345459C039040A1ED /* SideMenu.framework */,
-				8ACA110EF3B35B3FCC08297B3799D9AD /* Swinject.framework */,
-				65139CE1B13DFEFF9F678F6A2EB5744D /* SwinjectAutoregistration.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E04F5FE848C76486FADC4B7D5A8A1905 /* SwinjectAutoregistration */ = {
@@ -1671,21 +1575,21 @@
 			path = SwinjectAutoregistration;
 			sourceTree = "<group>";
 		};
-		EFCDD5E146F8663ADE9BC4A684B1DE82 /* Pods-SpotifyDaily-SpotifyDailyTests */ = {
+		E844AC4EE5E7B83FCE8A2E410BFFC0C6 /* Pods-SpotifyRadar */ = {
 			isa = PBXGroup;
 			children = (
-				E25FBD68BAF587662F6ACE25D506D2A4 /* Pods-SpotifyDaily-SpotifyDailyTests.modulemap */,
-				E7174FDBD6AE5FD9546EB056F45E690B /* Pods-SpotifyDaily-SpotifyDailyTests-acknowledgements.markdown */,
-				E391AA398F4F53CB5FFDE3D1091D91E1 /* Pods-SpotifyDaily-SpotifyDailyTests-acknowledgements.plist */,
-				038ECC3B2BBD2B928595290DE8FF5CB2 /* Pods-SpotifyDaily-SpotifyDailyTests-dummy.m */,
-				40E89D73006E7A6DE638C70C1E1A0AFF /* Pods-SpotifyDaily-SpotifyDailyTests-frameworks.sh */,
-				77747BBCC87D2B7CDE5C9A9A7299F446 /* Pods-SpotifyDaily-SpotifyDailyTests-Info.plist */,
-				17D89237F936DBFF7399923E5AA6741C /* Pods-SpotifyDaily-SpotifyDailyTests-umbrella.h */,
-				68D666CF45BB5B0BB5872270A5565CE4 /* Pods-SpotifyDaily-SpotifyDailyTests.debug.xcconfig */,
-				5F146E0566DEF54D56315276D535B968 /* Pods-SpotifyDaily-SpotifyDailyTests.release.xcconfig */,
+				94C3F8E83E0D3B61D8295CE07D80464A /* Pods-SpotifyRadar.modulemap */,
+				E90A550DB4DE7AF75BC723B725B8DFD2 /* Pods-SpotifyRadar-acknowledgements.markdown */,
+				A49DB6315ACAF2EC5466981693F800CA /* Pods-SpotifyRadar-acknowledgements.plist */,
+				AEBEE4A622898AF726D8E6BD57161E2A /* Pods-SpotifyRadar-dummy.m */,
+				9B2CF02AFFFB073910E67DC3DBB4EA7E /* Pods-SpotifyRadar-frameworks.sh */,
+				95DF0894958922B44ADAEE06FED8E030 /* Pods-SpotifyRadar-Info.plist */,
+				C151CF3E53CF2AFA7C4A0F4692A5DE8B /* Pods-SpotifyRadar-umbrella.h */,
+				6676DE1702992E1C9EF36FA02486EAEE /* Pods-SpotifyRadar.debug.xcconfig */,
+				F27FCF044E6923F7DA836ABEC10A7076 /* Pods-SpotifyRadar.release.xcconfig */,
 			);
-			name = "Pods-SpotifyDaily-SpotifyDailyTests";
-			path = "Target Support Files/Pods-SpotifyDaily-SpotifyDailyTests";
+			name = "Pods-SpotifyRadar";
+			path = "Target Support Files/Pods-SpotifyRadar";
 			sourceTree = "<group>";
 		};
 		FBBFF56DF89CD8F7EBDD91CDA127A5E5 /* SideMenu */ = {
@@ -1775,14 +1679,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8ACB62825C48FC53DF7C37A498868108 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FF43BDF9B0FECBDE4F6351FB94E471E8 /* Pods-SpotifyDaily-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9A1E15C79C102B61B0B0EBF34FB6889E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1791,11 +1687,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8414C24AB3F9E9BF501B229736146D5 /* Headers */ = {
+		B0482DB2D40F2EA0394AEC193FC153EB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				696E7623D968E7FD10147D2882B3AEB7 /* Pods-SpotifyDaily-SpotifyDailyTests-umbrella.h in Headers */,
+				7B8A51C49DF6B6AC9892726D8F434583 /* Pods-SpotifyRadar-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1943,30 +1839,30 @@
 			productReference = BC432FD48A5932251F1CAFBC4BF74894 /* RxCocoa.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		898864DCF28C3E71780CA1A61580FEC0 /* Pods-SpotifyDaily-SpotifyDailyTests */ = {
+		9C3B09F8FFB556B40CA2C8F27342BCE1 /* Pods-SpotifyRadar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27917FF7BDC704F3E7BCCDDAB2E09725 /* Build configuration list for PBXNativeTarget "Pods-SpotifyDaily-SpotifyDailyTests" */;
+			buildConfigurationList = B11AE2778A2725747522B986A3A164F7 /* Build configuration list for PBXNativeTarget "Pods-SpotifyRadar" */;
 			buildPhases = (
-				A8414C24AB3F9E9BF501B229736146D5 /* Headers */,
-				47C311088E6B2282898DFE2CC7EF6AF7 /* Sources */,
-				F87EAB6DB006EC4D0977A16F09A5523D /* Frameworks */,
-				E5A7467F7CAF050C3682E7C0BE820FF0 /* Resources */,
+				B0482DB2D40F2EA0394AEC193FC153EB /* Headers */,
+				75FE44DA8807709713A73282F2852B72 /* Sources */,
+				1DDD7D2C6B440C8705EA61E97A6EF6A4 /* Frameworks */,
+				F0F0BFB7B39127D0F97941D98C3C2D52 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				AE1B134136816AE7DC8ED5781E049A72 /* PBXTargetDependency */,
-				2B939C4D85D2548002383FABA3DE38C7 /* PBXTargetDependency */,
-				F5CEBFE556E5AE76FED8DE7ACF2F9DE9 /* PBXTargetDependency */,
-				7E2BE5662F6357D75A6BC5F58D0492BE /* PBXTargetDependency */,
-				E4CB48B689C28D4718722AE2740682CA /* PBXTargetDependency */,
-				474BE4D859190DA3BE29A059121452B7 /* PBXTargetDependency */,
-				4C01109C6FE7F7B1FC98C8D2BE834B19 /* PBXTargetDependency */,
-				09547CD9A99918A2EC16AF5817E96A7B /* PBXTargetDependency */,
+				DBE82351AFF8149F52404CCE98125D14 /* PBXTargetDependency */,
+				B0CADEEA4DF890A3096A118A7C9C7600 /* PBXTargetDependency */,
+				8AACA681F71D478385B75E40841DF858 /* PBXTargetDependency */,
+				0B425EF6FACACEA60DBC4DF1916DAF3B /* PBXTargetDependency */,
+				A08F8DD306478CC3FD23449ABEF6E960 /* PBXTargetDependency */,
+				F9BAC9C924A7D9A85E69E931627DF41D /* PBXTargetDependency */,
+				534141780DDE87DCBB2CFC3F964199B7 /* PBXTargetDependency */,
+				375DFE89EC2551EA4748BF8CB0583828 /* PBXTargetDependency */,
 			);
-			name = "Pods-SpotifyDaily-SpotifyDailyTests";
-			productName = "Pods-SpotifyDaily-SpotifyDailyTests";
-			productReference = 68483CB121C7B8C97AD0DB0348AEFEDB /* Pods_SpotifyDaily_SpotifyDailyTests.framework */;
+			name = "Pods-SpotifyRadar";
+			productName = "Pods-SpotifyRadar";
+			productReference = 4852C8139D877020414B3FA7656486A1 /* Pods_SpotifyRadar.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C4A0A7D8591B67FB75E2E8D215E3735B /* SideMenu */ = {
@@ -1985,32 +1881,6 @@
 			name = SideMenu;
 			productName = SideMenu;
 			productReference = 319D06AA0D1D0BA345459C039040A1ED /* SideMenu.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		E33D6C4AB20D8F7F6016457A7D07A95C /* Pods-SpotifyDaily */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C3E0067649E0E93A83F81D45AD522596 /* Build configuration list for PBXNativeTarget "Pods-SpotifyDaily" */;
-			buildPhases = (
-				8ACB62825C48FC53DF7C37A498868108 /* Headers */,
-				63A75423FAA83E344A237D07B1160322 /* Sources */,
-				01160B456A83D284C855287082F52F60 /* Frameworks */,
-				41B1BB60BA413D40C0E8D5DF6FB36D9F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				13DC8618A2D94C34E0EBB26682EFA98D /* PBXTargetDependency */,
-				ECB7D13244DA967DB3503E619B3BADD4 /* PBXTargetDependency */,
-				CF49B6D0E7C14747890FAE98D7D463C4 /* PBXTargetDependency */,
-				2B8F34D8236D73A87DA0BCAF53393A25 /* PBXTargetDependency */,
-				F2D38B42CD6FDF8CDB1235AE9904C982 /* PBXTargetDependency */,
-				977E69180BC94BB643C51059AFD8E164 /* PBXTargetDependency */,
-				523B01DFFE7FBFA0A276366CDD4E99FF /* PBXTargetDependency */,
-				48FC355E97BE3F2BA4C5062AFF0796F5 /* PBXTargetDependency */,
-			);
-			name = "Pods-SpotifyDaily";
-			productName = "Pods-SpotifyDaily";
-			productReference = 46448AA35EC3CDF2A456E28E474F5625 /* Pods_SpotifyDaily.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */ = {
@@ -2049,13 +1919,12 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = D6CA4BE4F7962A6B3B3C820DC520326E /* Products */;
+			productRefGroup = 31D7B519278CB067ECEC3D52160B9FF7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				212F79CE462FC723AF42979B57FBB8A6 /* Differentiator */,
-				E33D6C4AB20D8F7F6016457A7D07A95C /* Pods-SpotifyDaily */,
-				898864DCF28C3E71780CA1A61580FEC0 /* Pods-SpotifyDaily-SpotifyDailyTests */,
+				9C3B09F8FFB556B40CA2C8F27342BCE1 /* Pods-SpotifyRadar */,
 				7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6 /* RxCocoa */,
 				401909D4FB2014BF539896BF0CCA48C2 /* RxDataSources */,
 				4622BFEF3DC16E8BD15EEFC30D4D0084 /* RxRelay */,
@@ -2089,13 +1958,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		41B1BB60BA413D40C0E8D5DF6FB36D9F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C84EFE3C4AE2E8DB6A588D3581303BB9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2103,14 +1965,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E5A7467F7CAF050C3682E7C0BE820FF0 /* Resources */ = {
+		E880A6A8817A45BC1BDE085DEC3399E0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E880A6A8817A45BC1BDE085DEC3399E0 /* Resources */ = {
+		F0F0BFB7B39127D0F97941D98C3C2D52 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2310,14 +2172,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		47C311088E6B2282898DFE2CC7EF6AF7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C3EE134D32F6B57E9CA180E9E25CDF8C /* Pods-SpotifyDaily-SpotifyDailyTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4C3D851FEBEB90EA47E2CCD1A8900D81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2330,11 +2184,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		63A75423FAA83E344A237D07B1160322 /* Sources */ = {
+		75FE44DA8807709713A73282F2852B72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3B4AA6FC5676ACD78A6C375D415125F /* Pods-SpotifyDaily-dummy.m in Sources */,
+				C4B923F98F716BBC74D87C472671A1B1 /* Pods-SpotifyRadar-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2574,41 +2428,17 @@
 			target = EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */;
 			targetProxy = 1553B76F87650E3186621C0B2E8355DC /* PBXContainerItemProxy */;
 		};
-		09547CD9A99918A2EC16AF5817E96A7B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwinjectAutoregistration;
-			target = 3057E291093EA4CA29F959C95AD1E3D5 /* SwinjectAutoregistration */;
-			targetProxy = F42A417D7A6ECC9ED8B79B5A3F78223F /* PBXContainerItemProxy */;
-		};
-		13DC8618A2D94C34E0EBB26682EFA98D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Differentiator;
-			target = 212F79CE462FC723AF42979B57FBB8A6 /* Differentiator */;
-			targetProxy = 590519793655AB8DD77CF97EDE37DE60 /* PBXContainerItemProxy */;
-		};
-		2B8F34D8236D73A87DA0BCAF53393A25 /* PBXTargetDependency */ = {
+		0B425EF6FACACEA60DBC4DF1916DAF3B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RxRelay;
 			target = 4622BFEF3DC16E8BD15EEFC30D4D0084 /* RxRelay */;
-			targetProxy = 81EFEABC5D964AEC4F55083700D46516 /* PBXContainerItemProxy */;
+			targetProxy = D847784B035BE42B0DE536B565C21B6B /* PBXContainerItemProxy */;
 		};
-		2B939C4D85D2548002383FABA3DE38C7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RxCocoa;
-			target = 7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6 /* RxCocoa */;
-			targetProxy = 4798D42306DC0B7C0D63AAEC89F7911D /* PBXContainerItemProxy */;
-		};
-		474BE4D859190DA3BE29A059121452B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SideMenu;
-			target = C4A0A7D8591B67FB75E2E8D215E3735B /* SideMenu */;
-			targetProxy = A92487B341BD049A96F9936C20FA1643 /* PBXContainerItemProxy */;
-		};
-		48FC355E97BE3F2BA4C5062AFF0796F5 /* PBXTargetDependency */ = {
+		375DFE89EC2551EA4748BF8CB0583828 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwinjectAutoregistration;
 			target = 3057E291093EA4CA29F959C95AD1E3D5 /* SwinjectAutoregistration */;
-			targetProxy = 8796D0A34314419BD65578F1A2DA1DE8 /* PBXContainerItemProxy */;
+			targetProxy = A390EE514636880C5236FE24B0D7287F /* PBXContainerItemProxy */;
 		};
 		4BDE529E57D56A9AD8163401098D7E3B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2616,17 +2446,11 @@
 			target = 46065AF968A5A92D450BB21F7F24367D /* Swinject */;
 			targetProxy = 62259293FBDC55DAADFB3DBBD5B9C626 /* PBXContainerItemProxy */;
 		};
-		4C01109C6FE7F7B1FC98C8D2BE834B19 /* PBXTargetDependency */ = {
+		534141780DDE87DCBB2CFC3F964199B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Swinject;
 			target = 46065AF968A5A92D450BB21F7F24367D /* Swinject */;
-			targetProxy = 7F1E7FE4B69C24F7B830B2FC52D39A43 /* PBXContainerItemProxy */;
-		};
-		523B01DFFE7FBFA0A276366CDD4E99FF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Swinject;
-			target = 46065AF968A5A92D450BB21F7F24367D /* Swinject */;
-			targetProxy = 2F492F197E22A5105C045F79E64E4DE8 /* PBXContainerItemProxy */;
+			targetProxy = 460E065503C1C894211DCAAEA2421AE5 /* PBXContainerItemProxy */;
 		};
 		573F8FF351F0F1AAB796DAE14F0B18F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2634,17 +2458,11 @@
 			target = 4622BFEF3DC16E8BD15EEFC30D4D0084 /* RxRelay */;
 			targetProxy = 07E45B0AFEEED2846D13571956E582B3 /* PBXContainerItemProxy */;
 		};
-		7E2BE5662F6357D75A6BC5F58D0492BE /* PBXTargetDependency */ = {
+		8AACA681F71D478385B75E40841DF858 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = RxRelay;
-			target = 4622BFEF3DC16E8BD15EEFC30D4D0084 /* RxRelay */;
-			targetProxy = 6C52D815B54436E5424A2109DE5C7B57 /* PBXContainerItemProxy */;
-		};
-		977E69180BC94BB643C51059AFD8E164 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SideMenu;
-			target = C4A0A7D8591B67FB75E2E8D215E3735B /* SideMenu */;
-			targetProxy = F302E61F81461A2AD7769F864073E81E /* PBXContainerItemProxy */;
+			name = RxDataSources;
+			target = 401909D4FB2014BF539896BF0CCA48C2 /* RxDataSources */;
+			targetProxy = C9D383461C2894EB55C4F17C6B1EDA54 /* PBXContainerItemProxy */;
 		};
 		98CE6B7D91AA2669817DD8FB535E81FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2658,11 +2476,17 @@
 			target = EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */;
 			targetProxy = 04142E1DB41EC92EB296F3E757BCE4B7 /* PBXContainerItemProxy */;
 		};
-		AE1B134136816AE7DC8ED5781E049A72 /* PBXTargetDependency */ = {
+		A08F8DD306478CC3FD23449ABEF6E960 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Differentiator;
-			target = 212F79CE462FC723AF42979B57FBB8A6 /* Differentiator */;
-			targetProxy = 7A3D13B9D1A64B5C8E62646507F82C23 /* PBXContainerItemProxy */;
+			name = RxSwift;
+			target = EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */;
+			targetProxy = 66EB08D67ED30A3905D3E415A1185A1F /* PBXContainerItemProxy */;
+		};
+		B0CADEEA4DF890A3096A118A7C9C7600 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RxCocoa;
+			target = 7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6 /* RxCocoa */;
+			targetProxy = 441A1B8F9A438C76927FDA0C8C7FE872 /* PBXContainerItemProxy */;
 		};
 		CCCA4B7752069A69459186957330D49D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2670,41 +2494,23 @@
 			target = EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */;
 			targetProxy = 3AA5F122E4B6C1CDC8306AE3F5C627D8 /* PBXContainerItemProxy */;
 		};
-		CF49B6D0E7C14747890FAE98D7D463C4 /* PBXTargetDependency */ = {
+		DBE82351AFF8149F52404CCE98125D14 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = RxDataSources;
-			target = 401909D4FB2014BF539896BF0CCA48C2 /* RxDataSources */;
-			targetProxy = D83E5C51C6F80C8F61D7BC5BFF1688D7 /* PBXContainerItemProxy */;
-		};
-		E4CB48B689C28D4718722AE2740682CA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RxSwift;
-			target = EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */;
-			targetProxy = 80673A0E3B5A2D421D243DA4F90DA012 /* PBXContainerItemProxy */;
-		};
-		ECB7D13244DA967DB3503E619B3BADD4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RxCocoa;
-			target = 7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6 /* RxCocoa */;
-			targetProxy = B930E0B083B60D36E74C64F834C21262 /* PBXContainerItemProxy */;
-		};
-		F2D38B42CD6FDF8CDB1235AE9904C982 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RxSwift;
-			target = EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */;
-			targetProxy = 50A19783E19C06EC9B6B5F98157B6A80 /* PBXContainerItemProxy */;
-		};
-		F5CEBFE556E5AE76FED8DE7ACF2F9DE9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RxDataSources;
-			target = 401909D4FB2014BF539896BF0CCA48C2 /* RxDataSources */;
-			targetProxy = 991E43CFC0C7C2EC243CE82C9201B3C6 /* PBXContainerItemProxy */;
+			name = Differentiator;
+			target = 212F79CE462FC723AF42979B57FBB8A6 /* Differentiator */;
+			targetProxy = 06A543FAD07FE501639B6334237C28D7 /* PBXContainerItemProxy */;
 		};
 		F87EF38C5F072440A3AD9AD3BBADB08A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Differentiator;
 			target = 212F79CE462FC723AF42979B57FBB8A6 /* Differentiator */;
 			targetProxy = E237E6E7997F0C5BC5ACDB01BE6E1BA0 /* PBXContainerItemProxy */;
+		};
+		F9BAC9C924A7D9A85E69E931627DF41D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SideMenu;
+			target = C4A0A7D8591B67FB75E2E8D215E3735B /* SideMenu */;
+			targetProxy = B146704EA2B28BB1D0444AD90031F6F6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3093,44 +2899,6 @@
 			};
 			name = Debug;
 		};
-		7463DD0844D50F663724E120F74E01D5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68D666CF45BB5B0BB5872270A5565CE4 /* Pods-SpotifyDaily-SpotifyDailyTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-SpotifyDaily-SpotifyDailyTests/Pods-SpotifyDaily-SpotifyDailyTests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SpotifyDaily-SpotifyDailyTests/Pods-SpotifyDaily-SpotifyDailyTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		770B68DA9F16B41CD7CDCD9737A856A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0AB83396848162AD541072277171181C /* SideMenu.xcconfig */;
@@ -3239,9 +3007,9 @@
 			};
 			name = Debug;
 		};
-		9EC5723619A47C21581CC79F72212A8E /* Debug */ = {
+		A6DE4224E3ADA14B68B253EE9DA38EA7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C042F310CB73EEF91828F433FB786684 /* Pods-SpotifyDaily.debug.xcconfig */;
+			baseConfigurationReference = 6676DE1702992E1C9EF36FA02486EAEE /* Pods-SpotifyRadar.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -3254,7 +3022,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-SpotifyDaily/Pods-SpotifyDaily-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-SpotifyRadar/Pods-SpotifyRadar-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3263,7 +3031,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SpotifyDaily/Pods-SpotifyDaily.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-SpotifyRadar/Pods-SpotifyRadar.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -3348,45 +3116,6 @@
 			};
 			name = Debug;
 		};
-		B98E1D73F7402D6009B9D9C3AEBDE554 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F146E0566DEF54D56315276D535B968 /* Pods-SpotifyDaily-SpotifyDailyTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-SpotifyDaily-SpotifyDailyTests/Pods-SpotifyDaily-SpotifyDailyTests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SpotifyDaily-SpotifyDailyTests/Pods-SpotifyDaily-SpotifyDailyTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		BE1E3353103DA77AB8D6CC83A0ADBF09 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A8D88993DFFC16F735A710CE66A8270A /* RxDataSources.xcconfig */;
@@ -3423,9 +3152,9 @@
 			};
 			name = Release;
 		};
-		D41371D9B6B7960D660B77779F2FFF3A /* Release */ = {
+		C8E5942B44B659B9ED9F40BDACC363FD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B28E8974E87FEA90A9B1DECC1DC71AC /* Pods-SpotifyDaily.release.xcconfig */;
+			baseConfigurationReference = F27FCF044E6923F7DA836ABEC10A7076 /* Pods-SpotifyRadar.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -3438,7 +3167,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-SpotifyDaily/Pods-SpotifyDaily-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-SpotifyRadar/Pods-SpotifyRadar-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3447,7 +3176,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SpotifyDaily/Pods-SpotifyDaily.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-SpotifyRadar/Pods-SpotifyRadar.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -3578,15 +3307,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27917FF7BDC704F3E7BCCDDAB2E09725 /* Build configuration list for PBXNativeTarget "Pods-SpotifyDaily-SpotifyDailyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7463DD0844D50F663724E120F74E01D5 /* Debug */,
-				B98E1D73F7402D6009B9D9C3AEBDE554 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -3623,11 +3343,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C3E0067649E0E93A83F81D45AD522596 /* Build configuration list for PBXNativeTarget "Pods-SpotifyDaily" */ = {
+		B11AE2778A2725747522B986A3A164F7 /* Build configuration list for PBXNativeTarget "Pods-SpotifyRadar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9EC5723619A47C21581CC79F72212A8E /* Debug */,
-				D41371D9B6B7960D660B77779F2FFF3A /* Release */,
+				A6DE4224E3ADA14B68B253EE9DA38EA7 /* Debug */,
+				C8E5942B44B659B9ED9F40BDACC363FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

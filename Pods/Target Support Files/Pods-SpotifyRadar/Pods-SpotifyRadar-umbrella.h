@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_SpotifyDailyVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_SpotifyDailyVersionString[];
+FOUNDATION_EXPORT double Pods_SpotifyRadarVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_SpotifyRadarVersionString[];
 

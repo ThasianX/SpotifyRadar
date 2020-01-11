@@ -14,8 +14,8 @@ struct Configuration {
     let redirectURL: URL
     
     init(){
-        self.clientID = "8cece41fa2cc49a48e66b70cbc7789fc"
-        self.clientSecret = "89faaf509a5e49569abb3fc93ebe4740"
-        self.redirectURL = URL(string: "spotify-daily-login://")!
+        self.clientID = ""
+        self.clientSecret = ""
+        self.redirectURL = URL(string: "spotify-radar-login://")!
     }
 }
