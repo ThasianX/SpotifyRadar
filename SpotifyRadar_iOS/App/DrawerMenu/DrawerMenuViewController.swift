@@ -114,7 +114,7 @@ extension UITableView {
 extension UILabel {
     static var appLabel: UILabel {
         let label = UILabel()
-        label.text = "Spotify Daily"
+        label.text = "ReleasifyX"
         label.font = UIFont(helveticaStyle: .bold, size: 30)
         label.textColor = ColorPreference.tertiaryColor
         label.textAlignment = .center
