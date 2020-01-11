@@ -1,6 +1,6 @@
-# Spotify Daily
+# Spotify Radar
 
-Spotify Daily is an iOS application that allows users to pull in new song releases from their favorite artists and provides users with important metrics like their top tracks, top artists, and recently played tracks, queryable by time range.
+Spotify Radar is an iOS application that allows users to pull in new song releases from their favorite artists and provides users with important metrics like their top tracks, top artists, and recently played tracks, queryable by time range.
 
 **Architecture**: MVVM + Coordinator + RxSwift
 
@@ -14,7 +14,7 @@ Pods have already been committed so no need to run 'pod install'
 
 ### Installing
 
-Since Spotify has strict limits on API calls and the app is currently using my API keys, you may want to create a [spotify application](https://developer.spotify.com/dashboard/applications) and save your clientId and clientSecret to `SpotifyDaily_iOS/Services/Configuration.swift` for best experience. Of course, when you make a PR, don't include `Configuration.swift` in it.
+Create a [spotify application](https://developer.spotify.com/dashboard/applications) and save your clientId and clientSecret to `SpotifyDaily_iOS/Services/Configuration.swift`. Of course, when you make a PR, don't include `Configuration.swift` in it.
 
 ```
 Open xcworkspace and run
@@ -25,7 +25,7 @@ Open xcworkspace and run
 * [Cocoapods](https://github.com/CocoaPods/CocoaPods) - Dependency Management
 * [Swinject](https://github.com/Swinject/Swinject) - Dependency Injection
 * [SideMenu](https://github.com/jonkykong/SideMenu) - Menu navigation
-* [RxSwift](https://github.com/ReactiveX/RxSwift)  -Swift version of [Rx](https://github.com/Reactive-Extensions/Rx.NET)
+* [RxSwift](https://github.com/ReactiveX/RxSwift) - Swift version of [Rx](https://github.com/Reactive-Extensions/Rx.NET)
 
 ## Contributing
 - If you find a bug, or would like to suggest a new feature or enhancement, it'd be nice if you could [search the issue tracker first](https://github.com/ThasianX/SpotifyDaily/issues); while we don't mind duplicates, keeping issues unique helps us save time and considates effort. If you can't find your issue, feel free to [file a new one](https://github.com/ThasianX/SpotifyDaily/issues/new/choose).
@@ -33,7 +33,7 @@ Open xcworkspace and run
 
 ## License
 
-This project is licensed under the GPL License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Screenshots
 
