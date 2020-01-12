@@ -23,7 +23,6 @@ class SettingsRootView: UIView {
     private lazy var filterEnabled = UILabel.defaultLabel
     private lazy var profileUrl = UILabel.defaultLabel
     private lazy var numberOfFollowers = UILabel.defaultLabel
-    private lazy var endpointUrl = UILabel.defaultLabel
     private lazy var id = UILabel.defaultLabel
     private lazy var avatarUrl = UILabel.defaultLabel
     private lazy var subscriptionLevel = UILabel.defaultLabel
@@ -65,7 +64,6 @@ class SettingsRootView: UIView {
         userDetails.addArrangedSubview(subscriptionLevel)
         userDetails.addArrangedSubview(filterEnabled)
         userDetails.addArrangedSubview(profileUrl)
-        userDetails.addArrangedSubview(endpointUrl)
         userDetails.addArrangedSubview(id)
         userDetails.addArrangedSubview(uriUrl)
     }
@@ -194,21 +192,6 @@ class SettingsRootView: UIView {
             myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
             
             self.numberOfFollowers.attributedText = myString
-        })
-        .disposed(by: disposeBag)
-        
-        viewModel.user
-        .map { $0.endpointUrl }
-        .distinctUntilChanged()
-        .bind(onNext: { [unowned self] endpointUrl in
-            let attribute1 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 12)]
-            let myString = NSMutableAttributedString(string: "PROFILE API ENDPOINT: ", attributes: attribute1)
-            let attribute2 = [NSAttributedString.Key.font: UIFont(helveticaStyle: .thin, size: 15)]
-            myString.append(NSMutableAttributedString(string: endpointUrl.uppercased(), attributes: attribute2))
-            let myRange = NSRange(location: 0, length: 22)
-            myString.addAttribute(NSAttributedString.Key.foregroundColor, value: ColorPreference.mainColor, range: myRange)
-            
-            self.endpointUrl.attributedText = myString
         })
         .disposed(by: disposeBag)
         
