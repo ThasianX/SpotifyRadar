@@ -1,6 +1,6 @@
 # Spotify Radar
 
-Spotify Radar is an iOS application that allows users to pull in new song releases from their favorite artists and provides users with important metrics like their top tracks, top artists, and recently played tracks, queryable by time range.
+[Spotify Radar](https://apps.apple.com/us/app/releasifyx/id1494604431?ls=1) is an iOS application that allows users to pull in new song releases from their favorite artists and provides users with important metrics like their top tracks, top artists, and recently played tracks, queryable by time range.
 
 **Architecture**: MVVM + Coordinator + RxSwift
 
