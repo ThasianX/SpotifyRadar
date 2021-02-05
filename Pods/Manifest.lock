@@ -1,16 +1,16 @@
 PODS:
   - Differentiator (4.0.1)
-  - RxCocoa (5.0.1):
+  - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
   - RxDataSources (4.0.1):
     - Differentiator (~> 4.0)
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
-  - RxRelay (5.0.1):
+  - RxRelay (5.1.1):
     - RxSwift (~> 5)
-  - RxSwift (5.0.1)
-  - SideMenu (6.4.7)
+  - RxSwift (5.1.1)
+  - SideMenu (6.5.0)
   - Swinject (2.6.2)
   - SwinjectAutoregistration (2.6.0):
     - Swinject (~> 2.6)
@@ -36,14 +36,14 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
-  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
-  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
-  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
-  SideMenu: 928a015669c3afc201e1fe3a87f1b0bc8993a664
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
   SwinjectAutoregistration: 93a908f7543c401b0c315305ac0ae501efdbce89
 
 PODFILE CHECKSUM: cb59bfe1aa4cf0b8d8879eb4d1bea411b30115cc
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3
