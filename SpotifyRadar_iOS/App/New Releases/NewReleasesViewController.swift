@@ -38,6 +38,7 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         configureNavigationBar()
         configureTableView()
         setUpView()
+        createTickView()
     }
     
     deinit {
@@ -62,6 +63,10 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         newReleasesSlider.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: Constraints.outerMargins).isActive = true
         newReleasesSlider.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -Constraints.outerMargins).isActive = true
         newReleasesSlider.heightAnchor.constraint(equalToConstant: Constraints.height).isActive = true
+        
+        // adds target to method snap functionality on the newReleasesSlider UISlider
+        newReleasesSlider.addTarget(self, action: #selector(sliderChanged), for: .touchUpInside)
+        newReleasesSlider.isContinuous = false
         
         tableView.topAnchor.constraint(equalTo: newReleasesSlider.bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
@@ -91,6 +96,24 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         dataSource = RxTableViewSectionedReloadDataSource<TracksSectionModel>(
             configureCell:  tableViewDataSource
         )
+    }
+    
+    // creates the tick mark view and inserts it on top of the newReleasesSlider UISlider
+    private func createTickView() {
+        var tick : UIView
+        let tickArray = Array(1...12)
+        for i in 0..<tickArray.count {
+            tick = UIView(frame: CGRect(x: (newReleasesSlider.frame.size.width / 3) * CGFloat(i), y: (newReleasesSlider.frame.size.height - 13) / 2, width: 2, height: 13))
+            tick.backgroundColor = ColorPreference.tertiaryColor
+            newReleasesSlider.insertSubview(tick, belowSubview: newReleasesSlider)
+        }
+    }
+    
+    // provides the snap functionality on the newReleasesSlider UISlider
+    @objc func sliderChanged(){
+        let step:Float = 1
+        let roundedStepValue = round(newReleasesSlider.value / step) * step
+        newReleasesSlider.value = roundedStepValue
     }
     
     func bindViewModel() {
@@ -143,7 +166,8 @@ final class NewReleasesViewController: ViewControllerWithSideMenu, BindableType 
         newReleasesSlider.rx.value
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(onNext: { [unowned self] value in
-                self.sliderTimeRange.text = "New releases within the past \(Int(value)) months"
+                // value.rounded() makes sure sliderTimeRange.text is accurate after thumbnail snaps to closest Int
+                self.sliderTimeRange.text = "New releases within the past \(Int(value.rounded())) months"
                 input.sliderValue.accept(value)
             })
         .disposed(by: disposeBag)

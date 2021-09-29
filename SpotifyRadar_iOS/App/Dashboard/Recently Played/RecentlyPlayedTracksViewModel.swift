@@ -65,7 +65,7 @@ RecentlyPlayedTracksViewModelOutput {
         self.dataManager = dataManager
         self.safariService = safariService
         
-        // Initializing utputs
+        // Initializing outputs
         title = Observable.just("Your Recently Played Tracks")
         
         trackCollections = sessionService.getRecentlyPlayedTracks(limit: 50)
