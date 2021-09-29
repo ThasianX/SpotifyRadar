@@ -73,7 +73,7 @@ internal protocol SideMenuNavigationControllerTransitionDelegate: class {
     func sideMenuTransitionDidDismiss(menu: Menu)
 }
 
-public struct SideMenuSettings: SideMenuNavigationController.Model, InitializableStruct {
+public struct SideMenuSettings: Model, InitializableStruct {
     public var allowPushOfSameClassTwice: Bool = true
     public var alwaysAnimate: Bool = true
     public var animationOptions: UIView.AnimationOptions = .curveEaseInOut
@@ -98,19 +98,18 @@ public struct SideMenuSettings: SideMenuNavigationController.Model, Initializabl
     public var presentDuration: Double = 0.35
     public var presentationStyle: SideMenuPresentationStyle = .viewSlideOut
     public var pushStyle: SideMenuPushStyle = .default
-    public var statusBarEndAlpha: CGFloat = 1
+    public var statusBarEndAlpha: CGFloat = 0
     public var usingSpringWithDamping: CGFloat = 1
 
     public init() {}
 }
 
 internal typealias Menu = SideMenuNavigationController
+typealias Model = MenuModel & PresentationModel & AnimationModel
 
 @objcMembers
 open class SideMenuNavigationController: UINavigationController {
-
-    internal typealias Model = MenuModel & PresentationModel & AnimationModel
-
+    
     private lazy var _leftSide = Protected(false) { [weak self] oldValue, newValue in
         guard self?.isHidden != false else {
             Print.warning(.property, arguments: .leftSide, required: true)
@@ -245,7 +244,7 @@ open class SideMenuNavigationController: UINavigationController {
             transitionController?.transition(presenting: false, animated: false)
         }
 
-        // Clear selecton on UITableViewControllers when reappearing using custom transitions
+        // Clear selection on UITableViewControllers when reappearing using custom transitions
         if let tableViewController = topViewController as? UITableViewController,
             let tableView = tableViewController.tableView,
             let indexPaths = tableView.indexPathsForSelectedRows,
@@ -336,7 +335,7 @@ open class SideMenuNavigationController: UINavigationController {
 }
 
 // Interface
-extension SideMenuNavigationController: SideMenuNavigationController.Model {
+extension SideMenuNavigationController: Model {
 
     @IBInspectable open var allowPushOfSameClassTwice: Bool {
         get { return settings.allowPushOfSameClassTwice }

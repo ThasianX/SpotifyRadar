@@ -57,7 +57,13 @@ class AddArtistsViewController: UIViewController, BindableType {
         searchBar.placeholder = "Enter Artist Name..."
         searchBar.barTintColor = ColorPreference.secondaryColor
         searchBar.tintColor = ColorPreference.mainColor
-        searchBar.searchTextField.textColor = ColorPreference.mainColor
+        
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.textColor = ColorPreference.mainColor
+        } else {
+            // Fallback on earlier versions
+        }
+        
         resultsTableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
     }
